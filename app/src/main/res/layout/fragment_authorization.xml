@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".fragment.AuthorizationFragment">
+
+
+    <LinearLayout
+        android:id="@+id/liner_text"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
+        android:orientation="vertical"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:id="@+id/textAuth"
+            android:layout_gravity="center"
+            android:textColor="#000000"
+            android:text="Авторизация"
+            android:textSize="30dp"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+        <EditText
+            android:layout_gravity="center"
+            android:id="@+id/number_edittext"
+            android:layout_below="@+id/textAuth"
+            android:inputType="number"
+            android:layout_centerHorizontal="true"
+            android:hint="Введите номер телефона"
+            android:layout_width="230dp"
+            android:layout_height="wrap_content"/>
+
+
+        <EditText
+            android:layout_gravity="center"
+            android:id="@+id/password_edittext"
+            android:layout_below="@+id/number_edittext"
+            android:inputType="number"
+            android:layout_centerHorizontal="true"
+            android:hint="Введите код"
+            android:layout_width="230dp"
+            android:layout_height="wrap_content"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/liner_btn"
+        android:layout_below="@+id/liner_text"
+        android:layout_centerHorizontal="true"
+        android:orientation="vertical"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+        <Button
+            android:layout_gravity="center"
+            android:id="@+id/ok_btn"
+            android:text="Выслать код"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+        <Button
+            android:layout_gravity="center"
+            android:id="@+id/cancel_btn"
+            android:text="Войти"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+    </LinearLayout>
+
+
+</RelativeLayout>

@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/menu"
+        android:title="Меню"
+        android:icon="@drawable/ic_account_balance_wallet_black_24dp"
+        />
+
+
+    <item
+        android:id="@+id/basket"
+        android:title="Корзина"
+        android:icon="@drawable/ic_shopping_basket_black_24dp"
+        />
+
+
+    <item
+        android:id="@+id/status"
+        android:title="Статус"
+        android:icon="@drawable/ic_not_interested_black_24dp"
+        />
+
+    <item
+        android:id="@+id/profil"
+        android:title="Профиль"
+        android:icon="@drawable/ic_account_box_black_24dp"
+        />
+
+
+</menu>

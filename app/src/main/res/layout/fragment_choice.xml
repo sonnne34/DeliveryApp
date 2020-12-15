@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:gravity="center"
+    tools:context=".fragment.ChoiceFragment">
+
+    <ImageView
+        android:id="@+id/img_dish_choice"
+        android:layout_width="200dp"
+        android:layout_height="200dp"
+        android:layout_gravity="center"
+        android:background="@drawable/card1"/>
+
+    <TextView
+        android:id="@+id/txt_name_dish_choice"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:layout_margin="7dp"
+        android:textSize="20dp"
+        android:text="Название блюда"/>
+
+    <TextView
+        android:id="@+id/txt_description_choice"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:layout_margin="7dp"
+        android:textSize="20dp"
+        android:text="Описание блюда"/>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center">
+
+        <Button
+            android:id="@+id/btn_minus_choice"
+            android:layout_width="40dp"
+            android:layout_height="wrap_content"
+            android:text="-"/>
+
+        <TextView
+            android:id="@+id/txt_value_choice"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="25dp"
+            android:layout_toRightOf="@+id/btn_minus_choice"
+            android:layout_margin="7dp"
+            android:text="1" />
+
+        <Button
+            android:id="@+id/btn_plus_choice"
+            android:layout_width="40dp"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@+id/txt_value_choice"
+            android:text="+" />
+
+        <TextView
+            android:id="@+id/txt_cost_choice"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:textSize="20dp"
+            android:layout_toRightOf="@+id/btn_plus_choice"
+            android:text="100 "/>
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:layout_margin="7dp">
+
+        <Button
+            android:id="@+id/btn_add_choice"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Добавить"/>
+
+        <Button
+            android:id="@+id/btn_cancel_choice"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@id/btn_add_choice"
+            android:text="Отмена" />
+
+    </RelativeLayout>
+
+</LinearLayout>
