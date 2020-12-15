@@ -5,7 +5,6 @@ import android.annotation.SuppressLint
 import android.content.Context
 import android.content.pm.PackageManager
 import android.graphics.Color
-import android.graphics.Insets.add
 import android.location.Geocoder
 import android.location.Location
 import android.os.Bundle
@@ -15,13 +14,9 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
-import android.widget.GridView
 import android.widget.ProgressBar
-import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
-import androidx.core.view.OneShotPreDrawListener.add
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.FragmentTransaction
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.gms.location.FusedLocationProviderClient
@@ -29,17 +24,16 @@ import com.google.android.gms.location.LocationServices
 import com.google.android.gms.maps.model.LatLng
 import com.google.firebase.database.*
 import com.sushi.Sushi.adapters.CategoryAdapter
-import com.sushi.Sushi.adapters.MenuGridAdapter
+import com.sushi.Sushi.adapters.MenuAdapter
+
 import com.sushi.Sushi.fragment.ChoiceFragment
 import com.sushi.Sushi.models.*
 import com.sushi.Sushi.singleton.Address
-import com.sushi.Sushi.singleton.MenuSingleton
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import java.util.*
 import kotlin.collections.ArrayList
-import kotlin.collections.HashMap
 
 
 /**
@@ -54,7 +48,10 @@ class MenuFragment : Fragment() {
     private lateinit var dangerousArea: MutableList<LatLng>
     private lateinit var  mCategoryAdapter: CategoryAdapter
     private lateinit var categoryRecyclerView : RecyclerView
-    lateinit var  gridView : GridView
+    private lateinit var  menuRecyclerView  : RecyclerView
+    private lateinit var adapter : MenuAdapter
+
+
     lateinit var choiceFragment : ChoiceFragment
     private var mCategoryRef: DatabaseReference? = null
 
@@ -92,27 +89,17 @@ class MenuFragment : Fragment() {
 
 
 
-
+        menuRecyclerView = root.findViewById(R.id.recycler_view_menu)
+        adapter = MenuAdapter()
+        menuRecyclerView.adapter = adapter
+        menuRecyclerView.layoutManager = LinearLayoutManager(root.context, RecyclerView.VERTICAL, false)
+        menuRecyclerView.setHasFixedSize(true)
 
 
 
 
         LoadCategory()
-        LoadMenu(root.context)
-
-
-
-
-
-
-        gridView = root.findViewById(R.id.grid_view_sett)
-
-
-        val menuList : ArrayList<MenuModel> = ArrayList()
-        var menuModel = MenuModel()
-
-
-
+        LoadMenu()
 
 
 
@@ -123,24 +110,11 @@ class MenuFragment : Fragment() {
         }
 
 
-        gridView.setOnItemClickListener { parent, view, position, id  ->
-
-
-            MenuSingleton.addPosition(menuList[position])
-
-            val manager = (activity as AppCompatActivity).supportFragmentManager
-            choiceFragment = ChoiceFragment()
-            manager.beginTransaction()
-                    .replace(R.id.frame_layout, choiceFragment)
-                    .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
-                    .commit()
-        }
-
 
         return root
     }
 
-    private fun LoadMenu(context: Context) {
+    private fun LoadMenu() {
 
         val menuList : ArrayList<CatMenuModel> = ArrayList()
         val database = FirebaseDatabase.getInstance()
@@ -154,12 +128,13 @@ class MenuFragment : Fragment() {
                 for (ds in dataSnapshot.children) {
                     val value = ds.getValue(CatMenuModel::class.java)!!
 
+                    Log.d("AA", "value = " + value.CategoryName )
                     menuList.add(value)
 
 
                 }
 
-                updateMenuAdapter(context,menuList)
+                updateMenuAdapter(menuList)
 
             }
 
@@ -171,10 +146,10 @@ class MenuFragment : Fragment() {
 
     }
 
-    private fun updateMenuAdapter(context: Context, menuList:ArrayList<CatMenuModel>) {
+    private fun updateMenuAdapter( menuList:ArrayList<CatMenuModel>) {
 
-        val adapter = MenuGridAdapter(context,menuList)
-        gridView.adapter = adapter
+        adapter.setupMenu(menuList)
+
 
     }
 

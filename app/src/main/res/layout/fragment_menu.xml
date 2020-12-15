@@ -42,9 +42,9 @@
 
     </androidx.recyclerview.widget.RecyclerView>
 
-    <GridView
+    <androidx.recyclerview.widget.RecyclerView
         android:layout_below="@id/recyclerview_category"
-        android:id="@+id/grid_view_sett"
+        android:id="@+id/recycler_view_menu"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:gravity="center"
@@ -52,5 +52,5 @@
         android:verticalSpacing="3dp"
         android:numColumns="2"
         android:stretchMode="columnWidth">
-    </GridView>
+    </androidx.recyclerview.widget.RecyclerView>
 </RelativeLayout>
