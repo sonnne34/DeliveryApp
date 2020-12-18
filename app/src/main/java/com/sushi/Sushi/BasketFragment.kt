@@ -14,14 +14,17 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.sushi.Sushi.adapters.BasketAdapter
 import com.sushi.Sushi.fragment.RegistrationFragment
+import com.sushi.Sushi.listener.EventListenerss
 import com.sushi.Sushi.models.MenuModel
+import com.sushi.Sushi.models.MenuModelcatMenu
+import com.sushi.Sushi.singleton.BasketSingleton
 
 
-class BasketFragment : Fragment() {
+class BasketFragment : Fragment(){
 
     private lateinit var basketAdapter: BasketAdapter
     private lateinit var rvBasket : RecyclerView
-    private  var listmodel : ArrayList<MenuModel> = ArrayList()
+    private  var listmodel : ArrayList<MenuModelcatMenu> = ArrayList()
     lateinit var btnRegistr : Button
     lateinit var registrationFragment: RegistrationFragment
     lateinit var txtHelloBasket : TextView
@@ -39,24 +42,22 @@ class BasketFragment : Fragment() {
         rvBasket.layoutManager = LinearLayoutManager(root.context,RecyclerView.VERTICAL,false)
         rvBasket.setHasFixedSize(true)
 
-        var menu = MenuModel()
 
-        menu.Name = " Чебурек"
+        listmodel = BasketSingleton.basketItem
 
-        var ff = MenuModel()
-        ff.Name = "Херня"
-        listmodel.add(menu)
-        listmodel.add(ff)
 
 
         setupAdapter(listmodel)
         btnReg()
         visible()
+        updateTEXT()
+
 
         return root
     }
 
-    private fun setupAdapter(modelList : ArrayList<MenuModel> ) {
+
+    private fun setupAdapter(modelList : ArrayList<MenuModelcatMenu> ) {
         rvBasket.visibility = View.VISIBLE
         basketAdapter.setupBasket(basketList = modelList)
     }
@@ -84,5 +85,13 @@ class BasketFragment : Fragment() {
             btnRegistr.visibility = View.GONE
         }
     }
+
+     fun updateTEXT() {
+        val ss = BasketSingleton.count()
+
+        txtPriseTotal.text = ss.toString()
+    }
+
+
 
 }

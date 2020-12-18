@@ -17,6 +17,8 @@ import androidx.fragment.app.FragmentTransaction
 
 
 import com.google.android.material.bottomnavigation.BottomNavigationView
+import com.sushi.Sushi.listener.EventListenerss
+import com.sushi.Sushi.singleton.BasketSingleton
 
 
 class MainActivity : AppCompatActivity() {
@@ -25,11 +27,6 @@ class MainActivity : AppCompatActivity() {
     private lateinit var statusFragment: StatusFragment
     private lateinit var profilFragment: ProfilFragment
     private lateinit var basketFragment: BasketFragment
-
-
-
-
-
 
 
 
@@ -94,5 +91,7 @@ class MainActivity : AppCompatActivity() {
             true
         }
     }
+
+
 
 }

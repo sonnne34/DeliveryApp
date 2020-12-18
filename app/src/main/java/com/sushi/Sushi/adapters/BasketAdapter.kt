@@ -6,14 +6,19 @@ import android.view.ViewGroup
 import android.widget.Button
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import com.sushi.Sushi.BasketFragment
 import com.sushi.Sushi.R
-import com.sushi.Sushi.models.MenuModel
-import kotlinx.android.synthetic.main.fragment_choice.*
+import com.sushi.Sushi.dialog.CountDialog
+import com.sushi.Sushi.listener.EventListenerss
+import com.sushi.Sushi.models.MenuModelcatMenu
+import com.sushi.Sushi.singleton.BasketSingleton
 
-class BasketAdapter: RecyclerView.Adapter<RecyclerView.ViewHolder>() {
-    private var mBasketList: ArrayList<MenuModel> = ArrayList()
+//import kotlinx.android.synthetic.main.fragment_choice.*
 
-    fun setupBasket(basketList: ArrayList<MenuModel>){
+class BasketAdapter: RecyclerView.Adapter<RecyclerView.ViewHolder>(){
+    private var mBasketList: ArrayList<MenuModelcatMenu> = ArrayList()
+
+    fun setupBasket(basketList: ArrayList<MenuModelcatMenu>){
         mBasketList.clear()
         mBasketList.addAll(basketList)
         notifyDataSetChanged()
@@ -33,8 +38,7 @@ class BasketAdapter: RecyclerView.Adapter<RecyclerView.ViewHolder>() {
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
         if(holder is BasketViewHoldel ){
             holder.bind(menuModel = mBasketList.get(position))
-            holder.minusbtn()
-            holder.plusbtn()
+
 
         }
     }
@@ -49,18 +53,32 @@ class BasketAdapter: RecyclerView.Adapter<RecyclerView.ViewHolder>() {
         private var btnMin : Button = itemView.findViewById(R.id.btn_minus_basket)
 
 
-        fun bind (menuModel: MenuModel){
+        fun bind (menuModel: MenuModelcatMenu){
 
-            nameDish.text = "${menuModel.Name}"
-//            prise.text = "${menuModel.Count}"
+            nameDish.text = "${menuModel.Items?.Name}"
+            valueDish.text = "${menuModel.Items?.CountDialog}"
 
-//            var count = menuModel.Items?.CountDialog
-//            var cost = menuCategoryModel?.Items?.Cost
-//            var price = count!! * cost!!
-//            counter.text = "${price}"
-        }
 
-        fun minusbtn() {
+            itemView.setOnClickListener {
+
+//                var item = BasketSingleton.basketItem
+//                var menufile = MenuModelcatMenu()
+//                for(i in item){
+//                    menufile = i
+//
+//                }
+//
+//                CountDialog.openDialog(itemView.context, menufile)
+
+            }
+
+            val  count = menuModel.Items?.CountDialog?.toInt()
+            val cost = menuModel.Items?.Cost?.toInt()
+
+            val sum  = cost!! * count!!
+
+            prise.text = sum.toString()
+
             btnMin.setOnClickListener {
                 var textNumber = valueDish.text
                 var text = Integer.valueOf(textNumber.toString())
@@ -69,33 +87,36 @@ class BasketAdapter: RecyclerView.Adapter<RecyclerView.ViewHolder>() {
                 }else{
                     text = 0
                 }
+
+                BasketSingleton.itemCountBasket(text.toString())
                 valueDish.text = Integer.toString(text)
 
-                var count = valueDish.text
+                var count = menuModel.Items?.Cost
                 var txt  = Integer.valueOf(count.toString())
-                val sums = (txt * 100)
+                val sums = (txt * text)
 
                 prise.text = sums.toString()
+
+
             }
 
 
-        }
-
-        fun plusbtn() {
             btnPlus.setOnClickListener {
                 var textNumber = valueDish.text
                 var text = Integer.valueOf(textNumber.toString())
                 text++
                 valueDish.text = Integer.toString(text)
 
-                var count = valueDish.text
+                var count = menuModel.Items?.Cost
                 var txt = Integer.valueOf(count.toString())
-                val sums = (txt * 100)
+                val sums = (txt * text)
 
                 prise.text = sums.toString()
 
-
             }
         }
+
     }
+
+
 }

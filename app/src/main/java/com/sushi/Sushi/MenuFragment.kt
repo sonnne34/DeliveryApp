@@ -25,10 +25,11 @@ import com.google.android.gms.maps.model.LatLng
 import com.google.firebase.database.*
 import com.sushi.Sushi.adapters.CategoryAdapter
 import com.sushi.Sushi.adapters.MenuAdapter
+import com.sushi.Sushi.listener.EventListenerss
 
-import com.sushi.Sushi.fragment.ChoiceFragment
 import com.sushi.Sushi.models.*
 import com.sushi.Sushi.singleton.Address
+import com.sushi.Sushi.singleton.BasketSingleton
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -39,7 +40,7 @@ import kotlin.collections.ArrayList
 /**
  * A simple [Fragment] subclass.
  */
-class MenuFragment : Fragment() {
+class MenuFragment : Fragment(), EventListenerss {
 
 
     private lateinit var  progress_bar : ProgressBar
@@ -50,9 +51,9 @@ class MenuFragment : Fragment() {
     private lateinit var categoryRecyclerView : RecyclerView
     private lateinit var  menuRecyclerView  : RecyclerView
     private lateinit var adapter : MenuAdapter
+    val menuList : ArrayList<CatMenuModel> = ArrayList()
 
 
-    lateinit var choiceFragment : ChoiceFragment
     private var mCategoryRef: DatabaseReference? = null
 
 
@@ -79,7 +80,7 @@ class MenuFragment : Fragment() {
         progress_bar = root.findViewById(R.id.progress_bar)
 
         addArea()
-
+        BasketSingleton.subscribe(this)
         categoryRecyclerView = root.findViewById(R.id.recyclerview_category)
         mCategoryAdapter = CategoryAdapter()
         categoryRecyclerView.adapter = mCategoryAdapter
@@ -106,7 +107,7 @@ class MenuFragment : Fragment() {
 
 
         CoroutineScope(Dispatchers.IO).launch {
-//            loadAddress(root.context)
+            loadAddress(root.context)
         }
 
 
@@ -116,7 +117,7 @@ class MenuFragment : Fragment() {
 
     private fun LoadMenu() {
 
-        val menuList : ArrayList<CatMenuModel> = ArrayList()
+
         val database = FirebaseDatabase.getInstance()
         val myRef = database.getReference("RestarauntMenu")
 
@@ -333,6 +334,10 @@ class MenuFragment : Fragment() {
 
         dangerousArea = ArrayList()
         dangerousArea.add(LatLng(57.1344598,65.4966976))
+    }
+
+    override fun updateRR() {
+        updateMenuAdapter(menuList)
     }
 
 

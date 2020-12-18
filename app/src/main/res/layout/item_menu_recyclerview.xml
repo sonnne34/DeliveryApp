@@ -9,9 +9,16 @@
 
 
     <ImageView
-        android:background="@drawable/ic_settings_black_24dp"
-        android:layout_width="120dp"
+        android:background="#897654"
+        android:layout_width="match_parent"
         android:layout_height="120dp"/>
+
+
+    <TextView
+        android:id="@+id/checkBoxItem"
+        android:layout_width="match_parent"
+        android:layout_height="10dp"/>
+
 
 
     <TextView

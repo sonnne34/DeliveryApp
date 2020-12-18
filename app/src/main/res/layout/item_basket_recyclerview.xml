@@ -36,9 +36,10 @@
         android:id="@+id/txt_prise_dish_basket"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textSize="20dp"
         android:layout_below="@+id/img_dish_basket"
-        android:text="100 руб"/>
+        android:layout_marginTop="7dp"
+        android:text="100 руб"
+        android:textSize="20dp" />
 
     <Button
         android:id="@+id/btn_minus_basket"

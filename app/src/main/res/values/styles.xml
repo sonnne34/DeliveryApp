@@ -32,4 +32,51 @@
 
     </style>
 
+
+    \\стиль диалогового окна (добавить блюдо)
+    <style name="CustomDialog" parent="@android:style/Theme.Dialog">
+        <item name="android:windowAnimationStyle">@style/CustomDialogAnimation</item>
+        <item name="android:background">@drawable/okrugl_dialog</item>
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:windowBackground">@android:color/transparent</item>
+    </style>
+
+    \\подстиль диалогового окна (добавить блюдо)
+    <style name="CustomDialogAnimation">
+        <item name="android:windowEnterAnimation">@anim/translate_left_side</item>
+        <item name="android:windowExitAnimation">@anim/translate_right_side</item>
+    </style>
+
+
+    //стиль мальеньких кнопок
+    <style name="ButtonBody">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:background">@color/transparent</item>
+        <item name="android:textColor">@color/colorAccent</item>
+        <item name="android:textSize">12sp</item>
+        <item name="android:textStyle">bold</item>
+
+    </style>
+
+    <style name="Text"> //основа
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:layout_margin">5dp</item>
+    </style>
+
+    <style name="TextBody" parent="Text"> //стиль обычного текста
+        <item name="android:textSize">16sp</item>
+    </style>
+
+    //стиль крупных кнопок
+    <style name="ButtonCeep" parent="TextBody">
+        <item name="android:layout_alignParentBottom">true</item>
+        <item name="android:layout_centerHorizontal">true</item>
+        <item name="android:layout_gravity">center</item>
+        <item name="android:textColor">@color/colorAccent</item>
+        <item name="android:background">@color/transparent</item>
+    </style>
+
 </resources>

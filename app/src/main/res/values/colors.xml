@@ -7,4 +7,8 @@
     <color name="transparent">#00000000</color>
     <color name="RedColor">#ff0000</color>
     <color name="GreenColor">#008000</color>
+    <color name="my_color">#342456</color>
+    <color name="my_colorTwo">#F3F2F2</color>
+    <color name="header">#333333</color>
+    <color name="gray_mercury">#E1E1E1</color>
 </resources>
