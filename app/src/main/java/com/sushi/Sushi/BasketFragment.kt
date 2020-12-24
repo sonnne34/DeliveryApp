@@ -20,7 +20,7 @@ import com.sushi.Sushi.models.MenuModelcatMenu
 import com.sushi.Sushi.singleton.BasketSingleton
 
 
-class BasketFragment : Fragment(){
+class BasketFragment : Fragment(), EventListenerss{
 
     private lateinit var basketAdapter: BasketAdapter
     private lateinit var rvBasket : RecyclerView
@@ -42,7 +42,7 @@ class BasketFragment : Fragment(){
         rvBasket.layoutManager = LinearLayoutManager(root.context,RecyclerView.VERTICAL,false)
         rvBasket.setHasFixedSize(true)
 
-
+        BasketSingleton.subscribe(this)
         listmodel = BasketSingleton.basketItem
 
 
@@ -92,6 +92,13 @@ class BasketFragment : Fragment(){
         txtPriseTotal.text = ss.toString()
     }
 
+    override fun updateRR() {
+        var menufile = BasketSingleton.basketItem
+        rvBasket.visibility = View.VISIBLE
+        basketAdapter.setupBasket(basketList = menufile)
+
+       updateTEXT()
+    }
 
 
 }

@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<merge xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".fragment.PaymentFragment">
+
+<!--    <TextView-->
+<!--        android:id="@+id/title_payment"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:textSize="22dp"-->
+<!--        android:gravity="center"-->
+<!--        android:layout_margin="10dp"-->
+<!--        android:text="Каким способом оплатите заказ?"/>-->
+
+<!--    <TextView-->
+<!--        android:id="@+id/sum_payment"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_margin="10dp"-->
+<!--        android:gravity="center"-->
+<!--        android:text="Заказ на:..."/>-->
+
+    <TextView
+        android:id="@+id/method_payment"
+        android:layout_height="wrap_content"
+        android:layout_width="wrap_content"
+        android:hint="Способ оплаты курьеру:"/>
+
+    <RadioGroup
+        android:id="@+id/selection_method_payment"
+        style="@style/RadioGroup"
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        android:layout_margin="7dp"
+        android:orientation="horizontal"
+        android:checkedButton="@id/method_cash_payment"
+        android:gravity="center">
+
+        <RadioButton
+            android:id="@+id/method_card_payment"
+            style="@style/RadioButton"
+            android:layout_weight="1"
+            android:layout_height="45dp"
+            android:button="@null"
+            android:layout_gravity="center_horizontal"
+            android:text="Samsung Pass"/>
+
+        <RadioButton
+            android:id="@+id/method_cash_payment"
+            style="@style/RadioButton"
+            android:layout_height="45dp"
+            android:layout_weight="1"
+            android:layout_gravity="center_horizontal"
+            android:button="@null"
+            android:text="Google Pay" />
+
+    </RadioGroup>
+
+    <Button
+        android:id="@+id/btn_add"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:text="Заказать" />
+
+</merge>

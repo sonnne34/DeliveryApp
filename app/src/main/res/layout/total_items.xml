@@ -1,0 +1,171 @@
+<?xml version="1.0" encoding="utf-8"?>
+<merge
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+
+    <TextView
+        android:id="@+id/title_total"
+        style="@style/TextHeader"
+        android:layout_width="match_parent"
+        android:text="@string/title_total"/>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="3dp"
+        android:layout_marginTop="10dp"
+        android:background="@color/gray_mercury"/>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/order_total"
+                style="@style/TextHeader2"
+                android:layout_marginTop="5dp"
+                android:text="Заказ:"/>
+
+            <androidx.recyclerview.widget.RecyclerView
+
+                android:id="@+id/total_recyclerView"
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="125dp"
+                android:layout_marginStart="20dp"
+                android:layout_marginLeft="20dp">
+
+            </androidx.recyclerview.widget.RecyclerView>
+
+            <TextView
+                android:id="@+id/sum_person_total"
+                style="@style/TextBody2"
+                android:layout_width="match_parent"
+                android:gravity="end"
+                android:hint="Итого:..."/>
+
+
+            <TextView
+                android:id="@+id/person_data_order"
+                style="@style/TextHeader2"
+                android:text="Информация о заказе:"/>
+
+            <TextView
+                android:id="@+id/name_person_order"
+                style="@style/TextBody2"
+                android:layout_marginStart="20dp"
+                android:hint="Имя"
+                android:layout_marginLeft="20dp" />
+
+            <TextView
+                android:id="@+id/phone_person_order"
+                style="@style/TextBody2"
+                android:layout_marginStart="20dp"
+                android:hint="Номер"
+                android:layout_marginLeft="20dp" />
+
+            <TextView
+                android:id="@+id/comment_order"
+                style="@style/TextBody2"
+                android:maxLines="3"
+                android:layout_marginStart="20dp"
+                android:hint="Комментарий"
+                android:layout_marginLeft="20dp" />
+
+            <TextView
+                android:id="@+id/address_total"
+                style="@style/TextHeader2"
+                android:text="Адрес доставки:"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginStart="20dp"
+                android:layout_marginEnd="5dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="5dp">
+
+                <TextView
+                    android:id="@+id/cities_total"
+                    style="@style/TextBody2"
+                    android:hint="Тюмень"/>
+
+                <TextView
+                    android:id="@+id/street_total"
+                    style="@style/TextBody2"
+                    android:hint="Улица"/>
+
+                <TextView
+                    android:id="@+id/home_total"
+                    android:layout_toEndOf="@+id/street_total"
+                    style="@style/TextBody2"
+                    android:hint="Дом"
+                    android:layout_toRightOf="@+id/street_total" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginStart="20dp"
+                android:layout_marginEnd="5dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="5dp">
+
+                <TextView
+                    android:id="@+id/apartment_total"
+                    style="@style/TextBody2"
+                    android:hint="Кв./Офис"/>
+
+                <TextView
+                    android:id="@+id/entrance_total"
+                    style="@style/TextBody2"
+                    android:hint="Подъезд"/>
+
+                <TextView
+                    android:id="@+id/level_total"
+                    style="@style/TextBody2"
+                    android:hint="Этаж"/>
+
+
+            </LinearLayout>
+
+<!--            <TextView-->
+<!--                android:id="@+id/method_payment_total"-->
+<!--                style="@style/TextHeader2"-->
+<!--                android:text="Способ оплаты:"/>-->
+
+<!--            <TextView-->
+<!--                android:id="@+id/method_payment_person_total"-->
+<!--                android:layout_marginStart="20dp"-->
+<!--                style="@style/TextBody2"-->
+<!--                android:hint="Способ оплаты"-->
+<!--                android:layout_marginLeft="20dp" />-->
+
+            <TextView
+                android:id="@+id/banknote_payment_total"
+                style="@style/TextHeader2"
+                android:text="Сдача с:"/>
+
+            <TextView
+                android:id="@+id/banknote_payment_person_total"
+                android:layout_marginStart="20dp"
+                style="@style/TextBody2"
+                android:hint="Сдача с:"
+                android:layout_marginLeft="20dp" />
+
+        </LinearLayout>
+
+    </ScrollView>
+
+
+</merge>

@@ -45,7 +45,7 @@ object BasketSingleton {
 
 
     fun proverkaNaNalichie(position: MenuModelcatMenu): MenuModelcatMenu? {
-        var nn = MenuModelcatMenu()
+        var nn: MenuModelcatMenu? = null
         for (i in basketItem) {
             if (position.Items?.Name.equals(i.Items?.Name)) {
                 nn = i

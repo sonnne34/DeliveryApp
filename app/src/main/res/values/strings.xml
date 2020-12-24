@@ -7,4 +7,12 @@
 
     <string name="tab_text_1">Tab 1</string>
     <string name="tab_text_2">Tab 2</string>
+
+
+
+    <string name="SearchRestoration">Поиск ресторанов</string>
+    <string name="title_person_data">Персональные данные:</string>
+    <string name="title_address">Адрес:</string>
+    <string name="title_payment">Детали оплаты:</string>
+    <string name="title_total">Итого:</string>
 </resources>

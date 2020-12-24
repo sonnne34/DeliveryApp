@@ -7,6 +7,9 @@ import android.content.pm.PackageManager
 import android.graphics.Color
 import android.location.Geocoder
 import android.location.Location
+import android.net.ConnectivityManager
+import android.net.NetworkCapabilities
+import android.os.Build
 import android.os.Bundle
 import android.os.Parcelable
 import android.util.Log
@@ -15,6 +18,8 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.ProgressBar
+import android.widget.Toast
+import androidx.annotation.RequiresApi
 import androidx.core.app.ActivityCompat
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -71,6 +76,7 @@ class MenuFragment : Fragment(), EventListenerss {
 
     }
 
+    @RequiresApi(Build.VERSION_CODES.LOLLIPOP)
     @SuppressLint("ResourceType")
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val root = inflater.inflate(R.layout.fragment_menu, container, false)
@@ -107,13 +113,47 @@ class MenuFragment : Fragment(), EventListenerss {
 
 
         CoroutineScope(Dispatchers.IO).launch {
-            loadAddress(root.context)
+
+
+            val online = isOnline(root.context)
+
+            Log.d("FF","Internet = " +  online )
+            loadAddress(root.context, online)
         }
 
 
 
         return root
     }
+
+
+
+    @SuppressLint("NewApi")
+    @RequiresApi(Build.VERSION_CODES.LOLLIPOP)
+    fun isOnline(context: Context): Boolean {
+        val connectivityManager =
+                context.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
+        if (connectivityManager != null) {
+            val capabilities =
+                    connectivityManager.getNetworkCapabilities(connectivityManager.activeNetwork)
+            if (capabilities != null) {
+                if (capabilities.hasTransport(NetworkCapabilities.TRANSPORT_CELLULAR)) {
+                    Log.i("Internet", "NetworkCapabilities.TRANSPORT_CELLULAR")
+                    return true
+                } else if (capabilities.hasTransport(NetworkCapabilities.TRANSPORT_WIFI)) {
+                    Log.i("Internet", "NetworkCapabilities.TRANSPORT_WIFI")
+                    return true
+                } else if (capabilities.hasTransport(NetworkCapabilities.TRANSPORT_ETHERNET)) {
+                    Log.i("Internet", "NetworkCapabilities.TRANSPORT_ETHERNET")
+                    return true
+                }
+            }
+        }
+        return false
+    }
+
+
+
 
     private fun LoadMenu() {
 
@@ -261,72 +301,80 @@ class MenuFragment : Fragment(), EventListenerss {
     }
 
 
-    private fun loadAddress(context: Context) {
-
-        if (ActivityCompat.checkSelfPermission(context, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(context, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
-            // TODO: Consider calling
-            //    ActivityCompat#requestPermissions
-            // here to request the missing permissions, and then overriding
-            //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
-            //                                          int[] grantResults)
-            // to handle the case where the user grants the permission. See the documentation
-            // for ActivityCompat#requestPermissions for more details.
+    @RequiresApi(Build.VERSION_CODES.LOLLIPOP)
+    private fun loadAddress(context: Context, boolean: Boolean) {
 
 
-            return
-        }
-        fusedLocationProviderClient.lastLocation.addOnCompleteListener {
-            val latitude = it.result?.latitude
-            val longitude = it.result?.longitude
+        if(boolean == true){
 
-            Log.d("Result","lat = " + latitude )
-            Log.d("Result","llong = " + longitude )
+            if (ActivityCompat.checkSelfPermission(context, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(context, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+                // TODO: Consider calling
+                //    ActivityCompat#requestPermissions
+                // here to request the missing permissions, and then overriding
+                //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
+                //                                          int[] grantResults)
+                // to handle the case where the user grants the permission. See the documentation
+                // for ActivityCompat#requestPermissions for more details.
 
 
-
-
-            val locationA = Location("Point A")
-
-            locationA.latitude = latitude!!
-            locationA.longitude = longitude!!
-
-            val locationB = Location("Point B")
-
-            for (i in dangerousArea){
-                locationB.longitude = i.longitude
-                locationB.latitude = i.latitude
+                return
             }
-            val currentDistance = locationA.distanceTo(locationB)
+            fusedLocationProviderClient.lastLocation.addOnCompleteListener {
+                val latitude = it.result?.latitude
+                val longitude = it.result?.longitude
 
-            if (currentDistance > 3000){
+                Log.d("Result","lat = " + latitude )
+                Log.d("Result","llong = " + longitude )
 
 
 
-                btnGetLoc.setBackgroundColor(Color.RED)
-            }else{
 
-                btnGetLoc.setBackgroundColor(Color.GREEN)
+                val locationA = Location("Point A")
+
+                locationA.latitude = latitude!!
+                locationA.longitude = longitude!!
+
+                val locationB = Location("Point B")
+
+                for (i in dangerousArea){
+                    locationB.longitude = i.longitude
+                    locationB.latitude = i.latitude
+                }
+                val currentDistance = locationA.distanceTo(locationB)
+
+                if (currentDistance > 3000){
+
+
+
+                    btnGetLoc.setBackgroundColor(Color.RED)
+                }else{
+
+                    btnGetLoc.setBackgroundColor(Color.GREEN)
+                }
+
+
+
+                val geocoder = Geocoder(context, Locale.getDefault())
+
+                val addresses = geocoder.getFromLocation(latitude!!, longitude!!, 1)
+
+
+                val address = addresses[0].getAddressLine(0)
+
+
+                Address.address = address
+
+
+                progress_bar.visibility = View.INVISIBLE
+                btnGetLoc.visibility = View.VISIBLE
+                btnGetLoc.text = address
+
+
             }
 
-
-
-            val geocoder = Geocoder(context, Locale.getDefault())
-
-            val addresses = geocoder.getFromLocation(latitude!!, longitude!!, 1)
-
-
-            val address = addresses[0].getAddressLine(0)
-
-
-            Address.address = address
-
-
-            progress_bar.visibility = View.INVISIBLE
-            btnGetLoc.visibility = View.VISIBLE
-            btnGetLoc.text = address
-
-
         }
+
+
 
     }
 

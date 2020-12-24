@@ -61,14 +61,9 @@ class BasketAdapter: RecyclerView.Adapter<RecyclerView.ViewHolder>(){
 
             itemView.setOnClickListener {
 
-//                var item = BasketSingleton.basketItem
-//                var menufile = MenuModelcatMenu()
-//                for(i in item){
-//                    menufile = i
-//
-//                }
-//
-//                CountDialog.openDialog(itemView.context, menufile)
+
+
+                CountDialog.openDialog(itemView.context, menuModel )
 
             }
 
@@ -88,7 +83,7 @@ class BasketAdapter: RecyclerView.Adapter<RecyclerView.ViewHolder>(){
                     text = 0
                 }
 
-                BasketSingleton.itemCountBasket(text.toString())
+
                 valueDish.text = Integer.toString(text)
 
                 var count = menuModel.Items?.Cost
@@ -96,7 +91,7 @@ class BasketAdapter: RecyclerView.Adapter<RecyclerView.ViewHolder>(){
                 val sums = (txt * text)
 
                 prise.text = sums.toString()
-
+                BasketSingleton.notifyTwo()
 
             }
 
@@ -105,6 +100,8 @@ class BasketAdapter: RecyclerView.Adapter<RecyclerView.ViewHolder>(){
                 var textNumber = valueDish.text
                 var text = Integer.valueOf(textNumber.toString())
                 text++
+
+
                 valueDish.text = Integer.toString(text)
 
                 var count = menuModel.Items?.Cost
@@ -112,6 +109,8 @@ class BasketAdapter: RecyclerView.Adapter<RecyclerView.ViewHolder>(){
                 val sums = (txt * text)
 
                 prise.text = sums.toString()
+
+
 
             }
         }

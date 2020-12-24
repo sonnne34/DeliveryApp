@@ -16,8 +16,10 @@ class CountDialog {
     companion object {
         fun openDialog(context: Context, fileMenu: MenuModelcatMenu) {
 
+
+
             var menuFile = fileMenu
-            Log.d ("dialog ", " Menufile = " + menuFile?.Items?.Name)
+            Log.d ("PPPP ", " Menufile = " + menuFile?.Items?.Name)
 
             val dialog = Dialog(context, R.style.CustomDialog)
             dialog.requestWindowFeature(Window.FEATURE_NO_TITLE)
@@ -29,15 +31,42 @@ class CountDialog {
                     ListPopupWindow.WRAP_CONTENT)
 
             val description = dialog.findViewById(R.id.textViewGoodsDescriptionDialog) as TextView
-            description.setText(menuFile?.Items?.Description)
             val name = dialog.findViewById(R.id.names) as TextView
-            name.setText(menuFile?.Items?.Name)
             val cost = dialog.findViewById(R.id.cost) as TextView
-            cost.setText(menuFile?.Items?.Cost.toString())
+            val count = dialog.findViewById(R.id.count) as TextView
 
-            val one: Long = 1
-            var count = dialog.findViewById(R.id.count) as TextView
-            count.setText(one.toString())
+            val file = BasketSingleton.proverkaNaNalichie(fileMenu)
+
+            Log.d("verka", "11111= " + file)
+
+            if (file != null){
+
+
+                description.setText(file.Items?.Description)
+                name.setText(file?.Items?.Name)
+                val sim: Long = file.Items?.Cost!!
+                val som: Long = file.Items?.CountDialog!!
+                val zim = sim * som
+
+                cost.setText(zim.toString())
+
+                count.setText(file?.Items?.CountDialog.toString())
+                dialog.show();
+
+                Log.d("verka", "2222222= " + file)
+
+
+            }else{
+                description.setText(menuFile?.Items?.Description)
+                name.setText(menuFile?.Items?.Name)
+                cost.setText(menuFile?.Items?.Cost.toString())
+                val one: Long = 1
+                count.setText(one.toString())
+                dialog.show();
+
+
+            }
+
 
 
 
@@ -110,7 +139,7 @@ class CountDialog {
             }
 
 
-            dialog.show()
+
 
         }
 
