@@ -4,7 +4,7 @@
       <root url="jar://$USER_HOME$/Sushi/app/gradle/caches/transforms-2/files-2.1/45b7ba014e7430ec329645de668decb4/recyclerview-1.0.0/annotations.zip!/" />
       <root url="jar://$PROJECT_DIR$/../.gradle/5.6.4/caches/transforms-2/files-2.1/45b7ba014e7430ec329645de668decb4/recyclerview-1.0.0/annotations.zip!/" />
       <root url="jar://$PROJECT_DIR$/../../SushiTwo/Sushi/.gradle/6.5/caches/transforms-2/files-2.1/45b7ba014e7430ec329645de668decb4/recyclerview-1.0.0/annotations.zip!/" />
-      <root url="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/d6f9b12648d3ba30c08a1e35d58e4f41/recyclerview-1.0.0/annotations.zip!/" />
+      <root url="jar://$PROJECT_DIR$/../../SushiKitchen/gradle/caches/transforms-2/files-2.1/d6f9b12648d3ba30c08a1e35d58e4f41/recyclerview-1.0.0/annotations.zip!/" />
     </ANNOTATIONS>
     <CLASSES>
       <root url="jar://$USER_HOME$/Sushi/app/gradle/caches/transforms-2/files-2.1/45b7ba014e7430ec329645de668decb4/recyclerview-1.0.0/jars/classes.jar!/" />
@@ -16,16 +16,16 @@
       <root url="file://$PROJECT_DIR$/../../SushiTwo/Sushi/.gradle/6.5/caches/transforms-2/files-2.1/45b7ba014e7430ec329645de668decb4/recyclerview-1.0.0/AndroidManifest.xml" />
       <root url="file://$PROJECT_DIR$/../../SushiTwo/Sushi/.gradle/6.5/caches/transforms-2/files-2.1/45b7ba014e7430ec329645de668decb4/recyclerview-1.0.0/res" />
       <root url="jar://$PROJECT_DIR$/../../SushiTwo/Sushi/.gradle/6.5/caches/transforms-2/files-2.1/45b7ba014e7430ec329645de668decb4/recyclerview-1.0.0/jars/classes.jar!/" />
-      <root url="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/d6f9b12648d3ba30c08a1e35d58e4f41/recyclerview-1.0.0/jars/classes.jar!/" />
-      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/d6f9b12648d3ba30c08a1e35d58e4f41/recyclerview-1.0.0/AndroidManifest.xml" />
-      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/d6f9b12648d3ba30c08a1e35d58e4f41/recyclerview-1.0.0/res" />
+      <root url="jar://$PROJECT_DIR$/../../SushiKitchen/gradle/caches/transforms-2/files-2.1/d6f9b12648d3ba30c08a1e35d58e4f41/recyclerview-1.0.0/jars/classes.jar!/" />
+      <root url="file://$PROJECT_DIR$/../../SushiKitchen/gradle/caches/transforms-2/files-2.1/d6f9b12648d3ba30c08a1e35d58e4f41/recyclerview-1.0.0/res" />
+      <root url="file://$PROJECT_DIR$/../../SushiKitchen/gradle/caches/transforms-2/files-2.1/d6f9b12648d3ba30c08a1e35d58e4f41/recyclerview-1.0.0/AndroidManifest.xml" />
     </CLASSES>
     <JAVADOC />
     <SOURCES>
       <root url="jar://$USER_HOME$/Sushi/app/gradle/caches/modules-2/files-2.1/androidx.recyclerview/recyclerview/1.0.0/2151d26c3b241f0a887f2dadb9ab091649fcf020/recyclerview-1.0.0-sources.jar!/" />
       <root url="jar://$PROJECT_DIR$/../.gradle/5.6.4/caches/modules-2/files-2.1/androidx.recyclerview/recyclerview/1.0.0/2151d26c3b241f0a887f2dadb9ab091649fcf020/recyclerview-1.0.0-sources.jar!/" />
       <root url="jar://$PROJECT_DIR$/../../SushiTwo/Sushi/.gradle/6.5/caches/modules-2/files-2.1/androidx.recyclerview/recyclerview/1.0.0/2151d26c3b241f0a887f2dadb9ab091649fcf020/recyclerview-1.0.0-sources.jar!/" />
-      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/androidx.recyclerview/recyclerview/1.0.0/2151d26c3b241f0a887f2dadb9ab091649fcf020/recyclerview-1.0.0-sources.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../../SushiKitchen/gradle/caches/modules-2/files-2.1/androidx.recyclerview/recyclerview/1.0.0/2151d26c3b241f0a887f2dadb9ab091649fcf020/recyclerview-1.0.0-sources.jar!/" />
     </SOURCES>
   </library>
 </component>

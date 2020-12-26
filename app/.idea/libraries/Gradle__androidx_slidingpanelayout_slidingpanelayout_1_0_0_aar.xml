@@ -13,16 +13,17 @@
       <root url="file://$PROJECT_DIR$/../../SushiTwo/Sushi/.gradle/6.5/caches/transforms-2/files-2.1/0ad78ae802627f113f59d757c65f9095/slidingpanelayout-1.0.0/res" />
       <root url="file://$PROJECT_DIR$/../.gradle/6.5/caches/transforms-2/files-2.1/0ad78ae802627f113f59d757c65f9095/slidingpanelayout-1.0.0/res" />
       <root url="file://$PROJECT_DIR$/../.gradle/6.5/caches/transforms-2/files-2.1/00f3a5129e57f4072b0b7feba131d321/slidingpanelayout-1.0.0/res" />
-      <root url="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/00f3a5129e57f4072b0b7feba131d321/slidingpanelayout-1.0.0/jars/classes.jar!/" />
       <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/00f3a5129e57f4072b0b7feba131d321/slidingpanelayout-1.0.0/res" />
-      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/00f3a5129e57f4072b0b7feba131d321/slidingpanelayout-1.0.0/AndroidManifest.xml" />
+      <root url="file://$PROJECT_DIR$/../../SushiKitchen/gradle/caches/transforms-2/files-2.1/00f3a5129e57f4072b0b7feba131d321/slidingpanelayout-1.0.0/AndroidManifest.xml" />
+      <root url="file://$PROJECT_DIR$/../../SushiKitchen/gradle/caches/transforms-2/files-2.1/00f3a5129e57f4072b0b7feba131d321/slidingpanelayout-1.0.0/res" />
+      <root url="jar://$PROJECT_DIR$/../../SushiKitchen/gradle/caches/transforms-2/files-2.1/00f3a5129e57f4072b0b7feba131d321/slidingpanelayout-1.0.0/jars/classes.jar!/" />
     </CLASSES>
     <JAVADOC />
     <SOURCES>
       <root url="jar://$USER_HOME$/Sushi/app/gradle/caches/modules-2/files-2.1/androidx.slidingpanelayout/slidingpanelayout/1.0.0/f3f2e4fded24d5969a86e1974ad7e96975d970a0/slidingpanelayout-1.0.0-sources.jar!/" />
       <root url="jar://$PROJECT_DIR$/../.gradle/5.6.4/caches/modules-2/files-2.1/androidx.slidingpanelayout/slidingpanelayout/1.0.0/f3f2e4fded24d5969a86e1974ad7e96975d970a0/slidingpanelayout-1.0.0-sources.jar!/" />
       <root url="jar://$PROJECT_DIR$/../../SushiTwo/Sushi/.gradle/6.5/caches/modules-2/files-2.1/androidx.slidingpanelayout/slidingpanelayout/1.0.0/f3f2e4fded24d5969a86e1974ad7e96975d970a0/slidingpanelayout-1.0.0-sources.jar!/" />
-      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/androidx.slidingpanelayout/slidingpanelayout/1.0.0/f3f2e4fded24d5969a86e1974ad7e96975d970a0/slidingpanelayout-1.0.0-sources.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../../SushiKitchen/gradle/caches/modules-2/files-2.1/androidx.slidingpanelayout/slidingpanelayout/1.0.0/f3f2e4fded24d5969a86e1974ad7e96975d970a0/slidingpanelayout-1.0.0-sources.jar!/" />
     </SOURCES>
   </library>
 </component>

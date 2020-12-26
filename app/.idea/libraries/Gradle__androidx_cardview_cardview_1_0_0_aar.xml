@@ -10,16 +10,16 @@
       <root url="jar://$PROJECT_DIR$/../../SushiTwo/Sushi/.gradle/6.5/caches/transforms-2/files-2.1/2f90b85ad80e025eadc0963cd8cf4a45/cardview-1.0.0/jars/classes.jar!/" />
       <root url="file://$PROJECT_DIR$/../../SushiTwo/Sushi/.gradle/6.5/caches/transforms-2/files-2.1/2f90b85ad80e025eadc0963cd8cf4a45/cardview-1.0.0/res" />
       <root url="file://$PROJECT_DIR$/../../SushiTwo/Sushi/.gradle/6.5/caches/transforms-2/files-2.1/2f90b85ad80e025eadc0963cd8cf4a45/cardview-1.0.0/AndroidManifest.xml" />
-      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/47a2b841cd647cdda1266566ebbee5ee/cardview-1.0.0/res" />
-      <root url="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/47a2b841cd647cdda1266566ebbee5ee/cardview-1.0.0/jars/classes.jar!/" />
-      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/47a2b841cd647cdda1266566ebbee5ee/cardview-1.0.0/AndroidManifest.xml" />
+      <root url="file://$PROJECT_DIR$/../../SushiKitchen/gradle/caches/transforms-2/files-2.1/47a2b841cd647cdda1266566ebbee5ee/cardview-1.0.0/AndroidManifest.xml" />
+      <root url="jar://$PROJECT_DIR$/../../SushiKitchen/gradle/caches/transforms-2/files-2.1/47a2b841cd647cdda1266566ebbee5ee/cardview-1.0.0/jars/classes.jar!/" />
+      <root url="file://$PROJECT_DIR$/../../SushiKitchen/gradle/caches/transforms-2/files-2.1/47a2b841cd647cdda1266566ebbee5ee/cardview-1.0.0/res" />
     </CLASSES>
     <JAVADOC />
     <SOURCES>
       <root url="jar://$USER_HOME$/Sushi/app/gradle/caches/modules-2/files-2.1/androidx.cardview/cardview/1.0.0/c9f3ce7ca74ad2c978230f4094ba6804c5166f9c/cardview-1.0.0-sources.jar!/" />
       <root url="jar://$PROJECT_DIR$/../.gradle/5.6.4/caches/modules-2/files-2.1/androidx.cardview/cardview/1.0.0/c9f3ce7ca74ad2c978230f4094ba6804c5166f9c/cardview-1.0.0-sources.jar!/" />
       <root url="jar://$PROJECT_DIR$/../../SushiTwo/Sushi/.gradle/6.5/caches/modules-2/files-2.1/androidx.cardview/cardview/1.0.0/c9f3ce7ca74ad2c978230f4094ba6804c5166f9c/cardview-1.0.0-sources.jar!/" />
-      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/androidx.cardview/cardview/1.0.0/c9f3ce7ca74ad2c978230f4094ba6804c5166f9c/cardview-1.0.0-sources.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../../SushiKitchen/gradle/caches/modules-2/files-2.1/androidx.cardview/cardview/1.0.0/c9f3ce7ca74ad2c978230f4094ba6804c5166f9c/cardview-1.0.0-sources.jar!/" />
     </SOURCES>
   </library>
 </component>

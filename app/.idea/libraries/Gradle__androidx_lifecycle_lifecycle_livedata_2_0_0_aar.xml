@@ -13,16 +13,17 @@
       <root url="file://$PROJECT_DIR$/../../SushiTwo/Sushi/.gradle/6.5/caches/transforms-2/files-2.1/ed2bc077d8a7993b700a7950a3fe6e69/lifecycle-livedata-2.0.0/AndroidManifest.xml" />
       <root url="file://$PROJECT_DIR$/../.gradle/6.5/caches/transforms-2/files-2.1/ed2bc077d8a7993b700a7950a3fe6e69/lifecycle-livedata-2.0.0/res" />
       <root url="file://$PROJECT_DIR$/../.gradle/6.5/caches/transforms-2/files-2.1/e890c3ea7a3ef2f5ad49f4d8b1df7a21/lifecycle-livedata-2.0.0/res" />
-      <root url="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/e890c3ea7a3ef2f5ad49f4d8b1df7a21/lifecycle-livedata-2.0.0/jars/classes.jar!/" />
-      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/e890c3ea7a3ef2f5ad49f4d8b1df7a21/lifecycle-livedata-2.0.0/AndroidManifest.xml" />
       <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/e890c3ea7a3ef2f5ad49f4d8b1df7a21/lifecycle-livedata-2.0.0/res" />
+      <root url="jar://$PROJECT_DIR$/../../SushiKitchen/gradle/caches/transforms-2/files-2.1/e890c3ea7a3ef2f5ad49f4d8b1df7a21/lifecycle-livedata-2.0.0/jars/classes.jar!/" />
+      <root url="file://$PROJECT_DIR$/../../SushiKitchen/gradle/caches/transforms-2/files-2.1/e890c3ea7a3ef2f5ad49f4d8b1df7a21/lifecycle-livedata-2.0.0/AndroidManifest.xml" />
+      <root url="file://$PROJECT_DIR$/../../SushiKitchen/gradle/caches/transforms-2/files-2.1/e890c3ea7a3ef2f5ad49f4d8b1df7a21/lifecycle-livedata-2.0.0/res" />
     </CLASSES>
     <JAVADOC />
     <SOURCES>
       <root url="jar://$USER_HOME$/Sushi/app/gradle/caches/modules-2/files-2.1/androidx.lifecycle/lifecycle-livedata/2.0.0/740ce61935bd789380c01178bd8ce402402ebd2f/lifecycle-livedata-2.0.0-sources.jar!/" />
       <root url="jar://$PROJECT_DIR$/../.gradle/5.6.4/caches/modules-2/files-2.1/androidx.lifecycle/lifecycle-livedata/2.0.0/740ce61935bd789380c01178bd8ce402402ebd2f/lifecycle-livedata-2.0.0-sources.jar!/" />
       <root url="jar://$PROJECT_DIR$/../../SushiTwo/Sushi/.gradle/6.5/caches/modules-2/files-2.1/androidx.lifecycle/lifecycle-livedata/2.0.0/740ce61935bd789380c01178bd8ce402402ebd2f/lifecycle-livedata-2.0.0-sources.jar!/" />
-      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/androidx.lifecycle/lifecycle-livedata/2.0.0/740ce61935bd789380c01178bd8ce402402ebd2f/lifecycle-livedata-2.0.0-sources.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../../SushiKitchen/gradle/caches/modules-2/files-2.1/androidx.lifecycle/lifecycle-livedata/2.0.0/740ce61935bd789380c01178bd8ce402402ebd2f/lifecycle-livedata-2.0.0-sources.jar!/" />
     </SOURCES>
   </library>
 </component>

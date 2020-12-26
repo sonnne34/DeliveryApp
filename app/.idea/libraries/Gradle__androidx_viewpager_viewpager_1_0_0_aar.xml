@@ -14,15 +14,16 @@
       <root url="file://$PROJECT_DIR$/../.gradle/6.5/caches/transforms-2/files-2.1/ae00ada0130034a1b810291ecd089eea/viewpager-1.0.0/res" />
       <root url="file://$PROJECT_DIR$/../.gradle/6.5/caches/transforms-2/files-2.1/a71186baaa5a0399ab14a1ac73359e35/viewpager-1.0.0/res" />
       <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/a71186baaa5a0399ab14a1ac73359e35/viewpager-1.0.0/res" />
-      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/a71186baaa5a0399ab14a1ac73359e35/viewpager-1.0.0/AndroidManifest.xml" />
-      <root url="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/a71186baaa5a0399ab14a1ac73359e35/viewpager-1.0.0/jars/classes.jar!/" />
+      <root url="file://$PROJECT_DIR$/../../SushiKitchen/gradle/caches/transforms-2/files-2.1/a71186baaa5a0399ab14a1ac73359e35/viewpager-1.0.0/res" />
+      <root url="jar://$PROJECT_DIR$/../../SushiKitchen/gradle/caches/transforms-2/files-2.1/a71186baaa5a0399ab14a1ac73359e35/viewpager-1.0.0/jars/classes.jar!/" />
+      <root url="file://$PROJECT_DIR$/../../SushiKitchen/gradle/caches/transforms-2/files-2.1/a71186baaa5a0399ab14a1ac73359e35/viewpager-1.0.0/AndroidManifest.xml" />
     </CLASSES>
     <JAVADOC />
     <SOURCES>
       <root url="jar://$USER_HOME$/Sushi/app/gradle/caches/modules-2/files-2.1/androidx.viewpager/viewpager/1.0.0/db045f92188b9d247d5f556866f8861ab68528f0/viewpager-1.0.0-sources.jar!/" />
       <root url="jar://$PROJECT_DIR$/../.gradle/5.6.4/caches/modules-2/files-2.1/androidx.viewpager/viewpager/1.0.0/db045f92188b9d247d5f556866f8861ab68528f0/viewpager-1.0.0-sources.jar!/" />
       <root url="jar://$PROJECT_DIR$/../../SushiTwo/Sushi/.gradle/6.5/caches/modules-2/files-2.1/androidx.viewpager/viewpager/1.0.0/db045f92188b9d247d5f556866f8861ab68528f0/viewpager-1.0.0-sources.jar!/" />
-      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/androidx.viewpager/viewpager/1.0.0/db045f92188b9d247d5f556866f8861ab68528f0/viewpager-1.0.0-sources.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../../SushiKitchen/gradle/caches/modules-2/files-2.1/androidx.viewpager/viewpager/1.0.0/db045f92188b9d247d5f556866f8861ab68528f0/viewpager-1.0.0-sources.jar!/" />
     </SOURCES>
   </library>
 </component>

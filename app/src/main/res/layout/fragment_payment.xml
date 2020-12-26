@@ -16,4 +16,34 @@
        android:layout_height="wrap_content"
        layout="@layout/pay_items" />
 
+    <RelativeLayout
+        android:visibility="visible"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <com.craftman.cardform.CardForm
+            android:id="@+id/cardform"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"/>
+
+
+
+
+    </RelativeLayout>
+
+
+
+
+
+
+
+<!--    <Button-->
+<!--        android:id="@+id/btn_add"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_gravity="center"-->
+<!--        android:text="Заказать" />-->
+
+
+
 </LinearLayout>

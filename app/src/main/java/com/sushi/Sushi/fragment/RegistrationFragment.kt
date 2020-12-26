@@ -45,7 +45,7 @@ class RegistrationFragment : Fragment() {
         comiteOrder = root.findViewById(R.id.comment_person_data)
 
 
-        btnPay = root.findViewById(R.id.btn_pay)
+        btnPay = root.findViewById(R.id.btn_payy)
 
         btnPay()
         loadName()
@@ -107,12 +107,12 @@ class RegistrationFragment : Fragment() {
        val comite = comiteOrder.text.toString()
         Log.d("name","name1 = " + name )
 
-        var pref1 = this.activity?.getPreferences(Context.MODE_PRIVATE)
-        var pref2 = this.activity?.getPreferences(Context.MODE_PRIVATE)
-        var pref3 = this.activity?.getPreferences(Context.MODE_PRIVATE)
-        var pref4 = this.activity?.getPreferences(Context.MODE_PRIVATE)
-        var pref5 = this.activity?.getPreferences(Context.MODE_PRIVATE)
-        var pref6 = this.activity?.getPreferences(Context.MODE_PRIVATE)
+        val pref1 = this.activity?.getPreferences(Context.MODE_PRIVATE)
+        val pref2 = this.activity?.getPreferences(Context.MODE_PRIVATE)
+        val pref3 = this.activity?.getPreferences(Context.MODE_PRIVATE)
+        val pref4 = this.activity?.getPreferences(Context.MODE_PRIVATE)
+        val pref5 = this.activity?.getPreferences(Context.MODE_PRIVATE)
+        val pref6 = this.activity?.getPreferences(Context.MODE_PRIVATE)
 
 
         val savePerson: Editor = pref1!!.edit()
@@ -129,6 +129,11 @@ class RegistrationFragment : Fragment() {
         saveComite.putString("comite", comite).toString()
 
         savePerson.apply()
+        savenumber.apply()
+        savestreat.apply()
+        saveHouse.apply()
+        saveApartament.apply()
+        saveComite.apply()
 
 
 

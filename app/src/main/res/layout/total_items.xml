@@ -65,6 +65,14 @@
                 android:layout_marginLeft="20dp" />
 
             <TextView
+                android:id="@+id/name_pay_item"
+                style="@style/TextBody2"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:layout_marginLeft="20dp"
+                android:hint="Имя" />
+
+            <TextView
                 android:id="@+id/phone_person_order"
                 style="@style/TextBody2"
                 android:layout_marginStart="20dp"
@@ -72,7 +80,22 @@
                 android:layout_marginLeft="20dp" />
 
             <TextView
+                android:id="@+id/phone_order"
+                style="@style/TextBody2"
+                android:layout_marginStart="20dp"
+                android:hint="Номер"
+                android:layout_marginLeft="20dp" />
+
+            <TextView
                 android:id="@+id/comment_order"
+                style="@style/TextBody2"
+                android:maxLines="3"
+                android:layout_marginStart="20dp"
+                android:hint="Комментарий"
+                android:layout_marginLeft="20dp" />
+
+            <TextView
+                android:id="@+id/comment_order_text"
                 style="@style/TextBody2"
                 android:maxLines="3"
                 android:layout_marginStart="20dp"
@@ -105,10 +128,10 @@
 
                 <TextView
                     android:id="@+id/home_total"
-                    android:layout_toEndOf="@+id/street_total"
                     style="@style/TextBody2"
-                    android:hint="Дом"
-                    android:layout_toRightOf="@+id/street_total" />
+                    android:layout_toEndOf="@+id/street_total"
+                    android:layout_toRightOf="@+id/street_total"
+                    android:hint="Дом" />
 
             </LinearLayout>
 
@@ -129,7 +152,7 @@
                 <TextView
                     android:id="@+id/entrance_total"
                     style="@style/TextBody2"
-                    android:hint="Подъезд"/>
+                    android:hint="Подъезд" />
 
                 <TextView
                     android:id="@+id/level_total"

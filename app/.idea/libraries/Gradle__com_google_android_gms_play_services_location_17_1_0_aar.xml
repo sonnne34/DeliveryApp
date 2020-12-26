@@ -9,14 +9,15 @@
       <root url="file://$PROJECT_DIR$/../../SushiTwo/Sushi/.gradle/6.5/caches/transforms-2/files-2.1/9fe13dd76c729323b9813c663ca86e7d/jetified-play-services-location-17.1.0/AndroidManifest.xml" />
       <root url="file://$PROJECT_DIR$/../.gradle/6.5/caches/transforms-2/files-2.1/9fe13dd76c729323b9813c663ca86e7d/jetified-play-services-location-17.1.0/res" />
       <root url="file://$PROJECT_DIR$/../.gradle/6.5/caches/transforms-2/files-2.1/cbd31d414352540cf8ae58d6af3e6198/jetified-play-services-location-17.1.0/res" />
-      <root url="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/cbd31d414352540cf8ae58d6af3e6198/jetified-play-services-location-17.1.0/jars/classes.jar!/" />
       <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/cbd31d414352540cf8ae58d6af3e6198/jetified-play-services-location-17.1.0/res" />
-      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/cbd31d414352540cf8ae58d6af3e6198/jetified-play-services-location-17.1.0/AndroidManifest.xml" />
+      <root url="file://$PROJECT_DIR$/../../SushiKitchen/gradle/caches/transforms-2/files-2.1/cbd31d414352540cf8ae58d6af3e6198/jetified-play-services-location-17.1.0/AndroidManifest.xml" />
+      <root url="jar://$PROJECT_DIR$/../../SushiKitchen/gradle/caches/transforms-2/files-2.1/cbd31d414352540cf8ae58d6af3e6198/jetified-play-services-location-17.1.0/jars/classes.jar!/" />
+      <root url="file://$PROJECT_DIR$/../../SushiKitchen/gradle/caches/transforms-2/files-2.1/cbd31d414352540cf8ae58d6af3e6198/jetified-play-services-location-17.1.0/res" />
     </CLASSES>
     <JAVADOC>
       <root url="jar://$PROJECT_DIR$/../.gradle/5.6.4/caches/modules-2/files-2.1/com.google.android.gms/play-services-location/17.1.0/6fde1462ab8c9d41ca3ef5c90e7b98ccd4163b6d/play-services-location-17.1.0-javadoc.jar!/" />
       <root url="jar://$PROJECT_DIR$/../../SushiTwo/Sushi/.gradle/6.5/caches/modules-2/files-2.1/com.google.android.gms/play-services-location/17.1.0/6fde1462ab8c9d41ca3ef5c90e7b98ccd4163b6d/play-services-location-17.1.0-javadoc.jar!/" />
-      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.google.android.gms/play-services-location/17.1.0/6fde1462ab8c9d41ca3ef5c90e7b98ccd4163b6d/play-services-location-17.1.0-javadoc.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../../SushiKitchen/gradle/caches/modules-2/files-2.1/com.google.android.gms/play-services-location/17.1.0/6fde1462ab8c9d41ca3ef5c90e7b98ccd4163b6d/play-services-location-17.1.0-javadoc.jar!/" />
     </JAVADOC>
     <SOURCES />
   </library>

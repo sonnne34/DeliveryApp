@@ -49,6 +49,7 @@ class MenuFragment : Fragment(), EventListenerss {
 
 
     private lateinit var  progress_bar : ProgressBar
+    private lateinit var progress_bar_two : ProgressBar
     private lateinit var btnGetLoc : Button
     lateinit var fusedLocationProviderClient : FusedLocationProviderClient
     private lateinit var dangerousArea: MutableList<LatLng>
@@ -84,6 +85,7 @@ class MenuFragment : Fragment(), EventListenerss {
         fusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(root.context)
         btnGetLoc = root.findViewById(R.id.location_btn)
         progress_bar = root.findViewById(R.id.progress_bar)
+        progress_bar_two = root.findViewById(R.id.progress_two)
 
         addArea()
         BasketSingleton.subscribe(this)
@@ -227,6 +229,9 @@ class MenuFragment : Fragment(), EventListenerss {
     private fun updateAdapterCategory(categoryList: ArrayList<CategoryModel>) {
 
         mCategoryAdapter.setupCategory(categoryList = categoryList)
+
+        progress_bar_two.visibility = View.VISIBLE
+        progress_bar_two.visibility = View.INVISIBLE
     }
 
 

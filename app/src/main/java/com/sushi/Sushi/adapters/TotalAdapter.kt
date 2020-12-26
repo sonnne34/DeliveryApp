@@ -1,5 +1,6 @@
 package com.sushi.Sushi.adapters
 
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -11,9 +12,14 @@ import com.sushi.Sushi.models.MenuModelcatMenu
 class TotalAdapter: RecyclerView.Adapter<RecyclerView.ViewHolder>() {
     var mMenuList: ArrayList<MenuModelcatMenu> = ArrayList()
 
-    fun setupCategory(categoryList: ArrayList<MenuModelcatMenu>){
+    fun setupTotal(List: ArrayList<MenuModelcatMenu>){
+
+        for(i in List){
+            Log.d("GGG","Menulist = " + i.Items?.Name)
+        }
+
         mMenuList.clear()
-        mMenuList.addAll(categoryList)
+        mMenuList.addAll(List)
         notifyDataSetChanged()
 
     }
