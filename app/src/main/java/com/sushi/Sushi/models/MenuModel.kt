@@ -6,9 +6,9 @@ class MenuModel (var Cost: Long,var Description: String?, var Name: String?, var
     )
 
     override val entries: Set<Map.Entry<String, MenuModel>>
-        get() = TODO("Not yet implemented")
+        get() = TODO(reason = "Not yet implemented")
     override val keys: Set<String>
-        get() = TODO("Not yet implemented")
+        get() = TODO(reason = "Not yet implemented")
     override val size: Int
         get() = TODO("Not yet implemented")
     override val values: Collection<MenuModel>

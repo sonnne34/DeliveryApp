@@ -3,46 +3,45 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     tools:context=".fragment.PaymentFragment">
 
-    <include
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        layout="@layout/total_items" />
 
-   <include
-       android:layout_width="wrap_content"
-       android:layout_height="wrap_content"
-       layout="@layout/pay_items" />
+        <ScrollView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent">
 
-    <RelativeLayout
-        android:visibility="visible"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-
-        <com.craftman.cardform.CardForm
-            android:id="@+id/cardform"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"/>
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
 
 
 
 
-    </RelativeLayout>
+                <include
+                    layout="@layout/total_items"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+
+                <include
+                    layout="@layout/pay_items"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
 
 
 
+                <com.craftman.cardform.CardForm
+                    android:id="@+id/cardform"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent" />
 
 
+            </LinearLayout>
 
 
-<!--    <Button-->
-<!--        android:id="@+id/btn_add"-->
-<!--        android:layout_width="wrap_content"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:layout_gravity="center"-->
-<!--        android:text="Заказать" />-->
+        </ScrollView>
 
 
 

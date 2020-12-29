@@ -331,53 +331,59 @@ class MenuFragment : Fragment(), EventListenerss {
                 Log.d("Result","lat = " + latitude )
                 Log.d("Result","llong = " + longitude )
 
+                if(latitude == null){
+                    Toast.makeText(context,"Интернета нет",Toast.LENGTH_SHORT).show()
 
-
-
-                val locationA = Location("Point A")
-
-                locationA.latitude = latitude!!
-                locationA.longitude = longitude!!
-
-                val locationB = Location("Point B")
-
-                for (i in dangerousArea){
-                    locationB.longitude = i.longitude
-                    locationB.latitude = i.latitude
-                }
-                val currentDistance = locationA.distanceTo(locationB)
-
-                if (currentDistance > 3000){
-
-
-
-                    btnGetLoc.setBackgroundColor(Color.RED)
                 }else{
+                    val locationA = Location("Point A")
 
-                    btnGetLoc.setBackgroundColor(Color.GREEN)
+                    locationA.latitude = latitude!!
+                    locationA.longitude = longitude!!
+
+                    val locationB = Location("Point B")
+
+                    for (i in dangerousArea){
+                        locationB.longitude = i.longitude
+                        locationB.latitude = i.latitude
+                    }
+                    val currentDistance = locationA.distanceTo(locationB)
+
+                    if (currentDistance > 3000){
+
+
+
+                        btnGetLoc.setBackgroundColor(Color.RED)
+                    }else{
+
+                        btnGetLoc.setBackgroundColor(Color.GREEN)
+                    }
+
+
+
+                    val geocoder = Geocoder(context, Locale.getDefault())
+
+                    val addresses = geocoder.getFromLocation(latitude!!, longitude!!, 1)
+
+
+                    val address = addresses[0].getAddressLine(0)
+
+
+                    Address.address = address
+
+
+                    progress_bar.visibility = View.INVISIBLE
+                    btnGetLoc.visibility = View.VISIBLE
+                    btnGetLoc.text = address
+
+
                 }
-
-
-
-                val geocoder = Geocoder(context, Locale.getDefault())
-
-                val addresses = geocoder.getFromLocation(latitude!!, longitude!!, 1)
-
-
-                val address = addresses[0].getAddressLine(0)
-
-
-                Address.address = address
-
-
-                progress_bar.visibility = View.INVISIBLE
-                btnGetLoc.visibility = View.VISIBLE
-                btnGetLoc.text = address
-
 
             }
 
-        }
+                }
+
+
+
 
 
 

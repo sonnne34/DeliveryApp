@@ -2,7 +2,6 @@ package com.sushi.Sushi.fragment
 
 import android.content.Context
 import android.os.Bundle
-import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -13,13 +12,13 @@ import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.craftman.cardform.CardForm
+import com.google.firebase.database.DatabaseReference
+import com.google.firebase.database.FirebaseDatabase
 import com.sushi.Sushi.R
-import com.sushi.Sushi.adapters.CategoryAdapter
 import com.sushi.Sushi.adapters.TotalAdapter
-import com.sushi.Sushi.models.MenuModel
 import com.sushi.Sushi.models.MenuModelcatMenu
+import com.sushi.Sushi.models.ModelTest
 import com.sushi.Sushi.singleton.BasketSingleton
-import kotlinx.android.synthetic.main.total_items.*
 
 class PaymentFragment : Fragment() {
 
@@ -36,6 +35,7 @@ class PaymentFragment : Fragment() {
     private lateinit var cardForm: CardForm
     private lateinit var textPay: TextView
     private lateinit var btnPay: Button
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -77,9 +77,26 @@ class PaymentFragment : Fragment() {
 
         loadinfoPerson()
 
+        loadinFireBase()
+
        return root
 
 
+    }
+
+    private fun loadinFireBase() {
+
+        val ref : DatabaseReference
+        ref = FirebaseDatabase.getInstance().reference.child("Order")
+
+        val menu = ModelTest()
+
+        menu.name = "Курь"
+        menu.country = "Испания"
+        menu.runing = "бегом"
+
+
+        ref.push().setValue(menu)
     }
 
     private fun loadinfoPerson() {
