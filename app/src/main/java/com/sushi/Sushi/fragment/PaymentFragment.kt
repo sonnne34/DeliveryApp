@@ -91,9 +91,11 @@ class PaymentFragment : Fragment() {
 
         val menu = ModelTest()
 
-        menu.name = "Курь"
-        menu.country = "Испания"
-        menu.runing = "бегом"
+        menu.Name = "Бурятия"
+        menu.Description = "Ксасный вкусный"
+        menu.Cost = 300
+        menu.CountDialog = 2
+        
 
 
         ref.push().setValue(menu)
