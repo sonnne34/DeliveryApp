@@ -135,9 +135,9 @@ class MenuAdapter: RecyclerView.Adapter<RecyclerView.ViewHolder>(){
             Log.d("Color", "Bolean = " + rr)
 
             if(rr == true){
-                checkBoxItem.setBackgroundResource(R.color.my_color)
+                checkBoxItem.setBackgroundResource(R.color.colorSky)
             }else{
-                checkBoxItem.setBackgroundResource(R.color.my_colorTwo)
+                checkBoxItem.setBackgroundResource(R.color.transparent)
             }
 
 
