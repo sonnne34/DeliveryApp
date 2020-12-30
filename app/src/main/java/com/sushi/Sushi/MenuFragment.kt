@@ -352,10 +352,10 @@ class MenuFragment : Fragment(), EventListenerss {
 
 
 
-                        btnGetLoc.setBackgroundResource(R.color.colorTangerine)
+                        btnGetLoc.setBackgroundColor(Color.RED)
                     }else{
 
-                        btnGetLoc.setBackgroundResource(R.color.colorgreen)
+                        btnGetLoc.setBackgroundColor(Color.GREEN)
                     }
 
 

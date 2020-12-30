@@ -2,18 +2,16 @@
 <androidx.constraintlayout.widget.ConstraintLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
+    android:layout_width="wrap_content"
     android:layout_height="wrap_content">
-
 
     <TextView
         android:id="@+id/category_item_menu"
         android:text="Категория "
         android:textSize="30dp"
-        android:gravity="center"
-        android:textColor="@color/colorUltramarine"
+        android:textColor="#000000"
         android:textStyle="bold"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         tools:ignore="MissingConstraints" />
 
