@@ -1,11 +1,11 @@
 package com.sushi.Sushi
 
+import android.graphics.Typeface
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
-import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
@@ -15,7 +15,6 @@ import androidx.recyclerview.widget.RecyclerView
 import com.sushi.Sushi.adapters.BasketAdapter
 import com.sushi.Sushi.fragment.RegistrationFragment
 import com.sushi.Sushi.listener.EventListenerss
-import com.sushi.Sushi.models.MenuModel
 import com.sushi.Sushi.models.MenuModelcatMenu
 import com.sushi.Sushi.singleton.BasketSingleton
 
@@ -34,6 +33,9 @@ class BasketFragment : Fragment(), EventListenerss{
                               savedInstanceState: Bundle?): View? {
         var root = inflater.inflate(R.layout.fragment_basket, container, false)
         txtHelloBasket = root.findViewById(R.id.txt_hello_basket)
+//        txtHelloBasket.setTypeface(Typeface.createFromAsset(getAssets(), "fonts/Slimamif.ttf"))
+        val typeface = Typeface.createFromAsset(context?.assets, "fonts/Slimamif.ttf")
+        txtHelloBasket.typeface = typeface
         txtPriseTotal = root.findViewById(R.id.txt_prise_total_basket)
         btnRegistr = root.findViewById(R.id.btn_registratoin)
         rvBasket = root.findViewById(R.id.basket_recyclerview)

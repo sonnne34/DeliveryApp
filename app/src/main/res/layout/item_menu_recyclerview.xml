@@ -50,7 +50,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textColor="@color/colorBlue"
-                android:text="опсиание"/>
+                android:text="Описание"/>
 
             <TextView
                 android:id="@+id/txt_roll_price"
@@ -61,7 +61,6 @@
                 android:background="@drawable/okrugl"
                 android:paddingLeft="10dp"
                 android:paddingRight="10dp"
-
                 android:layout_alignParentRight="true"
                 android:text="100 руб"/>
 

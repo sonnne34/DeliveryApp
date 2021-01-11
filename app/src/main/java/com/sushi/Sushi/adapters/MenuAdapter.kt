@@ -122,7 +122,7 @@ class MenuAdapter: RecyclerView.Adapter<RecyclerView.ViewHolder>(){
 
             name.text = "${menuCategoryModel.Items?.Name}"
             discription.text = "${menuCategoryModel.Items?.Description}"
-            cost.text = "${menuCategoryModel.Items?.Cost}"
+            cost.text = "${menuCategoryModel.Items?.Cost}" + " руб."
 
 
             itemView.setOnClickListener {

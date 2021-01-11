@@ -15,7 +15,8 @@
             android:layout_height="250dp"
             android:layout_marginTop="-5dp"
             android:layout_marginLeft="10dp"
-            android:layout_marginRight="10dp"/>
+            android:layout_marginRight="10dp"
+            android:background="@drawable/background_dish_"/>
 
         <TextView
             android:id="@+id/textViewGoodsDescriptionDialog"
@@ -39,42 +40,59 @@
         android:background="@color/gray_mercury" />
 
     <RelativeLayout
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="5dp">
 
         <TextView
             android:id="@+id/names"
             android:layout_marginStart="10dp"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textColor="@color/header"
-            android:layout_toLeftOf="@+id/cost"
+            android:textColor="@color/colorUltramarine"
             android:layout_marginEnd="7dp"
             android:textSize="16sp"
             android:text="Название Блюда"
+            android:layout_toLeftOf="@+id/layout_dialog_cost"
+            android:layout_alignParentStart="true"
             android:layout_marginRight="7dp"
-            android:layout_marginLeft="10dp" />
+            android:layout_marginLeft="10dp"
+            android:layout_toStartOf="@+id/layout_dialog_cost"
+            android:layout_alignParentLeft="true" />
+
+        <LinearLayout
+            android:id="@+id/layout_dialog_cost"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_alignParentEnd="true"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp"
+            android:background="@drawable/okrugl"
+            android:layout_alignParentRight="true">
 
         <TextView
             android:id="@+id/cost"
+            android:textSize="16dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="18sp"
-            android:textColor="@color/header"
-            android:layout_toLeftOf="@+id/cost_r"
-            android:layout_centerInParent="true"
-            android:text="Цена"/>
-
-        <TextView
-            android:id="@+id/cost_r"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textSize="18sp"
-            android:textColor="@color/header"
+            android:textColor="@color/colorUltramarine"
+            android:background="@color/colorSalmon"
             android:layout_alignParentRight="true"
-            android:layout_centerInParent="true"
-            android:text=" р. "/>
+            android:text="100"/>
+
+            <TextView
+                android:id="@+id/cost_r"
+                android:textSize="16dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@color/colorSalmon"
+                android:textColor="@color/colorUltramarine"
+                android:layout_alignParentRight="true"
+                android:text=" руб"/>
+
+        </LinearLayout>
+
 
     </RelativeLayout>
 
@@ -108,7 +126,7 @@
             android:gravity="center"
             android:layout_width="35dp"
             android:layout_height="50dp"
-            android:textColor="@color/header"
+            android:textColor="@color/colorUltramarine"
             android:textSize="18sp"
             android:text="1"
             android:layout_toRightOf="@+id/image_minus" />
