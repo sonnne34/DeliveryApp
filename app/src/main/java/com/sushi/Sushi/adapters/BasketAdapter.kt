@@ -48,7 +48,7 @@ class BasketAdapter: RecyclerView.Adapter<RecyclerView.ViewHolder>(){
         private var nameDish : TextView = itemView.findViewById(R.id.txt_name_dish_basket)
         private var description : TextView = itemView.findViewById(R.id.txt_description_basket)
         private var prise : TextView = itemView.findViewById(R.id.txt_prise_dish_basket)
-        private var valueDish : TextView = itemView.findViewById(R.id.txt_value_basket)
+        private var valueDish : TextView = itemView.findViewById(R.id.txt_value_dish_basket)
         private var btnPlus : Button = itemView.findViewById(R.id.btn_plus_basket)
         private var btnMin : Button = itemView.findViewById(R.id.btn_minus_basket)
 
@@ -57,6 +57,7 @@ class BasketAdapter: RecyclerView.Adapter<RecyclerView.ViewHolder>(){
 
             nameDish.text = "${menuModel.Items?.Name}"
             valueDish.text = "${menuModel.Items?.CountDialog}"
+            description.text = "${menuModel.Items?.Description}"
 
 
             itemView.setOnClickListener {

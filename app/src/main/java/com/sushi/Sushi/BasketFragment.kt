@@ -31,6 +31,7 @@ class BasketFragment : Fragment(), EventListenerss{
     lateinit var txtHelloBasket : TextView
     lateinit var txtPriseTotal : TextView
     lateinit var layoutPriseTotal : LinearLayout
+    lateinit var txtHeader : TextView
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
@@ -41,6 +42,7 @@ class BasketFragment : Fragment(), EventListenerss{
         txtPriseTotal = root.findViewById(R.id.txt_prise_total_basket)
         layoutPriseTotal = root.findViewById(R.id.layout_prise_total)
         btnRegistr = root.findViewById(R.id.btn_registratoin)
+        txtHeader = root.findViewById(R.id.txt_header_basket)
         rvBasket = root.findViewById(R.id.basket_recyclerview)
         basketAdapter = BasketAdapter()
         rvBasket.adapter = basketAdapter
@@ -81,12 +83,14 @@ class BasketFragment : Fragment(), EventListenerss{
     private fun visible() {
         if (listmodel.isNotEmpty()) {
             txtHelloBasket.visibility = View.GONE
+            txtHeader.visibility = View.VISIBLE
             layoutPriseTotal.visibility = View.VISIBLE
             btnRegistr.visibility = View.VISIBLE}
 
         else {
             txtHelloBasket.visibility = View.VISIBLE
             layoutPriseTotal.visibility = View.INVISIBLE
+            txtHeader.visibility = View.GONE
             btnRegistr.visibility = View.GONE
         }
     }

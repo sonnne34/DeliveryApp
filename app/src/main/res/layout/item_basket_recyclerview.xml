@@ -22,7 +22,7 @@
         android:background="@drawable/background_dish"/>
 
     <TextView
-        android:id="@+id/txt_name_dish_basket"
+        android:id="@+id/txt_value_dish_basket"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textColor="@color/colorUltramarine"
@@ -30,7 +30,29 @@
         android:layout_marginTop="2dp"
         android:textSize="18dp"
         android:layout_toRightOf="@+id/img_dish_basket"
-        android:text="Название блюда"/>
+        android:text="1"/>
+
+        <TextView
+            android:id="@+id/txt_value_bukva_dish_basket"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/colorUltramarine"
+            android:layout_marginBottom="7dp"
+            android:layout_marginTop="7dp"
+            android:textSize="10dp"
+            android:layout_toRightOf="@+id/txt_value_dish_basket"
+            android:text=" X "/>
+
+        <TextView
+            android:id="@+id/txt_name_dish_basket"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/colorUltramarine"
+            android:layout_marginBottom="7dp"
+            android:layout_marginTop="2dp"
+            android:textSize="18dp"
+            android:layout_toRightOf="@+id/txt_value_bukva_dish_basket"
+            android:text="Название блюда"/>
 
     <TextView
         android:id="@+id/txt_description_basket"
@@ -59,7 +81,7 @@
         android:textColor="@color/colorUltramarine"
         android:layout_alignParentRight="true"
         android:layout_marginTop="2dp"
-        android:text=" руб"
+        android:text=" руб."
         android:textSize="16dp" />
 
     <Button

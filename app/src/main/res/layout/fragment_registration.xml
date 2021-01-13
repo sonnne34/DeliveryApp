@@ -1,16 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
+<RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
     tools:context=".fragment.RegistrationFragment">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textSize="22dp"
+        android:textSize="20dp"
+        android:textColor="@color/colorUltramarine"
         android:gravity="center"
         android:layout_margin="10dp"
         android:text="Немного Ваших данных для заказа:"/>
@@ -75,7 +80,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textSize="18dp"
-            android:text="Город:" />
+            android:text="Город: Тюмень" />
 
         <TextView
             android:id="@+id/cities_specified_address"
@@ -191,12 +196,19 @@
             android:hint="Комментарий к заказу"/>
 
     </LinearLayout>
+    </LinearLayout>
 
-        <Button
-            android:id="@+id/btn_payy"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:text="Далее" />
+    <Button
+        android:id="@+id/btn_payy"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="5dp"
+        android:background="@drawable/okrugl_button"
+        android:fontFamily="@font/fonttt"
+        android:textColor="@color/colorUltramarine"
+        android:textStyle="bold"
+        android:text="Далее" />
 
-</LinearLayout>
+</RelativeLayout>

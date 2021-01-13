@@ -2,11 +2,13 @@
 <resources>
     <color name="colorFrost">#a8d8ff</color>
     <color name="colorSky">#007fff</color>
+    <color name="colorWhiteSky">#dbefff</color>
     <color name="colorBlue">#005da8</color>
     <color name="colorUltramarine">#1d334a</color>
     <color name="colorAzure">#b3deff</color>
     <color name="colorCoral">#e0714c</color>
     <color name="colorSalmon">#f5d4c9</color>
+    <color name="colorWhiteSalmon">#fcf5f2</color>
     <color name="colorTangerine">#f54021</color>
     <color name="colorgreen">#1cac78</color>
 
