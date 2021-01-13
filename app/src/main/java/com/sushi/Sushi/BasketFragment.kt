@@ -6,6 +6,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
+import android.widget.LinearLayout
+import android.widget.RelativeLayout
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
@@ -28,15 +30,16 @@ class BasketFragment : Fragment(), EventListenerss{
     lateinit var registrationFragment: RegistrationFragment
     lateinit var txtHelloBasket : TextView
     lateinit var txtPriseTotal : TextView
+    lateinit var layoutPriseTotal : LinearLayout
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
         var root = inflater.inflate(R.layout.fragment_basket, container, false)
         txtHelloBasket = root.findViewById(R.id.txt_hello_basket)
-//        txtHelloBasket.setTypeface(Typeface.createFromAsset(getAssets(), "fonts/Slimamif.ttf"))
-        val typeface = Typeface.createFromAsset(context?.assets, "fonts/Slimamif.ttf")
-        txtHelloBasket.typeface = typeface
+//        val typeface = Typeface.createFromAsset(context?.assets, "fonts/Slimamif.ttf")
+//        txtHelloBasket.typeface = typeface
         txtPriseTotal = root.findViewById(R.id.txt_prise_total_basket)
+        layoutPriseTotal = root.findViewById(R.id.layout_prise_total)
         btnRegistr = root.findViewById(R.id.btn_registratoin)
         rvBasket = root.findViewById(R.id.basket_recyclerview)
         basketAdapter = BasketAdapter()
@@ -78,12 +81,12 @@ class BasketFragment : Fragment(), EventListenerss{
     private fun visible() {
         if (listmodel.isNotEmpty()) {
             txtHelloBasket.visibility = View.GONE
-            txtPriseTotal.visibility = View.VISIBLE
+            layoutPriseTotal.visibility = View.VISIBLE
             btnRegistr.visibility = View.VISIBLE}
 
         else {
             txtHelloBasket.visibility = View.VISIBLE
-            txtPriseTotal.visibility = View.GONE
+            layoutPriseTotal.visibility = View.INVISIBLE
             btnRegistr.visibility = View.GONE
         }
     }

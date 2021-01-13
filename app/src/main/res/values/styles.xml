@@ -6,8 +6,9 @@
         <item name="colorPrimary">@color/colorBlue</item>
         <item name="colorPrimaryDark">@color/colorFrost</item>
         <item name="colorAccent">@color/colorAzure</item>
-    </style>
+        <item name="fontFamily">@font/fonttt</item>
 
+    </style>
 
 
     <style name="AppTheme.NoActionBar">

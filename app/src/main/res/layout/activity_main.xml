@@ -14,10 +14,8 @@
         android:layout_alignParentBottom="true"
         app:itemBackground="@color/whitecolor"
         android:background="@color/whitecolor"
+        app:labelVisibilityMode="labeled"
         app:menu="@menu/bottom_nav"/>
-
-
-
 
     <FrameLayout
         android:id="@+id/frame_layout"

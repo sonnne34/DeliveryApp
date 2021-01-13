@@ -1,6 +1,7 @@
 package com.sushi.Sushi.adapters
 
 import android.annotation.SuppressLint
+import android.graphics.Typeface
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
@@ -105,6 +106,8 @@ class MenuAdapter: RecyclerView.Adapter<RecyclerView.ViewHolder>(){
         fun bindHeader(menuCategoryModel: MenuModelcatMenu){
 
             categoryHeader.text = "${menuCategoryModel.CategoryName}"
+//            val typefacee = Typeface.createFromAsset(itemView.context.assets, "fonts/18765.otf")
+//            categoryHeader.typeface = typefacee
         }
 
     }
@@ -121,8 +124,12 @@ class MenuAdapter: RecyclerView.Adapter<RecyclerView.ViewHolder>(){
         fun bindMenu (menuCategoryModel: MenuModelcatMenu){
 
             name.text = "${menuCategoryModel.Items?.Name}"
+//            val typeface = Typeface.createFromAsset(itemView.context.assets, "fonts/18765.otf")
+//            name.typeface = typeface
             discription.text = "${menuCategoryModel.Items?.Description}"
+//            discription.typeface = typeface
             cost.text = "${menuCategoryModel.Items?.Cost}" + " руб."
+//            cost.typeface = typeface
 
 
             itemView.setOnClickListener {
