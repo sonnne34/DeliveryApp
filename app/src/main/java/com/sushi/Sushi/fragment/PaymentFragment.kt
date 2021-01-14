@@ -3,7 +3,6 @@ package com.sushi.Sushi.fragment
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -24,9 +23,6 @@ import com.sushi.Sushi.models.MenuModelcatMenu
 import com.sushi.Sushi.models.ModelTest
 import com.sushi.Sushi.singleton.BasketSingleton
 import kotlinx.android.synthetic.main.pay_items.*
-import java.text.SimpleDateFormat
-import java.util.*
-import kotlin.collections.ArrayList
 
 class PaymentFragment : Fragment() {
 
@@ -112,7 +108,7 @@ class PaymentFragment : Fragment() {
 
         loadinfoPerson()
 
-
+        loadinFireBase()
 
         btnBack()
         btnDone()
@@ -124,16 +120,7 @@ class PaymentFragment : Fragment() {
 
     private fun loadinFireBase() {
 
-        val c = Calendar.getInstance()
-
-        val year = c.get(Calendar.YEAR)
-        val month = c.get(Calendar.MONTH)
-        val day = c.get(Calendar.DAY_OF_MONTH)
-
-        Log.d("ddd","Month = " + month)
-
-
-        val ref : DatabaseReference = FirebaseDatabase.getInstance().reference.child("Order/" + year + "/" + month + "/" + day)
+        val ref : DatabaseReference = FirebaseDatabase.getInstance().reference.child("Order")
 
         val menu = ModelTest()
 
@@ -240,8 +227,6 @@ class PaymentFragment : Fragment() {
                     inputCash.error = null //если не равно 0 то отправляем заказ и переходим в статус-фрагмент
 
                     Toast.makeText(context,"Дело сделано!)",Toast.LENGTH_LONG).show()
-
-                    loadinFireBase()
 
                     statusFragment = StatusFragment()
                     val manager = (activity as AppCompatActivity).supportFragmentManager
