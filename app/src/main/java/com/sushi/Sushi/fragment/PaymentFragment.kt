@@ -23,6 +23,8 @@ import com.sushi.Sushi.models.MenuModelcatMenu
 import com.sushi.Sushi.models.ModelTest
 import com.sushi.Sushi.singleton.BasketSingleton
 import kotlinx.android.synthetic.main.pay_items.*
+import java.util.*
+import kotlin.collections.ArrayList
 
 class PaymentFragment : Fragment() {
 
@@ -108,7 +110,7 @@ class PaymentFragment : Fragment() {
 
         loadinfoPerson()
 
-        loadinFireBase()
+
 
         btnBack()
         btnDone()
@@ -120,7 +122,13 @@ class PaymentFragment : Fragment() {
 
     private fun loadinFireBase() {
 
-        val ref : DatabaseReference = FirebaseDatabase.getInstance().reference.child("Order")
+        val c = Calendar.getInstance()
+
+        val year = c.get(Calendar.YEAR)
+        val month = c.get(Calendar.MONTH)
+        val day = c.get(Calendar.DAY_OF_MONTH)
+
+        val ref : DatabaseReference = FirebaseDatabase.getInstance().reference.child("Order/" + year + "/" + month + "/" + day)
 
         val menu = ModelTest()
 
@@ -228,6 +236,8 @@ class PaymentFragment : Fragment() {
 
                     Toast.makeText(context,"Дело сделано!)",Toast.LENGTH_LONG).show()
 
+
+                    loadinFireBase()
                     statusFragment = StatusFragment()
                     val manager = (activity as AppCompatActivity).supportFragmentManager
                     manager.beginTransaction()
