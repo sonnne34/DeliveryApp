@@ -18,7 +18,7 @@
     <item
         android:id="@+id/status"
         android:title="Статус"
-        android:icon="@drawable/ic_not_interested_black_24dp"
+        android:icon="@drawable/ic_stat"
         />
 
     <item

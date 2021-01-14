@@ -5,12 +5,30 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="horizontal">
+
+    <ImageButton
+        android:id="@+id/btn_pay_back"
+        android:layout_width="21dp"
+        android:layout_height="21dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="8dp"
+        android:background="@drawable/ic_back"/>
 
     <TextView
         android:id="@+id/title_total"
-        style="@style/TextHeader"
         android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="20dp"
+        android:textColor="@color/colorUltramarine"
+        android:gravity="center"
+        android:layout_margin="10dp"
         android:text="@string/title_total"/>
+
+    </LinearLayout>
 
     <ScrollView
         android:layout_width="match_parent"
@@ -156,10 +174,58 @@
 
             </LinearLayout>
 
-<!--            <TextView-->
-<!--                android:id="@+id/method_payment_total"-->
-<!--                style="@style/TextHeader2"-->
-<!--                android:text="Способ оплаты:"/>-->
+            <TextView
+                android:id="@+id/method_payment_total"
+                style="@style/TextHeader2"
+                android:text="Способ оплаты:"/>
+
+            <RadioGroup
+                android:id="@+id/selection_method_payment"
+                style="@style/RadioGroup"
+                android:layout_width="match_parent"
+                android:layout_height="45dp"
+                android:layout_margin="7dp"
+                android:orientation="horizontal"
+                android:checkedButton="@id/method_cash_payment"
+                android:gravity="center">
+
+                <!--        <RadioButton-->
+                <!--            android:id="@+id/method_samsung_pass_payment"-->
+                <!--            style="@style/RadioButton"-->
+                <!--            android:layout_weight="1"-->
+                <!--            android:layout_height="45dp"-->
+                <!--            android:button="@null"-->
+                <!--            android:layout_gravity="center_horizontal"-->
+                <!--            android:text="Samsung Pass"/>-->
+
+                <!--        <RadioButton-->
+                <!--            android:id="@+id/method_google_pay_payment"-->
+                <!--            style="@style/RadioButton"-->
+                <!--            android:layout_height="45dp"-->
+                <!--            android:layout_weight="1"-->
+                <!--            android:layout_gravity="center_horizontal"-->
+                <!--            android:button="@null"-->
+                <!--            android:text="Google Pay" />-->
+
+                <RadioButton
+                    android:id="@+id/method_card_payment"
+                    style="@style/RadioButton"
+                    android:layout_height="45dp"
+                    android:layout_weight="1"
+                    android:layout_gravity="center_horizontal"
+                    android:button="@null"
+                    android:text="Картой" />
+
+                <RadioButton
+                    android:id="@+id/method_cash_payment"
+                    style="@style/RadioButton"
+                    android:layout_height="45dp"
+                    android:layout_weight="1"
+                    android:layout_gravity="center_horizontal"
+                    android:button="@null"
+                    android:text="Наличными" />
+
+            </RadioGroup>
 
 <!--            <TextView-->
 <!--                android:id="@+id/method_payment_person_total"-->
@@ -168,17 +234,17 @@
 <!--                android:hint="Способ оплаты"-->
 <!--                android:layout_marginLeft="20dp" />-->
 
-            <TextView
-                android:id="@+id/banknote_payment_total"
-                style="@style/TextHeader2"
-                android:text="Сдача с:"/>
+<!--            <TextView-->
+<!--                android:id="@+id/banknote_payment_total"-->
+<!--                style="@style/TextHeader2"-->
+<!--                android:text="Сдача с:"/>-->
 
-            <TextView
-                android:id="@+id/banknote_payment_person_total"
-                android:layout_marginStart="20dp"
-                style="@style/TextBody2"
-                android:hint="Сдача с:"
-                android:layout_marginLeft="20dp" />
+<!--            <TextView-->
+<!--                android:id="@+id/banknote_payment_person_total"-->
+<!--                android:layout_marginStart="20dp"-->
+<!--                style="@style/TextBody2"-->
+<!--                android:hint="Сдача с:"-->
+<!--                android:layout_marginLeft="20dp" />-->
 
         </LinearLayout>
 

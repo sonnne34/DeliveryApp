@@ -23,11 +23,13 @@
 <!--        android:gravity="center"-->
 <!--        android:text="Заказ на:..."/>-->
 
-    <TextView
-        android:id="@+id/method_payment"
-        android:layout_height="wrap_content"
-        android:layout_width="wrap_content"
-        android:hint="Способ оплаты курьеру:"/>
+<!--    <TextView-->
+<!--        android:id="@+id/method_payment"-->
+<!--        style="@style/TextHeader2"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_margin="5dp"-->
+<!--        android:textColor="@color/colorUltramarine"-->
+<!--        android:hint="Способ оплаты:"/>-->
 
     <RadioGroup
         android:id="@+id/selection_method_payment"
@@ -39,14 +41,32 @@
         android:checkedButton="@id/method_cash_payment"
         android:gravity="center">
 
+<!--        <RadioButton-->
+<!--            android:id="@+id/method_samsung_pass_payment"-->
+<!--            style="@style/RadioButton"-->
+<!--            android:layout_weight="1"-->
+<!--            android:layout_height="45dp"-->
+<!--            android:button="@null"-->
+<!--            android:layout_gravity="center_horizontal"-->
+<!--            android:text="Samsung Pass"/>-->
+
+<!--        <RadioButton-->
+<!--            android:id="@+id/method_google_pay_payment"-->
+<!--            style="@style/RadioButton"-->
+<!--            android:layout_height="45dp"-->
+<!--            android:layout_weight="1"-->
+<!--            android:layout_gravity="center_horizontal"-->
+<!--            android:button="@null"-->
+<!--            android:text="Google Pay" />-->
+
         <RadioButton
             android:id="@+id/method_card_payment"
             style="@style/RadioButton"
-            android:layout_weight="1"
             android:layout_height="45dp"
-            android:button="@null"
+            android:layout_weight="1"
             android:layout_gravity="center_horizontal"
-            android:text="Samsung Pass"/>
+            android:button="@null"
+            android:text="Картой" />
 
         <RadioButton
             android:id="@+id/method_cash_payment"
@@ -55,10 +75,8 @@
             android:layout_weight="1"
             android:layout_gravity="center_horizontal"
             android:button="@null"
-            android:text="Google Pay" />
+            android:text="Наличными" />
 
     </RadioGroup>
-
-
 
 </merge>

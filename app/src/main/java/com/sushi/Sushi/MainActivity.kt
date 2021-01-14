@@ -86,6 +86,13 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
+    override fun onDestroy() {
+        moveTaskToBack(true);
+        super.onDestroy();
+        System.runFinalizersOnExit(true);
+        System.exit(0);
+    }
+
     override fun onBackPressed() {
 //        super.onBackPressed()
         openQuitDialog()
@@ -101,7 +108,7 @@ class MainActivity : AppCompatActivity() {
             "Да"
         ) { dialog, which ->
             onDestroy()
-            finish()
+//            finish()
         }
         quitDialog.setNegativeButton(
             "Ой, нет!"

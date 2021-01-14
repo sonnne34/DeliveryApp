@@ -2,16 +2,17 @@ package com.sushi.Sushi.fragment
 
 import android.content.Context
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
-import android.widget.TextView
-import android.widget.Toast
+import android.widget.*
+import androidx.appcompat.app.AppCompatActivity
+import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentTransaction
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.craftman.cardform.CardForm
+import com.google.android.material.textfield.TextInputLayout
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
 import com.sushi.Sushi.R
@@ -19,6 +20,7 @@ import com.sushi.Sushi.adapters.TotalAdapter
 import com.sushi.Sushi.models.MenuModelcatMenu
 import com.sushi.Sushi.models.ModelTest
 import com.sushi.Sushi.singleton.BasketSingleton
+import kotlinx.android.synthetic.main.pay_items.*
 
 class PaymentFragment : Fragment() {
 
@@ -31,10 +33,18 @@ class PaymentFragment : Fragment() {
     private lateinit var houseText: TextView
     private lateinit var apatanmentText: TextView
     private lateinit var levelText: TextView
+    private lateinit var sumTotal: TextView
 
     private lateinit var cardForm: CardForm
     private lateinit var textPay: TextView
     private lateinit var btnPay: Button
+    private lateinit var btnBack : ImageButton
+    private lateinit var registrationFragment: RegistrationFragment
+    private lateinit var cashBack : EditText
+    private lateinit var inputCash : TextInputLayout
+    private lateinit var radioGroup: RadioGroup
+    private lateinit var radioButtonCash: RadioButton
+    private lateinit var radioButtonCard: RadioButton
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -42,8 +52,10 @@ class PaymentFragment : Fragment() {
 
     }
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
-                              savedInstanceState: Bundle?): View? {
+    override fun onCreateView(
+        inflater: LayoutInflater, container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
         // Inflate the layout for this fragment
         val root = inflater.inflate(R.layout.fragment_payment, container, false)
 
@@ -61,16 +73,28 @@ class PaymentFragment : Fragment() {
         houseText = root.findViewById(R.id.apartment_total)
         apatanmentText = root.findViewById(R.id.entrance_total)
         levelText = root.findViewById(R.id.level_total)
+        sumTotal = root.findViewById(R.id.sum_person_total)
 
         cardForm = root.findViewById(R.id.cardform)
         textPay = root.findViewById(R.id.payment_amount)
         btnPay = root.findViewById(R.id.btn_pay)
+        btnBack = root.findViewById(R.id.btn_pay_back)
+        inputCash = root.findViewById(R.id.input_cash)
+
+
+
+        radioGroup = root.findViewById(R.id.selection_method_payment)
+        radioButtonCard = root.findViewById(R.id.method_card_payment)
+        radioButtonCard.setOnClickListener(radioButtonClickListener)
+        radioButtonCash = root.findViewById(R.id.method_cash_payment)
+        radioButtonCash.setChecked(true)
+        radioButtonCash.setOnClickListener(radioButtonClickListener)
 
         textPay.setText("2000р")
-        btnPay.setText(String.format("Player %s",textPay.text))
+        btnPay.setText(String.format("Player %s", textPay.text))
 
         cardForm.setPayBtnClickListner{
-            Toast.makeText(root.context,"Name : " + cardForm.card.name,Toast.LENGTH_SHORT).show()
+            Toast.makeText(root.context, "Name : " + cardForm.card.name, Toast.LENGTH_SHORT).show()
         }
 
         loadinfoAdapter()
@@ -79,6 +103,8 @@ class PaymentFragment : Fragment() {
 
         loadinFireBase()
 
+        btnBack()
+
        return root
 
 
@@ -86,8 +112,7 @@ class PaymentFragment : Fragment() {
 
     private fun loadinFireBase() {
 
-        val ref : DatabaseReference
-        ref = FirebaseDatabase.getInstance().reference.child("Order")
+        val ref : DatabaseReference = FirebaseDatabase.getInstance().reference.child("Order")
 
         val menu = ModelTest()
 
@@ -114,16 +139,19 @@ class PaymentFragment : Fragment() {
         nameText.setText(loadname)
         val loadphone = pref1!!.getString("number", "")
         numberText.setText(loadphone)
-        val comint  = pref2!!.getString("comite","")
+        val comint  = pref2!!.getString("comite", "")
         comitText.setText(comint)
-        val street = pref3!!.getString("streetA","")
+        val street = pref3!!.getString("streetA", "")
         streetText.setText(street)
-        val house = pref4!!.getString("houseA","")
+        val house = pref4!!.getString("houseA", "")
         houseText.setText(house)
-        val appart = pref5!!.getString("apartmentA","")
+        val appart = pref5!!.getString("apartmentA", "")
         apatanmentText.setText(appart)
-        val level = pref6!!.getString("name","")
+        val level = pref6!!.getString("name", "")
         levelText.setText(level)
+
+        val ss = BasketSingleton.count()
+        sumTotal.text = "$ss руб."
 
     }
 
@@ -138,4 +166,37 @@ class PaymentFragment : Fragment() {
         adapter.setupTotal(itemList)
     }
 
+    private fun btnBack() {
+        btnBack.setOnClickListener {
+            registrationFragment = RegistrationFragment()
+            val manager = (activity as AppCompatActivity).supportFragmentManager
+            manager.beginTransaction()
+                .replace(R.id.frame_layout, registrationFragment)
+                .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
+                .commit()
+        }
+    }
+
+    private var radioButtonClickListener =
+        View.OnClickListener { view ->
+            val card = view as RadioButton
+            when (card.id) {
+                R.id.method_card_payment -> {
+                    var method =
+                        "Картой" //при нажатии на "Картой" значение переменной - "Картой"
+                    inputCash.error =
+                        null //при нажатии на "Картой" ошибок с обязательным полем чтобы не всплывало
+                    inputCash.visibility = View.GONE
+                    cardForm.visibility = View.VISIBLE
+                }
+                R.id.method_cash_payment -> {
+                    var method =
+                        "Наличными" //при нажатии "Наличными" значение переменной - "Наличными"
+                    inputCash.visibility = View.VISIBLE //чтобы возвращалась строка "Сдача с"
+                    cardForm.visibility = View.INVISIBLE
+                }
+                else -> {
+                }
+            }
+        }
 }

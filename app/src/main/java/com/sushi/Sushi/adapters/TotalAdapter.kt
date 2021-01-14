@@ -47,8 +47,8 @@ class TotalAdapter: RecyclerView.Adapter<RecyclerView.ViewHolder>() {
         var name_dish_total: TextView? = itemView.findViewById(R.id.name_dish_total)
 
         fun bind (menu: MenuModelcatMenu ){
-            cost_total?.text = "${menu.Items?.Name}"
-            number_total?.text = "${menu.Items?.Name}"
+            cost_total?.text = "${menu.Items?.Cost}"
+            number_total?.text = "${menu.Items?.CountDialog}"
             name_dish_total?.text = "${menu.Items?.Name}"
         }
     }
