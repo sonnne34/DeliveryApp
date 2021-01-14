@@ -1,6 +1,7 @@
 package com.sushi.Sushi.fragment
 
 import android.content.Context
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -16,6 +17,7 @@ import com.google.android.material.textfield.TextInputLayout
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
 import com.sushi.Sushi.R
+import com.sushi.Sushi.StatusFragment
 import com.sushi.Sushi.adapters.TotalAdapter
 import com.sushi.Sushi.models.MenuModelcatMenu
 import com.sushi.Sushi.models.ModelTest
@@ -34,10 +36,12 @@ class PaymentFragment : Fragment() {
     private lateinit var apatanmentText: TextView
     private lateinit var levelText: TextView
     private lateinit var sumTotal: TextView
+    private lateinit var statusFragment: StatusFragment
 
     private lateinit var cardForm: CardForm
     private lateinit var textPay: TextView
     private lateinit var btnPay: Button
+    private lateinit var btnDone: Button
     private lateinit var btnBack : ImageButton
     private lateinit var registrationFragment: RegistrationFragment
     private lateinit var cashBack : EditText
@@ -45,6 +49,7 @@ class PaymentFragment : Fragment() {
     private lateinit var radioGroup: RadioGroup
     private lateinit var radioButtonCash: RadioButton
     private lateinit var radioButtonCard: RadioButton
+    private var method = String()
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -78,19 +83,21 @@ class PaymentFragment : Fragment() {
         cardForm = root.findViewById(R.id.cardform)
         textPay = root.findViewById(R.id.payment_amount)
         btnPay = root.findViewById(R.id.btn_pay)
+
         btnBack = root.findViewById(R.id.btn_pay_back)
+        btnDone = root.findViewById(R.id.btn_done)
         inputCash = root.findViewById(R.id.input_cash)
-
-
+        cashBack = root.findViewById(R.id.banknote_payment)
 
         radioGroup = root.findViewById(R.id.selection_method_payment)
         radioButtonCard = root.findViewById(R.id.method_card_payment)
         radioButtonCard.setOnClickListener(radioButtonClickListener)
         radioButtonCash = root.findViewById(R.id.method_cash_payment)
-        radioButtonCash.setChecked(true)
+        radioButtonCash.isChecked = true
         radioButtonCash.setOnClickListener(radioButtonClickListener)
 
-        textPay.setText("2000р")
+//        textPay.setText("2000р")
+
         btnPay.setText(String.format("Player %s", textPay.text))
 
         cardForm.setPayBtnClickListner{
@@ -104,6 +111,7 @@ class PaymentFragment : Fragment() {
         loadinFireBase()
 
         btnBack()
+        btnDone()
 
        return root
 
@@ -153,6 +161,8 @@ class PaymentFragment : Fragment() {
         val ss = BasketSingleton.count()
         sumTotal.text = "$ss руб."
 
+        textPay.text = "$ss руб."
+
     }
 
     private fun loadinfoAdapter() {
@@ -182,21 +192,50 @@ class PaymentFragment : Fragment() {
             val card = view as RadioButton
             when (card.id) {
                 R.id.method_card_payment -> {
-                    var method =
+                    method =
                         "Картой" //при нажатии на "Картой" значение переменной - "Картой"
                     inputCash.error =
                         null //при нажатии на "Картой" ошибок с обязательным полем чтобы не всплывало
                     inputCash.visibility = View.GONE
                     cardForm.visibility = View.VISIBLE
+                    btnDone.visibility = View.GONE
                 }
                 R.id.method_cash_payment -> {
-                    var method =
+                    method =
                         "Наличными" //при нажатии "Наличными" значение переменной - "Наличными"
                     inputCash.visibility = View.VISIBLE //чтобы возвращалась строка "Сдача с"
                     cardForm.visibility = View.INVISIBLE
+                    btnDone.visibility = View.VISIBLE
+                    btnDone()
                 }
                 else -> {
                 }
             }
         }
+
+    private fun btnDone() {
+        btnDone.setOnClickListener {
+//            val banknote: String = banknotePayment.getText().toString()
+//            BanknotePaymentMenu.getBanknotePaymentMenu().addBanknoteMenuFile(banknote)
+//            MethodPaymentMenu.getMethodPaymentMenu().addMethodMenuFile(method)
+            //при методе оплаты не картой (наличными) "Сдача с" становится обязательным полем
+            if (method !== "Картой") {
+                if (cashBack.text.isEmpty()) { // если вес "Сдача с" = 0, то
+                    inputCash.error = "Обязательное поле"
+                } //ошибка
+                else {
+                    inputCash.error = null //если не равно 0 то отправляем заказ и переходим в статус-фрагмент
+
+                    Toast.makeText(context,"Дело сделано!)",Toast.LENGTH_LONG).show()
+
+                    statusFragment = StatusFragment()
+                    val manager = (activity as AppCompatActivity).supportFragmentManager
+                    manager.beginTransaction()
+                        .replace(R.id.frame_layout, statusFragment)
+                        .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
+                        .commit()
+                }
+            }
+        }
+    }
 }
