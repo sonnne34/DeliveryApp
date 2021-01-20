@@ -1,18 +1,118 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:layout_gravity="center"
+    android:gravity="center_horizontal"
+    android:layout_margin="10dp"
     tools:context=".StatusFragment">
 
     <TextView
         android:id="@+id/text_menu"
-        android:text="Status"
-        android:textSize="30dp"
-        android:textColor="#000000"
-        android:layout_centerHorizontal="true"
-        android:layout_centerVertical="true"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"/>
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="22sp"
+        android:textColor="@color/colorUltramarine"
+        android:gravity="center"
+        android:layout_margin="10dp"
+        android:padding="5dp"
+        android:background="@drawable/okrugl_total"
+        android:text="Статус Вашего заказа:"/>
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal"
+        android:layout_marginTop="10dp"
+        android:layout_centerInParent="true"
+        android:layout_below="@+id/text_menu"
+        android:padding="7dp"
+        android:paddingTop="10dp"
+        android:background="@drawable/okrugl_bacgr"
+        android:orientation="vertical">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
+        android:layout_margin="5dp"
+        android:textSize="18sp"
+        android:textColor="@color/colorBlue"
+        android:text="Вы выбираете любимые блюда"/>
+
+        <ImageView
+            android:layout_width="20dp"
+            android:layout_height="24dp"
+            android:background="@drawable/ic_strel"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="5dp"
+        android:textSize="18sp"
+        android:textColor="@color/colorCoral"
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:text="Заказ принят, приступаем к готовке"/>
+
+        <ImageView
+            android:layout_width="20dp"
+            android:layout_height="24dp"
+            android:background="@drawable/ic_strel_coral"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="5dp"
+        android:textSize="18sp"
+        android:textColor="@color/colorBlue"
+        android:text="Готовим Ваш заказ"/>
+
+        <ImageView
+            android:layout_width="20dp"
+            android:layout_height="24dp"
+            android:background="@drawable/ic_strel"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="5dp"
+        android:textSize="18sp"
+        android:textColor="@color/colorCoral"
+        android:text="Заказ уже готов!"/>
+
+        <ImageView
+            android:layout_width="20dp"
+            android:layout_height="24dp"
+            android:background="@drawable/ic_strel_coral"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/colorBlue"
+        android:layout_margin="5dp"
+        android:textSize="18sp"
+        android:text="Курьер мчится к Вам"/>
+
+        <ImageView
+            android:layout_width="20dp"
+            android:layout_height="24dp"
+            android:background="@drawable/ic_strel"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:layout_margin="5dp"
+        android:textSize="18sp"
+        android:textColor="@color/colorCoral"
+        android:paddingBottom="20dp"
+        android:text="Заказ доставлен, Приятного аппетита!"/>
+
+
+    </LinearLayout>
 </RelativeLayout>

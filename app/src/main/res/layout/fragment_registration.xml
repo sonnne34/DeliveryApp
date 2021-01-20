@@ -1,32 +1,40 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".fragment.RegistrationFragment">
+
+    <TextView
+        android:id="@+id/header_reg"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="22dp"
+        android:textColor="@color/colorUltramarine"
+        android:gravity="center"
+        android:layout_margin="10dp"
+        android:padding="5dp"
+        android:background="@drawable/okrugl_total"
+        android:text="Немного данных для заказа:"/>
 
     <ImageButton
         android:id="@+id/btn_reg_back"
         android:layout_width="21dp"
         android:layout_height="21dp"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="17dp"
         android:layout_marginLeft="8dp"
+        android:padding="5dp"
         android:background="@drawable/ic_back"/>
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical">
-
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:textSize="20dp"
-        android:textColor="@color/colorUltramarine"
-        android:gravity="center"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/header_reg"
+        android:background="@drawable/okrugl_bacgr"
         android:layout_margin="10dp"
-        android:text="Немного Ваших данных для заказа:"/>
+        android:padding="5dp"
+        android:orientation="vertical">
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/input_name"
@@ -56,6 +64,7 @@
             android:layout_height="match_parent"
             android:gravity="center"
             android:textSize="20sp"
+            android:layout_marginTop="7dp"
             android:text=" +7 " />
 
         <com.google.android.material.textfield.TextInputLayout
@@ -190,9 +199,11 @@
                 android:inputType="number"
                 android:maxLines="1"
                 android:imeOptions="actionDone"
-                android:hint="Зтаж"/>
+                android:hint="Этаж"/>
 
         </com.google.android.material.textfield.TextInputLayout>
+
+    </LinearLayout>
 
         <EditText
             android:id="@+id/comment_person_data"
@@ -203,7 +214,6 @@
             android:lines="3"
             android:hint="Комментарий к заказу"/>
 
-    </LinearLayout>
     </LinearLayout>
 
     <Button

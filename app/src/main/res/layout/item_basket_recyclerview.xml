@@ -114,5 +114,16 @@
         android:layout_below="@+id/img_dish_basket"
         android:text="+" />
 
+        <Button
+            android:id="@+id/btn_del_basket"
+            android:layout_width="15dp"
+            android:layout_height="21dp"
+            android:backgroundTint="@color/colorSalmon"
+            android:layout_marginRight="5dp"
+            android:layout_marginTop="9dp"
+            android:layout_alignParentRight="true"
+            android:layout_below="@+id/txt_prise_dish_basket_r"
+            android:background="@drawable/ic_basket"/>
+
     </RelativeLayout>
 </androidx.cardview.widget.CardView>

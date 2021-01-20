@@ -7,6 +7,7 @@
         <item name="colorPrimaryDark">@color/colorFrost</item>
         <item name="colorAccent">@color/colorAzure</item>
         <item name="fontFamily">@font/fonttt</item>
+        <item name="android:windowBackground">@drawable/background_activity_main</item>
 
     </style>
 
@@ -110,6 +111,14 @@
         <item name="android:layout_height">wrap_content</item>
         <item name="android:textStyle">bold</item>
 
+    </style>
+
+    <style name="SplashTheme" parent="Theme.AppCompat.NoActionBar">
+        <item name="android:windowBackground">@drawable/background_splash</item>
+    </style>
+
+    <style name="ActivityTheme" parent="Theme.AppCompat.NoActionBar">
+        <item name="android:windowBackground">@drawable/background_activity_main</item>
     </style>
 
 </resources>

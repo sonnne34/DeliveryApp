@@ -14,7 +14,7 @@
         android:id="@+id/btn_pay_back"
         android:layout_width="21dp"
         android:layout_height="21dp"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="17dp"
         android:layout_marginLeft="8dp"
         android:background="@drawable/ic_back"/>
 
@@ -22,10 +22,12 @@
         android:id="@+id/title_total"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textSize="20dp"
+        android:textSize="22dp"
         android:textColor="@color/colorUltramarine"
         android:gravity="center"
         android:layout_margin="10dp"
+        android:padding="5dp"
+        android:background="@drawable/okrugl_total"
         android:text="@string/title_total"/>
 
     </LinearLayout>
@@ -37,7 +39,10 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical">
+            android:background="@drawable/okrugl_bacgr"
+            android:orientation="vertical"
+            android:layout_margin="10dp"
+            android:padding="5dp">
 
             <TextView
                 android:id="@+id/order_total"
@@ -88,7 +93,7 @@
                 android:id="@+id/phone_person_order"
                 style="@style/TextBody2"
                 android:layout_marginStart="20dp"
-                android:hint="Номер"
+                android:hint="Телефон"
                 android:layout_marginLeft="20dp" />
 
             <TextView
@@ -131,11 +136,13 @@
                 <TextView
                     android:id="@+id/cities_total"
                     style="@style/TextBody2"
-                    android:hint="Тюмень"/>
+                    android:hint="Тюмень, "/>
 
                 <TextView
                     android:id="@+id/street_total"
                     style="@style/TextBody2"
+                    android:layout_marginRight="5dp"
+                    android:layout_marginLeft="5dp"
                     android:hint="Улица"/>
 
                 <TextView
@@ -164,6 +171,8 @@
                 <TextView
                     android:id="@+id/entrance_total"
                     style="@style/TextBody2"
+                    android:layout_marginRight="5dp"
+                    android:layout_marginLeft="5dp"
                     android:hint="Подъезд" />
 
                 <TextView
@@ -177,6 +186,7 @@
             <TextView
                 android:id="@+id/method_payment_total"
                 style="@style/TextHeader2"
+                android:paddingBottom="5dp"
                 android:text="Способ оплаты:"/>
 
 

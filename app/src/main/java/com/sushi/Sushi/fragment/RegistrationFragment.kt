@@ -37,6 +37,8 @@ class RegistrationFragment : Fragment() {
     lateinit var inputPhone : TextInputLayout
     lateinit var inputStreet : TextInputLayout
     lateinit var inputHome : TextInputLayout
+    lateinit var entrance : EditText
+    lateinit var level : EditText
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -56,6 +58,9 @@ class RegistrationFragment : Fragment() {
         houseAddress = root.findViewById(R.id.home_address)
         apartmentAddress = root.findViewById(R.id.apartment_address)
         comiteOrder = root.findViewById(R.id.comment_person_data)
+        entrance = root.findViewById(R.id.entrance_address)
+        level = root.findViewById(R.id.level_address)
+
         btnBack = root.findViewById(R.id.btn_reg_back)
         inputName = root.findViewById(R.id.input_name)
         inputPhone = root.findViewById(R.id.input_phone)
@@ -73,7 +78,8 @@ class RegistrationFragment : Fragment() {
         loadHouse()
         loadApartpent()
         loadComit()
-
+        loadEntrance()
+        loadLevel()
 
         return root
     }
@@ -115,44 +121,68 @@ class RegistrationFragment : Fragment() {
         nameEdit.setText(loadName)
     }
 
+    private fun loadLevel() {
+        val pref = this.activity?.getPreferences(Context.MODE_PRIVATE)
+        val loadlevel = pref!!.getString("level", "")
+        level.setText(loadlevel)
+    }
+
+    private fun loadEntrance() {
+        val pref = this.activity?.getPreferences(Context.MODE_PRIVATE)
+        val loadEntrance = pref!!.getString("entrance", "")
+        entrance.setText(loadEntrance)
+    }
+
 
     @SuppressLint("CommitPrefEdits")
     private fun editeSave() {
        val name = nameEdit.text.toString()
        val number = numberPhone.text.toString()
-       val streatA = streatAddress.text.toString()
+       val streetA = streatAddress.text.toString()
        val houseA = houseAddress.text.toString()
        val apartmentA = apartmentAddress.text.toString()
        val comite = comiteOrder.text.toString()
+       val level = level.text.toString()
+       val entrance = entrance.text.toString()
         Log.d("name", "name1 = " + name)
 
+        val pref = this.activity?.getPreferences(Context.MODE_PRIVATE)
         val pref1 = this.activity?.getPreferences(Context.MODE_PRIVATE)
         val pref2 = this.activity?.getPreferences(Context.MODE_PRIVATE)
         val pref3 = this.activity?.getPreferences(Context.MODE_PRIVATE)
         val pref4 = this.activity?.getPreferences(Context.MODE_PRIVATE)
         val pref5 = this.activity?.getPreferences(Context.MODE_PRIVATE)
         val pref6 = this.activity?.getPreferences(Context.MODE_PRIVATE)
+        val pref7 = this.activity?.getPreferences(Context.MODE_PRIVATE)
 
 
-        val savePerson: Editor = pref1!!.edit()
+        val savePerson: Editor = pref!!.edit()
         savePerson.putString("name", name).toString()
-        val savenumber: Editor = pref2!!.edit()
+        val savenumber: Editor = pref1!!.edit()
         savenumber.putString("number", number).toString()
-        val savestreat: Editor = pref3!!.edit()
-        savestreat.putString("streatA", streatA).toString()
-        val saveHouse: Editor = pref4!!.edit()
+        val savestreet: Editor = pref2!!.edit()
+        savestreet.putString("streetA", streetA).toString()
+        val saveHouse: Editor = pref3!!.edit()
         saveHouse.putString("houseA", houseA).toString()
-        val saveApartament: Editor = pref5!!.edit()
+        val saveApartament: Editor = pref4!!.edit()
         saveApartament.putString("apartmentA", apartmentA).toString()
-        val saveComite: Editor = pref6!!.edit()
+        val saveComite: Editor = pref5!!.edit()
         saveComite.putString("comite", comite).toString()
+        val saveLevel: Editor = pref6!!.edit()
+        saveLevel.putString("level", level).toString()
+        val saveEntrance: Editor = pref7!!.edit()
+        saveEntrance.putString("entrance", entrance).toString()
+
+        Log.d("data", "street= $streetA")
 
         savePerson.apply()
         savenumber.apply()
-        savestreat.apply()
+        savestreet.apply()
         saveHouse.apply()
         saveApartament.apply()
         saveComite.apply()
+        saveEntrance.apply()
+        saveLevel.apply()
 
 
 

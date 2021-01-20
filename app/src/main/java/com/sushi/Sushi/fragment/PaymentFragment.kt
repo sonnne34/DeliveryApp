@@ -1,8 +1,9 @@
 package com.sushi.Sushi.fragment
 
+import android.annotation.SuppressLint
 import android.content.Context
-import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -24,7 +25,6 @@ import com.sushi.Sushi.models.ModelTest
 import com.sushi.Sushi.singleton.BasketSingleton
 import kotlinx.android.synthetic.main.pay_items.*
 import java.util.*
-import kotlin.collections.ArrayList
 
 class PaymentFragment : Fragment() {
 
@@ -33,9 +33,11 @@ class PaymentFragment : Fragment() {
     private lateinit var nameText : TextView
     private lateinit var numberText: TextView
     private lateinit var comitText : TextView
+    private lateinit var comitHeader : TextView
     private lateinit var streetText: TextView
     private lateinit var houseText: TextView
     private lateinit var apatanmentText: TextView
+    private lateinit var entranceText: TextView
     private lateinit var levelText: TextView
     private lateinit var sumTotal: TextView
     private lateinit var statusFragment: StatusFragment
@@ -76,10 +78,12 @@ class PaymentFragment : Fragment() {
         nameText = root.findViewById(R.id.name_pay_item)
         numberText = root.findViewById(R.id.phone_order)
         comitText = root.findViewById(R.id.comment_order_text)
+        comitHeader = root.findViewById(R.id.comment_order)
         streetText = root.findViewById(R.id.street_total)
-        houseText = root.findViewById(R.id.apartment_total)
-        apatanmentText = root.findViewById(R.id.entrance_total)
+        houseText = root.findViewById(R.id.home_total)
+        apatanmentText = root.findViewById(R.id.apartment_total)
         levelText = root.findViewById(R.id.level_total)
+        entranceText = root.findViewById(R.id.entrance_total)
         sumTotal = root.findViewById(R.id.sum_person_total)
 
         cardForm = root.findViewById(R.id.cardform)
@@ -97,8 +101,6 @@ class PaymentFragment : Fragment() {
         radioButtonCash = root.findViewById(R.id.method_cash_payment)
         radioButtonCash.isChecked = true
         radioButtonCash.setOnClickListener(radioButtonClickListener)
-
-//        textPay.setText("2000р")
 
         btnPay.setText(String.format("Player %s", textPay.text))
 
@@ -142,6 +144,7 @@ class PaymentFragment : Fragment() {
         ref.push().setValue(menu)
     }
 
+    @SuppressLint("SetTextI18n")
     private fun loadinfoPerson() {
         val pref = this.activity?.getPreferences(Context.MODE_PRIVATE)
         val pref1 = this.activity?.getPreferences(Context.MODE_PRIVATE)
@@ -150,26 +153,52 @@ class PaymentFragment : Fragment() {
         val pref4 = this.activity?.getPreferences(Context.MODE_PRIVATE)
         val pref5 = this.activity?.getPreferences(Context.MODE_PRIVATE)
         val pref6 = this.activity?.getPreferences(Context.MODE_PRIVATE)
+        val pref7 = this.activity?.getPreferences(Context.MODE_PRIVATE)
 
         val loadname = pref!!.getString("name", "")
         nameText.setText(loadname)
+
         val loadphone = pref1!!.getString("number", "")
         numberText.setText(loadphone)
+
         val comint  = pref2!!.getString("comite", "")
         comitText.setText(comint)
+            if (comint!!.isEmpty()) {
+                comitHeader.visibility = View.GONE
+                comitText.visibility = View.GONE
+            }
+
         val street = pref3!!.getString("streetA", "")
-        streetText.setText(street)
+        streetText.text = "ул. $street,"
+
         val house = pref4!!.getString("houseA", "")
-        houseText.setText(house)
+        houseText.text = "д. $house,"
+
         val appart = pref5!!.getString("apartmentA", "")
-        apatanmentText.setText(appart)
-        val level = pref6!!.getString("name", "")
-        levelText.setText(level)
+        apatanmentText.text = "кв./оф. $appart,"
+            if (appart!!.isEmpty()) {
+                apatanmentText.visibility = View.GONE
+            }
+
+        val level = pref6!!.getString("level", "")
+        levelText.text = "эт. $level"
+            if (level!!.isEmpty()) {
+                levelText.visibility = View.GONE
+            }
+
+        val entrance = pref7!!.getString("entrance", "")
+        entranceText.text = "под. $entrance,"
+            if (entrance!!.isEmpty()) {
+                entranceText.visibility = View.GONE
+            }
 
         val ss = BasketSingleton.count()
         sumTotal.text = "$ss руб."
 
         textPay.text = "$ss руб."
+
+        Log.d("data", "street= $street")
+
 
     }
 
@@ -234,7 +263,7 @@ class PaymentFragment : Fragment() {
                 else {
                     inputCash.error = null //если не равно 0 то отправляем заказ и переходим в статус-фрагмент
 
-                    Toast.makeText(context,"Дело сделано!)",Toast.LENGTH_LONG).show()
+                    Toast.makeText(context, "Дело сделано!)", Toast.LENGTH_LONG).show()
 
 
                     loadinFireBase()

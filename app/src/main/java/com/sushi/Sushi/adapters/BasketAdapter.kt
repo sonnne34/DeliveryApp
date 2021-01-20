@@ -1,22 +1,23 @@
 package com.sushi.Sushi.adapters
 
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
-import com.sushi.Sushi.BasketFragment
 import com.sushi.Sushi.R
 import com.sushi.Sushi.dialog.CountDialog
-import com.sushi.Sushi.listener.EventListenerss
 import com.sushi.Sushi.models.MenuModelcatMenu
 import com.sushi.Sushi.singleton.BasketSingleton
+import java.util.*
+import kotlin.collections.ArrayList
 
 //import kotlinx.android.synthetic.main.fragment_choice.*
 
-class BasketAdapter: RecyclerView.Adapter<RecyclerView.ViewHolder>(){
-    private var mBasketList: ArrayList<MenuModelcatMenu> = ArrayList()
+class BasketAdapter: RecyclerView.Adapter<RecyclerView.ViewHolder>() {
+     var mBasketList: ArrayList<MenuModelcatMenu> = ArrayList()
 
     fun setupBasket(basketList: ArrayList<MenuModelcatMenu>){
         mBasketList.clear()
@@ -24,10 +25,11 @@ class BasketAdapter: RecyclerView.Adapter<RecyclerView.ViewHolder>(){
         notifyDataSetChanged()
     }
 
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
         val layoutInflater = LayoutInflater.from(parent.context)
-        val itemView  = layoutInflater.inflate(R.layout.item_basket_recyclerview,parent,false)
-        return BasketViewHoldel(itemView= itemView)
+        val itemView  = layoutInflater.inflate(R.layout.item_basket_recyclerview, parent, false)
+        return BasketViewHoldel(itemView = itemView)
 
     }
 
@@ -38,7 +40,7 @@ class BasketAdapter: RecyclerView.Adapter<RecyclerView.ViewHolder>(){
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
         if(holder is BasketViewHoldel ){
             holder.bind(menuModel = mBasketList.get(position))
-
+            btnDel(holder, position)
 
         }
     }
@@ -51,9 +53,9 @@ class BasketAdapter: RecyclerView.Adapter<RecyclerView.ViewHolder>(){
         private var valueDish : TextView = itemView.findViewById(R.id.txt_value_dish_basket)
         private var btnPlus : Button = itemView.findViewById(R.id.btn_plus_basket)
         private var btnMin : Button = itemView.findViewById(R.id.btn_minus_basket)
+        var btnDel : Button = itemView.findViewById(R.id.btn_del_basket)
 
-
-        fun bind (menuModel: MenuModelcatMenu){
+        fun bind(menuModel: MenuModelcatMenu){
 
             nameDish.text = "${menuModel.Items?.Name}"
             valueDish.text = "${menuModel.Items?.CountDialog}"
@@ -64,7 +66,7 @@ class BasketAdapter: RecyclerView.Adapter<RecyclerView.ViewHolder>(){
 
 
 
-                CountDialog.openDialog(itemView.context, menuModel )
+                CountDialog.openDialog(itemView.context, menuModel)
 
             }
 
@@ -111,11 +113,22 @@ class BasketAdapter: RecyclerView.Adapter<RecyclerView.ViewHolder>(){
 
                 prise.text = sums.toString()
 
-
-
             }
         }
 
+
+    }
+
+    private fun btnDel(holder: RecyclerView.ViewHolder, position: Int){
+        if(holder is BasketViewHoldel ){
+            holder.bind(menuModel = mBasketList[position])
+            holder.btnDel.setOnClickListener {
+                mBasketList.removeAt(position)
+                notifyItemRemoved(position)
+                BasketSingleton.notifyTwo()
+                Log.d("list", "del= $position")
+            }
+        }
     }
 
 

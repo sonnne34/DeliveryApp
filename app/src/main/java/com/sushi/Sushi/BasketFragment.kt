@@ -67,6 +67,7 @@ class BasketFragment : Fragment(), EventListenerss{
     private fun setupAdapter(modelList : ArrayList<MenuModelcatMenu> ) {
         rvBasket.visibility = View.VISIBLE
         basketAdapter.setupBasket(basketList = modelList)
+
     }
 
     private fun btnReg () {
