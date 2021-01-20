@@ -29,6 +29,7 @@ class BasketFragment : Fragment(), EventListenerss{
     lateinit var btnRegistr : Button
     lateinit var registrationFragment: RegistrationFragment
     lateinit var txtHelloBasket : TextView
+    lateinit var txtHelloBasket2 : TextView
     lateinit var txtPriseTotal : TextView
     lateinit var layoutPriseTotal : LinearLayout
     lateinit var txtHeader : TextView
@@ -37,6 +38,7 @@ class BasketFragment : Fragment(), EventListenerss{
                               savedInstanceState: Bundle?): View? {
         var root = inflater.inflate(R.layout.fragment_basket, container, false)
         txtHelloBasket = root.findViewById(R.id.txt_hello_basket)
+        txtHelloBasket2 = root.findViewById(R.id.txt_hello_basket2)
 //        val typeface = Typeface.createFromAsset(context?.assets, "fonts/Slimamif.ttf")
 //        txtHelloBasket.typeface = typeface
         txtPriseTotal = root.findViewById(R.id.txt_prise_total_basket)
@@ -84,12 +86,14 @@ class BasketFragment : Fragment(), EventListenerss{
     private fun visible() {
         if (listmodel.isNotEmpty()) {
             txtHelloBasket.visibility = View.GONE
+            txtHelloBasket2.visibility = View.GONE
             txtHeader.visibility = View.VISIBLE
             layoutPriseTotal.visibility = View.VISIBLE
             btnRegistr.visibility = View.VISIBLE}
 
         else {
             txtHelloBasket.visibility = View.VISIBLE
+            txtHelloBasket2.visibility = View.VISIBLE
             layoutPriseTotal.visibility = View.INVISIBLE
             txtHeader.visibility = View.GONE
             btnRegistr.visibility = View.GONE
