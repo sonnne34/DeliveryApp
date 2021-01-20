@@ -22,6 +22,7 @@ import com.sushi.Sushi.StatusFragment
 import com.sushi.Sushi.adapters.TotalAdapter
 import com.sushi.Sushi.models.MenuModelcatMenu
 import com.sushi.Sushi.models.ModelTest
+import com.sushi.Sushi.models.OrderModel
 import com.sushi.Sushi.singleton.BasketSingleton
 import kotlinx.android.synthetic.main.pay_items.*
 import java.util.*
@@ -132,13 +133,18 @@ class PaymentFragment : Fragment() {
 
         val ref : DatabaseReference = FirebaseDatabase.getInstance().reference.child("Order/" + year + "/" + month + "/" + day)
 
-        val menu = ModelTest()
+        val list = BasketSingleton.basketItem
+        val menu = OrderModel()
+        val ss = BasketSingleton.count()
+        menu.date = (day.toString() +  "." + month.toString() + "." + year.toString())
+        menu.money = ss.toString()
+        menu.status = "new"
+        menu.os = "Android"
+        menu.order = list
 
-        menu.Name = "Бурятия"
-        menu.Description = "Ксасный вкусный"
-        menu.Cost = 300
-        menu.CountDialog = 2
-        
+
+
+
 
 
         ref.push().setValue(menu)
