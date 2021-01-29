@@ -2,6 +2,6 @@
 <layer-list xmlns:android="http://schemas.android.com/apk/res/android">
 
     <item
-        android:drawable="@drawable/bacground_image_splash"/>
+        android:drawable="@drawable/background_apppp" />
 
 </layer-list>

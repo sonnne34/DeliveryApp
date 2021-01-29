@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -16,6 +17,7 @@
         android:layout_margin="10dp"
         android:layout_marginTop="10dp"
         android:padding="5dp"
+        android:layout_alignParentTop="true"
         android:text="В Вашей корзине:"/>
 
     <TextView
@@ -46,20 +48,28 @@
         android:orientation="vertical"
         android:visibility="invisible"
         android:layout_below="@+id/txt_header_basket"
-        android:layout_margin="5dp"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="100dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginRight="5dp"
+        android:layout_marginLeft="5dp"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
+        android:layout_height="match_parent"/>
 
     <LinearLayout
         android:id="@+id/layout_prise_total"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/basket_recyclerview"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentEnd="true"
         android:layout_alignParentRight="true"
         android:background="@drawable/okrugl_total"
-        android:layout_margin="3dp"
         android:paddingLeft="7dp"
         android:paddingRight="7dp"
+        android:layout_marginRight="5dp"
+        android:layout_marginBottom="60dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginEnd="5dp"
         android:orientation="horizontal">
 
         <TextView

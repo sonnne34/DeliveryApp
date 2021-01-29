@@ -1,14 +1,11 @@
 package com.sushi.Sushi
 
-import android.graphics.Typeface
 import android.os.Bundle
+import android.view.Gravity
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
-import android.widget.LinearLayout
-import android.widget.RelativeLayout
-import android.widget.TextView
+import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentTransaction
@@ -34,8 +31,10 @@ class BasketFragment : Fragment(), EventListenerss{
     lateinit var layoutPriseTotal : LinearLayout
     lateinit var txtHeader : TextView
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
-                              savedInstanceState: Bundle?): View? {
+    override fun onCreateView(
+        inflater: LayoutInflater, container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
         var root = inflater.inflate(R.layout.fragment_basket, container, false)
         txtHelloBasket = root.findViewById(R.id.txt_hello_basket)
         txtHelloBasket2 = root.findViewById(R.id.txt_hello_basket2)
@@ -48,7 +47,7 @@ class BasketFragment : Fragment(), EventListenerss{
         rvBasket = root.findViewById(R.id.basket_recyclerview)
         basketAdapter = BasketAdapter()
         rvBasket.adapter = basketAdapter
-        rvBasket.layoutManager = LinearLayoutManager(root.context,RecyclerView.VERTICAL,false)
+        rvBasket.layoutManager = LinearLayoutManager(root.context, RecyclerView.VERTICAL, false)
         rvBasket.setHasFixedSize(true)
 
         BasketSingleton.subscribe(this)
@@ -66,20 +65,31 @@ class BasketFragment : Fragment(), EventListenerss{
     }
 
 
-    private fun setupAdapter(modelList : ArrayList<MenuModelcatMenu> ) {
+    private fun setupAdapter(modelList: ArrayList<MenuModelcatMenu>) {
         rvBasket.visibility = View.VISIBLE
         basketAdapter.setupBasket(basketList = modelList)
 
     }
 
     private fun btnReg () {
-        btnRegistr.setOnClickListener {
-            val manager = (activity as AppCompatActivity).supportFragmentManager
-            registrationFragment = RegistrationFragment()
-            manager.beginTransaction()
+            btnRegistr.setOnClickListener {
+                val sum = BasketSingleton.count()
+                if (sum < 500) {
+                    val toast = Toast.makeText(context,
+                        "Но сумма заказа должна быть не менее 500 рублей...",
+                        Toast.LENGTH_LONG
+                    )
+                    toast.setGravity(Gravity.CENTER, 0, 0)
+                    toast.show()
+                }
+                else {
+                val manager = (activity as AppCompatActivity).supportFragmentManager
+                registrationFragment = RegistrationFragment()
+                manager.beginTransaction()
                     .replace(R.id.frame_layout, registrationFragment)
                     .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
                     .commit()
+            }
         }
     }
 

@@ -44,26 +44,30 @@
         android:text="Вы выбираете любимые блюда"/>
 
         <ImageView
-            android:layout_width="20dp"
-            android:layout_height="24dp"
-            android:background="@drawable/ic_strel"/>
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_margin="5dp"
-        android:textSize="18sp"
-        android:textColor="@color/colorCoral"
-        android:layout_gravity="center"
-        android:gravity="center"
-        android:text="Заказ принят, приступаем к готовке"/>
-
-        <ImageView
+            android:visibility="gone"
             android:layout_width="20dp"
             android:layout_height="24dp"
             android:background="@drawable/ic_strel_coral"/>
 
     <TextView
+        android:visibility="gone"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="5dp"
+        android:textSize="18sp"
+        android:textColor="@color/colorBlue"
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:text="Заказ принят, приступаем к готовке"/>
+
+        <ImageView
+            android:visibility="gone"
+            android:layout_width="20dp"
+            android:layout_height="24dp"
+            android:background="@drawable/ic_strel_coral"/>
+
+    <TextView
+        android:visibility="gone"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="5dp"
@@ -72,24 +76,28 @@
         android:text="Готовим Ваш заказ"/>
 
         <ImageView
-            android:layout_width="20dp"
-            android:layout_height="24dp"
-            android:background="@drawable/ic_strel"/>
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_margin="5dp"
-        android:textSize="18sp"
-        android:textColor="@color/colorCoral"
-        android:text="Заказ уже готов!"/>
-
-        <ImageView
+            android:visibility="gone"
             android:layout_width="20dp"
             android:layout_height="24dp"
             android:background="@drawable/ic_strel_coral"/>
 
     <TextView
+        android:visibility="gone"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="5dp"
+        android:textSize="18sp"
+        android:textColor="@color/colorBlue"
+        android:text="Заказ уже готов!"/>
+
+        <ImageView
+            android:visibility="gone"
+            android:layout_width="20dp"
+            android:layout_height="24dp"
+            android:background="@drawable/ic_strel_coral"/>
+
+    <TextView
+        android:visibility="gone"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textColor="@color/colorBlue"
@@ -98,18 +106,20 @@
         android:text="Курьер мчится к Вам"/>
 
         <ImageView
+            android:visibility="gone"
             android:layout_width="20dp"
             android:layout_height="24dp"
-            android:background="@drawable/ic_strel"/>
+            android:background="@drawable/ic_strel_coral"/>
 
     <TextView
+        android:visibility="gone"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:gravity="center"
         android:layout_margin="5dp"
         android:textSize="18sp"
-        android:textColor="@color/colorCoral"
+        android:textColor="@color/colorBlue"
         android:paddingBottom="20dp"
         android:text="Заказ доставлен, Приятного аппетита!"/>
 

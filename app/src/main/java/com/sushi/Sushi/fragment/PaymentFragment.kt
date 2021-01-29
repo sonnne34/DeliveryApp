@@ -103,11 +103,11 @@ class PaymentFragment : Fragment() {
         radioButtonCash.isChecked = true
         radioButtonCash.setOnClickListener(radioButtonClickListener)
 
-        btnPay.setText(String.format("Player %s", textPay.text))
+//        btnPay.setText(String.format("Player %s", textPay.text))
 
-        cardForm.setPayBtnClickListner{
-            Toast.makeText(root.context, "Name : " + cardForm.card.name, Toast.LENGTH_SHORT).show()
-        }
+//        cardForm.setPayBtnClickListner{
+//            Toast.makeText(root.context, "Name : " + cardForm.card.name, Toast.LENGTH_SHORT).show()
+//        }
 
         loadinfoAdapter()
 
@@ -199,7 +199,7 @@ class PaymentFragment : Fragment() {
             }
 
         val ss = BasketSingleton.count()
-        sumTotal.text = "$ss руб."
+        sumTotal.text = "итого: $ss руб.  "
 
         textPay.text = "$ss руб."
 
@@ -258,9 +258,7 @@ class PaymentFragment : Fragment() {
 
     private fun btnDone() {
         btnDone.setOnClickListener {
-//            val banknote: String = banknotePayment.getText().toString()
-//            BanknotePaymentMenu.getBanknotePaymentMenu().addBanknoteMenuFile(banknote)
-//            MethodPaymentMenu.getMethodPaymentMenu().addMethodMenuFile(method)
+
             //при методе оплаты не картой (наличными) "Сдача с" становится обязательным полем
             if (method !== "Картой") {
                 if (cashBack.text.isEmpty()) { // если вес "Сдача с" = 0, то
