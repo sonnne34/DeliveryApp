@@ -4,7 +4,7 @@ import androidx.room.Entity
 import androidx.room.PrimaryKey
 
 @Entity
-class ProfileData {
+class ProfileDataModel {
     @PrimaryKey
     var id: Long = 0
     var name: String? = null

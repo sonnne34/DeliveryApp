@@ -9,6 +9,8 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.fragment.app.FragmentTransaction
 import com.google.android.material.bottomnavigation.BottomNavigationView
+import com.sushi.Sushi.fragment.ProfilFragment
+import com.sushi.Sushi.fragment.StatusFragment
 
 
 class MainActivity : AppCompatActivity() {
@@ -44,14 +46,14 @@ class MainActivity : AppCompatActivity() {
 
         bottomNavigation.setOnNavigationItemSelectedListener  { item ->
             when(item.itemId){
-                R.id.status -> {
-                    statusFragment = StatusFragment()
-                    supportFragmentManager
-                        .beginTransaction()
-                        .replace(R.id.frame_layout, statusFragment)
-                        .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
-                        .commit()
-                }
+//                R.id.status -> {
+//                    statusFragment = StatusFragment()
+//                    supportFragmentManager
+//                        .beginTransaction()
+//                        .replace(R.id.frame_layout, statusFragment)
+//                        .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
+//                        .commit()
+//                }
 
                 R.id.menu -> {
                     menuFragment = MenuFragment()
@@ -62,15 +64,15 @@ class MainActivity : AppCompatActivity() {
                         .commit()
                 }
 
-                R.id.profil -> {
-
-                    profilFragment = ProfilFragment()
-                    supportFragmentManager
-                        .beginTransaction()
-                        .replace(R.id.frame_layout, profilFragment)
-                        .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
-                        .commit()
-                }
+//                R.id.profil -> {
+//
+//                    profilFragment = ProfilFragment()
+//                    supportFragmentManager
+//                        .beginTransaction()
+//                        .replace(R.id.frame_layout, profilFragment)
+//                        .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
+//                        .commit()
+//                }
 
                 R.id.basket -> {
 

@@ -8,7 +8,7 @@
     android:layout_gravity="center"
     android:gravity="center_horizontal"
     android:layout_margin="10dp"
-    tools:context=".StatusFragment">
+    tools:context=".fragment.StatusFragment">
 
     <TextView
         android:id="@+id/text_menu"

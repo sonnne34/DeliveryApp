@@ -6,19 +6,19 @@ import androidx.room.*
 @Dao
 interface ProfileDataDao {
 
-    @Query("SELECT * FROM profiledata")
-    fun getAll(): List<ProfileData?>?
+    @Query("SELECT * FROM profiledatamodel")
+    fun getAll(): List<ProfileDataModel?>?
 
-    @Query("SELECT * FROM profiledata WHERE id = :id")
-    fun getById(id: Long): ProfileData?
+    @Query("SELECT * FROM profiledatamodel WHERE id = :id")
+    fun getById(id: Long): ProfileDataModel?
 
     @Insert
-    fun insert(employee: ProfileData?)
+    fun insert(profileData: ProfileDataModel?)
 
     @Update
-    fun update(employee: ProfileData?)
+    fun update(profileData: ProfileDataModel?)
 
     @Delete
-    fun delete(employee: ProfileData?)
+    fun delete(profileData: ProfileDataModel?)
 
 }

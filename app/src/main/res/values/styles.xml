@@ -121,4 +121,9 @@
         <item name="android:windowBackground">@drawable/background_activity_main</item>
     </style>
 
+    <style name="MyCheckBox" parent="Theme.AppCompat.Light">
+        <item name="colorControlNormal">@color/colorCoraltrans</item>
+        <item name="colorControlActivated">@color/colorgreentrans</item>
+    </style>
+
 </resources>

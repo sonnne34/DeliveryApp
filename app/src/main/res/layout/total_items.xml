@@ -180,11 +180,6 @@
             android:layout_toRightOf="@+id/entrance_total"
             android:hint="Этаж" />
 
-    <TextView
-        android:id="@+id/method_payment_total"
-        style="@style/TextHeader2"
-        android:layout_below="@+id/apartment_total"
-        android:text="Способ оплаты:" />
 
     </RelativeLayout>
 </RelativeLayout>

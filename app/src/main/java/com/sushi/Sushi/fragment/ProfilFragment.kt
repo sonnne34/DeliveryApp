@@ -1,4 +1,4 @@
-package com.sushi.Sushi
+package com.sushi.Sushi.fragment
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -7,8 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.FragmentTransaction
-import com.sushi.Sushi.fragment.AuthorizationFragment
-import com.sushi.Sushi.fragment.SetupProfilFragment
+import com.sushi.Sushi.R
 import kotlinx.android.synthetic.main.fragment_profil.*
 
 class ProfilFragment : Fragment() {

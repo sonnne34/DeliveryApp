@@ -12,6 +12,54 @@
         android:background="@drawable/okrugl_bacgr"
         android:orientation="vertical">
 
+        <CheckBox
+            android:id="@+id/checkbox_promo_payment_total"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:theme="@style/MyCheckBox"
+            android:layout_margin="7dp"
+            android:textSize="16dp"
+            android:textColor="@color/header"
+            android:text=" у меня есть скидка"/>
+
+        <LinearLayout
+            android:id="@+id/layout_promo_payment_total"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="7dp"
+            android:weightSum="2"
+            android:orientation="horizontal">
+
+        <EditText
+            android:id="@+id/edit_promo_payment_total"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="2"
+            android:maxLines="1"
+            android:hint="Введите промокод" />
+
+            <Button
+                android:id="@+id/btn_promo_payment_total"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="@drawable/okrugl_promo"
+                android:fontFamily="@font/fonttt"
+                android:textSize="11dp"
+                android:textColor="@color/colorUltramarine"
+                android:textStyle="bold"
+                android:text="Применить"/>
+
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/method_payment_total"
+            style="@style/TextHeader2"
+            android:layout_marginLeft="10dp"
+            android:layout_marginStart="10dp"
+            android:layout_marginBottom="7dp"
+            android:text="Способ оплаты:" />
+
     <RadioGroup
         android:id="@+id/selection_method_payment"
         style="@style/RadioGroup"
@@ -78,6 +126,8 @@
 
     </com.google.android.material.textfield.TextInputLayout>
 
+    </LinearLayout>
+
     <Button
         android:id="@+id/btn_done"
         android:layout_width="200dp"
@@ -87,9 +137,23 @@
         android:background="@drawable/okrugl_button"
         android:fontFamily="@font/fonttt"
         android:textColor="@color/colorUltramarine"
+        android:layout_alignParentBottom="true"
         android:textStyle="bold"
         android:text="Заказать" />
 
-    </LinearLayout>
+    <Button
+        android:id="@+id/btn_done_card"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:visibility="invisible"
+        android:layout_gravity="center"
+        android:layout_marginTop="5dp"
+        android:layout_marginBottom="5dp"
+        android:background="@drawable/okrugl_button"
+        android:fontFamily="@font/fonttt"
+        android:textColor="@color/colorUltramarine"
+        android:layout_alignParentBottom="true"
+        android:textStyle="bold"
+        android:text="Перейти к оплате" />
 
 </merge>
