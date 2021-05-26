@@ -5,8 +5,13 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
+import android.widget.ImageView
 import android.widget.TextView
+import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
+import com.google.firebase.storage.FirebaseStorage
+import com.squareup.picasso.MemoryPolicy
+import com.squareup.picasso.Picasso
 import com.sushi.Sushi.R
 import com.sushi.Sushi.dialog.CountDialog
 import com.sushi.Sushi.models.MenuModelcatMenu
@@ -49,6 +54,7 @@ class BasketAdapter: RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
         private var nameDish : TextView = itemView.findViewById(R.id.txt_name_dish_basket)
         private var description : TextView = itemView.findViewById(R.id.txt_description_basket)
+        private var imgDish: ImageView = itemView.findViewById(R.id.img_dish_basket)
         private var prise : TextView = itemView.findViewById(R.id.txt_prise_dish_basket)
         private var valueDish : TextView = itemView.findViewById(R.id.txt_value_dish_basket)
         private var btnPlus : Button = itemView.findViewById(R.id.btn_plus_basket)
@@ -60,6 +66,30 @@ class BasketAdapter: RecyclerView.Adapter<RecyclerView.ViewHolder>() {
             nameDish.text = "${menuModel.Items?.Name}"
             valueDish.text = "${menuModel.Items?.CountDialog}"
             description.text = "${menuModel.Items?.Description}"
+
+            Log.d("img" ,"ooops" )
+
+            Log.d("log", "storage" + menuModel.Items?.Picture)
+
+
+            val storageTwo = FirebaseStorage.getInstance()
+
+            val storageRefTwo = storageTwo.getReferenceFromUrl(menuModel.Items?.Picture!!)
+
+            storageRefTwo.downloadUrl.addOnSuccessListener { uri ->
+                Picasso.get().load(uri).fit().centerCrop().memoryPolicy(
+                    MemoryPolicy.NO_CACHE,
+                    MemoryPolicy.NO_STORE
+                ).into(imgDish)
+            }.addOnFailureListener {
+//                val toast = Toast.makeText(
+//                    activity,
+//                    "Ошибка!", Toast.LENGTH_SHORT
+//                )
+//                toast.show()
+                Log.d("img" ,"ooops" )
+            }
+
 
 
             itemView.setOnClickListener {
@@ -95,7 +125,7 @@ class BasketAdapter: RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
                 prise.text = sums.toString()
                 BasketSingleton.notifyTwo()
-
+                Log.d("img" ,"ooops" )
             }
 
 
