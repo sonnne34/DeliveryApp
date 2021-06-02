@@ -13,7 +13,7 @@
     <color name="colorTangerine">#f54021</color>
     <color name="colorgreen">#1cac78</color>
     <color name="colorgreentrans">#901cac78</color>
-
+    <color name="colorgreentransparent">#451cac78</color>
 
     <color name="whitecolor">#FFFFFF</color>
     <color name="transparent">#00000000</color>

@@ -6,8 +6,12 @@ import android.util.Log
 import android.view.Gravity
 import android.view.Window
 import android.widget.Button
+import android.widget.ImageView
 import android.widget.ListPopupWindow
 import android.widget.TextView
+import com.google.firebase.storage.FirebaseStorage
+import com.squareup.picasso.MemoryPolicy
+import com.squareup.picasso.Picasso
 import com.sushi.Sushi.R
 import com.sushi.Sushi.models.MenuModelcatMenu
 import com.sushi.Sushi.singleton.BasketSingleton
@@ -34,6 +38,7 @@ class CountDialog {
             val name = dialog.findViewById(R.id.names) as TextView
             val cost = dialog.findViewById(R.id.cost) as TextView
             val count = dialog.findViewById(R.id.count) as TextView
+            val imgDish = dialog.findViewById(R.id.imageViewPictureDishDialog) as ImageView
 
             val file = BasketSingleton.proverkaNaNalichie(fileMenu)
 
@@ -42,8 +47,27 @@ class CountDialog {
             if (file != null){
 
 
-                description.setText(file.Items?.Description)
-                name.setText(file?.Items?.Name)
+                description.text = file.Items?.Description
+                name.text = file?.Items?.Name
+
+                val storageTwo = FirebaseStorage.getInstance()
+
+                val storageRefTwo = storageTwo.getReferenceFromUrl(file?.Items?.Picture!!)
+
+                storageRefTwo.downloadUrl.addOnSuccessListener { uri ->
+                    Picasso.get().load(uri).fit().centerCrop().memoryPolicy(
+                        MemoryPolicy.NO_CACHE,
+                        MemoryPolicy.NO_STORE
+                    ).into(imgDish)
+                }.addOnFailureListener {
+//                val toast = Toast.makeText(
+//                    activity,
+//                    "Ошибка!", Toast.LENGTH_SHORT
+//                )
+//                toast.show()
+                }
+
+
                 val sim: Long = file.Items?.Cost!!
                 val som: Long = file.Items?.CountDialog!!
                 val zim = sim * som

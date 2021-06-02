@@ -25,10 +25,10 @@
             android:gravity="center"
             android:layout_width="120dp"
             android:layout_height="120dp"
-            android:padding="7dp"
-            android:layout_margin="2dp" />
+            android:layout_margin="7dp" />
 
         <LinearLayout
+            android:id="@+id/layout_dish"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_toEndOf="@+id/image_dish_menu"
@@ -43,7 +43,7 @@
                 android:textColor="@color/colorUltramarine"
                 android:layout_margin="2dp"
                 android:text="HEY"
-                android:textSize="22dp" />
+                android:textSize="20sp" />
 
             <TextView
                 android:id="@+id/discription_text"
@@ -55,17 +55,40 @@
                 android:layout_below="@+id/text_roll"
                 android:text="Описание"/>
 
-            <TextView
-                android:id="@+id/txt_roll_price"
-                android:textSize="16dp"
-                android:layout_width="120dp"
-                android:padding="3dp"
+            <LinearLayout
+                android:id="@+id/layout_wt_prise"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textColor="@color/colorSky"
-                android:background="@drawable/okrugl_button"
-                android:layout_gravity="bottom"
-                android:gravity="center"
-                android:text="100 руб"/>
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/txt_roll_weight"
+                    android:textSize="16dp"
+                    android:layout_width="120dp"
+                    android:padding="3dp"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/colorSky"
+                    android:background="@drawable/okrugl_wt"
+                    android:layout_gravity="bottom"
+                    android:gravity="center"
+
+                    android:text="215 гр." />
+
+                <TextView
+                    android:id="@+id/txt_roll_price"
+                    android:textSize="16dp"
+                    android:layout_width="120dp"
+                    android:padding="3dp"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/colorSky"
+                    android:background="@drawable/okrugl_button"
+                    android:layout_gravity="bottom"
+                    android:gravity="center"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginLeft="10dp"
+                    android:text="100 руб" />
+
+            </LinearLayout>
 
         </LinearLayout>
 

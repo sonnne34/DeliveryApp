@@ -87,7 +87,6 @@ class BasketAdapter: RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 //                    "Ошибка!", Toast.LENGTH_SHORT
 //                )
 //                toast.show()
-                Log.d("img" ,"ooops" )
             }
 
 
@@ -97,6 +96,7 @@ class BasketAdapter: RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
 
                 CountDialog.openDialog(itemView.context, menuModel)
+
 
             }
 

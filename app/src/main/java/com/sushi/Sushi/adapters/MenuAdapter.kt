@@ -135,9 +135,6 @@ class MenuAdapter: RecyclerView.Adapter<RecyclerView.ViewHolder>(){
             cost.text = "${menuCategoryModel.Items?.Cost}" + " руб."
 //            cost.typeface = typeface
 
-            Log.d("SSS", "qwe = " + menuCategoryModel.Items?.Picture)
-
-
             val storage = FirebaseStorage.getInstance()
             val storageRef = storage.getReferenceFromUrl(menuCategoryModel.Items?.Picture!!)
 

@@ -120,7 +120,7 @@ class MenuFragment : Fragment(), EventListenerss {
             val online = isOnline(root.context)
 
             Log.d("FF","Internet = " +  online )
-            loadAddress(root.context, online)
+//            loadAddress(root.context, online)
         }
 
 
@@ -153,8 +153,6 @@ class MenuFragment : Fragment(), EventListenerss {
         }
         return false
     }
-
-
 
 
     private fun LoadMenu() {

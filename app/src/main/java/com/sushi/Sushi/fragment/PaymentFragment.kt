@@ -30,11 +30,11 @@ import java.util.*
 class PaymentFragment : Fragment() {
 
     private lateinit var recyclerView: RecyclerView
-    private lateinit var adapter : TotalAdapter
-    private lateinit var nameText : TextView
+    private lateinit var adapter: TotalAdapter
+    private lateinit var nameText: TextView
     private lateinit var numberText: TextView
-    private lateinit var comitText : TextView
-    private lateinit var comitHeader : TextView
+    private lateinit var comitText: TextView
+    private lateinit var comitHeader: TextView
     private lateinit var streetText: TextView
     private lateinit var houseText: TextView
     private lateinit var apatanmentText: TextView
@@ -45,10 +45,10 @@ class PaymentFragment : Fragment() {
 
     private lateinit var btnDone: Button
     private lateinit var btnDoneCard: Button
-    private lateinit var btnBack : ImageButton
+    private lateinit var btnBack: ImageButton
     private lateinit var registrationFragment: RegistrationFragment
-    private lateinit var cashBack : EditText
-    private lateinit var inputCash : TextInputLayout
+    private lateinit var cashBack: EditText
+    private lateinit var inputCash: TextInputLayout
     private lateinit var radioGroup: RadioGroup
     private lateinit var radioButtonCash: RadioButton
     private lateinit var radioButtonCard: RadioButton
@@ -76,7 +76,7 @@ class PaymentFragment : Fragment() {
         adapter = TotalAdapter()
         recyclerView.adapter = adapter
         recyclerView.layoutManager =
-                LinearLayoutManager(root.context, RecyclerView.VERTICAL, false)
+            LinearLayoutManager(root.context, RecyclerView.VERTICAL, false)
         recyclerView.setHasFixedSize(true)
 
         nameText = root.findViewById(R.id.name_pay_item)
@@ -116,17 +116,13 @@ class PaymentFragment : Fragment() {
 //        }
 
         loadinfoAdapter()
-
         loadinfoPerson()
-
-
         checkBoxPromo()
         btnBack()
-        btnDoneCard()
+//        btnDoneCard()
         btnDone()
 
-       return root
-
+        return root
 
     }
 
@@ -138,21 +134,17 @@ class PaymentFragment : Fragment() {
         val month = c.get(Calendar.MONTH)
         val day = c.get(Calendar.DAY_OF_MONTH)
 
-        val ref : DatabaseReference = FirebaseDatabase.getInstance().reference.child("Order/" + year + "/" + month + "/" + day)
+        val ref: DatabaseReference =
+            FirebaseDatabase.getInstance().reference.child("Order/" + year + "/" + month + "/" + day)
 
         val list = BasketSingleton.basketItem
         val menu = OrderModel()
         val ss = BasketSingleton.count()
-        menu.date = (day.toString() +  "." + month.toString() + "." + year.toString())
+        menu.date = (day.toString() + "." + month.toString() + "." + year.toString())
         menu.money = ss.toString()
         menu.status = "new"
         menu.os = "Android"
         menu.order = list
-
-
-
-
-
 
         ref.push().setValue(menu)
     }
@@ -174,12 +166,12 @@ class PaymentFragment : Fragment() {
         val loadphone = pref1!!.getString("number", "")
         numberText.setText(loadphone)
 
-        val comint  = pref2!!.getString("comite", "")
+        val comint = pref2!!.getString("comite", "")
         comitText.setText(comint)
-            if (comint!!.isEmpty()) {
-                comitHeader.visibility = View.GONE
-                comitText.visibility = View.GONE
-            }
+        if (comint!!.isEmpty()) {
+            comitHeader.visibility = View.GONE
+            comitText.visibility = View.GONE
+        }
 
         val street = pref3!!.getString("streetA", "")
         streetText.text = "ул. $street,"
@@ -189,21 +181,21 @@ class PaymentFragment : Fragment() {
 
         val appart = pref5!!.getString("apartmentA", "")
         apatanmentText.text = "кв./оф. $appart,"
-            if (appart!!.isEmpty()) {
-                apatanmentText.visibility = View.GONE
-            }
+        if (appart!!.isEmpty()) {
+            apatanmentText.visibility = View.GONE
+        }
 
         val level = pref6!!.getString("level", "")
         levelText.text = "эт. $level"
-            if (level!!.isEmpty()) {
-                levelText.visibility = View.GONE
-            }
+        if (level!!.isEmpty()) {
+            levelText.visibility = View.GONE
+        }
 
         val entrance = pref7!!.getString("entrance", "")
         entranceText.text = "под. $entrance,"
-            if (entrance!!.isEmpty()) {
-                entranceText.visibility = View.GONE
-            }
+        if (entrance!!.isEmpty()) {
+            entranceText.visibility = View.GONE
+        }
 
         val ss = BasketSingleton.count()
         sumTotal.text = "итого: $ss руб.  "
@@ -224,11 +216,11 @@ class PaymentFragment : Fragment() {
         adapter.setupTotal(itemList)
     }
 
-    private fun checkBoxPromo(){
+    private fun checkBoxPromo() {
         checkBoxPromo.setOnCheckedChangeListener { buttonView, isChecked ->
-            if (isChecked){
+            if (isChecked) {
                 layoutPromo.visibility = View.VISIBLE
-            }else{
+            } else {
                 layoutPromo.visibility = View.GONE
             }
         }
@@ -255,8 +247,9 @@ class PaymentFragment : Fragment() {
                     inputCash.error =
                         null //при нажатии на "Картой" ошибок с обязательным полем чтобы не всплывало
                     inputCash.visibility = View.GONE
-                    btnDoneCard.visibility = View.VISIBLE
-                    btnDone.visibility = View.GONE
+//                    btnDoneCard.visibility = View.VISIBLE
+//                    btnDone.visibility = View.GONE
+                    btnDone.visibility = View.VISIBLE
 
                 }
                 R.id.method_cash_payment -> {
@@ -286,23 +279,27 @@ class PaymentFragment : Fragment() {
 
             //при методе оплаты не картой (наличными) "Сдача с" становится обязательным полем
             if (method !== "Картой") {
+
                 if (cashBack.text.isEmpty()) { // если вес "Сдача с" = 0, то
                     inputCash.error = "Обязательное поле"
                 } //ошибка
+
                 else {
-                    inputCash.error = null //если не равно 0 то отправляем заказ и переходим в статус-фрагмент
+                    inputCash.error =
+                        null //если не равно 0 то отправляем заказ и переходим в статус-фрагмент
 
                     Toast.makeText(context, "Дело сделано!)", Toast.LENGTH_LONG).show()
 
-
                     loadinFireBase()
-                    statusFragment = StatusFragment()
-                    val manager = (activity as AppCompatActivity).supportFragmentManager
-                    manager.beginTransaction()
-                        .replace(R.id.frame_layout, statusFragment)
-                        .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
-                        .commit()
+
+//                    statusFragment = StatusFragment()
+//                    val manager = (activity as AppCompatActivity).supportFragmentManager
+//                    manager.beginTransaction()
+//                        .replace(R.id.frame_layout, statusFragment)
+//                        .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
+//                        .commit()
                 }
+
             }
         }
     }
