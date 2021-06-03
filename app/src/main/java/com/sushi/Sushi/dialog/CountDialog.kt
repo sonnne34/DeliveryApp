@@ -23,7 +23,7 @@ class CountDialog {
 
 
             var menuFile = fileMenu
-            Log.d ("PPPP ", " Menufile = " + menuFile?.Items?.Name)
+            Log.d("PPPP ", " Menufile = " + menuFile?.Items?.Name)
 
             val dialog = Dialog(context, R.style.CustomDialog)
             dialog.requestWindowFeature(Window.FEATURE_NO_TITLE)
@@ -31,8 +31,9 @@ class CountDialog {
             dialog.setContentView(R.layout.dialog_item_menu)
             dialog.window?.setGravity(Gravity.BOTTOM)
             dialog.window?.setLayout(
-                    ListPopupWindow.MATCH_PARENT,
-                    ListPopupWindow.WRAP_CONTENT)
+                ListPopupWindow.MATCH_PARENT,
+                ListPopupWindow.WRAP_CONTENT
+            )
 
             val description = dialog.findViewById(R.id.textViewGoodsDescriptionDialog) as TextView
             val name = dialog.findViewById(R.id.names) as TextView
@@ -60,11 +61,6 @@ class CountDialog {
                         MemoryPolicy.NO_STORE
                     ).into(imgDish)
                 }.addOnFailureListener {
-//                val toast = Toast.makeText(
-//                    activity,
-//                    "Ошибка!", Toast.LENGTH_SHORT
-//                )
-//                toast.show()
                 }
 
 
@@ -81,9 +77,21 @@ class CountDialog {
 
 
             }else{
-                description.setText(menuFile?.Items?.Description)
-                name.setText(menuFile?.Items?.Name)
-                cost.setText(menuFile?.Items?.Cost.toString())
+                description.setText(menuFile.Items?.Description)
+                name.setText(menuFile.Items?.Name)
+                cost.setText(menuFile.Items?.Cost.toString())
+
+                val storageTwo = FirebaseStorage.getInstance()
+                val storageRefTwo = storageTwo.getReferenceFromUrl(menuFile.Items?.Picture!!)
+
+                storageRefTwo.downloadUrl.addOnSuccessListener { uri ->
+                    Picasso.get().load(uri).fit().centerCrop().memoryPolicy(
+                        MemoryPolicy.NO_CACHE,
+                        MemoryPolicy.NO_STORE
+                    ).into(imgDish)
+                }.addOnFailureListener {
+                }
+
                 val one: Long = 1
                 count.setText(one.toString())
                 dialog.show();
@@ -142,16 +150,20 @@ class CountDialog {
             val add = dialog.findViewById(R.id.btn_add) as Button
             add.setOnClickListener() {
                 val zz = count.text // получем содержимое обьекта
-                Log.d ("CCC", "FFF = " + zz)
+                Log.d("CCC", "FFF = " + zz)
 
                 var pz = Integer.valueOf(zz.toString()) // преобразовываем в число
 
-
-
                 menuFile.Items?.CountDialog = pz.toLong()
-                BasketSingleton.addBasket(menuFile)
-                BasketSingleton.showBasket()
-                BasketSingleton.notifyTwo()
+                if (pz != 0) {
+                    BasketSingleton.addBasket(menuFile)
+                    BasketSingleton.showBasket()
+                    BasketSingleton.notifyTwo()
+                }
+                else {
+                    BasketSingleton.del(menuFile)
+                    BasketSingleton.notifyTwo()
+                }
 
                 dialog.cancel()
 

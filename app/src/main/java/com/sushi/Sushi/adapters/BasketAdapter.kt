@@ -19,7 +19,6 @@ import com.sushi.Sushi.singleton.BasketSingleton
 import java.util.*
 import kotlin.collections.ArrayList
 
-//import kotlinx.android.synthetic.main.fragment_choice.*
 
 class BasketAdapter: RecyclerView.Adapter<RecyclerView.ViewHolder>() {
      var mBasketList: ArrayList<MenuModelcatMenu> = ArrayList()
@@ -29,7 +28,6 @@ class BasketAdapter: RecyclerView.Adapter<RecyclerView.ViewHolder>() {
         mBasketList.addAll(basketList)
         notifyDataSetChanged()
     }
-
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
         val layoutInflater = LayoutInflater.from(parent.context)
@@ -45,7 +43,6 @@ class BasketAdapter: RecyclerView.Adapter<RecyclerView.ViewHolder>() {
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
         if(holder is BasketViewHoldel ){
             holder.bind(menuModel = mBasketList.get(position))
-            btnDel(holder, position)
 
         }
     }
@@ -62,6 +59,11 @@ class BasketAdapter: RecyclerView.Adapter<RecyclerView.ViewHolder>() {
         var btnDel : Button = itemView.findViewById(R.id.btn_del_basket)
 
         fun bind(menuModel: MenuModelcatMenu){
+
+            btnDel.setOnClickListener {
+                BasketSingleton.del(menuModel)
+                BasketSingleton.notifyTwo()
+            }
 
             nameDish.text = "${menuModel.Items?.Name}"
             valueDish.text = "${menuModel.Items?.CountDialog}"
@@ -82,11 +84,7 @@ class BasketAdapter: RecyclerView.Adapter<RecyclerView.ViewHolder>() {
                     MemoryPolicy.NO_STORE
                 ).into(imgDish)
             }.addOnFailureListener {
-//                val toast = Toast.makeText(
-//                    activity,
-//                    "Ошибка!", Toast.LENGTH_SHORT
-//                )
-//                toast.show()
+
             }
 
 
@@ -145,21 +143,6 @@ class BasketAdapter: RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
             }
         }
-
-
     }
-
-    private fun btnDel(holder: RecyclerView.ViewHolder, position: Int){
-        if(holder is BasketViewHoldel ){
-            holder.bind(menuModel = mBasketList[position])
-            holder.btnDel.setOnClickListener {
-                mBasketList.removeAt(position)
-                notifyItemRemoved(position)
-                BasketSingleton.notifyTwo()
-                Log.d("list", "del= $position")
-            }
-        }
-    }
-
 
 }

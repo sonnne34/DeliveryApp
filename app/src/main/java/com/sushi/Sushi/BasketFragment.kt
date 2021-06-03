@@ -118,8 +118,8 @@ class BasketFragment : Fragment(), EventListenerss{
 
     override fun updateRR() {
         var menufile = BasketSingleton.basketItem
-        rvBasket.visibility = View.VISIBLE
         basketAdapter.setupBasket(basketList = menufile)
+        rvBasket.visibility = View.VISIBLE
 
        updateTEXT()
     }

@@ -9,6 +9,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.*
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentTransaction
@@ -19,18 +20,24 @@ import com.google.android.material.textfield.TextInputLayout
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
 import com.sushi.Sushi.MainActivity
+import com.sushi.Sushi.MenuFragment
 import com.sushi.Sushi.PaymentCardActivity
 import com.sushi.Sushi.R
+import com.sushi.Sushi.adapters.BasketAdapter
 import com.sushi.Sushi.adapters.TotalAdapter
 import com.sushi.Sushi.models.MenuModelcatMenu
 import com.sushi.Sushi.models.OrderModel
 import com.sushi.Sushi.singleton.BasketSingleton
+import kotlinx.android.synthetic.main.activity_main.*
+import kotlinx.android.synthetic.main.pay_items.*
 import java.util.*
+import kotlin.collections.ArrayList
 
 class PaymentFragment : Fragment() {
 
     private lateinit var recyclerView: RecyclerView
     private lateinit var adapter: TotalAdapter
+    private lateinit var basketAdapter: BasketAdapter
     private lateinit var nameText: TextView
     private lateinit var numberText: TextView
     private lateinit var comitText: TextView
@@ -42,6 +49,8 @@ class PaymentFragment : Fragment() {
     private lateinit var levelText: TextView
     private lateinit var sumTotal: TextView
     private lateinit var statusFragment: StatusFragment
+    private lateinit var menuFragment: MenuFragment
+    private lateinit var mainActivity: MainActivity
 
     private lateinit var btnDone: Button
     private lateinit var btnDoneCard: Button
@@ -78,6 +87,8 @@ class PaymentFragment : Fragment() {
         recyclerView.layoutManager =
             LinearLayoutManager(root.context, RecyclerView.VERTICAL, false)
         recyclerView.setHasFixedSize(true)
+
+        basketAdapter = BasketAdapter()
 
         nameText = root.findViewById(R.id.name_pay_item)
         numberText = root.findViewById(R.id.phone_order)
@@ -121,6 +132,7 @@ class PaymentFragment : Fragment() {
         btnBack()
 //        btnDoneCard()
         btnDone()
+
 
         return root
 
@@ -258,7 +270,7 @@ class PaymentFragment : Fragment() {
                     inputCash.visibility = View.VISIBLE //чтобы возвращалась строка "Сдача с"
                     btnDoneCard.visibility = View.GONE
                     btnDone.visibility = View.VISIBLE
-                    btnDone()
+//                    btnDone()
                 }
                 else -> {
                 }
@@ -290,17 +302,46 @@ class PaymentFragment : Fragment() {
 
                     Toast.makeText(context, "Дело сделано!)", Toast.LENGTH_LONG).show()
 
-                    loadinFireBase()
+//                    loadinFireBase()
+                    openDoneDialog()
 
-//                    statusFragment = StatusFragment()
-//                    val manager = (activity as AppCompatActivity).supportFragmentManager
-//                    manager.beginTransaction()
-//                        .replace(R.id.frame_layout, statusFragment)
-//                        .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
-//                        .commit()
                 }
-
+            }
+            else {
+                Toast.makeText(context, "Дело сделано!)", Toast.LENGTH_LONG).show()
+                //                    loadinFireBase()
+                openDoneDialog()
             }
         }
+    }
+
+    private fun openDoneDialog() {
+        val quitDialog = AlertDialog.Builder(activity as AppCompatActivity
+        )
+        quitDialog.setTitle("Заказ оправлен!")
+        quitDialog.setTitle("В ближайшее время мы свяжемся с Вами для подтверждения заказа =)")
+        quitDialog.setPositiveButton(
+            "Ясненько!"
+        ) { dialog, which ->
+
+                    menuFragment = MenuFragment()
+                    val manager = (activity as AppCompatActivity).supportFragmentManager
+                    manager.beginTransaction()
+                        .replace(R.id.frame_layout, menuFragment)
+                        .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
+                        .commit()
+        }
+        quitDialog.setNegativeButton(
+            "Понятненько!"
+        ) { dialog, which ->
+
+            menuFragment = MenuFragment()
+            val manager = (activity as AppCompatActivity).supportFragmentManager
+            manager.beginTransaction()
+                .replace(R.id.frame_layout, menuFragment)
+                .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
+                .commit()
+        }
+        quitDialog.show()
     }
 }

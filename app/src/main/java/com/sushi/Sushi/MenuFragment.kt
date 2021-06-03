@@ -4,7 +4,6 @@ import android.Manifest
 import android.annotation.SuppressLint
 import android.content.Context
 import android.content.pm.PackageManager
-import android.graphics.Color
 import android.location.Geocoder
 import android.location.Location
 import android.net.ConnectivityManager
@@ -31,7 +30,6 @@ import com.google.firebase.database.*
 import com.sushi.Sushi.adapters.CategoryAdapter
 import com.sushi.Sushi.adapters.MenuAdapter
 import com.sushi.Sushi.listener.EventListenerss
-
 import com.sushi.Sushi.models.*
 import com.sushi.Sushi.singleton.Address
 import com.sushi.Sushi.singleton.BasketSingleton
@@ -79,7 +77,11 @@ class MenuFragment : Fragment(), EventListenerss {
 
     @RequiresApi(Build.VERSION_CODES.LOLLIPOP)
     @SuppressLint("ResourceType")
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
         val root = inflater.inflate(R.layout.fragment_menu, container, false)
         Log.d("MMM", "OnCreateView = ")
         fusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(root.context)
@@ -101,7 +103,11 @@ class MenuFragment : Fragment(), EventListenerss {
         menuRecyclerView = root.findViewById(R.id.recycler_view_menu)
         adapter = MenuAdapter()
         menuRecyclerView.adapter = adapter
-        menuRecyclerView.layoutManager = LinearLayoutManager(root.context, RecyclerView.VERTICAL, false)
+        menuRecyclerView.layoutManager = LinearLayoutManager(
+            root.context,
+            RecyclerView.VERTICAL,
+            false
+        )
         menuRecyclerView.setHasFixedSize(true)
 
 
@@ -119,7 +125,7 @@ class MenuFragment : Fragment(), EventListenerss {
 
             val online = isOnline(root.context)
 
-            Log.d("FF","Internet = " +  online )
+            Log.d("FF", "Internet = " + online)
 //            loadAddress(root.context, online)
         }
 
@@ -165,7 +171,6 @@ class MenuFragment : Fragment(), EventListenerss {
             override fun onDataChange(dataSnapshot: DataSnapshot) {
 
 
-
                 for (ds in dataSnapshot.children) {
                     val value = ds.getValue(CatMenuModel::class.java)!!
 
@@ -174,8 +179,6 @@ class MenuFragment : Fragment(), EventListenerss {
 
 
                     menuList.add(value)
-
-
 
 
                 }
@@ -192,7 +195,7 @@ class MenuFragment : Fragment(), EventListenerss {
 
     }
 
-    private fun updateMenuAdapter( menuList:ArrayList<CatMenuModel>) {
+    private fun updateMenuAdapter(menuList: ArrayList<CatMenuModel>) {
 
         adapter.setupMenu(menuList)
 
@@ -315,7 +318,13 @@ class MenuFragment : Fragment(), EventListenerss {
 
         if(boolean == true){
 
-            if (ActivityCompat.checkSelfPermission(context, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(context, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+            if (ActivityCompat.checkSelfPermission(
+                    context,
+                    Manifest.permission.ACCESS_FINE_LOCATION
+                ) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(
+                    context,
+                    Manifest.permission.ACCESS_COARSE_LOCATION
+                ) != PackageManager.PERMISSION_GRANTED) {
                 // TODO: Consider calling
                 //    ActivityCompat#requestPermissions
                 // here to request the missing permissions, and then overriding
@@ -331,11 +340,11 @@ class MenuFragment : Fragment(), EventListenerss {
                 val latitude = it.result?.latitude
                 val longitude = it.result?.longitude
 
-                Log.d("Result","lat = " + latitude )
-                Log.d("Result","llong = " + longitude )
+                Log.d("Result", "lat = " + latitude)
+                Log.d("Result", "llong = " + longitude)
 
                 if(latitude == null){
-                    Toast.makeText(context,"Интернета нет",Toast.LENGTH_SHORT).show()
+                    Toast.makeText(context, "Интернета нет", Toast.LENGTH_SHORT).show()
 
                 }else{
                     val locationA = Location("Point A")
@@ -395,12 +404,11 @@ class MenuFragment : Fragment(), EventListenerss {
     private fun addArea() {
 
         dangerousArea = ArrayList()
-        dangerousArea.add(LatLng(57.1344598,65.4966976))
+        dangerousArea.add(LatLng(57.1344598, 65.4966976))
     }
 
     override fun updateRR() {
         updateMenuAdapter(menuList)
     }
-
 
 }

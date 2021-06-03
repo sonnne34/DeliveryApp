@@ -1,8 +1,8 @@
 package com.sushi.Sushi.models
 
-class MenuModel (var Cost: Long,var Description: String?, var Name: String?, var Picture: String?,var CountDialog: Long, var PictureSale: String?) {
+class MenuModel (var Cost: Long,var Description: String?, var Name: String?, var Picture: String?,var CountDialog: Long, var PictureSale: String?, var Wt: Long) {
 
-    constructor(): this(Cost = Long.MAX_VALUE, Description = String(), Name = String(),Picture = String(),CountDialog = Long.MAX_VALUE,PictureSale = String())
+    constructor(): this(Cost = Long.MAX_VALUE, Description = String(), Name = String(),Picture = String(),CountDialog = Long.MAX_VALUE,PictureSale = String(), Wt = Long.MAX_VALUE)
 
 //    override val entries: Set<Map.Entry<String, MenuModel>>
 //        get() = TODO(reason = "Not yet implemented")

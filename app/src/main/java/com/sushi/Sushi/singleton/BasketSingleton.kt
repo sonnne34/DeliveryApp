@@ -54,6 +54,12 @@ object BasketSingleton {
         return nn
     }
 
+    fun del(position: MenuModelcatMenu) {
+        val nn: ArrayList<MenuModelcatMenu> = basketItem
+        basketItem.removeAll(nn)
+    }
+
+
 
     fun checkingThelist(gg: MenuModelcatMenu): Boolean {
         for (i in basketItem) {

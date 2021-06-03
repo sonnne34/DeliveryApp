@@ -83,6 +83,20 @@ class MenuAdapter: RecyclerView.Adapter<RecyclerView.ViewHolder>(){
         return mMenuList.count()
     }
 
+//    fun scrollToCategory(name: String): Int {
+//        Log.d("Which", "name = $name")
+//        var position = 0
+//        for (i in mMenuList.indices) {
+//            val element: MenuModelcatMenu = mMenuList.get(i)
+//            if (element.isHeader === true) {
+//                if (element.CategoryName.equals(name)) {
+//                    position = i
+//                }
+//            }
+//        }
+//        return position
+//    }
+
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
 
         if(holder.itemViewType == LAYOUT_HEADER){
@@ -123,6 +137,7 @@ class MenuAdapter: RecyclerView.Adapter<RecyclerView.ViewHolder>(){
         private var cost: TextView = itemView.findViewById(R.id.txt_roll_price)
         private var checkBoxItem : TextView = itemView.findViewById(R.id.checkBoxItem)
         private var imgDish: ImageView = itemView.findViewById(R.id.image_dish_menu)
+        private var wt:TextView = itemView.findViewById(R.id.txt_roll_weight)
 
         @SuppressLint("ResourceAsColor")
         fun bindMenu(menuCategoryModel: MenuModelcatMenu){
@@ -134,6 +149,8 @@ class MenuAdapter: RecyclerView.Adapter<RecyclerView.ViewHolder>(){
 //            discription.typeface = typeface
             cost.text = "${menuCategoryModel.Items?.Cost}" + " руб."
 //            cost.typeface = typeface
+
+            wt.text = "${menuCategoryModel.Items?.Wt}" + " гр."
 
             val storage = FirebaseStorage.getInstance()
             val storageRef = storage.getReferenceFromUrl(menuCategoryModel.Items?.Picture!!)

@@ -101,8 +101,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun openQuitDialog() {
-        val quitDialog = AlertDialog.Builder(
-            this
+        val quitDialog = AlertDialog.Builder(this
         )
         quitDialog.setTitle("Выход")
         quitDialog.setTitle("Вы уверенны, что хотите выйти?")

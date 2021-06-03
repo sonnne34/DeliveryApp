@@ -71,7 +71,6 @@
                     android:background="@drawable/okrugl_wt"
                     android:layout_gravity="bottom"
                     android:gravity="center"
-
                     android:text="215 гр." />
 
                 <TextView
