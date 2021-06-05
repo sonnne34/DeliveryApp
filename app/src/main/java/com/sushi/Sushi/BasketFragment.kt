@@ -123,6 +123,4 @@ class BasketFragment : Fragment(), EventListenerss{
 
        updateTEXT()
     }
-
-
 }

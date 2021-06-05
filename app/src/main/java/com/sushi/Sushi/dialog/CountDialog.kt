@@ -15,6 +15,7 @@ import com.squareup.picasso.Picasso
 import com.sushi.Sushi.R
 import com.sushi.Sushi.models.MenuModelcatMenu
 import com.sushi.Sushi.singleton.BasketSingleton
+import java.text.ParsePosition
 
 class CountDialog {
     companion object {
@@ -161,7 +162,8 @@ class CountDialog {
                     BasketSingleton.notifyTwo()
                 }
                 else {
-                    BasketSingleton.del(menuFile)
+                    val position: Int = 0
+                    BasketSingleton.delPos(position)
                     BasketSingleton.notifyTwo()
                 }
 

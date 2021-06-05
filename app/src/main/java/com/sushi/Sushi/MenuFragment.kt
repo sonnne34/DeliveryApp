@@ -45,7 +45,6 @@ import kotlin.collections.ArrayList
  */
 class MenuFragment : Fragment(), EventListenerss {
 
-
     private lateinit var  progress_bar : ProgressBar
     private lateinit var progress_bar_two : ProgressBar
     private lateinit var btnGetLoc : Button
@@ -57,10 +56,7 @@ class MenuFragment : Fragment(), EventListenerss {
     private lateinit var adapter : MenuAdapter
     val menuList : ArrayList<CatMenuModel> = ArrayList()
 
-
     private var mCategoryRef: DatabaseReference? = null
-
-
 
     override fun onAttach(context: Context) {
         super.onAttach(context)
@@ -98,8 +94,6 @@ class MenuFragment : Fragment(), EventListenerss {
                 LinearLayoutManager(root.context, RecyclerView.HORIZONTAL, false)
         categoryRecyclerView.setHasFixedSize(true)
 
-
-
         menuRecyclerView = root.findViewById(R.id.recycler_view_menu)
         adapter = MenuAdapter()
         menuRecyclerView.adapter = adapter
@@ -110,18 +104,10 @@ class MenuFragment : Fragment(), EventListenerss {
         )
         menuRecyclerView.setHasFixedSize(true)
 
-
-
-
         LoadCategory()
         LoadMenu()
 
-
-
-
-
         CoroutineScope(Dispatchers.IO).launch {
-
 
             val online = isOnline(root.context)
 
@@ -129,34 +115,30 @@ class MenuFragment : Fragment(), EventListenerss {
 //            loadAddress(root.context, online)
         }
 
-
-
         return root
     }
-
-
 
     @SuppressLint("NewApi")
     @RequiresApi(Build.VERSION_CODES.LOLLIPOP)
     fun isOnline(context: Context): Boolean {
         val connectivityManager =
                 context.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
-        if (connectivityManager != null) {
-            val capabilities =
-                    connectivityManager.getNetworkCapabilities(connectivityManager.activeNetwork)
-            if (capabilities != null) {
-                if (capabilities.hasTransport(NetworkCapabilities.TRANSPORT_CELLULAR)) {
-                    Log.i("Internet", "NetworkCapabilities.TRANSPORT_CELLULAR")
-                    return true
-                } else if (capabilities.hasTransport(NetworkCapabilities.TRANSPORT_WIFI)) {
-                    Log.i("Internet", "NetworkCapabilities.TRANSPORT_WIFI")
-                    return true
-                } else if (capabilities.hasTransport(NetworkCapabilities.TRANSPORT_ETHERNET)) {
-                    Log.i("Internet", "NetworkCapabilities.TRANSPORT_ETHERNET")
-                    return true
-                }
-            }
-        }
+//        if (connectivityManager != null) {
+//            val capabilities =
+//                    connectivityManager.getNetworkCapabilities(connectivityManager.activeNetwork)
+//            if (capabilities != null) {
+//                if (capabilities.hasTransport(NetworkCapabilities.TRANSPORT_CELLULAR)) {
+//                    Log.i("Internet", "NetworkCapabilities.TRANSPORT_CELLULAR")
+//                    return true
+//                } else if (capabilities.hasTransport(NetworkCapabilities.TRANSPORT_WIFI)) {
+//                    Log.i("Internet", "NetworkCapabilities.TRANSPORT_WIFI")
+//                    return true
+//                } else if (capabilities.hasTransport(NetworkCapabilities.TRANSPORT_ETHERNET)) {
+//                    Log.i("Internet", "NetworkCapabilities.TRANSPORT_ETHERNET")
+//                    return true
+//                }
+//            }
+//        }
         return false
     }
 
@@ -179,12 +161,9 @@ class MenuFragment : Fragment(), EventListenerss {
 
 
                     menuList.add(value)
-
-
                 }
 
                 updateMenuAdapter(menuList)
-
             }
 
             override fun onCancelled(error: DatabaseError) {
@@ -192,13 +171,11 @@ class MenuFragment : Fragment(), EventListenerss {
                 Log.w("dima", "Failed to read value.", error.toException())
             }
         })
-
     }
 
     private fun updateMenuAdapter(menuList: ArrayList<CatMenuModel>) {
 
         adapter.setupMenu(menuList)
-
 
     }
 
@@ -219,7 +196,6 @@ class MenuFragment : Fragment(), EventListenerss {
                     Mcategory.name = items!!["name"].toString()
 
                     category.add(Mcategory)
-
                 }
 
                 updateAdapterCategory(category)
@@ -227,8 +203,6 @@ class MenuFragment : Fragment(), EventListenerss {
 
             override fun onCancelled(error: DatabaseError) {}
         })
-
-
 
     }
 
@@ -248,37 +222,24 @@ class MenuFragment : Fragment(), EventListenerss {
         startFragment(savedInstanceState)
     }
 
-
     private fun startFragment(savedInstanceState: Bundle?) {
-
-
 
         if(savedInstanceState != null){
             val parcelable: Parcelable = savedInstanceState.getParcelable("Adapter")!!
 
         }else{
-
-
-
         }
-
-
-
     }
-
 
     override fun onStart() {
         super.onStart()
         Log.d("MMM", "onStart = ")
-
     }
 
     override fun onResume() {
         super.onResume()
         Log.d("MMM", "OnResume = ")
-
     }
-
 
     override fun onPause() {
         super.onPause()
@@ -308,9 +269,7 @@ class MenuFragment : Fragment(), EventListenerss {
 
     override fun onSaveInstanceState(outState: Bundle) {
         super.onSaveInstanceState(outState)
-
     }
-
 
     @RequiresApi(Build.VERSION_CODES.LOLLIPOP)
     private fun loadAddress(context: Context, boolean: Boolean) {
@@ -332,7 +291,6 @@ class MenuFragment : Fragment(), EventListenerss {
                 //                                          int[] grantResults)
                 // to handle the case where the user grants the permission. See the documentation
                 // for ActivityCompat#requestPermissions for more details.
-
 
                 return
             }
@@ -362,15 +320,11 @@ class MenuFragment : Fragment(), EventListenerss {
 
                     if (currentDistance > 3000){
 
-
-
                         btnGetLoc.setBackgroundResource(R.color.colorTangerine)
                     }else{
 
                         btnGetLoc.setBackgroundResource(R.color.colorgreen)
                     }
-
-
 
                     val geocoder = Geocoder(context, Locale.getDefault())
 
@@ -387,18 +341,9 @@ class MenuFragment : Fragment(), EventListenerss {
                     btnGetLoc.visibility = View.VISIBLE
                     btnGetLoc.text = address
 
-
                 }
-
             }
-
-                }
-
-
-
-
-
-
+        }
     }
 
     private fun addArea() {

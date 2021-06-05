@@ -11,6 +11,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.google.firebase.storage.FirebaseStorage
 import com.squareup.picasso.MemoryPolicy
 import com.squareup.picasso.Picasso
+import com.sushi.Sushi.BasketFragment
 import com.sushi.Sushi.R
 import com.sushi.Sushi.dialog.CountDialog
 import com.sushi.Sushi.models.MenuModelcatMenu
@@ -40,7 +41,7 @@ class BasketAdapter: RecyclerView.Adapter<RecyclerView.ViewHolder>() {
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
         if(holder is BasketViewHoldel ){
             holder.bind(menuModel = mBasketList[position])
-
+            btnDel(holder, position)
 
         }
     }
@@ -56,7 +57,6 @@ class BasketAdapter: RecyclerView.Adapter<RecyclerView.ViewHolder>() {
         private var btnMin : Button = itemView.findViewById(R.id.btn_minus_basket)
         var btnDel : Button = itemView.findViewById(R.id.btn_del_basket)
 
-
         fun bind(menuModel: MenuModelcatMenu){
 
             nameDish.text = "${menuModel.Items?.Name}"
@@ -66,7 +66,6 @@ class BasketAdapter: RecyclerView.Adapter<RecyclerView.ViewHolder>() {
             Log.d("img", "ooops")
 
             Log.d("log", "storage" + menuModel.Items?.Picture)
-
 
             val storageTwo = FirebaseStorage.getInstance()
 
@@ -81,20 +80,14 @@ class BasketAdapter: RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
             }
 
-
-
             itemView.setOnClickListener {
 
-
-
                 CountDialog.openDialog(itemView.context, menuModel)
-
 
             }
 
             val  count = menuModel.Items?.CountDialog?.toInt()
             val cost = menuModel.Items?.Cost?.toInt()
-
             val sum  = cost!! * count!!
 
             prise.text = sum.toString()
@@ -107,7 +100,6 @@ class BasketAdapter: RecyclerView.Adapter<RecyclerView.ViewHolder>() {
                 }else{
                     text = 0
                 }
-
 
                 valueDish.text = Integer.toString(text)
 
@@ -126,7 +118,6 @@ class BasketAdapter: RecyclerView.Adapter<RecyclerView.ViewHolder>() {
                 var text = Integer.valueOf(textNumber.toString())
                 text++
 
-
                 valueDish.text = Integer.toString(text)
 
                 var count = menuModel.Items?.Cost
@@ -138,4 +129,17 @@ class BasketAdapter: RecyclerView.Adapter<RecyclerView.ViewHolder>() {
             }
         }
     }
+
+    fun btnDel(holder: RecyclerView.ViewHolder, position: Int){
+        if(holder is BasketViewHoldel ){
+            holder.bind(menuModel = mBasketList[position])
+            holder.btnDel.setOnClickListener {
+
+                BasketSingleton.delPos(position)
+                BasketSingleton.notifyTwo()
+                Log.d("list", "del= $mBasketList")
+            }
+        }
+    }
+
 }

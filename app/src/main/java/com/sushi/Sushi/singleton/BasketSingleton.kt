@@ -44,14 +44,12 @@ object BasketSingleton {
         return nn
     }
 
-    fun del(position: MenuModelcatMenu) {
-        val nn: ArrayList<MenuModelcatMenu> = basketItem
-        basketItem.removeAll(nn)
+    fun del() {
+        basketItem.removeAll(basketItem)
     }
 
-    fun delPos(position: MenuModelcatMenu) {
-        val nn: ArrayList<MenuModelcatMenu> = basketItem
-            basketItem.remove(element = MenuModelcatMenu())
+    fun delPos(position: Int) {
+            basketItem.removeAt(position)
 
     }
 
