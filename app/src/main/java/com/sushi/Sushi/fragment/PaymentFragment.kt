@@ -128,7 +128,7 @@ class PaymentFragment : Fragment() {
 
         loadinfoAdapter()
         loadinfoPerson()
-        checkBoxPromo()
+//        checkBoxPromo()
         btnBack()
 //        btnDoneCard()
         btnDone()
@@ -302,20 +302,21 @@ class PaymentFragment : Fragment() {
 
                     Toast.makeText(context, "Дело сделано!)", Toast.LENGTH_LONG).show()
 
-//                    loadinFireBase()
-                    openDoneDialog()
+                    loadinFireBase()
+                    openDoneDialog(list = MenuModelcatMenu())
 
                 }
             }
             else {
                 Toast.makeText(context, "Дело сделано!)", Toast.LENGTH_LONG).show()
-                //                    loadinFireBase()
-                openDoneDialog()
+                loadinFireBase()
+                openDoneDialog(list = MenuModelcatMenu())
             }
         }
     }
 
-    private fun openDoneDialog() {
+    private fun openDoneDialog(list: MenuModelcatMenu) {
+
         val quitDialog = AlertDialog.Builder(activity as AppCompatActivity
         )
         quitDialog.setTitle("Заказ оправлен!")
@@ -323,7 +324,7 @@ class PaymentFragment : Fragment() {
         quitDialog.setPositiveButton(
             "Ясненько!"
         ) { dialog, which ->
-
+            BasketSingleton.del(list)
                     menuFragment = MenuFragment()
                     val manager = (activity as AppCompatActivity).supportFragmentManager
                     manager.beginTransaction()
@@ -334,7 +335,7 @@ class PaymentFragment : Fragment() {
         quitDialog.setNegativeButton(
             "Понятненько!"
         ) { dialog, which ->
-
+            BasketSingleton.del(list)
             menuFragment = MenuFragment()
             val manager = (activity as AppCompatActivity).supportFragmentManager
             manager.beginTransaction()

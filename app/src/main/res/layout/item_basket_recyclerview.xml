@@ -52,6 +52,8 @@
             android:layout_marginTop="2dp"
             android:textSize="18dp"
             android:layout_toRightOf="@+id/txt_value_bukva_dish_basket"
+            android:layout_toLeftOf="@+id/txt_prise_dish_basket"
+            android:layout_marginRight="5dp"
             android:text="Название блюда"/>
 
     <TextView

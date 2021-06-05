@@ -10,6 +10,7 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import com.google.firebase.storage.FirebaseStorage
+import com.squareup.picasso.MemoryPolicy
 import com.squareup.picasso.Picasso
 import com.sushi.Sushi.R
 import com.sushi.Sushi.dialog.CountDialog
@@ -17,23 +18,23 @@ import com.sushi.Sushi.models.CatMenuModel
 import com.sushi.Sushi.models.MenuModelcatMenu
 import com.sushi.Sushi.singleton.BasketSingleton
 
-class MenuAdapter: RecyclerView.Adapter<RecyclerView.ViewHolder>(){
-    private var  mMenuList : ArrayList<MenuModelcatMenu> = ArrayList()
+class MenuAdapter: RecyclerView.Adapter<RecyclerView.ViewHolder>() {
+    private var mMenuList: ArrayList<MenuModelcatMenu> = ArrayList()
 
     private val LAYOUT_HEADER = 0
     private val LAYOUT_CHILD = 1
 
-    fun setupMenu(menuList: ArrayList<CatMenuModel>){
+    fun setupMenu(menuList: ArrayList<CatMenuModel>) {
         mMenuList.clear()
 
-        for (categoryModel in menuList){
+        for (categoryModel in menuList) {
             Log.d("UUU", "UUUCat = " + categoryModel.CategoryName)
             var headerModel = MenuModelcatMenu()
             headerModel.CategoryName = categoryModel.CategoryName
             headerModel.isHeader = true
             mMenuList.add(headerModel)
 
-            for( i in categoryModel.Items){
+            for (i in categoryModel.Items) {
 
                 Log.d("UUU", "UUUmenu = " + i.value.Name)
                 Log.d("UUU", "UUUmenu = " + i.value.Cost)
@@ -44,20 +45,17 @@ class MenuAdapter: RecyclerView.Adapter<RecyclerView.ViewHolder>(){
                 mMenuList.add(menuModel)
 
 
-
             }
-
-
 
 
         }
         notifyDataSetChanged()
     }
 
-    override fun getItemViewType(position: Int) : Int{
-        if(mMenuList.get(position).isHeader == true){
+    override fun getItemViewType(position: Int): Int {
+        if (mMenuList.get(position).isHeader == true) {
             return LAYOUT_HEADER
-        }else{
+        } else {
             return LAYOUT_CHILD
         }
     }
@@ -65,12 +63,12 @@ class MenuAdapter: RecyclerView.Adapter<RecyclerView.ViewHolder>(){
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
 
 
-        if(viewType == LAYOUT_HEADER){
+        if (viewType == LAYOUT_HEADER) {
             var layoutInflater = LayoutInflater.from(parent.context)
             var itemView = layoutInflater.inflate(R.layout.category_item_menu, parent, false)
             return HeaderViewHolder(itemView = itemView)
 
-        }else {
+        } else {
 
             var layoutInflater = LayoutInflater.from(parent.context)
             var itemView = layoutInflater.inflate(R.layout.item_menu_recyclerview, parent, false)
@@ -99,17 +97,17 @@ class MenuAdapter: RecyclerView.Adapter<RecyclerView.ViewHolder>(){
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
 
-        if(holder.itemViewType == LAYOUT_HEADER){
-            if( holder is HeaderViewHolder){
+        if (holder.itemViewType == LAYOUT_HEADER) {
+            if (holder is HeaderViewHolder) {
                 holder.bindHeader(menuCategoryModel = mMenuList[position])
-            }else{
+            } else {
 
 
             }
 
 
-        }else{
-            if(holder is MenuViewHolder){
+        } else {
+            if (holder is MenuViewHolder) {
                 holder.bindMenu(menuCategoryModel = mMenuList[position])
             }
 
@@ -117,10 +115,10 @@ class MenuAdapter: RecyclerView.Adapter<RecyclerView.ViewHolder>(){
 
     }
 
-    class HeaderViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView){
+    class HeaderViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         var categoryHeader: TextView = itemView.findViewById(R.id.category_item_menu)
 
-        fun bindHeader(menuCategoryModel: MenuModelcatMenu){
+        fun bindHeader(menuCategoryModel: MenuModelcatMenu) {
 
             categoryHeader.text = "${menuCategoryModel.CategoryName}"
 //            val typefacee = Typeface.createFromAsset(itemView.context.assets, "fonts/18765.otf")
@@ -130,17 +128,17 @@ class MenuAdapter: RecyclerView.Adapter<RecyclerView.ViewHolder>(){
     }
 
 
-    class  MenuViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView){
+    class MenuViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
-        private var name : TextView = itemView.findViewById(R.id.text_roll)
-        private var discription: TextView  = itemView.findViewById(R.id.discription_text)
+        private var name: TextView = itemView.findViewById(R.id.text_roll)
+        private var discription: TextView = itemView.findViewById(R.id.discription_text)
         private var cost: TextView = itemView.findViewById(R.id.txt_roll_price)
-        private var checkBoxItem : TextView = itemView.findViewById(R.id.checkBoxItem)
+        private var checkBoxItem: TextView = itemView.findViewById(R.id.checkBoxItem)
         private var imgDish: ImageView = itemView.findViewById(R.id.image_dish_menu)
-        private var wt:TextView = itemView.findViewById(R.id.txt_roll_weight)
+        private var wt: TextView = itemView.findViewById(R.id.txt_roll_weight)
 
         @SuppressLint("ResourceAsColor")
-        fun bindMenu(menuCategoryModel: MenuModelcatMenu){
+        fun bindMenu(menuCategoryModel: MenuModelcatMenu) {
 
             name.text = "${menuCategoryModel.Items?.Name}"
 //            val typeface = Typeface.createFromAsset(itemView.context.assets, "fonts/18765.otf")
@@ -152,20 +150,17 @@ class MenuAdapter: RecyclerView.Adapter<RecyclerView.ViewHolder>(){
 
             wt.text = "${menuCategoryModel.Items?.Wt}" + " гр."
 
-            val storage = FirebaseStorage.getInstance()
-            val storageRef = storage.getReferenceFromUrl(menuCategoryModel.Items?.Picture!!)
+                val storage = FirebaseStorage.getInstance()
+                val storageRef = storage.getReferenceFromUrl(menuCategoryModel.Items?.Picture!!)
 
-            storageRef.downloadUrl.addOnSuccessListener { uri ->
-                Log.d("URR", "uri= $uri")
-                Picasso.get().load(uri).into(imgDish)
-            }.addOnFailureListener {
-//                val toast = Toast.makeText(
-//                    mainActivity,
-//                    "Ошибка!", Toast.LENGTH_SHORT
-//                )
-//                toast.show()
-            }
 
+                storageRef.downloadUrl.addOnSuccessListener { uri ->
+                    Log.d("URR", "uri= $uri")
+                    Picasso.get().load(uri).fit().centerCrop().memoryPolicy(
+                        MemoryPolicy.NO_CACHE,
+                        MemoryPolicy.NO_STORE).into(imgDish)
+                }.addOnFailureListener {
+                }
 
 
             itemView.setOnClickListener {
@@ -177,18 +172,11 @@ class MenuAdapter: RecyclerView.Adapter<RecyclerView.ViewHolder>(){
             var rr = BasketSingleton.checkingThelist(menuCategoryModel)
             Log.d("Color", "Bolean = " + rr)
 
-            if(rr == true){
+            if (rr == true) {
                 checkBoxItem.setBackgroundResource(R.color.colorSky)
-            }else{
+            } else {
                 checkBoxItem.setBackgroundResource(R.color.transparent)
             }
-
-
-
-
-
         }
-
-
     }
 }

@@ -13,6 +13,7 @@
         android:orientation="vertical">
 
         <CheckBox
+            android:visibility="gone"
             android:id="@+id/checkbox_promo_payment_total"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -23,6 +24,7 @@
             android:text=" у меня есть скидка"/>
 
         <LinearLayout
+            android:visibility="gone"
             android:id="@+id/layout_promo_payment_total"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

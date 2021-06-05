@@ -9,7 +9,6 @@ object BasketSingleton {
     var listeners: ArrayList<EventListenerss> = ArrayList()
     var basketItem : ArrayList<MenuModelcatMenu> = ArrayList()
 
-
     fun addBasket(item : MenuModelcatMenu){
         var boolean = true
         for(i in basketItem){
@@ -22,27 +21,18 @@ object BasketSingleton {
         }
     }
 
-
     fun itemCountBasket(ss : String){
         val menu = MenuModelcatMenu()
-
         menu.Items?.CountDialog = ss.toLong()
-
-
     }
-
 
     fun count(): Long {
         var sumItems: Long = 0
         for (i in basketItem) {
-
-
-
             sumItems = sumItems +  (i.Items?.Cost!! * i.Items?.CountDialog!!)
         }
         return sumItems
     }
-
 
     fun proverkaNaNalichie(position: MenuModelcatMenu): MenuModelcatMenu? {
         var nn: MenuModelcatMenu? = null
@@ -59,7 +49,11 @@ object BasketSingleton {
         basketItem.removeAll(nn)
     }
 
+    fun delPos(position: MenuModelcatMenu) {
+        val nn: ArrayList<MenuModelcatMenu> = basketItem
+            basketItem.remove(element = MenuModelcatMenu())
 
+    }
 
     fun checkingThelist(gg: MenuModelcatMenu): Boolean {
         for (i in basketItem) {
@@ -70,19 +64,13 @@ object BasketSingleton {
         return false
     }
 
-
-
-
-
     fun showBasket(){
         for(i in basketItem){
             var yy = i.Items?.Name
 
             Log.d("Basket", "Items = "  + yy)
         }
-
     }
-
 
     fun notifyTwo() {
         for (listener in listeners) {
@@ -91,12 +79,8 @@ object BasketSingleton {
         }
     }
 
-
     fun subscribe(listener: EventListenerss) {
         listeners.add(listener)
         Log.d("Test", "Listener = " + listener)
     }
-
-
-
 }

@@ -7,7 +7,6 @@ import android.view.ViewGroup
 import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
-import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import com.google.firebase.storage.FirebaseStorage
 import com.squareup.picasso.MemoryPolicy
@@ -16,8 +15,6 @@ import com.sushi.Sushi.R
 import com.sushi.Sushi.dialog.CountDialog
 import com.sushi.Sushi.models.MenuModelcatMenu
 import com.sushi.Sushi.singleton.BasketSingleton
-import java.util.*
-import kotlin.collections.ArrayList
 
 
 class BasketAdapter: RecyclerView.Adapter<RecyclerView.ViewHolder>() {
@@ -42,7 +39,8 @@ class BasketAdapter: RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
         if(holder is BasketViewHoldel ){
-            holder.bind(menuModel = mBasketList.get(position))
+            holder.bind(menuModel = mBasketList[position])
+
 
         }
     }
@@ -58,18 +56,14 @@ class BasketAdapter: RecyclerView.Adapter<RecyclerView.ViewHolder>() {
         private var btnMin : Button = itemView.findViewById(R.id.btn_minus_basket)
         var btnDel : Button = itemView.findViewById(R.id.btn_del_basket)
 
-        fun bind(menuModel: MenuModelcatMenu){
 
-            btnDel.setOnClickListener {
-                BasketSingleton.del(menuModel)
-                BasketSingleton.notifyTwo()
-            }
+        fun bind(menuModel: MenuModelcatMenu){
 
             nameDish.text = "${menuModel.Items?.Name}"
             valueDish.text = "${menuModel.Items?.CountDialog}"
             description.text = "${menuModel.Items?.Description}"
 
-            Log.d("img" ,"ooops" )
+            Log.d("img", "ooops")
 
             Log.d("log", "storage" + menuModel.Items?.Picture)
 
@@ -123,7 +117,7 @@ class BasketAdapter: RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
                 prise.text = sums.toString()
                 BasketSingleton.notifyTwo()
-                Log.d("img" ,"ooops" )
+                Log.d("img", "ooops")
             }
 
 
@@ -144,5 +138,4 @@ class BasketAdapter: RecyclerView.Adapter<RecyclerView.ViewHolder>() {
             }
         }
     }
-
 }

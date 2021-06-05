@@ -12,7 +12,6 @@ import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.sushi.Sushi.fragment.ProfilFragment
 import com.sushi.Sushi.fragment.StatusFragment
 
-
 class MainActivity : AppCompatActivity() {
 
     private lateinit var menuFragment: MenuFragment
@@ -101,7 +100,8 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun openQuitDialog() {
-        val quitDialog = AlertDialog.Builder(this
+        val quitDialog = AlertDialog.Builder(
+            this
         )
         quitDialog.setTitle("Выход")
         quitDialog.setTitle("Вы уверенны, что хотите выйти?")
