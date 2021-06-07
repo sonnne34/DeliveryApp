@@ -58,7 +58,7 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="5dp"
         android:background="@drawable/okrugl_button"
-        android:fontFamily="@font/fonttt"
+        android:fontFamily="@font/font"
         android:textColor="@color/colorUltramarine"
         android:textStyle="bold"
         android:layout_weight="2"
@@ -71,7 +71,7 @@
             android:layout_weight="1"
             android:layout_marginBottom="5dp"
             android:background="@drawable/okrugl"
-            android:fontFamily="@font/fonttt"
+            android:fontFamily="@font/font"
             android:textColor="@color/colorUltramarine"
             android:textStyle="bold"
             android:text="Отмена" />

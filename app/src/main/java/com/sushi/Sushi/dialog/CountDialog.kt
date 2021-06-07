@@ -57,10 +57,8 @@ class CountDialog {
                 val storageRefTwo = storageTwo.getReferenceFromUrl(file?.Items?.Picture!!)
 
                 storageRefTwo.downloadUrl.addOnSuccessListener { uri ->
-                    Picasso.get().load(uri).fit().centerCrop().memoryPolicy(
-                        MemoryPolicy.NO_CACHE,
-                        MemoryPolicy.NO_STORE
-                    ).into(imgDish)
+                    Picasso.get().load(uri).fit().centerCrop()
+                        .into(imgDish)
                 }.addOnFailureListener {
                 }
 
@@ -86,11 +84,8 @@ class CountDialog {
                 val storageRefTwo = storageTwo.getReferenceFromUrl(menuFile.Items?.Picture!!)
 
                 storageRefTwo.downloadUrl.addOnSuccessListener { uri ->
-                    Picasso.get().load(uri).fit().centerCrop().memoryPolicy(
-                        MemoryPolicy.NO_CACHE,
-                        MemoryPolicy.NO_STORE
-                    ).into(imgDish)
-                }.addOnFailureListener {
+                    Picasso.get().load(uri).fit().centerCrop()
+                        .into(imgDish)
                 }
 
                 val one: Long = 1

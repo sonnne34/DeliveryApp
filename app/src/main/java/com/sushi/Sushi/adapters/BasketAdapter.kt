@@ -72,12 +72,8 @@ class BasketAdapter: RecyclerView.Adapter<RecyclerView.ViewHolder>() {
             val storageRefTwo = storageTwo.getReferenceFromUrl(menuModel.Items?.Picture!!)
 
             storageRefTwo.downloadUrl.addOnSuccessListener { uri ->
-                Picasso.get().load(uri).fit().centerCrop().memoryPolicy(
-                    MemoryPolicy.NO_CACHE,
-                    MemoryPolicy.NO_STORE
-                ).into(imgDish)
-            }.addOnFailureListener {
-
+                Picasso.get().load(uri).fit().centerCrop()
+                .into(imgDish)
             }
 
             itemView.setOnClickListener {

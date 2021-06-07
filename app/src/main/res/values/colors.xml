@@ -14,15 +14,23 @@
     <color name="colorgreen">#1cac78</color>
     <color name="colorgreentrans">#901cac78</color>
     <color name="colorgreentransparent">#301cac78</color>
-
     <color name="whitecolor">#FFFFFF</color>
     <color name="transparent">#00000000</color>
-
     <color name="GreenColor">#008000</color>
     <color name="my_color">#005da8</color>
     <color name="my_colorTwo">#F3F2F2</color>
     <color name="header">#333333</color>
     <color name="gray_mercury">#E1E1E1</color>
+
+    <color name="green">#35682d</color> // зелёный
+    <color name="yellow">#ffbd43</color> //жёлтый
+    <color name="gradient1">#35682d</color> //градиент1
+    <color name="gradient2">#b8cf69</color>  //градиент2
+    <color name="lightGrayBackground">#e5e5e5</color>  //светло-серый фон
+    <color name="blackFont">#2d2d2d</color> //чёрный шрифт
+    <color name="grayAdditionalFont">#969696</color>  //серый шрифт дополнительного текста
+
+
 
 
 

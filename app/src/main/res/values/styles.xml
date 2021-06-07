@@ -6,7 +6,7 @@
         <item name="colorPrimary">@color/colorBlue</item>
         <item name="colorPrimaryDark">@color/colorFrost</item>
         <item name="colorAccent">@color/colorAzure</item>
-        <item name="fontFamily">@font/fonttt</item>
+        <item name="fontFamily">@font/font</item>
         <item name="android:windowBackground">@drawable/background_activity_main</item>
 
     </style>

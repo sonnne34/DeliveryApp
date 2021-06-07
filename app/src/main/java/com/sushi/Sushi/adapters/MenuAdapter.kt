@@ -7,7 +7,6 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
-import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import com.google.firebase.storage.FirebaseStorage
 import com.squareup.picasso.MemoryPolicy
@@ -150,17 +149,14 @@ class MenuAdapter: RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
             wt.text = "${menuCategoryModel.Items?.Wt}" + " гр."
 
-                val storage = FirebaseStorage.getInstance()
-                val storageRef = storage.getReferenceFromUrl(menuCategoryModel.Items?.Picture!!)
+            val storage = FirebaseStorage.getInstance()
+            val storageRef = storage.getReferenceFromUrl(menuCategoryModel.Items?.Picture!!)
 
+            storageRef.downloadUrl.addOnSuccessListener { uri ->
+                Log.d("URR", "uri= $uri")
 
-                storageRef.downloadUrl.addOnSuccessListener { uri ->
-                    Log.d("URR", "uri= $uri")
-                    Picasso.get().load(uri).fit().centerCrop().memoryPolicy(
-                        MemoryPolicy.NO_CACHE,
-                        MemoryPolicy.NO_STORE).into(imgDish)
-                }.addOnFailureListener {
-                }
+                Picasso.get().load(uri).resize(100, 100).centerCrop().noFade().into(imgDish)
+            }
 
 
             itemView.setOnClickListener {

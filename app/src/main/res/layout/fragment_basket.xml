@@ -104,7 +104,7 @@
         android:textColor="@color/colorUltramarine"
         android:layout_marginBottom="5dp"
         android:background="@drawable/okrugl_button"
-        android:fontFamily="@font/fonttt"
+        android:fontFamily="@font/font"
         android:textStyle="bold"
         android:text="Заказать" />
 
