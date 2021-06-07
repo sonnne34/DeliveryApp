@@ -73,14 +73,14 @@
 
                 <TextView
                     android:id="@+id/txt_roll_weight"
-                    android:textSize="16dp"
+                    android:textSize="15sp"
                     android:layout_width="120dp"
-                    android:padding="3dp"
                     android:layout_height="wrap_content"
                     android:textColor="@color/blackFont"
                     android:background="@drawable/okrugl_wt"
                     android:layout_gravity="bottom"
                     android:gravity="center"
+                    android:layout_weight="1"
                     android:text="215 гр." />
 
                 <TextView
@@ -88,14 +88,14 @@
                     android:layout_width="120dp"
                     android:layout_height="wrap_content"
                     android:layout_gravity="bottom"
-                    android:layout_marginStart="10dp"
-                    android:layout_marginLeft="10dp"
+                    android:layout_marginStart="3dp"
+                    android:layout_marginLeft="3dp"
                     android:background="@drawable/okrugl_button"
                     android:gravity="center"
-                    android:padding="3dp"
                     android:text="100 руб"
                     android:textColor="@color/blackFont"
-                    android:textSize="16dp" />
+                    android:layout_weight="1"
+                    android:textSize="15sp" />
 
             </LinearLayout>
 
