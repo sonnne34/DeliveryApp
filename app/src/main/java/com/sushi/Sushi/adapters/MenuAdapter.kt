@@ -9,7 +9,6 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.google.firebase.storage.FirebaseStorage
-import com.squareup.picasso.MemoryPolicy
 import com.squareup.picasso.Picasso
 import com.sushi.Sushi.R
 import com.sushi.Sushi.dialog.CountDialog
@@ -136,7 +135,7 @@ class MenuAdapter: RecyclerView.Adapter<RecyclerView.ViewHolder>() {
         private var imgDish: ImageView = itemView.findViewById(R.id.image_dish_menu)
         private var wt: TextView = itemView.findViewById(R.id.txt_roll_weight)
 
-        @SuppressLint("ResourceAsColor")
+        @SuppressLint("ResourceAsColor", "SetTextI18n")
         fun bindMenu(menuCategoryModel: MenuModelcatMenu) {
 
             name.text = "${menuCategoryModel.Items?.Name}"
@@ -147,17 +146,20 @@ class MenuAdapter: RecyclerView.Adapter<RecyclerView.ViewHolder>() {
             cost.text = "${menuCategoryModel.Items?.Cost}" + " руб."
 //            cost.typeface = typeface
 
-            wt.text = "${menuCategoryModel.Items?.Wt}" + " гр."
+            val wtVal = menuCategoryModel.Items?.Wt
+                if(wtVal?.toInt() == 0){
+                    wt.visibility = View.GONE
+                }else {
+                    wt.visibility = View.VISIBLE
+                    wt.text = "$wtVal гр."
+                }
 
             val storage = FirebaseStorage.getInstance()
             val storageRef = storage.getReferenceFromUrl(menuCategoryModel.Items?.Picture!!)
-
             storageRef.downloadUrl.addOnSuccessListener { uri ->
                 Log.d("URR", "uri= $uri")
-
-                Picasso.get().load(uri).resize(100, 100).centerCrop().noFade().into(imgDish)
-            }
-
+                    Picasso.get().load(uri).resize(100, 100).centerCrop().noFade().into(imgDish)
+                }
 
             itemView.setOnClickListener {
                 CountDialog.openDialog(itemView.context, menuCategoryModel)

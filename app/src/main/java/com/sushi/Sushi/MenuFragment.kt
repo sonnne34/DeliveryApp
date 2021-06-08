@@ -104,6 +104,10 @@ class MenuFragment : Fragment(), EventListenerss {
         )
         menuRecyclerView.setHasFixedSize(true)
 
+        menuRecyclerView.recycledViewPool.setMaxRecycledViews(0, 0)
+        menuRecyclerView.setItemViewCacheSize(50)
+        menuRecyclerView.isDrawingCacheEnabled = true
+
         LoadCategory()
         LoadMenu()
 

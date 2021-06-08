@@ -69,6 +69,7 @@
                 android:id="@+id/layout_wt_prise"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:weightSum="1"
                 android:orientation="horizontal">
 
                 <TextView
@@ -80,6 +81,7 @@
                     android:textColor="@color/blackFont"
                     android:background="@drawable/okrugl_wt"
                     android:layout_gravity="bottom"
+                    android:layout_weight="1"
                     android:gravity="center"
                     android:text="215 гр." />
 
@@ -88,8 +90,9 @@
                     android:layout_width="120dp"
                     android:layout_height="wrap_content"
                     android:layout_gravity="bottom"
-                    android:layout_marginStart="10dp"
-                    android:layout_marginLeft="10dp"
+                    android:layout_weight="1"
+                    android:layout_marginStart="3dp"
+                    android:layout_marginLeft="3dp"
                     android:background="@drawable/okrugl_button"
                     android:gravity="center"
                     android:padding="3dp"
