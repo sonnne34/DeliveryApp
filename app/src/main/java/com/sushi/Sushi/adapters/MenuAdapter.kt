@@ -10,6 +10,7 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.google.firebase.storage.FirebaseStorage
 import com.squareup.picasso.Picasso
+import com.squareup.picasso.Transformation
 import com.sushi.Sushi.R
 import com.sushi.Sushi.dialog.CountDialog
 import com.sushi.Sushi.models.CatMenuModel
@@ -171,7 +172,7 @@ class MenuAdapter: RecyclerView.Adapter<RecyclerView.ViewHolder>() {
             Log.d("Color", "Bolean = " + rr)
 
             if (rr == true) {
-                checkBoxItem.setBackgroundResource(R.color.colorSky)
+                checkBoxItem.setBackgroundResource(R.color.qgreen)
             } else {
                 checkBoxItem.setBackgroundResource(R.color.transparent)
             }

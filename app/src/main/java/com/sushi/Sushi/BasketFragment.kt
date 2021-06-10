@@ -30,6 +30,7 @@ class BasketFragment : Fragment(), EventListenerss{
     lateinit var txtPriseTotal : TextView
     lateinit var layoutPriseTotal : LinearLayout
     lateinit var txtHeader : TextView
+    lateinit var imgHello: ImageView
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -38,6 +39,7 @@ class BasketFragment : Fragment(), EventListenerss{
         var root = inflater.inflate(R.layout.fragment_basket, container, false)
         txtHelloBasket = root.findViewById(R.id.txt_hello_basket)
         txtHelloBasket2 = root.findViewById(R.id.txt_hello_basket2)
+        imgHello = root.findViewById(R.id.img_logo_hello_basket)
 //        val typeface = Typeface.createFromAsset(context?.assets, "fonts/Slimamif.ttf")
 //        txtHelloBasket.typeface = typeface
         txtPriseTotal = root.findViewById(R.id.txt_prise_total_basket)
@@ -74,9 +76,9 @@ class BasketFragment : Fragment(), EventListenerss{
     private fun btnReg () {
             btnRegistr.setOnClickListener {
                 val sum = BasketSingleton.count()
-                if (sum < 500) {
+                if (sum < 700) {
                     val toast = Toast.makeText(context,
-                        "Но сумма заказа должна быть не менее 500 рублей...",
+                        "Но сумма заказа должна быть не менее 700 рублей...",
                         Toast.LENGTH_LONG
                     )
                     toast.setGravity(Gravity.CENTER, 0, 0)
@@ -97,6 +99,7 @@ class BasketFragment : Fragment(), EventListenerss{
         if (listmodel.isNotEmpty()) {
             txtHelloBasket.visibility = View.GONE
             txtHelloBasket2.visibility = View.GONE
+            imgHello.visibility = View.GONE
             txtHeader.visibility = View.VISIBLE
             layoutPriseTotal.visibility = View.VISIBLE
             btnRegistr.visibility = View.VISIBLE}
@@ -104,6 +107,7 @@ class BasketFragment : Fragment(), EventListenerss{
         else {
             txtHelloBasket.visibility = View.VISIBLE
             txtHelloBasket2.visibility = View.VISIBLE
+            imgHello.visibility = View.VISIBLE
             layoutPriseTotal.visibility = View.INVISIBLE
             txtHeader.visibility = View.GONE
             btnRegistr.visibility = View.GONE

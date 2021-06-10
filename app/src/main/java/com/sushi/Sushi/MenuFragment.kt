@@ -58,12 +58,6 @@ class MenuFragment : Fragment(), EventListenerss {
 
     private var mCategoryRef: DatabaseReference? = null
 
-    override fun onAttach(context: Context) {
-        super.onAttach(context)
-
-        Log.d("MMM", "OnAttah = ")
-    }
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setRetainInstance(true)
@@ -105,7 +99,7 @@ class MenuFragment : Fragment(), EventListenerss {
         menuRecyclerView.setHasFixedSize(true)
 
         menuRecyclerView.recycledViewPool.setMaxRecycledViews(0, 0)
-        menuRecyclerView.setItemViewCacheSize(50)
+        menuRecyclerView.setItemViewCacheSize(100)
         menuRecyclerView.isDrawingCacheEnabled = true
 
         LoadCategory()
@@ -184,11 +178,10 @@ class MenuFragment : Fragment(), EventListenerss {
 
     }
 
-    private fun LoadCategory() {
+    fun LoadCategory() {
 
         val category: ArrayList<CategoryModel> = ArrayList()
         val database = FirebaseDatabase.getInstance()
-
 
         mCategoryRef = database.getReference("Category")
 
@@ -219,7 +212,6 @@ class MenuFragment : Fragment(), EventListenerss {
         progress_bar_two.visibility = View.INVISIBLE
     }
 
-
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
         Log.d("MMM", "OnActivityCreate = ")
@@ -236,41 +228,6 @@ class MenuFragment : Fragment(), EventListenerss {
         }
     }
 
-    override fun onStart() {
-        super.onStart()
-        Log.d("MMM", "onStart = ")
-    }
-
-    override fun onResume() {
-        super.onResume()
-        Log.d("MMM", "OnResume = ")
-    }
-
-    override fun onPause() {
-        super.onPause()
-        Log.d("MMM", "OnPause = ")
-    }
-
-    override fun onStop() {
-        super.onStop()
-        Log.d("MMM", "OnStop = ")
-    }
-
-
-    override fun onDestroyView() {
-        super.onDestroyView()
-        Log.d("MMM", "OnDestroyView = ")
-    }
-
-    override fun onDestroy() {
-        super.onDestroy()
-        Log.d("MMM", "OnDestroy = ")
-    }
-
-    override fun onDetach() {
-        super.onDetach()
-        Log.d("MMM", "OnDetach = ")
-    }
 
     override fun onSaveInstanceState(outState: Bundle) {
         super.onSaveInstanceState(outState)
@@ -362,3 +319,5 @@ class MenuFragment : Fragment(), EventListenerss {
     }
 
 }
+
+

@@ -22,13 +22,15 @@
     <color name="header">#333333</color>
     <color name="gray_mercury">#E1E1E1</color>
 
-    <color name="green">#35682d</color> // зелёный
-    <color name="yellow">#ffbd43</color> //жёлтый
-    <color name="gradient1">#35682d</color> //градиент1
-    <color name="gradient2">#b8cf69</color>  //градиент2
-    <color name="lightGrayBackground">#e5e5e5</color>  //светло-серый фон
-    <color name="blackFont">#2d2d2d</color> //чёрный шрифт
-    <color name="grayAdditionalFont">#969696</color>  //серый шрифт дополнительного текста
+    <color name="qgreen">#35682d</color> // зелёный
+    <color name="qyellow">#ffbd43</color> //жёлтый
+    <color name="qgradient1">#35682d</color> //градиент1
+    <color name="qgradient2">#b8cf69</color>  //градиент2
+    <color name="qlightGreen">#cadb91</color>  //градиент2
+    <color name="qlightyellow">#ffe1a8</color>  //градиент2
+    <color name="qlightGrayBackground">#e5e5e5</color>  //светло-серый фон
+    <color name="qblackFont">#2d2d2d</color> //чёрный шрифт
+    <color name="qgrayAdditionalFont">#969696</color>  //серый шрифт дополнительного текста
 
 
 

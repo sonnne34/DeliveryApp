@@ -34,33 +34,33 @@
     <RelativeLayout
         android:id="@+id/layout_title"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:background="@drawable/okrugl_bacgr">
 
         <TextView
             android:id="@+id/txt_header_basket"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textSize="24dp"
-            android:background="@drawable/okrugl_total"
             android:textColor="@color/colorUltramarine"
             android:gravity="center"
-            android:layout_margin="10dp"
             android:layout_marginTop="10dp"
             android:padding="5dp"
             android:layout_alignParentTop="true"
             android:text="Авокадо"/>
 
-<!--        <TextView-->
-<!--            android:id="@+id/txt_header_slogan_basket"-->
-<!--            android:layout_width="match_parent"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:textSize="11dp"-->
-<!--            android:background="@drawable/okrugl_total"-->
-<!--            android:textColor="@color/colorUltramarine"-->
-<!--            android:gravity="center"-->
-<!--            android:layout_marginTop="-10dp"-->
-<!--            android:layout_below="@+id/txt_header_basket"-->
-<!--            android:text="доставка по-настоящему вкусной еды"/>-->
+        <TextView
+            android:id="@+id/txt_header_slogan_basket"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="13dp"
+            android:textColor="@color/qblackFont"
+            android:gravity="center"
+            android:layout_marginTop="-10dp"
+            android:layout_marginBottom="10dp"
+            android:layout_below="@+id/txt_header_basket"
+            android:text="доставка по-настоящему вкусной еды"/>
 
     </RelativeLayout>
 
@@ -68,13 +68,11 @@
     <androidx.recyclerview.widget.RecyclerView
         android:layout_below="@+id/layout_title"
         android:id="@+id/recyclerview_category"
+        android:visibility="visible"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:layout_marginTop="-8dp"
-        android:layout_marginStart="10dp"
-        android:layout_marginLeft="10dp"
-        android:visibility="gone">
+        android:layout_marginBottom="5dp"
+        android:orientation="horizontal">
 
     </androidx.recyclerview.widget.RecyclerView>
 
