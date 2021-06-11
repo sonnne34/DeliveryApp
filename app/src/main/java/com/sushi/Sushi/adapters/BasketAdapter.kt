@@ -15,6 +15,7 @@ import com.sushi.Sushi.BasketFragment
 import com.sushi.Sushi.R
 import com.sushi.Sushi.dialog.CountDialog
 import com.sushi.Sushi.models.MenuModelcatMenu
+import com.sushi.Sushi.service.CircleTransform
 import com.sushi.Sushi.singleton.BasketSingleton
 
 
@@ -56,6 +57,8 @@ class BasketAdapter: RecyclerView.Adapter<RecyclerView.ViewHolder>() {
         private var btnPlus : Button = itemView.findViewById(R.id.btn_plus_basket)
         private var btnMin : Button = itemView.findViewById(R.id.btn_minus_basket)
         var btnDel : Button = itemView.findViewById(R.id.btn_del_basket)
+        private lateinit var circleTransform: CircleTransform
+
 
         fun bind(menuModel: MenuModelcatMenu){
 
@@ -72,7 +75,7 @@ class BasketAdapter: RecyclerView.Adapter<RecyclerView.ViewHolder>() {
             val storageRefTwo = storageTwo.getReferenceFromUrl(menuModel.Items?.Picture!!)
 
             storageRefTwo.downloadUrl.addOnSuccessListener { uri ->
-                Picasso.get().load(uri).fit().centerCrop()
+                Picasso.get().load(uri).transform(CircleTransform())
                 .into(imgDish)
             }
 

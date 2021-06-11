@@ -5,26 +5,24 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-        <ImageButton
-            android:id="@+id/btn_pay_back"
-            android:layout_width="21dp"
-            android:layout_height="21dp"
-            android:layout_marginLeft="8dp"
-            android:layout_marginTop="17dp"
-            android:background="@drawable/ic_back" />
-
         <TextView
             android:id="@+id/title_total"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_toRightOf="@+id/btn_pay_back"
             android:layout_margin="10dp"
             android:background="@drawable/okrugl_total"
             android:gravity="center"
             android:padding="5dp"
             android:text="@string/title_total"
-            android:textColor="@color/colorUltramarine"
+            android:textColor="@color/qblackFont"
             android:textSize="22dp" />
+
+    <ImageButton
+        android:id="@+id/btn_pay_back"
+        android:layout_width="21dp"
+        android:layout_height="21dp"
+        android:layout_margin="21dp"
+        android:background="@drawable/ic_back" />
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -41,6 +39,7 @@
         <TextView
             android:id="@+id/order_total"
             style="@style/TextHeader2"
+            android:textColor="@color/qblackFont"
             android:layout_marginTop="5dp"
             android:text="Заказ:" />
 
@@ -58,6 +57,7 @@
         <TextView
             android:id="@+id/sum_person_total"
             style="@style/TextBody2"
+            android:textColor="@color/qgrayAdditionalFont"
             android:layout_width="match_parent"
             android:gravity="end"
             android:layout_below="@+id/total_recyclerView"
@@ -67,6 +67,7 @@
         <TextView
             android:id="@+id/person_data_order"
             style="@style/TextHeader2"
+            android:textColor="@color/qblackFont"
             android:layout_below="@+id/sum_person_total"
             android:text="Информация о заказе:" />
 

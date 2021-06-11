@@ -9,11 +9,11 @@ import androidx.recyclerview.widget.RecyclerView
 import com.sushi.Sushi.MenuFragment
 import com.sushi.Sushi.R
 import com.sushi.Sushi.models.CategoryModel
+import com.sushi.Sushi.models.MenuModelcatMenu
 import com.sushi.Sushi.singleton.BasketSingleton
 
 class CategoryAdapter: RecyclerView.Adapter<RecyclerView.ViewHolder>() {
     var mCategoryList: ArrayList<CategoryModel> = ArrayList()
-    lateinit var mMenuFragment: MenuFragment
 
     fun setupCategory(categoryList: ArrayList<CategoryModel>){
         mCategoryList.clear()
@@ -46,6 +46,9 @@ class CategoryAdapter: RecyclerView.Adapter<RecyclerView.ViewHolder>() {
         fun bind(categoryModel: CategoryModel){
             categoryText.text = categoryModel.name
 
+            var mList: ArrayList<MenuModelcatMenu> = ArrayList()
+            lateinit var mMenuFragment: MenuFragment
+
             //            picture = itemView.findViewById(R.id.image_items);
 
             //анимация альфа канала (прозрачности от 0 до 1)
@@ -61,19 +64,19 @@ class CategoryAdapter: RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 ////накладываем анимацию на TextView
 //            category.startAnimation(animation);
 
-//            itemView.setOnClickListener {
-//                val name  = mBasketList[position]
-//                val pos: String = name.getName()
+            itemView.setOnClickListener {
+//                val name  = mList[position]
+//                val pos: String? = name.CategoryName
 //                Log.d("RRR", "pos = $pos")
 //                if (pos == "Все") {
 //                    Log.d("RRR", "poss = $pos")
-//                    mainActivity.firstSortListCategories(pos)
-//                    mainActivity.isFiltered = false
+//                    mMenuFragment.firstSortListCategories(pos)
+//                    mMenuFragment.isFiltered = false
 //                } else {
-//                    mainActivity.sortListCategories(pos)
-//                    mainActivity.isFiltered = true
+//                    mMenuFragment.sortListCategories(pos)
+//                    mMenuFragment.isFiltered = true
 //                }
-//            }
+            }
         }
     }
 

@@ -70,6 +70,10 @@ class RegistrationFragment : Fragment() {
 
         btnPay = root.findViewById(R.id.btn_payy)
 
+//        btnPay.isFocusableInTouchMode
+        btnPay.isFocusable = true
+        btnPay.requestFocus()
+
         btnPay()
         btnBack()
         loadName()
