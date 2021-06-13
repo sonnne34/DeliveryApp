@@ -154,10 +154,13 @@ class MenuAdapter: RecyclerView.Adapter<RecyclerView.ViewHolder>() {
                     wt.visibility = View.VISIBLE
                     wt.text = "$wtVal гр."
                 }
-
+            Log.d("URR", "uri= Прошло 1 ")
             val storage = FirebaseStorage.getInstance()
+            Log.d("URR", "uri= Прошло 2 ")
             val storageRef = storage.getReferenceFromUrl(menuCategoryModel.Items?.Picture!!)
+            Log.d("URR", "uri= Прошло 3")
             storageRef.downloadUrl.addOnSuccessListener { uri ->
+                Log.d("URR", "uri= Прошло 4 ")
                 Log.d("URR", "uri= $uri")
                     Picasso.get().load(uri).resize(100, 100).centerCrop().noFade().into(imgDish)
                 }

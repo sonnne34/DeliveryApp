@@ -1,43 +1,102 @@
 {
   "project_info": {
-    "project_number": "25742704749",
-    "firebase_url": "https://sushi-93422.firebaseio.com",
-    "project_id": "sushi-93422",
-    "storage_bucket": "sushi-93422.appspot.com"
+    "project_number": "847385123229",
+    "firebase_url": "https://kalibri-845e2.firebaseio.com",
+    "project_id": "kalibri-845e2",
+    "storage_bucket": "kalibri-845e2.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:25742704749:android:1bf7f49d3389d8d6f9ff64",
+        "mobilesdk_app_id": "1:847385123229:android:bd6c040909267d78",
         "android_client_info": {
-          "package_name": "com.sushi.Sushi"
+          "package_name": "com.example.kalibri"
         }
       },
       "oauth_client": [
         {
-          "client_id": "25742704749-9lj1kl3e855rkps1ev7aji6jcdhp45a5.apps.googleusercontent.com",
+          "client_id": "847385123229-5h42o2i7548j8j85komcth2olmtckmuu.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
-            "package_name": "com.sushi.Sushi",
-            "certificate_hash": "0e9f00fd26594b9503041d869bf85ed22a01b086"
+            "package_name": "com.example.kalibri",
+            "certificate_hash": "0aca8b5e8b73a777ba70037a5b40fac2900beb1c"
           }
         },
         {
-          "client_id": "25742704749-uqjpu6ttjk3c62f6coomlj12cjq2ml3t.apps.googleusercontent.com",
+          "client_id": "847385123229-8aefdu1q9rb3edilfhmug811lvj07f9c.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.kalibri",
+            "certificate_hash": "24593a853f77091fed1ec9454ebea4d771bf365d"
+          }
+        },
+        {
+          "client_id": "847385123229-hmhju0beph26njf029v6k8u3sr8cku0h.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.kalibri",
+            "certificate_hash": "1128e119840baf51a7696cbb0847292534269242"
+          }
+        },
+        {
+          "client_id": "847385123229-sha715c1fa7geiangdabhbj3p137bblp.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyD6jtSfEXukAZs_F_LoJqgsR7gXKL5987A"
+          "current_key": "AIzaSyA4AgKB3k0o5dn5KQPS9YWgLLaQcYRlcV8"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "25742704749-uqjpu6ttjk3c62f6coomlj12cjq2ml3t.apps.googleusercontent.com",
+              "client_id": "847385123229-sha715c1fa7geiangdabhbj3p137bblp.apps.googleusercontent.com",
               "client_type": 3
+            },
+            {
+              "client_id": "847385123229-hdg0im5crmqg9j266krsmoesda6rl0lj.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "Shupegin.Kalibri"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:847385123229:android:02ee483e484f2d986db774",
+        "android_client_info": {
+          "package_name": "com.sushi.Sushi"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "847385123229-sha715c1fa7geiangdabhbj3p137bblp.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA4AgKB3k0o5dn5KQPS9YWgLLaQcYRlcV8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "847385123229-sha715c1fa7geiangdabhbj3p137bblp.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "847385123229-hdg0im5crmqg9j266krsmoesda6rl0lj.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "Shupegin.Kalibri"
+              }
             }
           ]
         }

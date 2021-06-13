@@ -3,6 +3,7 @@ package com.sushi.Sushi.fragment
 import android.annotation.SuppressLint
 import android.content.Context
 import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -15,10 +16,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentTransaction
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.craftman.cardform.CardForm
 import com.google.android.material.textfield.TextInputLayout
-import com.google.firebase.database.DatabaseReference
-import com.google.firebase.database.FirebaseDatabase
 import com.sushi.Sushi.MainActivity
 import com.sushi.Sushi.MenuFragment
 import com.sushi.Sushi.PaymentCardActivity
@@ -26,12 +24,12 @@ import com.sushi.Sushi.R
 import com.sushi.Sushi.adapters.BasketAdapter
 import com.sushi.Sushi.adapters.TotalAdapter
 import com.sushi.Sushi.models.MenuModelcatMenu
-import com.sushi.Sushi.models.OrderModel
 import com.sushi.Sushi.singleton.BasketSingleton
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.pay_items.*
+import okhttp3.*
+import java.io.IOException
 import java.util.*
-import kotlin.collections.ArrayList
 
 class PaymentFragment : Fragment() {
 
@@ -140,25 +138,88 @@ class PaymentFragment : Fragment() {
 
     private fun loadinFireBase() {
 
-        val c = Calendar.getInstance()
+        val sumPersonTotal = BasketSingleton.count()
 
-        val year = c.get(Calendar.YEAR)
-        val month = c.get(Calendar.MONTH)
-        val day = c.get(Calendar.DAY_OF_MONTH)
+        val pref = this.activity?.getPreferences(Context.MODE_PRIVATE)
+        val pref1 = this.activity?.getPreferences(Context.MODE_PRIVATE)
+        val pref2 = this.activity?.getPreferences(Context.MODE_PRIVATE)
+        val pref3 = this.activity?.getPreferences(Context.MODE_PRIVATE)
+        val pref4 = this.activity?.getPreferences(Context.MODE_PRIVATE)
+        val pref5 = this.activity?.getPreferences(Context.MODE_PRIVATE)
+        val pref6 = this.activity?.getPreferences(Context.MODE_PRIVATE)
+        val pref7 = this.activity?.getPreferences(Context.MODE_PRIVATE)
 
-        val ref: DatabaseReference =
-            FirebaseDatabase.getInstance().reference.child("Order/" + year + "/" + month + "/" + day)
+
+        val loadname = pref!!.getString("name", "")
+        val loadphone = pref1!!.getString("number", "")
+        val comint = pref2!!.getString("comite", "")
+        val street = pref3!!.getString("streetA", "")
+        val house = pref4!!.getString("houseA", "")
+        val appart = pref5!!.getString("apartmentA", "")
+        val level = pref6!!.getString("level", "")
+        val entrance = pref7!!.getString("entrance", "")
 
         val list = BasketSingleton.basketItem
-        val menu = OrderModel()
-        val ss = BasketSingleton.count()
-        menu.date = (day.toString() + "." + month.toString() + "." + year.toString())
-        menu.money = ss.toString()
-        menu.status = "new"
-        menu.os = "Android"
-        menu.order = list
+        val pay = "Картой"
 
-        ref.push().setValue(menu)
+        var send = ""
+        send = send + "Заказ: \n"
+
+        for(i in list ){
+            send = (send + i.Items?.CountDialog + "шт" + " " + i.Items?.Name + " " + i.Items?.Cost + "р") + "\n"
+        }
+
+        val cityTwo = "Тюмень"
+        val banknotePayment = "Наличными"
+        send = send + "\n" + "Итого: " + sumPersonTotal + " р. \n "
+        send = send + "Информация о заказе: \n" + loadname + "\n" + loadphone + "\n"
+        send = send + "Адрес доставки: \n" + cityTwo + ", ул. " + street + ", д. " + house + ", кв./оф. " + appart + ", под. " + entrance + ", эт. " + level + "\n";
+        send = send + "Способы оплаты: \n" + pay + "\n" + "Сдача с: \n" + banknotePayment + "\n";
+        send = send + "Комментарий к заказу: \n" + comint;
+
+        Log.d("OOO", "send \n$send")
+        val ALLOWED_URI_CHARS = "@#&=*+-_.,:!?()/~'%"
+        val order = Uri.encode(send, ALLOWED_URI_CHARS)
+        Log.d("RRRR", "mail = $order")
+
+
+        val cityENG = "Tyumen"
+        val restToran = "Avocado"
+
+        var  base = "https://us-central1-kalibri-845e2.cloudfunctions.net/addOrder";
+        base += "?money=" + sumPersonTotal; //деньги
+        base += "&city=" + cityENG; //город
+        base += "&restaurant=" + restToran; //название ресторана
+        base += "&tel=" + loadphone; //телефон
+        base += "&order=" + order ; //заказ
+
+        Log.d("RRRRTest","Base = " + base);
+
+        Log.d("PESTO","PESTO = 1  ");
+
+        val client = OkHttpClient()
+        Log.d("PESTO","PESTO = 2  ");
+        val url = base
+        val request = Request.Builder().url(url).build()
+        Log.d("PESTO","PESTO = 3  ");
+        client.newCall(request).enqueue(object : Callback {
+            override fun onFailure(call: Call, e: IOException) {
+
+                e.printStackTrace()
+            }
+
+            @Throws(IOException::class)
+            override fun onResponse(call: Call, response: Response) {
+                if (response.isSuccessful) {
+                    Log.d("PESTO","PESTO = 4  ");
+                    val myResponse = response.body()!!.string()
+                    Log.d("PESTO","PESTO = 5  ");
+                    Log.d("Spot", "myResponse = \n $myResponse")
+                    Log.d("PESTO","PESTO = 6  ");
+                }
+            }
+        })
+
     }
 
     @SuppressLint("SetTextI18n")
@@ -288,7 +349,7 @@ class PaymentFragment : Fragment() {
 
     private fun btnDone() {
         btnDone.setOnClickListener {
-
+            loadinFireBase()
             //при методе оплаты не картой (наличными) "Сдача с" становится обязательным полем
             if (method !== "Картой") {
 

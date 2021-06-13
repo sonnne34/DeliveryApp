@@ -37,6 +37,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import java.util.*
 import kotlin.collections.ArrayList
+import kotlin.collections.HashMap
 
 
 /**
@@ -142,19 +143,22 @@ class MenuFragment : Fragment(), EventListenerss {
 
 
     private fun LoadMenu() {
-
+        Log.d("AA", "value =  прошло 1" )
 
         val database = FirebaseDatabase.getInstance()
-        val myRef = database.getReference("RestarauntMenu")
-
+        Log.d("AA", "value =  прошло 2" )
+        val myRef = database.getReference("RestaurantsMenu/Avocado")
+        Log.d("AA", "value =  прошло 3" )
         myRef.addValueEventListener(object : ValueEventListener {
-            override fun onDataChange(dataSnapshot: DataSnapshot) {
 
+            override fun onDataChange(dataSnapshot: DataSnapshot) {
+                Log.d("AA", "value =  прошло4 " )
 
                 for (ds in dataSnapshot.children) {
+                    Log.d("AA", "value =  прошло 5 " + ds.getValue(CatMenuModel::class.java) )
                     val value = ds.getValue(CatMenuModel::class.java)!!
 
-                    Log.d("AA", "value = " + value.CategoryName)
+                    Log.d("AA", "value = 5" + value.CategoryName)
 
 
 
