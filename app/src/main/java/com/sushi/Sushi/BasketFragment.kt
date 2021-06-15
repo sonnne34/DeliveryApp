@@ -1,11 +1,15 @@
 package com.sushi.Sushi
 
+import android.content.Context
+import android.media.effect.EffectContext
 import android.os.Bundle
+import android.util.Log
 import android.view.Gravity
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.*
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentTransaction
@@ -31,6 +35,7 @@ class BasketFragment : Fragment(), EventListenerss{
     lateinit var layoutPriseTotal : LinearLayout
     lateinit var txtHeader : TextView
     lateinit var imgHello: ImageView
+    lateinit var clearBasket : TextView
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -40,6 +45,7 @@ class BasketFragment : Fragment(), EventListenerss{
         txtHelloBasket = root.findViewById(R.id.txt_hello_basket)
         txtHelloBasket2 = root.findViewById(R.id.txt_hello_basket2)
         imgHello = root.findViewById(R.id.img_logo_hello_basket)
+        clearBasket = root.findViewById(R.id.txt_clear_basket)
 //        val typeface = Typeface.createFromAsset(context?.assets, "fonts/Slimamif.ttf")
 //        txtHelloBasket.typeface = typeface
         txtPriseTotal = root.findViewById(R.id.txt_prise_total_basket)
@@ -61,6 +67,7 @@ class BasketFragment : Fragment(), EventListenerss{
         btnReg()
         visible()
         updateTEXT()
+        clearBasket(root.context)
 
 
         return root
@@ -126,5 +133,27 @@ class BasketFragment : Fragment(), EventListenerss{
         rvBasket.visibility = View.VISIBLE
 
        updateTEXT()
+    }
+
+    private fun clearBasket(context: Context){
+        clearBasket.setOnClickListener {
+
+                val clearDialog = AlertDialog.Builder(context
+                )
+                clearDialog.setTitle("Аннигилирование")
+                clearDialog.setTitle("Очистить корзину?")
+                clearDialog.setPositiveButton(
+                    "Да"
+                ) { _, _ ->
+
+                    BasketSingleton.del()
+                    BasketSingleton.notifyTwo()
+                    Log.d("list", "del= $listmodel")
+                }
+                clearDialog.setNegativeButton(
+                    "Ой, нет!"
+                ) { _, _ -> }
+                clearDialog.show()
+        }
     }
 }

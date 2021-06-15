@@ -52,5 +52,4 @@ class TotalAdapter: RecyclerView.Adapter<RecyclerView.ViewHolder>() {
             name_dish_total?.text = "${menu.Items?.Name}"
         }
     }
-
 }

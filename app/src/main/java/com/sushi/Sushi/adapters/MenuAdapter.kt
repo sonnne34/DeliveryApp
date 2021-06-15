@@ -144,7 +144,7 @@ class MenuAdapter: RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 //            name.typeface = typeface
             discription.text = "${menuCategoryModel.Items?.Description}"
 //            discription.typeface = typeface
-            cost.text = "${menuCategoryModel.Items?.Cost}" + " руб."
+            cost.text = "${menuCategoryModel.Items?.Cost}" + " р."
 //            cost.typeface = typeface
 
             val wtVal = menuCategoryModel.Items?.Wt

@@ -7,11 +7,10 @@ import android.view.ViewGroup
 import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.appcompat.app.AlertDialog
 import androidx.recyclerview.widget.RecyclerView
 import com.google.firebase.storage.FirebaseStorage
-import com.squareup.picasso.MemoryPolicy
 import com.squareup.picasso.Picasso
-import com.sushi.Sushi.BasketFragment
 import com.sushi.Sushi.R
 import com.sushi.Sushi.dialog.CountDialog
 import com.sushi.Sushi.models.MenuModelcatMenu
@@ -129,16 +128,27 @@ class BasketAdapter: RecyclerView.Adapter<RecyclerView.ViewHolder>() {
         }
     }
 
-    fun btnDel(holder: RecyclerView.ViewHolder, position: Int){
+    private fun btnDel(holder: RecyclerView.ViewHolder, position: Int){
         if(holder is BasketViewHoldel ){
             holder.bind(menuModel = mBasketList[position])
             holder.btnDel.setOnClickListener {
 
-                BasketSingleton.delPos(position)
-                BasketSingleton.notifyTwo()
-                Log.d("list", "del= $mBasketList")
+                val delPosDialog = AlertDialog.Builder(holder.itemView.context
+                )
+                delPosDialog.setTitle("Аннигилирование")
+                delPosDialog.setTitle("Удалить блюдо?")
+                delPosDialog.setPositiveButton(
+                    "Да"
+                ) { _, _ ->
+                    BasketSingleton.delPos(position)
+                    BasketSingleton.notifyTwo()
+                    Log.d("list", "del= $mBasketList")
+                }
+                delPosDialog.setNegativeButton(
+                    "Ой, нет!"
+                ) { _, _ -> }
+                delPosDialog.show()
+            }
             }
         }
-    }
-
 }

@@ -19,7 +19,6 @@ class CategoryAdapter: RecyclerView.Adapter<RecyclerView.ViewHolder>() {
         mCategoryList.clear()
         mCategoryList.addAll(categoryList)
         notifyDataSetChanged()
-
     }
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
         val layoutInflater = LayoutInflater.from(parent.context)
@@ -44,7 +43,7 @@ class CategoryAdapter: RecyclerView.Adapter<RecyclerView.ViewHolder>() {
         private var categoryText: TextView = itemView.findViewById(R.id.text_items)
 
         fun bind(categoryModel: CategoryModel){
-            categoryText.text = categoryModel.name
+            categoryText.text = categoryModel.CategoryName
 
             var mList: ArrayList<MenuModelcatMenu> = ArrayList()
             lateinit var mMenuFragment: MenuFragment

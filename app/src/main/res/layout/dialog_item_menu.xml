@@ -77,7 +77,7 @@
             android:textSize="16dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textColor="@color/colorUltramarine"
+            android:textColor="@color/qblackFont"
             android:background="@color/qgradient2"
             android:layout_alignParentRight="true"
             android:text="100"/>
@@ -88,9 +88,9 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:background="@color/qgradient2"
-                android:textColor="@color/colorUltramarine"
+                android:textColor="@color/qblackFont"
                 android:layout_alignParentRight="true"
-                android:text=" руб"/>
+                android:text=" руб."/>
 
         </LinearLayout>
 

@@ -37,7 +37,6 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import java.util.*
 import kotlin.collections.ArrayList
-import kotlin.collections.HashMap
 
 
 /**
@@ -183,7 +182,7 @@ class MenuFragment : Fragment(), EventListenerss {
 
     fun LoadCategory() {
 
-        val category: ArrayList<CategoryModel> = ArrayList()
+        val categoryList: ArrayList<CategoryModel> = ArrayList()
         val database = FirebaseDatabase.getInstance()
 
         mCategoryRef = database.getReference("Category")
@@ -193,18 +192,18 @@ class MenuFragment : Fragment(), EventListenerss {
                 for (dss in dataSnapshot.children) {
                     val items = dss.value as Map<String, String>?
 
-                    val Mcategory = CategoryModel()
-                    Mcategory.name = items!!["name"].toString()
+                    val category = CategoryModel()
+                    category.CategoryName = items!!["CategoryName"].toString()
 
-                    category.add(Mcategory)
+                    categoryList.add(category)
                 }
 
-                updateAdapterCategory(category)
+                updateAdapterCategory(categoryList)
             }
 
             override fun onCancelled(error: DatabaseError) {}
         })
-
+        Log.d("CAT", "cat = $categoryList")
     }
 
     private fun updateAdapterCategory(categoryList: ArrayList<CategoryModel>) {

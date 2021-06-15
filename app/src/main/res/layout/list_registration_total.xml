@@ -30,8 +30,9 @@
         style="@style/TextBody"
         android:textSize="14sp"
         android:layout_margin="0dp"
+        android:textStyle="normal"
         android:layout_toLeftOf="@+id/cost_total"
-        android:text="шт.  "
+        android:text=" шт.  "
         />
 
     <TextView
@@ -48,6 +49,7 @@
         style="@style/TextBody"
         android:textSize="14sp"
         android:layout_margin="0dp"
+        android:textStyle="normal"
         android:layout_alignParentRight="true"
         android:text=" р.  "/>
 

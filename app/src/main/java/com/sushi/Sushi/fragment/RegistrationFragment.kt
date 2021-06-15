@@ -2,7 +2,6 @@ package com.sushi.Sushi.fragment
 
 import android.annotation.SuppressLint
 import android.content.Context
-import android.content.Intent
 import android.content.SharedPreferences.Editor
 import android.os.Bundle
 import android.util.Log
@@ -18,8 +17,6 @@ import androidx.fragment.app.FragmentTransaction
 import com.google.android.material.textfield.TextInputLayout
 import com.sushi.Sushi.BasketFragment
 import com.sushi.Sushi.R
-import kotlinx.android.synthetic.main.fragment_registration.*
-import kotlinx.android.synthetic.main.total_items.*
 
 class RegistrationFragment : Fragment() {
 
@@ -28,7 +25,7 @@ class RegistrationFragment : Fragment() {
     lateinit var btnPay : Button
     lateinit var nameEdit : EditText
     lateinit var numberPhone : EditText
-    lateinit var streatAddress : EditText
+    lateinit var streetAddress : EditText
     lateinit var houseAddress : EditText
     lateinit var apartmentAddress : EditText
     lateinit var comiteOrder : EditText
@@ -54,7 +51,7 @@ class RegistrationFragment : Fragment() {
         val root = inflater.inflate(R.layout.fragment_registration, container, false)
         nameEdit = root.findViewById(R.id.name_person_date)
         numberPhone = root.findViewById(R.id.phone_person_data)
-        streatAddress = root.findViewById(R.id.street_address)
+        streetAddress = root.findViewById(R.id.street_address)
         houseAddress = root.findViewById(R.id.home_address)
         apartmentAddress = root.findViewById(R.id.apartment_address)
         comiteOrder = root.findViewById(R.id.comment_person_data)
@@ -78,7 +75,7 @@ class RegistrationFragment : Fragment() {
         btnBack()
         loadName()
         loadNumber()
-        loadStreat()
+        loadStreet()
         loadHouse()
         loadApartpent()
         loadComit()
@@ -107,10 +104,10 @@ class RegistrationFragment : Fragment() {
         houseAddress.setText(loadhouse)
     }
 
-    private fun loadStreat() {
+    private fun loadStreet() {
         val pref = this.activity?.getPreferences(Context.MODE_PRIVATE)
-        val loadStreat = pref!!.getString("streatA", "")
-        streatAddress.setText(loadStreat)
+        val loadStreet = pref!!.getString("streetA", "")
+        streetAddress.setText(loadStreet)
     }
 
     private fun loadNumber() {
@@ -142,7 +139,7 @@ class RegistrationFragment : Fragment() {
     private fun editeSave() {
        val name = nameEdit.text.toString()
        val number = numberPhone.text.toString()
-       val streetA = streatAddress.text.toString()
+       val streetA = streetAddress.text.toString()
        val houseA = houseAddress.text.toString()
        val apartmentA = apartmentAddress.text.toString()
        val comite = comiteOrder.text.toString()
@@ -177,7 +174,7 @@ class RegistrationFragment : Fragment() {
         val saveEntrance: Editor = pref7!!.edit()
         saveEntrance.putString("entrance", entrance).toString()
 
-        Log.d("data", "street= $streetA")
+        Log.d("dataS", "street= $streetA")
 
         savePerson.apply()
         savenumber.apply()
@@ -197,7 +194,7 @@ class RegistrationFragment : Fragment() {
     private fun btnPay () {
         btnPay.setOnClickListener {
             //уведомление об обязательном заполнении полей
-            if (numberPhone.text.isEmpty() || nameEdit.text.isEmpty() || streatAddress.text.isEmpty() || houseAddress.text.isEmpty()) {
+            if (numberPhone.text.isEmpty() || nameEdit.text.isEmpty() || streetAddress.text.isEmpty() || houseAddress.text.isEmpty()) {
                 if (numberPhone.text.isEmpty()) {
                     inputPhone.error = "Обязательное поле"
                 } else {
@@ -208,7 +205,7 @@ class RegistrationFragment : Fragment() {
                 } else {
                     inputName.error = null
                 }
-                if (streatAddress.text.isEmpty()) {
+                if (streetAddress.text.isEmpty()) {
                     inputStreet.error = "Обязательное поле"
                 } else {
                     inputStreet.error = null
