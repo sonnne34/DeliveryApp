@@ -17,13 +17,14 @@
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
             android:textSize="22dp"
-            android:layout_alignParentLeft="true"
             android:textColor="@color/qblackFont"
             android:background="@drawable/okrugl_bacgr"
             android:gravity="center"
             android:layout_margin="10dp"
             android:padding="5dp"
-            android:text="Немного данных для заказа:"/>
+            android:paddingLeft="30dp"
+            android:paddingStart="30dp"
+            android:text="Немного данных для заказа:" />
 
     <ImageButton
         android:id="@+id/btn_reg_back"
@@ -54,9 +55,11 @@
             android:id="@+id/name_person_date"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:textSize="14sp"
             android:layout_margin="5dp"
-            android:inputType="textPersonName"
+            android:inputType="textCapSentences"
             android:maxLines="1"
+
             android:imeOptions="actionDone"
             android:hint="Имя" />
     </com.google.android.material.textfield.TextInputLayout>
@@ -72,7 +75,7 @@
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:gravity="center"
-            android:textSize="20sp"
+            android:textSize="14sp"
             android:layout_marginTop="7dp"
             android:text=" +7 " />
 
@@ -88,6 +91,7 @@
                 android:inputType="phone"
                 android:maxLines="1"
                 android:maxLength="10"
+                android:textSize="14sp"
                 android:imeOptions="actionNext"
                 android:hint="Телефон" />
 
@@ -105,13 +109,14 @@
             android:id="@+id/cities_address"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="18dp"
+            android:textSize="14sp"
             android:text="Город: Тюмень" />
 
         <TextView
             android:id="@+id/cities_specified_address"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:textSize="14sp"
             android:text="" />
 
     </LinearLayout>
@@ -126,8 +131,9 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Улица"
+            android:textSize="14sp"
             android:imeOptions="actionNext"
-            android:inputType="textPostalAddress"
+            android:inputType="textCapSentences"
             android:maxLines="1" />
 
     </com.google.android.material.textfield.TextInputLayout>
@@ -141,6 +147,7 @@
             android:id="@+id/input_home"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:textSize="14sp"
             android:layout_weight="1">
 
             <EditText
@@ -149,6 +156,7 @@
                 android:layout_height="match_parent"
                 android:inputType="textPostalAddress"
                 android:maxLines="1"
+                android:textSize="14sp"
                 android:imeOptions="actionDone"
                 android:hint="Номер дома" />
 
@@ -166,6 +174,7 @@
                 android:layout_height="match_parent"
                 android:inputType="number"
                 android:imeOptions="actionNext"
+                android:textSize="14sp"
                 android:maxLines="1"
                 android:hint="Кв./офис"/>
 
@@ -183,12 +192,14 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1">
+
             <EditText
                 android:id="@+id/entrance_address"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:inputType="number"
+                android:textSize="14sp"
                 android:imeOptions="actionNext"
                 android:maxLines="1"
                 android:hint="Подъезд" />
@@ -200,11 +211,13 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1">
+
             <EditText
                 android:id="@+id/level_address"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
+                android:textSize="14sp"
                 android:inputType="number"
                 android:maxLines="1"
                 android:imeOptions="actionDone"
@@ -219,7 +232,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="bottom"
-            android:inputType="text"
+            android:inputType="textCapSentences"
+            android:textSize="14sp"
             android:lines="3"
             android:hint="Комментарий к заказу"/>
 
@@ -229,6 +243,7 @@
             android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
             android:layout_centerHorizontal="true"
+            android:textSize="12sp"
             android:layout_marginTop="5dp"
             android:gravity="center"
             android:layout_gravity="center"

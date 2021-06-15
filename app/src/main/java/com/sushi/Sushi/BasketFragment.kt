@@ -109,7 +109,8 @@ class BasketFragment : Fragment(), EventListenerss{
             imgHello.visibility = View.GONE
             txtHeader.visibility = View.VISIBLE
             layoutPriseTotal.visibility = View.VISIBLE
-            btnRegistr.visibility = View.VISIBLE}
+            btnRegistr.visibility = View.VISIBLE
+            clearBasket.visibility = View.VISIBLE}
 
         else {
             txtHelloBasket.visibility = View.VISIBLE
@@ -118,6 +119,7 @@ class BasketFragment : Fragment(), EventListenerss{
             layoutPriseTotal.visibility = View.INVISIBLE
             txtHeader.visibility = View.GONE
             btnRegistr.visibility = View.GONE
+            clearBasket.visibility = View.GONE
         }
     }
 
@@ -141,7 +143,7 @@ class BasketFragment : Fragment(), EventListenerss{
                 val clearDialog = AlertDialog.Builder(context
                 )
                 clearDialog.setTitle("Аннигилирование")
-                clearDialog.setTitle("Очистить корзину?")
+                clearDialog.setMessage("Очистить корзину?")
                 clearDialog.setPositiveButton(
                     "Да"
                 ) { _, _ ->

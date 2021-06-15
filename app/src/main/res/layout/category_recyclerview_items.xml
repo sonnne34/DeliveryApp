@@ -11,6 +11,7 @@
         android:text="категория"
         android:textSize="18sp"
         style="@style/TextBody2"
+        android:textStyle="normal"
         android:textColor="@color/qgreen"
         android:layout_gravity="center"
         android:paddingLeft="10dp"

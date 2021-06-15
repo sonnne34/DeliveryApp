@@ -139,11 +139,12 @@
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
-        android:textColor="@color/colorUltramarine"
+        android:textColor="@color/qblackFont"
         android:layout_marginBottom="5dp"
         android:background="@drawable/okrugl_button"
         android:fontFamily="@font/font"
         android:textStyle="bold"
+        android:textSize="12sp"
         android:text="Заказать" />
 
 </RelativeLayout>

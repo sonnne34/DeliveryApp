@@ -24,12 +24,14 @@ import com.sushi.Sushi.R
 import com.sushi.Sushi.adapters.BasketAdapter
 import com.sushi.Sushi.adapters.TotalAdapter
 import com.sushi.Sushi.models.MenuModelcatMenu
+import com.sushi.Sushi.models.OrderModel
 import com.sushi.Sushi.singleton.BasketSingleton
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.pay_items.*
 import okhttp3.*
 import java.io.IOException
 import java.util.*
+import kotlin.collections.ArrayList
 
 class PaymentFragment : Fragment() {
 
@@ -162,6 +164,9 @@ class PaymentFragment : Fragment() {
         val list = BasketSingleton.basketItem
         val pay = "Картой"
 
+        val methodPay: String = method
+        val cashback: String = cashBack.text.toString()
+
         var send = ""
         send = send + "Заказ: \n"
 
@@ -174,7 +179,7 @@ class PaymentFragment : Fragment() {
         send = send + "\n" + "Итого: " + sumPersonTotal + " р. \n "
         send = send + "Информация о заказе: \n" + loadname + "\n" + loadphone + "\n"
         send = send + "Адрес доставки: \n" + cityTwo + ", ул. " + street + ", д. " + house + ", кв./оф. " + appart + ", под. " + entrance + ", эт. " + level + "\n";
-        send = send + "Способы оплаты: \n" + pay + "\n" + "Сдача с: \n" + banknotePayment + "\n";
+        send = send + "Способы оплаты: \n" + methodPay + "\n" + "Сдача с: \n" + cashback + "\n";
         send = send + "Комментарий к заказу: \n" + comint;
 
         Log.d("OOO", "send \n$send")
@@ -349,7 +354,6 @@ class PaymentFragment : Fragment() {
 
     private fun btnDone() {
         btnDone.setOnClickListener {
-            loadinFireBase()
             //при методе оплаты не картой (наличными) "Сдача с" становится обязательным полем
             if (method !== "Картой") {
 
@@ -361,15 +365,11 @@ class PaymentFragment : Fragment() {
                     inputCash.error =
                         null //если не равно 0 то отправляем заказ и переходим в статус-фрагмент
 
-                    Toast.makeText(context, "Дело сделано!)", Toast.LENGTH_LONG).show()
-
                     loadinFireBase()
                     openDoneDialog()
 
                 }
-            }
-            else {
-                Toast.makeText(context, "Дело сделано!)", Toast.LENGTH_LONG).show()
+            } else {
                 loadinFireBase()
                 openDoneDialog()
             }
@@ -381,7 +381,7 @@ class PaymentFragment : Fragment() {
         val quitDialog = AlertDialog.Builder(activity as AppCompatActivity
         )
         quitDialog.setTitle("Заказ оправлен!")
-        quitDialog.setTitle("В ближайшее время мы свяжемся с Вами для подтверждения заказа =)")
+        quitDialog.setMessage("В ближайшее время мы свяжемся с Вами для подтверждения заказа =)")
         quitDialog.setPositiveButton(
             "Ясненько!"
         ) { dialog, which ->
@@ -392,6 +392,7 @@ class PaymentFragment : Fragment() {
                         .replace(R.id.frame_layout, menuFragment)
                         .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
                         .commit()
+            Toast.makeText(context, "Дело сделано!)", Toast.LENGTH_LONG).show()
         }
         quitDialog.setNegativeButton(
             "Понятненько!"
@@ -403,6 +404,7 @@ class PaymentFragment : Fragment() {
                 .replace(R.id.frame_layout, menuFragment)
                 .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
                 .commit()
+            Toast.makeText(context, "Дело сделано!)", Toast.LENGTH_LONG).show()
         }
         quitDialog.show()
     }

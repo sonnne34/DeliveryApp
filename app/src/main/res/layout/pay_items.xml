@@ -9,6 +9,8 @@
     <LinearLayout
             android:layout_height="match_parent"
             android:layout_width="match_parent"
+        android:layout_margin="5dp"
+        android:layout_marginTop="0dp"
         android:background="@drawable/okrugl_bacgr"
         android:orientation="vertical">
 
@@ -128,27 +130,27 @@
 
     </com.google.android.material.textfield.TextInputLayout>
 
-    </LinearLayout>
+        <Button
+            android:id="@+id/btn_done"
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginBottom="10dp"
+            android:background="@drawable/okrugl_button"
+            android:fontFamily="@font/font"
+            android:textColor="@color/qblackFont"
+            android:textStyle="bold"
+            android:textSize="12sp"
+            android:text="Заказать" />
 
-    <Button
-        android:id="@+id/btn_done"
-        android:layout_width="200dp"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:layout_marginBottom="5dp"
-        android:background="@drawable/okrugl_button"
-        android:fontFamily="@font/font"
-        android:textColor="@color/colorUltramarine"
-        android:layout_alignParentBottom="true"
-        android:textStyle="bold"
-        android:text="Заказать" />
+    </LinearLayout>
 
     <Button
         android:id="@+id/btn_done_card"
         android:layout_width="200dp"
         android:layout_height="wrap_content"
         android:visibility="invisible"
-        android:layout_gravity="center"
+        android:layout_gravity="center_horizontal"
         android:layout_marginTop="5dp"
         android:layout_marginBottom="5dp"
         android:background="@drawable/okrugl_button"

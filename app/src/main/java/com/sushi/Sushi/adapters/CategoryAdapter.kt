@@ -8,14 +8,14 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.sushi.Sushi.MenuFragment
 import com.sushi.Sushi.R
-import com.sushi.Sushi.models.CategoryModel
+import com.sushi.Sushi.models.CatMenuModel
+//import com.sushi.Sushi.models.CategoryModel
 import com.sushi.Sushi.models.MenuModelcatMenu
-import com.sushi.Sushi.singleton.BasketSingleton
 
 class CategoryAdapter: RecyclerView.Adapter<RecyclerView.ViewHolder>() {
-    var mCategoryList: ArrayList<CategoryModel> = ArrayList()
+    var mCategoryList: ArrayList<CatMenuModel> = ArrayList()
 
-    fun setupCategory(categoryList: ArrayList<CategoryModel>){
+    fun setupCategory(categoryList: ArrayList<CatMenuModel>){
         mCategoryList.clear()
         mCategoryList.addAll(categoryList)
         notifyDataSetChanged()
@@ -26,7 +26,6 @@ class CategoryAdapter: RecyclerView.Adapter<RecyclerView.ViewHolder>() {
         return CategoryViewHolder(itemView = itemView)
     }
 
-
     override fun getItemCount(): Int {
         return mCategoryList.count()
 
@@ -34,7 +33,7 @@ class CategoryAdapter: RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
         if(holder is CategoryViewHolder){
-            holder.bind(categoryModel = mCategoryList[position])
+            holder.bind(categoryModel = mCategoryList[position], position = position)
 //            btnCateg(holder, position)
         }
 
@@ -42,10 +41,10 @@ class CategoryAdapter: RecyclerView.Adapter<RecyclerView.ViewHolder>() {
     class CategoryViewHolder(itemView: View): RecyclerView.ViewHolder(itemView){
         private var categoryText: TextView = itemView.findViewById(R.id.text_items)
 
-        fun bind(categoryModel: CategoryModel){
+        fun bind(categoryModel: CatMenuModel, position: Int){
             categoryText.text = categoryModel.CategoryName
+            Log.d("category", "cat= $categoryText")
 
-            var mList: ArrayList<MenuModelcatMenu> = ArrayList()
             lateinit var mMenuFragment: MenuFragment
 
             //            picture = itemView.findViewById(R.id.image_items);
@@ -64,20 +63,9 @@ class CategoryAdapter: RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 //            category.startAnimation(animation);
 
             itemView.setOnClickListener {
-//                val name  = mList[position]
-//                val pos: String? = name.CategoryName
-//                Log.d("RRR", "pos = $pos")
-//                if (pos == "Все") {
-//                    Log.d("RRR", "poss = $pos")
-//                    mMenuFragment.firstSortListCategories(pos)
-//                    mMenuFragment.isFiltered = false
-//                } else {
-//                    mMenuFragment.sortListCategories(pos)
-//                    mMenuFragment.isFiltered = true
-//                }
+                mMenuFragment = MenuFragment()
+                mMenuFragment.catScroll(position)
             }
         }
     }
-
-
 }

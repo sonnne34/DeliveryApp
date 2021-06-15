@@ -136,7 +136,7 @@ class BasketAdapter: RecyclerView.Adapter<RecyclerView.ViewHolder>() {
                 val delPosDialog = AlertDialog.Builder(holder.itemView.context
                 )
                 delPosDialog.setTitle("Аннигилирование")
-                delPosDialog.setTitle("Удалить блюдо?")
+                delPosDialog.setMessage("Удалить блюдо?")
                 delPosDialog.setPositiveButton(
                     "Да"
                 ) { _, _ ->

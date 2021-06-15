@@ -51,15 +51,16 @@ class MenuFragment : Fragment(), EventListenerss {
     private lateinit var dangerousArea: MutableList<LatLng>
     private lateinit var  mCategoryAdapter: CategoryAdapter
     private lateinit var categoryRecyclerView : RecyclerView
-    private lateinit var  menuRecyclerView  : RecyclerView
+    lateinit var  menuRecyclerView  : RecyclerView
     private lateinit var adapter : MenuAdapter
     val menuList : ArrayList<CatMenuModel> = ArrayList()
+    val categoryList: ArrayList<CatMenuModel> = ArrayList()
 
     private var mCategoryRef: DatabaseReference? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setRetainInstance(true)
+        retainInstance = true
         Log.d("MMM", "OnCreate = ")
 
     }
@@ -80,12 +81,7 @@ class MenuFragment : Fragment(), EventListenerss {
 
         addArea()
         BasketSingleton.subscribe(this)
-        categoryRecyclerView = root.findViewById(R.id.recyclerview_category)
-        mCategoryAdapter = CategoryAdapter()
-        categoryRecyclerView.adapter = mCategoryAdapter
-        categoryRecyclerView.layoutManager =
-                LinearLayoutManager(root.context, RecyclerView.HORIZONTAL, false)
-        categoryRecyclerView.setHasFixedSize(true)
+
 
         menuRecyclerView = root.findViewById(R.id.recycler_view_menu)
         adapter = MenuAdapter()
@@ -101,8 +97,17 @@ class MenuFragment : Fragment(), EventListenerss {
         menuRecyclerView.setItemViewCacheSize(100)
         menuRecyclerView.isDrawingCacheEnabled = true
 
-        LoadCategory()
-        LoadMenu()
+        categoryRecyclerView = root.findViewById(R.id.recyclerview_category)
+        mCategoryAdapter = CategoryAdapter()
+        categoryRecyclerView.adapter = mCategoryAdapter
+        categoryRecyclerView.layoutManager =
+            LinearLayoutManager(root.context, RecyclerView.HORIZONTAL, false)
+        categoryRecyclerView.setHasFixedSize(true)
+
+
+//        loadCategory()
+        Log.d("CATTT", "cat = $categoryList")
+        loadMenu()
 
         CoroutineScope(Dispatchers.IO).launch {
 
@@ -141,29 +146,29 @@ class MenuFragment : Fragment(), EventListenerss {
     }
 
 
-    private fun LoadMenu() {
-        Log.d("AA", "value =  прошло 1" )
+    private fun loadMenu() {
+        Log.d("AA", "value =  прошло 1")
 
         val database = FirebaseDatabase.getInstance()
-        Log.d("AA", "value =  прошло 2" )
+        Log.d("AA", "value =  прошло 2")
         val myRef = database.getReference("RestaurantsMenu/Avocado")
-        Log.d("AA", "value =  прошло 3" )
+        Log.d("AA", "value =  прошло 3")
         myRef.addValueEventListener(object : ValueEventListener {
 
             override fun onDataChange(dataSnapshot: DataSnapshot) {
-                Log.d("AA", "value =  прошло4 " )
+                Log.d("AA", "value =  прошло4 ")
 
                 for (ds in dataSnapshot.children) {
-                    Log.d("AA", "value =  прошло 5 " + ds.getValue(CatMenuModel::class.java) )
+                    Log.d("AA", "value =  прошло 5 " + ds.getValue(CatMenuModel::class.java))
                     val value = ds.getValue(CatMenuModel::class.java)!!
 
                     Log.d("AA", "value = 5" + value.CategoryName)
 
 
-
+                    categoryList.add(value)
                     menuList.add(value)
                 }
-
+                updateAdapterCategory()
                 updateMenuAdapter(menuList)
             }
 
@@ -180,38 +185,31 @@ class MenuFragment : Fragment(), EventListenerss {
 
     }
 
-    fun LoadCategory() {
+//    private fun loadCategory() {
+//        val database = FirebaseDatabase.getInstance()
+//        mCategoryRef = database.getReference("CategoryName")
+//        mCategoryRef!!.addValueEventListener(object : ValueEventListener {
+//            override fun onDataChange(dataSnapshot: DataSnapshot) {
+//                for (dss in dataSnapshot.children) {
+//                    val items = dss.value as Map<*, *>?
+//                    val category = CatMenuModel()
+//                    category.CategoryName = items!!["CategoryName"].toString()
+//                    categoryList.add(category)
+//                }
+//                updateAdapterCategory()
+//            }
+//
+//            override fun onCancelled(error: DatabaseError) {}
+//        })
+//    }
 
-        val categoryList: ArrayList<CategoryModel> = ArrayList()
-        val database = FirebaseDatabase.getInstance()
+    private fun updateAdapterCategory() {
 
-        mCategoryRef = database.getReference("Category")
-
-        mCategoryRef!!.addValueEventListener(object : ValueEventListener {
-            override fun onDataChange(dataSnapshot: DataSnapshot) {
-                for (dss in dataSnapshot.children) {
-                    val items = dss.value as Map<String, String>?
-
-                    val category = CategoryModel()
-                    category.CategoryName = items!!["CategoryName"].toString()
-
-                    categoryList.add(category)
-                }
-
-                updateAdapterCategory(categoryList)
-            }
-
-            override fun onCancelled(error: DatabaseError) {}
-        })
-        Log.d("CAT", "cat = $categoryList")
-    }
-
-    private fun updateAdapterCategory(categoryList: ArrayList<CategoryModel>) {
-
-        mCategoryAdapter.setupCategory(categoryList = categoryList)
+        mCategoryAdapter.setupCategory(categoryList)
 
         progress_bar_two.visibility = View.VISIBLE
         progress_bar_two.visibility = View.INVISIBLE
+
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
@@ -318,6 +316,11 @@ class MenuFragment : Fragment(), EventListenerss {
 
     override fun updateRR() {
         updateMenuAdapter(menuList)
+    }
+
+    fun catScroll(position: Int) {
+        val mlenuRecyclerView: RecyclerView? = null
+        mlenuRecyclerView?.layoutManager?.scrollToPosition(position)
     }
 
 }
