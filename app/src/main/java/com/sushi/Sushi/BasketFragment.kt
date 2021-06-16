@@ -29,6 +29,7 @@ class BasketFragment : Fragment(), EventListenerss{
     private  var listmodel : ArrayList<MenuModelcatMenu> = ArrayList()
     lateinit var btnRegistr : Button
     lateinit var registrationFragment: RegistrationFragment
+    lateinit var menuFragment: MenuFragment
     lateinit var txtHelloBasket : TextView
     lateinit var txtHelloBasket2 : TextView
     lateinit var txtPriseTotal : TextView
@@ -150,7 +151,13 @@ class BasketFragment : Fragment(), EventListenerss{
 
                     BasketSingleton.del()
                     BasketSingleton.notifyTwo()
-                    Log.d("list", "del= $listmodel")
+
+                    val manager = (activity as AppCompatActivity).supportFragmentManager
+                    menuFragment = MenuFragment()
+                    manager.beginTransaction()
+                        .replace(R.id.frame_layout, menuFragment)
+                        .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
+                        .commit()
                 }
                 clearDialog.setNegativeButton(
                     "Ой, нет!"
