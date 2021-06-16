@@ -35,7 +35,7 @@
         android:id="@+id/layout_title"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="10dp"
+        android:layout_margin="5dp"
         android:background="@drawable/okrugl_bacgr">
 
         <TextView
@@ -45,8 +45,7 @@
             android:textSize="24dp"
             android:textColor="@color/colorUltramarine"
             android:gravity="center"
-            android:layout_marginTop="10dp"
-            android:padding="5dp"
+            android:padding="2dp"
             android:layout_alignParentTop="true"
             android:text="Авокадо"/>
 
@@ -55,18 +54,65 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textSize="13dp"
-            android:textColor="@color/qblackFont"
+            android:textColor="@color/qgrayAdditionalFont"
             android:gravity="center"
             android:layout_marginTop="-10dp"
-            android:layout_marginBottom="10dp"
+            android:layout_marginBottom="2dp"
             android:layout_below="@+id/txt_header_basket"
             android:text="доставка по-настоящему вкусной еды"/>
 
     </RelativeLayout>
 
+    <RelativeLayout
+        android:id="@+id/cat_menu"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_centerHorizontal="true"
+        android:gravity="center"
+        android:background="@drawable/okrugl_light_green"
+        android:layout_below="@+id/layout_title"
+        android:padding="5dp"
+        android:paddingBottom="1dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight= "20dp"
+        android:layout_marginTop="2dp"
+        android:layout_marginBottom="2dp">
+
+        <ImageView
+            android:layout_width="16dp"
+            android:layout_height="10dp"
+            android:layout_toLeftOf="@+id/btn_cat_menu"
+            android:layout_centerVertical="true"
+            android:layout_marginEnd="10dp"
+            android:layout_marginRight="10dp"
+            android:background="@drawable/ic_menu_green" />
+
+        <TextView
+            android:id="@+id/btn_cat_menu"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:gravity="center"
+            android:textSize="16sp"
+            style="@style/TextBody2"
+            android:textStyle="normal"
+            android:textColor="@color/qgreen"
+            android:text="выбрать категорию блюд" />
+
+        <ImageView
+            android:layout_width="16dp"
+            android:layout_height="10dp"
+            android:layout_toRightOf="@+id/btn_cat_menu"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="10dp"
+            android:layout_marginStart="10dp"
+            android:background="@drawable/ic_menu_green" />
+
+    </RelativeLayout>
 
     <androidx.recyclerview.widget.RecyclerView
-        android:layout_below="@+id/layout_title"
+        android:layout_below="@+id/cat_menu"
         android:id="@+id/recyclerview_category"
         android:visibility="gone"
         android:layout_width="match_parent"
@@ -85,7 +131,8 @@
         android:horizontalSpacing="3dp"
         android:verticalSpacing="3dp"
         android:numColumns="2"
-        android:stretchMode="columnWidth">
+        android:stretchMode="columnWidth"
+        android:layout_marginTop="5dp">
     </androidx.recyclerview.widget.RecyclerView>
 
     <ProgressBar

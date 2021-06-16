@@ -2,6 +2,7 @@ package com.sushi.Sushi
 
 import android.Manifest
 import android.annotation.SuppressLint
+import android.app.AlertDialog
 import android.content.Context
 import android.content.pm.PackageManager
 import android.location.Geocoder
@@ -14,9 +15,7 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
-import android.widget.ProgressBar
-import android.widget.Toast
+import android.widget.*
 import androidx.annotation.RequiresApi
 import androidx.core.app.ActivityCompat
 import androidx.fragment.app.Fragment
@@ -32,6 +31,7 @@ import com.sushi.Sushi.listener.EventListenerss
 import com.sushi.Sushi.models.*
 import com.sushi.Sushi.singleton.Address
 import com.sushi.Sushi.singleton.BasketSingleton
+import kotlinx.android.synthetic.main.fragment_menu.*
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -53,8 +53,11 @@ class MenuFragment : Fragment(), EventListenerss {
     private lateinit var categoryRecyclerView : RecyclerView
     lateinit var  menuRecyclerView  : RecyclerView
     private lateinit var adapter : MenuAdapter
+    private lateinit var mCatMenuModel: CatMenuModel
     val menuList : ArrayList<CatMenuModel> = ArrayList()
     val categoryList: ArrayList<CatMenuModel> = ArrayList()
+
+    private lateinit var btnCat : RelativeLayout
 
     private var mCategoryRef: DatabaseReference? = null
 
@@ -79,6 +82,9 @@ class MenuFragment : Fragment(), EventListenerss {
         progress_bar = root.findViewById(R.id.progress_bar)
         progress_bar_two = root.findViewById(R.id.progress_two)
 
+        btnCat = root.findViewById(R.id.cat_menu)
+        btnCat.visibility = View.INVISIBLE
+
         addArea()
         BasketSingleton.subscribe(this)
 
@@ -93,9 +99,10 @@ class MenuFragment : Fragment(), EventListenerss {
         )
         menuRecyclerView.setHasFixedSize(true)
 
-        menuRecyclerView.recycledViewPool.setMaxRecycledViews(0, 0)
+        menuRecyclerView.recycledViewPool.setMaxRecycledViews(100, 100)
         menuRecyclerView.setItemViewCacheSize(100)
         menuRecyclerView.isDrawingCacheEnabled = true
+
 
         categoryRecyclerView = root.findViewById(R.id.recyclerview_category)
         mCategoryAdapter = CategoryAdapter()
@@ -103,7 +110,6 @@ class MenuFragment : Fragment(), EventListenerss {
         categoryRecyclerView.layoutManager =
             LinearLayoutManager(root.context, RecyclerView.HORIZONTAL, false)
         categoryRecyclerView.setHasFixedSize(true)
-
 
 //        loadCategory()
         Log.d("CATTT", "cat = $categoryList")
@@ -116,6 +122,8 @@ class MenuFragment : Fragment(), EventListenerss {
             Log.d("FF", "Internet = " + online)
 //            loadAddress(root.context, online)
         }
+
+        btnCat(root.context)
 
         return root
     }
@@ -168,6 +176,7 @@ class MenuFragment : Fragment(), EventListenerss {
                     categoryList.add(value)
                     menuList.add(value)
                 }
+                btnCat.visibility = View.VISIBLE
                 updateAdapterCategory()
                 updateMenuAdapter(menuList)
             }
@@ -319,10 +328,34 @@ class MenuFragment : Fragment(), EventListenerss {
     }
 
     fun catScroll(position: Int) {
-        val mlenuRecyclerView: RecyclerView? = null
-        mlenuRecyclerView?.layoutManager?.scrollToPosition(position)
+//        val mlenuRecyclerView: RecyclerView? = null
+//        val cat: CatMenuModel = categoryList[position]
+//        mlenuRecyclerView?.layoutManager?.scrollToPosition(adapter.scrollToCategory(cat.CategoryName))
+//        adapter.setupMenuScroll(menuList)
+//        Log.d("scroll", "pos= $position")
     }
 
+    private fun btnCat(context: Context){
+
+        btnCat.setOnClickListener{
+
+            val arrayAdapter = ArrayAdapter<String>(context, android.R.layout.select_dialog_item)
+            for (ff in categoryList) arrayAdapter.add(ff.CategoryName)
+            val builder = AlertDialog.Builder(context)
+            builder.setTitle("Выберите категорию")
+            builder.setNegativeButton(
+                "Отмена"
+            ) { dialog, which -> dialog.dismiss() }
+
+            builder.setAdapter(
+                arrayAdapter
+            ) { dialog, which ->
+                val fff: CatMenuModel = categoryList.get(which)
+                (menuRecyclerView.layoutManager as LinearLayoutManager).scrollToPositionWithOffset(adapter.scrollToCategory(fff.CategoryName), 0)
+            }
+            builder.show()
+        }
+    }
 }
 
 

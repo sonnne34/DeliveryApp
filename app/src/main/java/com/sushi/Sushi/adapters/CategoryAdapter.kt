@@ -11,6 +11,7 @@ import com.sushi.Sushi.R
 import com.sushi.Sushi.models.CatMenuModel
 //import com.sushi.Sushi.models.CategoryModel
 import com.sushi.Sushi.models.MenuModelcatMenu
+import com.sushi.Sushi.singleton.BasketSingleton
 
 class CategoryAdapter: RecyclerView.Adapter<RecyclerView.ViewHolder>() {
     var mCategoryList: ArrayList<CatMenuModel> = ArrayList()
@@ -62,10 +63,11 @@ class CategoryAdapter: RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 ////накладываем анимацию на TextView
 //            category.startAnimation(animation);
 
-            itemView.setOnClickListener {
-                mMenuFragment = MenuFragment()
-                mMenuFragment.catScroll(position)
-            }
+//            itemView.setOnClickListener {
+//                mMenuFragment = MenuFragment()
+//                mMenuFragment.catScroll(position)
+//                Log.d("scroll", "pos= $position")
+//            }
         }
     }
 }

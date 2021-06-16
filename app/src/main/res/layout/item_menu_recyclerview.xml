@@ -7,10 +7,10 @@
     android:gravity="center"
     android:layout_height="wrap_content"
     android:background="@color/qlightGrayBackground"
-    android:layout_marginTop="5dp"
-    android:layout_marginBottom="5dp"
-    android:layout_marginRight="7dp"
-    android:layout_marginLeft="7dp"
+    android:layout_marginTop="3dp"
+    android:layout_marginBottom="3dp"
+    android:layout_marginRight="5dp"
+    android:layout_marginLeft="5dp"
     app:cardCornerRadius="4dp">
 
     <RelativeLayout
@@ -22,7 +22,7 @@
             android:id="@+id/image_dish_menu_card"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_margin="10dp"
+            android:layout_margin="5dp"
             app:cardCornerRadius="10dp">
 
             <ImageView
@@ -41,11 +41,12 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_toEndOf="@+id/image_dish_menu_card"
-            android:padding="5dp"
-            android:layout_margin="7dp"
-            android:layout_marginEnd="7dp"
-            android:layout_marginRight="7dp"
+            android:padding="2dp"
+            android:paddingTop="5dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginRight="8dp"
             android:orientation="vertical"
+            android:layout_centerVertical="true"
             android:layout_toRightOf="@+id/image_dish_menu_card">
 
             <TextView
@@ -63,7 +64,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:textColor="@color/qgrayAdditionalFont"
-                android:layout_margin="2dp"
+                android:layout_margin="1dp"
                 android:maxLines="3"
                 android:layout_below="@+id/text_roll"
                 android:text="Описание"/>

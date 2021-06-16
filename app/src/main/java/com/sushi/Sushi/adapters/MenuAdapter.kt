@@ -10,7 +10,6 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.google.firebase.storage.FirebaseStorage
 import com.squareup.picasso.Picasso
-import com.squareup.picasso.Transformation
 import com.sushi.Sushi.R
 import com.sushi.Sushi.dialog.CountDialog
 import com.sushi.Sushi.models.CatMenuModel
@@ -22,6 +21,13 @@ class MenuAdapter: RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     private val LAYOUT_HEADER = 0
     private val LAYOUT_CHILD = 1
+
+    fun setupMenuScroll(menuList: ArrayList<CatMenuModel>){
+        mMenuList.clear()
+        menuList.addAll(menuList)
+        notifyDataSetChanged()
+        BasketSingleton.notifyTwo()
+    }
 
     fun setupMenu(menuList: ArrayList<CatMenuModel>) {
         mMenuList.clear()
@@ -119,6 +125,7 @@ class MenuAdapter: RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
         fun bindHeader(menuCategoryModel: MenuModelcatMenu) {
 
+//            categoryHeader.text = "- " + "${menuCategoryModel.CategoryName}" + " -"
             categoryHeader.text = "${menuCategoryModel.CategoryName}"
 //            val typefacee = Typeface.createFromAsset(itemView.context.assets, "fonts/18765.otf")
 //            categoryHeader.typeface = typefacee
@@ -162,7 +169,7 @@ class MenuAdapter: RecyclerView.Adapter<RecyclerView.ViewHolder>() {
             storageRef.downloadUrl.addOnSuccessListener { uri ->
                 Log.d("URR", "uri= Прошло 4 ")
                 Log.d("URR", "uri= $uri")
-                    Picasso.get().load(uri).resize(100, 100).centerCrop().noFade().into(imgDish)
+                    Picasso.get().load(uri).fit().centerCrop().noFade().into(imgDish)
                 }
 
             itemView.setOnClickListener {
@@ -180,5 +187,18 @@ class MenuAdapter: RecyclerView.Adapter<RecyclerView.ViewHolder>() {
                 checkBoxItem.setBackgroundResource(R.color.transparent)
             }
         }
+    }
+
+    fun scrollToCategory(name: String): Int {
+        var position = 0
+        for (i in mMenuList.indices) {
+            val element: MenuModelcatMenu = mMenuList[i]
+            if (element.isHeader) {
+                if (element.CategoryName.equals(name)) {
+                    position = i
+                }
+            }
+        }
+        return position
     }
 }

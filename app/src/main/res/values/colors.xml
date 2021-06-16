@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <color name="colorFrost">#a8d8ff</color>
-    <color name="colorSky">#007fff</color>
+    <color name="colorSky">#35682d</color>
     <color name="colorWhiteSky">#dbefff</color>
-    <color name="colorBlue">#005da8</color>
+    <color name="colorBlue">#35682d</color>
     <color name="colorUltramarine">#1d334a</color>
     <color name="colorAzure">#b3deff</color>
     <color name="colorCoral">#e0714c</color>
@@ -17,7 +17,7 @@
     <color name="whitecolor">#FFFFFF</color>
     <color name="transparent">#00000000</color>
     <color name="GreenColor">#008000</color>
-    <color name="my_color">#005da8</color>
+    <color name="my_color">#35682d</color>
     <color name="my_colorTwo">#F3F2F2</color>
     <color name="header">#333333</color>
     <color name="gray_mercury">#E1E1E1</color>

@@ -4,8 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_margin="5dp"
-    android:padding="3dp">
+    android:padding="8dp">
 
 
     <TextView
@@ -13,7 +12,8 @@
         android:text="Категория "
         android:textSize="18sp"
         android:gravity="center"
-        android:textColor="@color/colorUltramarine"
+        android:textColor="@color/qgreen"
+
         android:textStyle="bold"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
