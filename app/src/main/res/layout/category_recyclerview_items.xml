@@ -12,7 +12,7 @@
         android:textSize="18sp"
         style="@style/TextBody2"
         android:textStyle="normal"
-        android:textColor="@color/qgreen"
+        android:textColor="@color/qblackFont"
         android:layout_gravity="center"
         android:paddingLeft="10dp"
         android:paddingRight="10dp"

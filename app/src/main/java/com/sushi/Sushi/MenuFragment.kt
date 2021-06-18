@@ -28,6 +28,7 @@ import com.google.firebase.database.*
 import com.sushi.Sushi.adapters.CategoryAdapter
 import com.sushi.Sushi.adapters.MenuAdapter
 import com.sushi.Sushi.listener.EventListenerss
+import com.sushi.Sushi.listener.RecyclerItemClickListenr
 import com.sushi.Sushi.models.*
 import com.sushi.Sushi.singleton.Address
 import com.sushi.Sushi.singleton.BasketSingleton
@@ -57,7 +58,6 @@ class MenuFragment : Fragment(), EventListenerss {
     val menuList : ArrayList<CatMenuModel> = ArrayList()
     val categoryList: ArrayList<CatMenuModel> = ArrayList()
 
-    private lateinit var btnCat : RelativeLayout
 
     private var mCategoryRef: DatabaseReference? = null
 
@@ -81,9 +81,6 @@ class MenuFragment : Fragment(), EventListenerss {
         btnGetLoc = root.findViewById(R.id.location_btn)
         progress_bar = root.findViewById(R.id.progress_bar)
         progress_bar_two = root.findViewById(R.id.progress_two)
-
-        btnCat = root.findViewById(R.id.cat_menu)
-        btnCat.visibility = View.INVISIBLE
 
         addArea()
         BasketSingleton.subscribe(this)
@@ -123,7 +120,7 @@ class MenuFragment : Fragment(), EventListenerss {
 //            loadAddress(root.context, online)
         }
 
-        btnCat(root.context)
+        scrollCat(root.context)
 
         return root
     }
@@ -176,7 +173,6 @@ class MenuFragment : Fragment(), EventListenerss {
                     categoryList.add(value)
                     menuList.add(value)
                 }
-                btnCat.visibility = View.VISIBLE
                 updateAdapterCategory()
                 updateMenuAdapter(menuList)
             }
@@ -327,35 +323,27 @@ class MenuFragment : Fragment(), EventListenerss {
         updateMenuAdapter(menuList)
     }
 
-    fun catScroll(position: Int) {
-//        val mlenuRecyclerView: RecyclerView? = null
-//        val cat: CatMenuModel = categoryList[position]
-//        mlenuRecyclerView?.layoutManager?.scrollToPosition(adapter.scrollToCategory(cat.CategoryName))
-//        adapter.setupMenuScroll(menuList)
-//        Log.d("scroll", "pos= $position")
+    private fun scrollCat(context: Context){
+        categoryRecyclerView.addOnItemTouchListener(
+            RecyclerItemClickListenr(context, menuRecyclerView,
+            object : RecyclerItemClickListenr.OnItemClickListener {
+
+                override fun onItemClick(view: View, position: Int) {
+
+                    val fff: CatMenuModel = categoryList[position]
+                    Log.d("fff", "fff= " + fff)
+                    (menuRecyclerView.layoutManager as LinearLayoutManager)
+                        .scrollToPositionWithOffset(adapter.scrollToCategory(fff.CategoryName), 0)
+
+                }
+                override fun onItemLongClick(view: View?, position: Int) {
+
+                }
+            })
+        )
     }
 
-    private fun btnCat(context: Context){
 
-        btnCat.setOnClickListener{
-
-            val arrayAdapter = ArrayAdapter<String>(context, android.R.layout.select_dialog_item)
-            for (ff in categoryList) arrayAdapter.add(ff.CategoryName)
-            val builder = AlertDialog.Builder(context)
-            builder.setTitle("Выберите категорию")
-            builder.setNegativeButton(
-                "Отмена"
-            ) { dialog, which -> dialog.dismiss() }
-
-            builder.setAdapter(
-                arrayAdapter
-            ) { dialog, which ->
-                val fff: CatMenuModel = categoryList.get(which)
-                (menuRecyclerView.layoutManager as LinearLayoutManager).scrollToPositionWithOffset(adapter.scrollToCategory(fff.CategoryName), 0)
-            }
-            builder.show()
-        }
-    }
 }
 
 
