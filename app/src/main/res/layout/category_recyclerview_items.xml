@@ -12,10 +12,12 @@
         android:textSize="18sp"
         style="@style/TextBody2"
         android:textStyle="normal"
-        android:textColor="@color/qblackFont"
+        android:textColor="@color/qgreen"
         android:layout_gravity="center"
         android:paddingLeft="10dp"
         android:paddingRight="10dp"
+        android:paddingTop="5dp"
+        android:paddingBottom="5dp"
         android:background="@drawable/okrugl_bacgr"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"/>
