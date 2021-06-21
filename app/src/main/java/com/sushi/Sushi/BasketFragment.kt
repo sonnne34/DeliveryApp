@@ -84,9 +84,9 @@ class BasketFragment : Fragment(), EventListenerss{
     private fun btnReg () {
             btnRegistr.setOnClickListener {
                 val sum = BasketSingleton.count()
-                if (sum < 700) {
+                if (sum < 800) {
                     val toast = Toast.makeText(context,
-                        "Но сумма заказа должна быть не менее 700 рублей...",
+                        "Но сумма заказа должна быть не менее 800 рублей...",
                         Toast.LENGTH_LONG
                     )
                     toast.setGravity(Gravity.CENTER, 0, 0)
