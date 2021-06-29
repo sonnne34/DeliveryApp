@@ -25,13 +25,15 @@ class CountDialog {
 
             val dialog = Dialog(context, R.style.CustomDialog)
             dialog.requestWindowFeature(Window.FEATURE_NO_TITLE)
-            dialog.setCancelable(false)
             dialog.setContentView(R.layout.dialog_item_menu)
             dialog.window?.setGravity(Gravity.BOTTOM)
             dialog.window?.setLayout(
                 ListPopupWindow.MATCH_PARENT,
                 ListPopupWindow.WRAP_CONTENT
             )
+
+            dialog.setCancelable(true)
+            dialog.setCanceledOnTouchOutside(true)
 
             val description = dialog.findViewById(R.id.textViewGoodsDescriptionDialog) as TextView
             val name = dialog.findViewById(R.id.names) as TextView
@@ -184,12 +186,6 @@ class CountDialog {
             cancel.setOnClickListener() {
                 dialog.cancel()
             }
-
-
-
-
         }
-
-
     }
 }

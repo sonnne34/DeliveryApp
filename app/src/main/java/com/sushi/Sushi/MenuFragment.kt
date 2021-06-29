@@ -29,6 +29,7 @@ import com.google.android.material.snackbar.Snackbar
 import com.google.firebase.database.*
 import com.sushi.Sushi.adapters.CategoryAdapter
 import com.sushi.Sushi.adapters.MenuAdapter
+import com.sushi.Sushi.dialog.OptionsDialog
 import com.sushi.Sushi.listener.EventListenerss
 import com.sushi.Sushi.listener.RecyclerItemClickListenr
 import com.sushi.Sushi.models.*
@@ -59,6 +60,7 @@ class MenuFragment : Fragment(), EventListenerss {
     private lateinit var mCatMenuModel: CatMenuModel
     val menuList : ArrayList<CatMenuModel> = ArrayList()
     val categoryList: ArrayList<CatMenuModel> = ArrayList()
+    private lateinit var optionsBtn: ImageButton
 
 
     private var mCategoryRef: DatabaseReference? = null
@@ -83,6 +85,7 @@ class MenuFragment : Fragment(), EventListenerss {
         btnGetLoc = root.findViewById(R.id.location_btn)
         progress_bar = root.findViewById(R.id.progress_bar)
         progress_bar_two = root.findViewById(R.id.progress_two)
+        optionsBtn = root.findViewById(R.id.btn_options)
 
         addArea()
         BasketSingleton.subscribe(this)
@@ -124,6 +127,7 @@ class MenuFragment : Fragment(), EventListenerss {
         }
 
         scrollCat(root.context)
+        btnOptions(root.context)
 
         return root
     }
@@ -344,6 +348,12 @@ class MenuFragment : Fragment(), EventListenerss {
                 }
             })
         )
+    }
+
+    private fun btnOptions(context: Context){
+        optionsBtn.setOnClickListener {
+            OptionsDialog.openDialog(context)
+        }
     }
 }
 

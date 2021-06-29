@@ -55,7 +55,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
-            android:textSize="10sp"
+            android:textSize="13dp"
             android:textColor="@color/qgrayAdditionalFont"
             android:gravity="center"
             android:layout_marginTop="-10dp"
@@ -70,8 +70,8 @@
             android:layout_centerVertical="true"
             android:layout_alignParentEnd="true"
             android:layout_alignParentRight="true"
-            android:layout_marginRight="10dp"
-            android:layout_marginEnd="10dp"
+            android:layout_marginRight="12dp"
+            android:layout_marginEnd="12dp"
             android:background="@drawable/ic_menu_eyllow_"/>
 
     </RelativeLayout>

@@ -49,6 +49,20 @@
         <item name="android:windowExitAnimation">@anim/translate_right_side</item>
     </style>
 
+    \\стиль диалогового окна (опции)
+    <style name="CustomDialogOptions" parent="@android:style/Theme.Dialog">
+        <item name="android:windowAnimationStyle">@style/CustomDialogAnimationOptions</item>
+        <item name="android:background">@drawable/okrugl_dialog_options</item>
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:windowBackground">@android:color/transparent</item>
+    </style>
+
+    \\подстиль диалогового окна (опции)
+    <style name="CustomDialogAnimationOptions">
+        <item name="android:windowEnterAnimation">@anim/slide_out_left</item>
+        <item name="android:windowExitAnimation">@anim/slide_in_right</item>
+    </style>
+
 
     //стиль мальеньких кнопок
     <style name="ButtonBody">
