@@ -9,13 +9,10 @@ import android.widget.Button
 import android.widget.ImageView
 import android.widget.ListPopupWindow
 import android.widget.TextView
-import com.google.firebase.storage.FirebaseStorage
-import com.squareup.picasso.MemoryPolicy
-import com.squareup.picasso.Picasso
 import com.sushi.Sushi.R
 import com.sushi.Sushi.models.MenuModelcatMenu
+import com.sushi.Sushi.service.LoadImage
 import com.sushi.Sushi.singleton.BasketSingleton
-import java.text.ParsePosition
 
 class CountDialog {
     companion object {
@@ -52,16 +49,24 @@ class CountDialog {
                 description.text = file.Items?.Description
                 name.text = file?.Items?.Name
 
-                val storageTwo = FirebaseStorage.getInstance()
+//                val storageTwo = FirebaseStorage.getInstance()
+//
+//                val storageRefTwo = storageTwo.getReferenceFromUrl(file?.Items?.Picture!!)
+//
+////                storageRefTwo.downloadUrl.addOnSuccessListener { uri ->
+////                    Picasso.get().load(uri).fit().centerCrop()
+////                        .into(imgDish)
+////                }.addOnFailureListener {
+////                }
+//
+//                val ONE_MEGABYTE = (2000 * 4000).toLong()
+//                storageRefTwo.getBytes(ONE_MEGABYTE).addOnSuccessListener{
+//                    val bm = BitmapFactory.decodeByteArray(it, 0, it.size)
+//                    val dm = DisplayMetrics()
+//                    imgDish.setImageBitmap(bm)
+//                }
 
-                val storageRefTwo = storageTwo.getReferenceFromUrl(file?.Items?.Picture!!)
-
-                storageRefTwo.downloadUrl.addOnSuccessListener { uri ->
-                    Picasso.get().load(uri).fit().centerCrop()
-                        .into(imgDish)
-                }.addOnFailureListener {
-                }
-
+                LoadImage().loadImage(file, imgDish)
 
                 val sim: Long = file.Items?.Cost!!
                 val som: Long = file.Items?.CountDialog!!
@@ -80,13 +85,22 @@ class CountDialog {
                 name.setText(menuFile.Items?.Name)
                 cost.setText(menuFile.Items?.Cost.toString())
 
-                val storageTwo = FirebaseStorage.getInstance()
-                val storageRefTwo = storageTwo.getReferenceFromUrl(menuFile.Items?.Picture!!)
+//                val storageTwo = FirebaseStorage.getInstance()
+//                val storageRefTwo = storageTwo.getReferenceFromUrl(menuFile.Items?.Picture!!)
 
-                storageRefTwo.downloadUrl.addOnSuccessListener { uri ->
-                    Picasso.get().load(uri).fit().centerCrop()
-                        .into(imgDish)
-                }
+                LoadImage().loadImage(menuFile, imgDish)
+
+//                storageRefTwo.downloadUrl.addOnSuccessListener { uri ->
+//                    Picasso.get().load(uri).fit().centerCrop()
+//                        .into(imgDish)
+//                }
+
+//                val ONE_MEGABYTE = (4000 * 2000).toLong()
+//                storageRefTwo.getBytes(ONE_MEGABYTE).addOnSuccessListener{
+//                    val bm = BitmapFactory.decodeByteArray(it, 0, it.size)
+//                    val dm = DisplayMetrics()
+//                    imgDish.setImageBitmap(bm)
+//                }
 
                 val one: Long = 1
                 count.setText(one.toString())

@@ -5,6 +5,7 @@ import android.annotation.SuppressLint
 import android.app.AlertDialog
 import android.content.Context
 import android.content.pm.PackageManager
+import android.graphics.Color
 import android.location.Geocoder
 import android.location.Location
 import android.net.ConnectivityManager
@@ -24,6 +25,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.google.android.gms.location.FusedLocationProviderClient
 import com.google.android.gms.location.LocationServices
 import com.google.android.gms.maps.model.LatLng
+import com.google.android.material.snackbar.Snackbar
 import com.google.firebase.database.*
 import com.sushi.Sushi.adapters.CategoryAdapter
 import com.sushi.Sushi.adapters.MenuAdapter
@@ -85,6 +87,7 @@ class MenuFragment : Fragment(), EventListenerss {
         addArea()
         BasketSingleton.subscribe(this)
 
+        Toast.makeText(context, "Принимаем заказы с 10:00 до 23:00", Toast.LENGTH_LONG).show()
 
         menuRecyclerView = root.findViewById(R.id.recycler_view_menu)
         adapter = MenuAdapter()
@@ -128,8 +131,8 @@ class MenuFragment : Fragment(), EventListenerss {
     @SuppressLint("NewApi")
     @RequiresApi(Build.VERSION_CODES.LOLLIPOP)
     fun isOnline(context: Context): Boolean {
-        val connectivityManager =
-                context.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
+//        val connectivityManager =
+//                context.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
 //        if (connectivityManager != null) {
 //            val capabilities =
 //                    connectivityManager.getNetworkCapabilities(connectivityManager.activeNetwork)
@@ -342,8 +345,6 @@ class MenuFragment : Fragment(), EventListenerss {
             })
         )
     }
-
-
 }
 
 

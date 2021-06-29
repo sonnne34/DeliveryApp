@@ -324,6 +324,7 @@ class PaymentFragment : Fragment() {
                         "Картой" //при нажатии на "Картой" значение переменной - "Картой"
                     inputCash.error =
                         null //при нажатии на "Картой" ошибок с обязательным полем чтобы не всплывало
+                    Toast.makeText(context, "У курьера будет с собой терминал", Toast.LENGTH_SHORT).show()
                     inputCash.visibility = View.GONE
 //                    btnDoneCard.visibility = View.VISIBLE
 //                    btnDone.visibility = View.GONE

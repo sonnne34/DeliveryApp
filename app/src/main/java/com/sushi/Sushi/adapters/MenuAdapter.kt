@@ -1,6 +1,8 @@
 package com.sushi.Sushi.adapters
 
 import android.annotation.SuppressLint
+import android.graphics.BitmapFactory
+import android.util.DisplayMetrics
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
@@ -14,6 +16,7 @@ import com.sushi.Sushi.R
 import com.sushi.Sushi.dialog.CountDialog
 import com.sushi.Sushi.models.CatMenuModel
 import com.sushi.Sushi.models.MenuModelcatMenu
+import com.sushi.Sushi.service.LoadImage
 import com.sushi.Sushi.singleton.BasketSingleton
 
 class MenuAdapter: RecyclerView.Adapter<RecyclerView.ViewHolder>() {
@@ -154,6 +157,7 @@ class MenuAdapter: RecyclerView.Adapter<RecyclerView.ViewHolder>() {
             cost.text = "${menuCategoryModel.Items?.Cost}" + " р."
 //            cost.typeface = typeface
 
+
             val wtVal = menuCategoryModel.Items?.Wt
                 if(wtVal?.toInt() == 0){
                     wt.visibility = View.GONE
@@ -162,15 +166,27 @@ class MenuAdapter: RecyclerView.Adapter<RecyclerView.ViewHolder>() {
                     wt.text = "$wtVal гр."
                 }
             Log.d("URR", "uri= Прошло 1 ")
-            val storage = FirebaseStorage.getInstance()
-            Log.d("URR", "uri= Прошло 2 ")
-            val storageRef = storage.getReferenceFromUrl(menuCategoryModel.Items?.Picture!!)
-            Log.d("URR", "uri= Прошло 3")
-            storageRef.downloadUrl.addOnSuccessListener { uri ->
-                Log.d("URR", "uri= Прошло 4 ")
-                Log.d("URR", "uri= $uri")
-                    Picasso.get().load(uri).fit().centerCrop().noFade().into(imgDish)
-                }
+
+            LoadImage().loadImage(menuCategoryModel, imgDish)
+
+//            val storage = FirebaseStorage.getInstance()
+//            Log.d("URR", "uri= Прошло 2 ")
+//            val storageRef = storage.getReferenceFromUrl(menuCategoryModel.Items?.Picture!!)
+//            Log.d("URR", "uri= Прошло 3")
+//            storageRef.downloadUrl.addOnSuccessListener { uri ->
+//                Log.d("URR", "uri= Прошло 4 ")
+//                Log.d("URR", "uri= $uri")
+////                    Picasso.get().load(uri).fit().centerCrop().noFade().into(imgDish)
+//                }
+
+//            val ONE_MEGABYTE = (2000 * 2000).toLong()
+//            storageRef.getBytes(ONE_MEGABYTE).addOnSuccessListener{
+//                val bm = BitmapFactory.decodeByteArray(it, 0, it.size)
+//                val dm = DisplayMetrics()
+//                imgDish.setImageBitmap(bm)
+//
+//            }
+
 
             itemView.setOnClickListener {
                 CountDialog.openDialog(itemView.context, menuCategoryModel)

@@ -20,7 +20,6 @@ class MainActivity : AppCompatActivity() {
     private lateinit var basketFragment: BasketFragment
 
 
-
     @SuppressLint("WrongConstant", "MissingPermission")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -33,8 +32,6 @@ class MainActivity : AppCompatActivity() {
             arrayOf(Manifest.permission.ACCESS_FINE_LOCATION),
             123
         )
-
-
 
         menuFragment = MenuFragment()
         supportFragmentManager
@@ -73,6 +70,18 @@ class MainActivity : AppCompatActivity() {
 //                        .commit()
 //                }
 
+
+//                R.id.profil -> {
+//
+//                    val btnsheet = LayoutInflater.inflate(R. layout.bottom_sheet, null)
+//                    val dialog = BottomSheetDialog(this)
+//                dialog. setContentView(btnsheet)
+//                        btnsheet.setOnClickListener {
+//                    dialog. dismiss ()
+//                }
+//                        dialog.show()
+//                    }
+
                 R.id.basket -> {
 
                     basketFragment = BasketFragment()
@@ -107,13 +116,13 @@ class MainActivity : AppCompatActivity() {
         quitDialog.setTitle("Вы уверенны, что хотите выйти?")
         quitDialog.setPositiveButton(
             "Да"
-        ) { dialog, which ->
+        ) { _, _ ->
             onDestroy()
 //            finish()
         }
         quitDialog.setNegativeButton(
             "Ой, нет!"
-        ) { dialog, which -> }
+        ) { _, _ -> }
         quitDialog.show()
     }
 

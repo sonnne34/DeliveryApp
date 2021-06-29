@@ -1,4 +1,4 @@
-package com.sushi.Sushi.dataBase
+package com.sushi.Sushi.dataBaseProfil
 
 import androidx.room.Database
 import androidx.room.RoomDatabase

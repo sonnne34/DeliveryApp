@@ -46,8 +46,7 @@
         <ImageView
             android:visibility="gone"
             android:layout_width="20dp"
-            android:layout_height="24dp"
-            android:background="@drawable/ic_strel_coral"/>
+            android:layout_height="24dp" />
 
     <TextView
         android:visibility="gone"
@@ -63,8 +62,7 @@
         <ImageView
             android:visibility="gone"
             android:layout_width="20dp"
-            android:layout_height="24dp"
-            android:background="@drawable/ic_strel_coral"/>
+            android:layout_height="24dp" />
 
     <TextView
         android:visibility="gone"
@@ -78,8 +76,7 @@
         <ImageView
             android:visibility="gone"
             android:layout_width="20dp"
-            android:layout_height="24dp"
-            android:background="@drawable/ic_strel_coral"/>
+            android:layout_height="24dp" />
 
     <TextView
         android:visibility="gone"
@@ -93,8 +90,7 @@
         <ImageView
             android:visibility="gone"
             android:layout_width="20dp"
-            android:layout_height="24dp"
-            android:background="@drawable/ic_strel_coral"/>
+            android:layout_height="24dp" />
 
     <TextView
         android:visibility="gone"
@@ -108,8 +104,7 @@
         <ImageView
             android:visibility="gone"
             android:layout_width="20dp"
-            android:layout_height="24dp"
-            android:background="@drawable/ic_strel_coral"/>
+            android:layout_height="24dp" />
 
     <TextView
         android:visibility="gone"
