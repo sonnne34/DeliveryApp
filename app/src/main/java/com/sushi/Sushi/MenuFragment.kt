@@ -12,6 +12,7 @@ import android.net.ConnectivityManager
 import android.os.Build
 import android.os.Bundle
 import android.os.Parcelable
+import android.text.format.Time
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
@@ -39,8 +40,12 @@ import kotlinx.android.synthetic.main.fragment_menu.*
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import java.text.DateFormat
+import java.text.SimpleDateFormat
+import java.time.LocalTime
 import java.util.*
 import kotlin.collections.ArrayList
+import kotlin.math.ceil
 
 
 /**
@@ -128,6 +133,7 @@ class MenuFragment : Fragment(), EventListenerss {
 
         scrollCat(root.context)
         btnOptions(root.context)
+//        dateTime()
 
         return root
     }
@@ -244,81 +250,81 @@ class MenuFragment : Fragment(), EventListenerss {
     override fun onSaveInstanceState(outState: Bundle) {
         super.onSaveInstanceState(outState)
     }
-
-    @RequiresApi(Build.VERSION_CODES.LOLLIPOP)
-    private fun loadAddress(context: Context, boolean: Boolean) {
-
-
-        if(boolean == true){
-
-            if (ActivityCompat.checkSelfPermission(
-                    context,
-                    Manifest.permission.ACCESS_FINE_LOCATION
-                ) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(
-                    context,
-                    Manifest.permission.ACCESS_COARSE_LOCATION
-                ) != PackageManager.PERMISSION_GRANTED) {
-                // TODO: Consider calling
-                //    ActivityCompat#requestPermissions
-                // here to request the missing permissions, and then overriding
-                //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
-                //                                          int[] grantResults)
-                // to handle the case where the user grants the permission. See the documentation
-                // for ActivityCompat#requestPermissions for more details.
-
-                return
-            }
-            fusedLocationProviderClient.lastLocation.addOnCompleteListener {
-                val latitude = it.result?.latitude
-                val longitude = it.result?.longitude
-
-                Log.d("Result", "lat = " + latitude)
-                Log.d("Result", "llong = " + longitude)
-
-                if(latitude == null){
-                    Toast.makeText(context, "Интернета нет", Toast.LENGTH_SHORT).show()
-
-                }else{
-                    val locationA = Location("Point A")
-
-                    locationA.latitude = latitude!!
-                    locationA.longitude = longitude!!
-
-                    val locationB = Location("Point B")
-
-                    for (i in dangerousArea){
-                        locationB.longitude = i.longitude
-                        locationB.latitude = i.latitude
-                    }
-                    val currentDistance = locationA.distanceTo(locationB)
-
-                    if (currentDistance > 3000){
-
-                        btnGetLoc.setBackgroundResource(R.color.colorTangerine)
-                    }else{
-
-                        btnGetLoc.setBackgroundResource(R.color.colorgreen)
-                    }
-
-                    val geocoder = Geocoder(context, Locale.getDefault())
-
-                    val addresses = geocoder.getFromLocation(latitude!!, longitude!!, 1)
-
-
-                    val address = addresses[0].getAddressLine(0)
-
-
-                    Address.address = address
-
-
-                    progress_bar.visibility = View.INVISIBLE
-                    btnGetLoc.visibility = View.VISIBLE
-                    btnGetLoc.text = address
-
-                }
-            }
-        }
-    }
+//
+//    @RequiresApi(Build.VERSION_CODES.LOLLIPOP)
+//    private fun loadAddress(context: Context, boolean: Boolean) {
+//
+//
+//        if(boolean == true){
+//
+//            if (ActivityCompat.checkSelfPermission(
+//                    context,
+//                    Manifest.permission.ACCESS_FINE_LOCATION
+//                ) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(
+//                    context,
+//                    Manifest.permission.ACCESS_COARSE_LOCATION
+//                ) != PackageManager.PERMISSION_GRANTED) {
+//                // TODO: Consider calling
+//                //    ActivityCompat#requestPermissions
+//                // here to request the missing permissions, and then overriding
+//                //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
+//                //                                          int[] grantResults)
+//                // to handle the case where the user grants the permission. See the documentation
+//                // for ActivityCompat#requestPermissions for more details.
+//
+//                return
+//            }
+//            fusedLocationProviderClient.lastLocation.addOnCompleteListener {
+//                val latitude = it.result?.latitude
+//                val longitude = it.result?.longitude
+//
+//                Log.d("Result", "lat = " + latitude)
+//                Log.d("Result", "llong = " + longitude)
+//
+//                if(latitude == null){
+//                    Toast.makeText(context, "Интернета нет", Toast.LENGTH_SHORT).show()
+//
+//                }else{
+//                    val locationA = Location("Point A")
+//
+//                    locationA.latitude = latitude!!
+//                    locationA.longitude = longitude!!
+//
+//                    val locationB = Location("Point B")
+//
+//                    for (i in dangerousArea){
+//                        locationB.longitude = i.longitude
+//                        locationB.latitude = i.latitude
+//                    }
+//                    val currentDistance = locationA.distanceTo(locationB)
+//
+//                    if (currentDistance > 3000){
+//
+//                        btnGetLoc.setBackgroundResource(R.color.colorTangerine)
+//                    }else{
+//
+//                        btnGetLoc.setBackgroundResource(R.color.colorgreen)
+//                    }
+//
+//                    val geocoder = Geocoder(context, Locale.getDefault())
+//
+//                    val addresses = geocoder.getFromLocation(latitude!!, longitude!!, 1)
+//
+//
+//                    val address = addresses[0].getAddressLine(0)
+//
+//
+//                    Address.address = address
+//
+//
+//                    progress_bar.visibility = View.INVISIBLE
+//                    btnGetLoc.visibility = View.VISIBLE
+//                    btnGetLoc.text = address
+//
+//                }
+//            }
+//        }
+//    }
 
     private fun addArea() {
 
@@ -333,20 +339,24 @@ class MenuFragment : Fragment(), EventListenerss {
     private fun scrollCat(context: Context){
         categoryRecyclerView.addOnItemTouchListener(
             RecyclerItemClickListenr(context, menuRecyclerView,
-            object : RecyclerItemClickListenr.OnItemClickListener {
+                object : RecyclerItemClickListenr.OnItemClickListener {
 
-                override fun onItemClick(view: View, position: Int) {
+                    override fun onItemClick(view: View, position: Int) {
 
-                    val fff: CatMenuModel = categoryList[position]
-                    Log.d("fff", "fff= " + fff)
-                    (menuRecyclerView.layoutManager as LinearLayoutManager)
-                        .scrollToPositionWithOffset(adapter.scrollToCategory(fff.CategoryName), 0)
+                        val fff: CatMenuModel = categoryList[position]
+                        Log.d("fff", "fff= " + fff)
+                        (menuRecyclerView.layoutManager as LinearLayoutManager)
+                            .scrollToPositionWithOffset(
+                                adapter.scrollToCategory(fff.CategoryName),
+                                0
+                            )
 
-                }
-                override fun onItemLongClick(view: View?, position: Int) {
+                    }
 
-                }
-            })
+                    override fun onItemLongClick(view: View?, position: Int) {
+
+                    }
+                })
         )
     }
 
@@ -355,6 +365,24 @@ class MenuFragment : Fragment(), EventListenerss {
             OptionsDialog.openDialog(context)
         }
     }
+
+//    private fun dateTime(){
+//
+//        val currentDateTime = DateFormat.getDateTimeInstance().format(Date())
+//        Log.d("Time", "dataTime= $currentDateTime")
+//
+//
+//        var startTime = "10:00:00"
+//        var finishTime = "23:00:00"
+//
+//        if(currentDateTime > finishTime || currentDateTime < startTime){
+//            Toast.makeText(context, "!!!!!!!!!!!!!!!!Принимаем заказы с 10:00 до 23:00", Toast.LENGTH_LONG).show()
+//        } else {
+//            Toast.makeText(context, "всё норм", Toast.LENGTH_LONG).show()
+//        }
+//
+//    }
+
 }
 
 

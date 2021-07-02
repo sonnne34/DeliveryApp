@@ -43,10 +43,10 @@ class MenuAdapter: RecyclerView.Adapter<RecyclerView.ViewHolder>() {
             mMenuList.add(headerModel)
 
             for (i in categoryModel.Items) {
-
-                Log.d("UUU", "UUUmenu = " + i.value.Name)
-                Log.d("UUU", "UUUmenu = " + i.value.Cost)
-                Log.d("UUU", "UUUmenu = " + i.value.Description)
+//
+//                Log.d("UUU", "UUUmenu = " + i.value.Name)
+//                Log.d("UUU", "UUUmenu = " + i.value.Cost)
+//                Log.d("UUU", "UUUmenu = " + i.value.Description)
                 var menuModel = MenuModelcatMenu()
                 menuModel.Items = i.value
 

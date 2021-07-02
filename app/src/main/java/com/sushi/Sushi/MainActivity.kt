@@ -27,11 +27,11 @@ class MainActivity : AppCompatActivity() {
 
         val bottomNavigation : BottomNavigationView = findViewById(R.id.btm_nav)
 
-        ActivityCompat.requestPermissions(
-            this,
-            arrayOf(Manifest.permission.ACCESS_FINE_LOCATION),
-            123
-        )
+//        ActivityCompat.requestPermissions(
+//            this,
+//            arrayOf(Manifest.permission.ACCESS_FINE_LOCATION),
+//            123
+//        )
 
         menuFragment = MenuFragment()
         supportFragmentManager
