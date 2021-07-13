@@ -15,10 +15,10 @@ import com.sushi.Sushi.R
 /**
  * A simple [Fragment] subclass.
  */
-class SetupProfilFragment : Fragment() {
+class SetupProfileFragment : Fragment() {
     private lateinit var btnSave : Button
     private lateinit var btnCancelSave : Button
-    lateinit var profilFragment: ProfilFragment
+    private lateinit var profileFragment: ProfilFragment
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,savedInstanceState: Bundle?): View? {
         // Inflate the layout for this fragment
@@ -36,9 +36,9 @@ class SetupProfilFragment : Fragment() {
     private fun btnSave() {
         btnSave.setOnClickListener {
             val manager = (activity as AppCompatActivity).supportFragmentManager
-            profilFragment = ProfilFragment()
+            profileFragment = ProfilFragment()
             manager.beginTransaction()
-                .replace(R.id.frame_layout,profilFragment)
+                .replace(R.id.frame_layout,profileFragment)
                 .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
                 .commit()
         }
@@ -47,9 +47,9 @@ class SetupProfilFragment : Fragment() {
     private fun btnSaveCancel() {
         btnCancelSave.setOnClickListener {
             val manager = (activity as AppCompatActivity).supportFragmentManager
-            profilFragment = ProfilFragment()
+            profileFragment = ProfilFragment()
             manager.beginTransaction()
-                .replace(R.id.frame_layout,profilFragment)
+                .replace(R.id.frame_layout,profileFragment)
                 .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
                 .commit()
         }

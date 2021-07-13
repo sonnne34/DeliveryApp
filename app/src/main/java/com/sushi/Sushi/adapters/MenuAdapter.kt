@@ -1,8 +1,6 @@
 package com.sushi.Sushi.adapters
 
 import android.annotation.SuppressLint
-import android.graphics.BitmapFactory
-import android.util.DisplayMetrics
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
@@ -10,8 +8,6 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
-import com.google.firebase.storage.FirebaseStorage
-import com.squareup.picasso.Picasso
 import com.sushi.Sushi.R
 import com.sushi.Sushi.dialog.CountDialog
 import com.sushi.Sushi.models.CatMenuModel
@@ -24,13 +20,6 @@ class MenuAdapter: RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     private val LAYOUT_HEADER = 0
     private val LAYOUT_CHILD = 1
-
-    fun setupMenuScroll(menuList: ArrayList<CatMenuModel>){
-        mMenuList.clear()
-        menuList.addAll(menuList)
-        notifyDataSetChanged()
-        BasketSingleton.notifyTwo()
-    }
 
     fun setupMenu(menuList: ArrayList<CatMenuModel>) {
         mMenuList.clear()
@@ -49,19 +38,15 @@ class MenuAdapter: RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 //                Log.d("UUU", "UUUmenu = " + i.value.Description)
                 var menuModel = MenuModelcatMenu()
                 menuModel.Items = i.value
-
                 mMenuList.add(menuModel)
 
-
             }
-
-
         }
         notifyDataSetChanged()
     }
 
     override fun getItemViewType(position: Int): Int {
-        if (mMenuList.get(position).isHeader == true) {
+        if (mMenuList[position].isHeader) {
             return LAYOUT_HEADER
         } else {
             return LAYOUT_CHILD
@@ -89,38 +74,19 @@ class MenuAdapter: RecyclerView.Adapter<RecyclerView.ViewHolder>() {
         return mMenuList.count()
     }
 
-//    fun scrollToCategory(name: String): Int {
-//        Log.d("Which", "name = $name")
-//        var position = 0
-//        for (i in mMenuList.indices) {
-//            val element: MenuModelcatMenu = mMenuList.get(i)
-//            if (element.isHeader === true) {
-//                if (element.CategoryName.equals(name)) {
-//                    position = i
-//                }
-//            }
-//        }
-//        return position
-//    }
-
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
 
         if (holder.itemViewType == LAYOUT_HEADER) {
             if (holder is HeaderViewHolder) {
                 holder.bindHeader(menuCategoryModel = mMenuList[position])
             } else {
-
-
             }
-
 
         } else {
             if (holder is MenuViewHolder) {
                 holder.bindMenu(menuCategoryModel = mMenuList[position])
             }
-
         }
-
     }
 
     class HeaderViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
@@ -128,14 +94,11 @@ class MenuAdapter: RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
         fun bindHeader(menuCategoryModel: MenuModelcatMenu) {
 
-//            categoryHeader.text = "- " + "${menuCategoryModel.CategoryName}" + " -"
             categoryHeader.text = "${menuCategoryModel.CategoryName}"
-//            val typefacee = Typeface.createFromAsset(itemView.context.assets, "fonts/18765.otf")
-//            categoryHeader.typeface = typefacee
+
         }
 
     }
-
 
     class MenuViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
@@ -150,13 +113,8 @@ class MenuAdapter: RecyclerView.Adapter<RecyclerView.ViewHolder>() {
         fun bindMenu(menuCategoryModel: MenuModelcatMenu) {
 
             name.text = "${menuCategoryModel.Items?.Name}"
-//            val typeface = Typeface.createFromAsset(itemView.context.assets, "fonts/18765.otf")
-//            name.typeface = typeface
             discription.text = "${menuCategoryModel.Items?.Description}"
-//            discription.typeface = typeface
             cost.text = "${menuCategoryModel.Items?.Cost}" + " р."
-//            cost.typeface = typeface
-
 
             val wtVal = menuCategoryModel.Items?.Wt
                 if(wtVal?.toInt() == 0){

@@ -2,7 +2,6 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/../BottomNavigation.iml" filepath="$PROJECT_DIR$/../BottomNavigation.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/BottomNavigation.app.iml" filepath="$PROJECT_DIR$/.idea/modules/BottomNavigation.app.iml" />
     </modules>
   </component>

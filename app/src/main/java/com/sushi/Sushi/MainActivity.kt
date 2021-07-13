@@ -1,12 +1,11 @@
 package com.sushi.Sushi
 
 
-import android.Manifest
 import android.annotation.SuppressLint
 import android.os.Bundle
+import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.app.ActivityCompat
 import androidx.fragment.app.FragmentTransaction
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.sushi.Sushi.fragment.ProfilFragment
@@ -25,7 +24,7 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        val bottomNavigation : BottomNavigationView = findViewById(R.id.btm_nav)
+        val bottomNavigation: BottomNavigationView = findViewById(R.id.btm_nav)
 
 //        ActivityCompat.requestPermissions(
 //            this,
@@ -35,13 +34,15 @@ class MainActivity : AppCompatActivity() {
 
         menuFragment = MenuFragment()
         supportFragmentManager
-                .beginTransaction()
-                .replace(R.id.frame_layout, menuFragment)
-                .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
-                .commit()
+            .beginTransaction()
+            .add(R.id.frame_layout, menuFragment)
+            .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
+            .commit()
 
-        bottomNavigation.setOnNavigationItemSelectedListener  { item ->
-            when(item.itemId){
+
+
+        bottomNavigation.setOnNavigationItemSelectedListener { item ->
+            when (item.itemId) {
 //                R.id.status -> {
 //                    statusFragment = StatusFragment()
 //                    supportFragmentManager
@@ -55,9 +56,11 @@ class MainActivity : AppCompatActivity() {
                     menuFragment = MenuFragment()
                     supportFragmentManager
                         .beginTransaction()
-                        .replace(R.id.frame_layout, menuFragment)
+                        .add(R.id.frame_layout, menuFragment)
+                        .addToBackStack(null)
                         .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
                         .commit()
+                    true
                 }
 
 //                R.id.profil -> {
@@ -71,29 +74,32 @@ class MainActivity : AppCompatActivity() {
 //                }
 
 
-//                R.id.profil -> {
-//
-//                    val btnsheet = LayoutInflater.inflate(R. layout.bottom_sheet, null)
-//                    val dialog = BottomSheetDialog(this)
-//                dialog. setContentView(btnsheet)
-//                        btnsheet.setOnClickListener {
-//                    dialog. dismiss ()
-//                }
-//                        dialog.show()
-//                    }
-
                 R.id.basket -> {
 
                     basketFragment = BasketFragment()
                     supportFragmentManager
                         .beginTransaction()
-                        .replace(R.id.frame_layout, basketFragment)
+                        .add(R.id.frame_layout, basketFragment)
+                        .addToBackStack(null)
                         .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
                         .commit()
+                    true
+                }
+                else -> false
+            }
+        }
+
+        bottomNavigation.setOnNavigationItemReselectedListener { item ->
+            when (item.itemId) {
+                R.id.menu -> {
+                    Toast.makeText(this, "Вы уже в меню", Toast.LENGTH_SHORT).show()
+                }
+                R.id.basket -> {
+                    Toast.makeText(this, "Вы уже в корзине", Toast.LENGTH_SHORT).show()
                 }
             }
-            true
         }
+
     }
 
     override fun onDestroy() {
@@ -105,7 +111,20 @@ class MainActivity : AppCompatActivity() {
 
     override fun onBackPressed() {
 //        super.onBackPressed()
-        openQuitDialog()
+//        openQuitDialog()
+
+
+        val count = supportFragmentManager.backStackEntryCount
+
+        if (count == 0) {
+//            super.onBackPressed()
+            //additional code
+            openQuitDialog()
+
+        } else {
+            supportFragmentManager.popBackStack()
+        }
+
     }
 
     private fun openQuitDialog() {

@@ -14,7 +14,7 @@ class ProfilFragment : Fragment() {
 
 
     lateinit var authorizationFragment: AuthorizationFragment
-    lateinit var setupProfilFragment: SetupProfilFragment
+    lateinit var setupProfileFragment: SetupProfileFragment
     var status = 1
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,savedInstanceState: Bundle?): View? {
@@ -38,9 +38,9 @@ class ProfilFragment : Fragment() {
 
 
                 val manager = (activity as AppCompatActivity).supportFragmentManager
-                setupProfilFragment = SetupProfilFragment()
+                setupProfileFragment = SetupProfileFragment()
                 manager.beginTransaction()
-                        .replace(R.id.frame_layout,setupProfilFragment)
+                        .replace(R.id.frame_layout,setupProfileFragment)
                         .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
                         .commit()
             }

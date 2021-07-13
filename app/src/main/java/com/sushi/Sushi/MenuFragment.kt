@@ -1,32 +1,22 @@
 package com.sushi.Sushi
 
-import android.Manifest
 import android.annotation.SuppressLint
-import android.app.AlertDialog
 import android.content.Context
-import android.content.pm.PackageManager
-import android.graphics.Color
-import android.location.Geocoder
-import android.location.Location
-import android.net.ConnectivityManager
 import android.os.Build
 import android.os.Bundle
 import android.os.Parcelable
-import android.text.format.Time
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.*
 import androidx.annotation.RequiresApi
-import androidx.core.app.ActivityCompat
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.gms.location.FusedLocationProviderClient
 import com.google.android.gms.location.LocationServices
 import com.google.android.gms.maps.model.LatLng
-import com.google.android.material.snackbar.Snackbar
 import com.google.firebase.database.*
 import com.sushi.Sushi.adapters.CategoryAdapter
 import com.sushi.Sushi.adapters.MenuAdapter
@@ -34,18 +24,11 @@ import com.sushi.Sushi.dialog.OptionsDialog
 import com.sushi.Sushi.listener.EventListenerss
 import com.sushi.Sushi.listener.RecyclerItemClickListenr
 import com.sushi.Sushi.models.*
-import com.sushi.Sushi.singleton.Address
 import com.sushi.Sushi.singleton.BasketSingleton
-import kotlinx.android.synthetic.main.fragment_menu.*
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
-import java.text.DateFormat
-import java.text.SimpleDateFormat
-import java.time.LocalTime
-import java.util.*
 import kotlin.collections.ArrayList
-import kotlin.math.ceil
 
 
 /**
@@ -62,11 +45,9 @@ class MenuFragment : Fragment(), EventListenerss {
     private lateinit var categoryRecyclerView : RecyclerView
     lateinit var  menuRecyclerView  : RecyclerView
     private lateinit var adapter : MenuAdapter
-    private lateinit var mCatMenuModel: CatMenuModel
     val menuList : ArrayList<CatMenuModel> = ArrayList()
     val categoryList: ArrayList<CatMenuModel> = ArrayList()
     private lateinit var optionsBtn: ImageButton
-
 
     private var mCategoryRef: DatabaseReference? = null
 
@@ -94,17 +75,12 @@ class MenuFragment : Fragment(), EventListenerss {
 
         addArea()
         BasketSingleton.subscribe(this)
-
         Toast.makeText(context, "Принимаем заказы с 10:00 до 23:00", Toast.LENGTH_LONG).show()
 
         menuRecyclerView = root.findViewById(R.id.recycler_view_menu)
         adapter = MenuAdapter()
         menuRecyclerView.adapter = adapter
-        menuRecyclerView.layoutManager = LinearLayoutManager(
-            root.context,
-            RecyclerView.VERTICAL,
-            false
-        )
+        menuRecyclerView.layoutManager = LinearLayoutManager(root.context, RecyclerView.VERTICAL, false)
         menuRecyclerView.setHasFixedSize(true)
 
         menuRecyclerView.recycledViewPool.setMaxRecycledViews(100, 100)
@@ -115,12 +91,9 @@ class MenuFragment : Fragment(), EventListenerss {
         categoryRecyclerView = root.findViewById(R.id.recyclerview_category)
         mCategoryAdapter = CategoryAdapter()
         categoryRecyclerView.adapter = mCategoryAdapter
-        categoryRecyclerView.layoutManager =
-            LinearLayoutManager(root.context, RecyclerView.HORIZONTAL, false)
+        categoryRecyclerView.layoutManager = LinearLayoutManager(root.context, RecyclerView.HORIZONTAL, false)
         categoryRecyclerView.setHasFixedSize(true)
 
-//        loadCategory()
-        Log.d("CATTT", "cat = $categoryList")
         loadMenu()
 
         CoroutineScope(Dispatchers.IO).launch {
@@ -182,7 +155,6 @@ class MenuFragment : Fragment(), EventListenerss {
 
                     Log.d("AA", "value = 5" + value.CategoryName)
 
-
                     categoryList.add(value)
                     menuList.add(value)
                 }
@@ -203,26 +175,7 @@ class MenuFragment : Fragment(), EventListenerss {
 
     }
 
-//    private fun loadCategory() {
-//        val database = FirebaseDatabase.getInstance()
-//        mCategoryRef = database.getReference("CategoryName")
-//        mCategoryRef!!.addValueEventListener(object : ValueEventListener {
-//            override fun onDataChange(dataSnapshot: DataSnapshot) {
-//                for (dss in dataSnapshot.children) {
-//                    val items = dss.value as Map<*, *>?
-//                    val category = CatMenuModel()
-//                    category.CategoryName = items!!["CategoryName"].toString()
-//                    categoryList.add(category)
-//                }
-//                updateAdapterCategory()
-//            }
-//
-//            override fun onCancelled(error: DatabaseError) {}
-//        })
-//    }
-
     private fun updateAdapterCategory() {
-
         mCategoryAdapter.setupCategory(categoryList)
 
         progress_bar_two.visibility = View.VISIBLE
@@ -232,8 +185,6 @@ class MenuFragment : Fragment(), EventListenerss {
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        Log.d("MMM", "OnActivityCreate = ")
-
         startFragment(savedInstanceState)
     }
 
@@ -241,7 +192,6 @@ class MenuFragment : Fragment(), EventListenerss {
 
         if(savedInstanceState != null){
             val parcelable: Parcelable = savedInstanceState.getParcelable("Adapter")!!
-
         }else{
         }
     }
@@ -365,24 +315,6 @@ class MenuFragment : Fragment(), EventListenerss {
             OptionsDialog.openDialog(context)
         }
     }
-
-//    private fun dateTime(){
-//
-//        val currentDateTime = DateFormat.getDateTimeInstance().format(Date())
-//        Log.d("Time", "dataTime= $currentDateTime")
-//
-//
-//        var startTime = "10:00:00"
-//        var finishTime = "23:00:00"
-//
-//        if(currentDateTime > finishTime || currentDateTime < startTime){
-//            Toast.makeText(context, "!!!!!!!!!!!!!!!!Принимаем заказы с 10:00 до 23:00", Toast.LENGTH_LONG).show()
-//        } else {
-//            Toast.makeText(context, "всё норм", Toast.LENGTH_LONG).show()
-//        }
-//
-//    }
-
 }
 
 

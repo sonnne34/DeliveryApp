@@ -43,33 +43,30 @@ class BasketFragment : Fragment(), EventListenerss{
         savedInstanceState: Bundle?
     ): View? {
         var root = inflater.inflate(R.layout.fragment_basket, container, false)
+
         txtHelloBasket = root.findViewById(R.id.txt_hello_basket)
         txtHelloBasket2 = root.findViewById(R.id.txt_hello_basket2)
         imgHello = root.findViewById(R.id.img_logo_hello_basket)
         clearBasket = root.findViewById(R.id.txt_clear_basket)
-//        val typeface = Typeface.createFromAsset(context?.assets, "fonts/Slimamif.ttf")
-//        txtHelloBasket.typeface = typeface
         txtPriseTotal = root.findViewById(R.id.txt_prise_total_basket)
         layoutPriseTotal = root.findViewById(R.id.layout_prise_total)
         btnRegistr = root.findViewById(R.id.btn_registratoin)
         txtHeader = root.findViewById(R.id.txt_header_basket)
         rvBasket = root.findViewById(R.id.basket_recyclerview)
+
+        BasketSingleton.subscribe(this)
+
         basketAdapter = BasketAdapter()
         rvBasket.adapter = basketAdapter
         rvBasket.layoutManager = LinearLayoutManager(root.context, RecyclerView.VERTICAL, false)
         rvBasket.setHasFixedSize(true)
-
-        BasketSingleton.subscribe(this)
         listmodel = BasketSingleton.basketItem
-
-
 
         setupAdapter(listmodel)
         btnReg()
         visible()
         updateTEXT()
         clearBasket(root.context)
-
 
         return root
     }

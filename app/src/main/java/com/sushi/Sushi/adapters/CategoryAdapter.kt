@@ -1,6 +1,5 @@
 package com.sushi.Sushi.adapters
 
-//import com.sushi.Sushi.models.CategoryModel
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View

@@ -66,8 +66,6 @@ class RegistrationFragment : Fragment() {
 
 
         btnPay = root.findViewById(R.id.btn_payy)
-
-//        btnPay.isFocusableInTouchMode
         btnPay.isFocusable = true
         btnPay.requestFocus()
 
@@ -156,7 +154,6 @@ class RegistrationFragment : Fragment() {
         val pref6 = this.activity?.getPreferences(Context.MODE_PRIVATE)
         val pref7 = this.activity?.getPreferences(Context.MODE_PRIVATE)
 
-
         val savePerson: Editor = pref!!.edit()
         savePerson.putString("name", name).toString()
         val savenumber: Editor = pref1!!.edit()
@@ -184,10 +181,6 @@ class RegistrationFragment : Fragment() {
         saveComite.apply()
         saveEntrance.apply()
         saveLevel.apply()
-
-
-
-
 
     }
 

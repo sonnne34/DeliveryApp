@@ -91,7 +91,7 @@ class BasketAdapter: RecyclerView.Adapter<RecyclerView.ViewHolder>() {
             prise.text = sum.toString()
 
             btnMin.setOnClickListener {
-                var textNumber = valueDish.text
+                val textNumber = valueDish.text
                 var text = Integer.valueOf(textNumber.toString())
                 if(text >= 1){
                     text--
@@ -99,10 +99,10 @@ class BasketAdapter: RecyclerView.Adapter<RecyclerView.ViewHolder>() {
                     text = 0
                 }
 
-                valueDish.text = Integer.toString(text)
+                valueDish.text = text.toString()
 
-                var count = menuModel.Items?.Cost
-                var txt  = Integer.valueOf(count.toString())
+                val count = menuModel.Items?.Cost
+                val txt  = Integer.valueOf(count.toString())
                 val sums = (txt * text)
 
                 prise.text = sums.toString()
@@ -112,14 +112,14 @@ class BasketAdapter: RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
 
             btnPlus.setOnClickListener {
-                var textNumber = valueDish.text
+                val textNumber = valueDish.text
                 var text = Integer.valueOf(textNumber.toString())
                 text++
 
-                valueDish.text = Integer.toString(text)
+                valueDish.text = text.toString()
 
-                var count = menuModel.Items?.Cost
-                var txt = Integer.valueOf(count.toString())
+                val count = menuModel.Items?.Cost
+                val txt = Integer.valueOf(count.toString())
                 val sums = (txt * text)
 
                 prise.text = sums.toString()

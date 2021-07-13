@@ -24,13 +24,9 @@ import com.sushi.Sushi.R
 import com.sushi.Sushi.adapters.BasketAdapter
 import com.sushi.Sushi.adapters.TotalAdapter
 import com.sushi.Sushi.models.MenuModelcatMenu
-import com.sushi.Sushi.models.OrderModel
 import com.sushi.Sushi.singleton.BasketSingleton
-import kotlinx.android.synthetic.main.activity_main.*
-import kotlinx.android.synthetic.main.pay_items.*
 import okhttp3.*
 import java.io.IOException
-import java.util.*
 import kotlin.collections.ArrayList
 
 class PaymentFragment : Fragment() {
@@ -120,25 +116,16 @@ class PaymentFragment : Fragment() {
         editTextPromo = root.findViewById(R.id.edit_promo_payment_total)
         btnPromo = root.findViewById(R.id.btn_promo_payment_total)
 
-//        btnPay.setText(String.format("Player %s", textPay.text))
-
-//        cardForm.setPayBtnClickListner{
-//            Toast.makeText(root.context, "Name : " + cardForm.card.name, Toast.LENGTH_SHORT).show()
-//        }
-
         loadinfoAdapter()
         loadinfoPerson()
-//        checkBoxPromo()
         btnBack()
-//        btnDoneCard()
         btnDone()
-
 
         return root
 
     }
 
-    private fun loadinFireBase() {
+    private fun loadingFireBase() {
 
         val sumPersonTotal = BasketSingleton.count()
 
@@ -366,12 +353,12 @@ class PaymentFragment : Fragment() {
                     inputCash.error =
                         null //если не равно 0 то отправляем заказ и переходим в статус-фрагмент
 
-                    loadinFireBase()
+                    loadingFireBase()
                     openDoneDialog()
 
                 }
             } else {
-                loadinFireBase()
+                loadingFireBase()
                 openDoneDialog()
             }
         }
@@ -397,7 +384,7 @@ class PaymentFragment : Fragment() {
         }
         quitDialog.setNegativeButton(
             "Понятненько!"
-        ) { dialog, which ->
+        ) { _, _ ->
             BasketSingleton.del()
             menuFragment = MenuFragment()
             val manager = (activity as AppCompatActivity).supportFragmentManager

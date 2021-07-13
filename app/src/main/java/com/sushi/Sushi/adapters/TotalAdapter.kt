@@ -42,14 +42,20 @@ class TotalAdapter: RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     }
     class CategoryViewHolder(itemView: View): RecyclerView.ViewHolder(itemView){
-        var cost_total: TextView? = itemView.findViewById(R.id.cost_total)
-        var number_total: TextView? = itemView.findViewById(R.id.number_total)
-        var name_dish_total: TextView? = itemView.findViewById(R.id.name_dish_total)
+        var costtotal: TextView? = itemView.findViewById(R.id.cost_total)
+        var numbertotal: TextView? = itemView.findViewById(R.id.number_total)
+        var namedishtotal: TextView? = itemView.findViewById(R.id.name_dish_total)
 
         fun bind (menu: MenuModelcatMenu ){
-            cost_total?.text = "${menu.Items?.Cost}"
-            number_total?.text = "${menu.Items?.CountDialog}"
-            name_dish_total?.text = "${menu.Items?.Name}"
+
+            val cost: Long = menu.Items?.Cost!!
+            val numberTotal: Long = menu.Items?.CountDialog!!
+            val costTotal = cost * numberTotal
+
+            namedishtotal?.text = "${menu.Items?.Name}"
+            numbertotal?.text = numberTotal.toString()
+            costtotal?.text = costTotal.toString()
+
         }
     }
 }
