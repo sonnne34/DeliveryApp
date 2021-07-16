@@ -94,6 +94,7 @@ class BasketFragment : Fragment(), EventListenerss{
                 registrationFragment = RegistrationFragment()
                 manager.beginTransaction()
                     .replace(R.id.frame_layout, registrationFragment)
+                    .addToBackStack(null)
                     .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
                     .commit()
             }

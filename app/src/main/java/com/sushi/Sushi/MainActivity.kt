@@ -144,5 +144,4 @@ class MainActivity : AppCompatActivity() {
         ) { _, _ -> }
         quitDialog.show()
     }
-
 }

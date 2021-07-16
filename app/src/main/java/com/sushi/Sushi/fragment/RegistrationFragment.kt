@@ -216,6 +216,7 @@ class RegistrationFragment : Fragment() {
                 paymentFragment = PaymentFragment()
                 manager.beginTransaction()
                     .replace(R.id.frame_layout, paymentFragment)
+                    .addToBackStack(null)
                     .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
                     .commit()
             }
