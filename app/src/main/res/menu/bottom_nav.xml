@@ -4,14 +4,14 @@
     <item
         android:id="@+id/menu"
         android:title="Меню"
-        android:icon="@drawable/ic_account_balance_wallet_black_24dp"
+        android:icon="@drawable/ic_menu"
         />
 
 
     <item
         android:id="@+id/basket"
         android:title="Корзина"
-        android:icon="@drawable/ic_shopping_basket_black_24dp"
+        android:icon="@drawable/ic_basket"
         />
 
 

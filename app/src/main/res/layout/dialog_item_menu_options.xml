@@ -8,7 +8,7 @@
 
     <ImageView
         android:id="@+id/image_dish_menu"
-        android:background="@drawable/logo"
+        android:background="@drawable/logo_tras_mini"
         android:gravity="center"
         android:layout_gravity="end"
         android:layout_marginTop="15sp"
@@ -22,7 +22,7 @@
         android:layout_height="wrap_content"
         android:gravity="end"
         android:layout_margin="10dp"
-        android:text="ДОСТУПНЫЕ ЦЕНЫ, РАЗНООБРАЗНОЕ МЕНЮ И ДОСТАВКА ПО ВСЕЙ ТЮМЕНИ! ДЕЛАЕМ НА КАЧЕСТВО, ВЫБОР ЗА ТОБОЙ!"/>
+        android:text="@string/slogan1"/>
 
     <TextView
         android:layout_width="match_parent"
@@ -39,7 +39,8 @@
         android:gravity="end"
         android:layout_marginRight="10dp"
         android:layout_marginEnd="10dp"
-        android:text="8-929-296-99-96" />
+        android:textIsSelectable="true"
+        android:text="@string/tel" />
 
     <TextView
         android:layout_width="match_parent"
@@ -47,32 +48,24 @@
         android:gravity="end"
         android:layout_marginRight="10dp"
         android:layout_marginEnd="10dp"
-        android:text="8(3452)612-612"/>
+        android:textIsSelectable="true"
+        android:text="@string/email"/>
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="end"
-        android:layout_marginTop="5dp"
-        android:layout_marginRight="10dp"
-        android:layout_marginEnd="10dp"
-        android:text="График работы:" />
+        android:layout_margin="10dp"
+        android:text="Условия доставки в г.Тюмень:\n При заказе на сумму от 1000 руб. доставка в черте города - бесплатно.\n В остальных случаях\n стоимость доставки 250 руб."/>
+
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="end"
-        android:layout_marginRight="10dp"
-        android:layout_marginEnd="10dp"
-        android:text="ПН-ПТ, ВС - с 10:00 - 23:00" />
+        android:layout_margin="10dp"
+        android:text="Условия доставки по РФ:\n Отправляем компанией СДЭК, стоимость доставки уточняется после оформления заказа.\n Оплата при получении."/>
 
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity="end"
-        android:layout_marginRight="10dp"
-        android:layout_marginEnd="10dp"
-        android:text="Пт-сб - с 10:00 - 24:00" />
 
     <Button
         android:id="@+id/btn_close_dialog_options"
@@ -81,7 +74,7 @@
         android:layout_gravity="end"
         android:paddingLeft="30dp"
         android:paddingRight="30dp"
-        android:layout_marginTop="30dp"
+        android:layout_marginTop="10dp"
         android:layout_marginRight="10dp"
         android:layout_marginEnd="10dp"
         android:textColor="@color/qgreen"

@@ -13,7 +13,7 @@ class LoadImage {
         val storageRef = storage.getReferenceFromUrl(menuCategoryModel.Items?.Picture!!)
         storageRef.downloadUrl.addOnSuccessListener { uri ->
 
-            Picasso.get().load(uri).fit().centerCrop().noFade().into(imageDish)
+            Picasso.get().load(uri).fit().transform(CircleTransform()).noFade().into(imageDish)
         }
 
     }

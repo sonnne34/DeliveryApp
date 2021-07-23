@@ -75,7 +75,6 @@ class MenuFragment : Fragment(), EventListenerss {
 
         addArea()
         BasketSingleton.subscribe(this)
-        Toast.makeText(context, "Принимаем заказы с 10:00 до 23:00", Toast.LENGTH_LONG).show()
 
         menuRecyclerView = root.findViewById(R.id.recycler_view_menu)
         adapter = MenuAdapter()

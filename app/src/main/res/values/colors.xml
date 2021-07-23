@@ -22,15 +22,21 @@
     <color name="header">#333333</color>
     <color name="gray_mercury">#E1E1E1</color>
 
-    <color name="qgreen">#35682d</color> // зелёный
-    <color name="qyellow">#ffbd43</color> //жёлтый
-    <color name="qgradient1">#35682d</color> //градиент1
-    <color name="qgradient2">#b8cf69</color>  //градиент2
-    <color name="qlightGreen">#cadb91</color>  //градиент2
+    <color name="qgreen">#76ad68</color> // зелёный
+    <color name="qgreenDark">#416e0d</color> // зелёный
+    <color name="qyellow">#b1ad37</color> //жёлтый
+    <color name="qohra">#c4832e</color> //охра
+    <color name="qlightGreen">#b2d18e</color>  //светло-зелёный
+    <color name="qlightGreen2">#c0c478</color>  //светло-зелёный
     <color name="qlightyellow">#f0d698</color>  //
     <color name="qlightGrayBackground">#e5e5e5</color>  //светло-серый фон
     <color name="qblackFont">#2d2d2d</color> //чёрный шрифт
-    <color name="qgrayAdditionalFont">#969696</color>  //серый шрифт дополнительного текста
+    <color name="qgrayAdditionalFont">#505050</color>  //серый шрифт дополнительного текста
+    <color name="qgradient1">#76ad68</color> //градиент1
+    <color name="qgradient2">#b2d18e</color>  //градиент2
+
+
+
 
 
 

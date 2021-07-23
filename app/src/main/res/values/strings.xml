@@ -14,4 +14,8 @@
     <string name="title_address">Адрес:</string>
     <string name="title_payment">Детали оплаты:</string>
     <string name="title_total">Итого:</string>
+    <string name="slogan1">Нельзя купить счастье,\n но можно купить чай :)</string>
+    <string name="email">info@teatemple72.ru</string>
+    <string name="tel">+7 904 888 45 85</string>
+    <string name="name_company">Чайный Храм</string>
 </resources>

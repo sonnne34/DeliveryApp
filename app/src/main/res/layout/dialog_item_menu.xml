@@ -11,12 +11,13 @@
 
         <ImageView
             android:id="@+id/imageViewPictureDishDialog"
-            android:layout_width="match_parent"
-            android:layout_height="250dp"
+            android:layout_width="300dp"
+            android:layout_height="300dp"
+            android:layout_gravity="center"
             android:layout_marginTop="10dp"
             android:layout_marginLeft="10dp"
             android:layout_marginRight="10dp"
-            android:background="@drawable/bacground_image_dish" />
+            android:background="@drawable/logo_tras_mini" />
 
         <TextView
             android:id="@+id/textViewGoodsDescriptionDialog"
