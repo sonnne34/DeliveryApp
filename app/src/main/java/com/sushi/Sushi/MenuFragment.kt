@@ -141,7 +141,7 @@ class MenuFragment : Fragment(), EventListenerss {
 
         val database = FirebaseDatabase.getInstance()
         Log.d("AA", "value =  прошло 2")
-        val myRef = database.getReference("RestaurantsMenu/Avocado")
+        val myRef = database.getReference("RestaurantsMenu/TeaTemple")
         Log.d("AA", "value =  прошло 3")
         myRef.addValueEventListener(object : ValueEventListener {
 
