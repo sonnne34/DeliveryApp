@@ -63,7 +63,7 @@ class BasketFragment : Fragment(), EventListenerss{
         listmodel = BasketSingleton.basketItem
 
         setupAdapter(listmodel)
-        btnReg()
+        btnReg(root.context)
         visible()
         updateTEXT()
         clearBasket(root.context)
@@ -78,16 +78,11 @@ class BasketFragment : Fragment(), EventListenerss{
 
     }
 
-    private fun btnReg () {
+    private fun btnReg (context: Context) {
             btnRegistr.setOnClickListener {
                 val sum = BasketSingleton.count()
-                if (sum < 800) {
-                    val toast = Toast.makeText(context,
-                        "Но сумма заказа должна быть не менее 800 рублей...",
-                        Toast.LENGTH_LONG
-                    )
-                    toast.setGravity(Gravity.CENTER, 0, 0)
-                    toast.show()
+                if (sum < 1000) {
+                    openDialogDelivery(context)
                 }
                 else {
                 val manager = (activity as AppCompatActivity).supportFragmentManager
@@ -162,5 +157,29 @@ class BasketFragment : Fragment(), EventListenerss{
                 ) { _, _ -> }
                 clearDialog.show()
         }
+    }
+
+    private fun openDialogDelivery(context: Context){
+        val deliveryDialog = AlertDialog.Builder(context)
+        deliveryDialog.setTitle("Доставка")
+        deliveryDialog.setMessage("Бесплатная доставка при заказе на сумму от 1000 рублей.")
+        deliveryDialog.setPositiveButton(
+            "Дополнить заказ"
+        ) { _, _ ->
+
+            BasketSingleton.del()
+            BasketSingleton.notifyTwo()
+
+            val manager = (activity as AppCompatActivity).supportFragmentManager
+            menuFragment = MenuFragment()
+            manager.beginTransaction()
+                .replace(R.id.frame_layout, menuFragment)
+                .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
+                .commit()
+        }
+        deliveryDialog.setNegativeButton(
+            "Оплатить 250 рублей за доставку"
+        ) { _, _ -> }
+        deliveryDialog.show()
     }
 }

@@ -38,6 +38,23 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="end"
+        android:layout_margin="10dp"
+        android:textSize="16sp"
+        android:text="Условия доставки в г.Тюмень:\n При заказе на сумму от 1000 руб. доставка в черте города - бесплатно.\n В остальных случаях\n стоимость доставки 250 руб."/>
+
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="end"
+        android:layout_margin="10dp"
+        android:textSize="16sp"
+        android:text="Условия доставки по РФ:\n Отправляем компанией СДЭК, стоимость доставки уточняется после оформления заказа.\n Оплата при получении."/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="end"
         android:layout_marginTop="5dp"
         android:layout_marginRight="10dp"
         android:layout_marginEnd="10dp"
@@ -63,24 +80,6 @@
         android:layout_marginEnd="10dp"
         android:textIsSelectable="true"
         android:text="@string/email"/>
-
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity="end"
-        android:layout_margin="10dp"
-        android:textSize="16sp"
-        android:text="Условия доставки в г.Тюмень:\n При заказе на сумму от 1000 руб. доставка в черте города - бесплатно.\n В остальных случаях\n стоимость доставки 250 руб."/>
-
-
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity="end"
-        android:layout_margin="10dp"
-        android:textSize="16sp"
-        android:text="Условия доставки по РФ:\n Отправляем компанией СДЭК, стоимость доставки уточняется после оформления заказа.\n Оплата при получении."/>
-
 
     <Button
         android:id="@+id/btn_close_dialog_options"

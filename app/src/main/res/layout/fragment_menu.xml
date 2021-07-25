@@ -62,7 +62,7 @@
             android:layout_marginTop="-10dp"
             android:layout_marginBottom="2dp"
             android:layout_below="@+id/txt_header_basket"
-            android:text="с чем лучше пить чай? С удовольствием..."/>
+            android:text="С чем лучше пить чай? С удовольствием!"/>
 
         <ImageButton
             android:id="@+id/btn_options"
