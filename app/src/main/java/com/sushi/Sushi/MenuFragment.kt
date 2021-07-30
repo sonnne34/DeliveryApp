@@ -144,6 +144,14 @@ class MenuFragment : Fragment(), EventListenerss {
         return root
     }
 
+
+    companion object {
+
+
+        fun newInstance() = MenuFragment()
+
+    }
+
     @SuppressLint("NewApi")
     @RequiresApi(Build.VERSION_CODES.LOLLIPOP)
     fun isOnline(context: Context): Boolean {

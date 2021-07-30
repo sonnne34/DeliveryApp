@@ -13,10 +13,9 @@ import com.sushi.Sushi.fragment.StatusFragment
 
 class MainActivity : AppCompatActivity() {
 
-    private lateinit var menuFragment: MenuFragment
-    private lateinit var statusFragment: StatusFragment
-    private lateinit var profilFragment: ProfilFragment
-    private lateinit var basketFragment: BasketFragment
+
+
+
 
 
     @SuppressLint("WrongConstant", "MissingPermission")
@@ -32,10 +31,10 @@ class MainActivity : AppCompatActivity() {
 //            123
 //        )
 
-        menuFragment = MenuFragment()
+
         supportFragmentManager
             .beginTransaction()
-            .add(R.id.frame_layout, menuFragment)
+            .add(R.id.frame_layout, MenuFragment.newInstance())
             .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
             .commit()
 
@@ -53,10 +52,10 @@ class MainActivity : AppCompatActivity() {
 //                }
 
                 R.id.menu -> {
-                    menuFragment = MenuFragment()
+
                     supportFragmentManager
                         .beginTransaction()
-                        .add(R.id.frame_layout, menuFragment)
+                        .add(R.id.frame_layout, MenuFragment.newInstance())
                         .addToBackStack(null)
                         .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
                         .commit()
@@ -75,11 +74,9 @@ class MainActivity : AppCompatActivity() {
 
 
                 R.id.basket -> {
-
-                    basketFragment = BasketFragment()
                     supportFragmentManager
                         .beginTransaction()
-                        .add(R.id.frame_layout, basketFragment)
+                        .add(R.id.frame_layout, BasketFragment.newInstance())
                         .addToBackStack(null)
                         .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
                         .commit()

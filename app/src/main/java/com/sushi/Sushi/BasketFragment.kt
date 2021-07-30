@@ -72,6 +72,13 @@ class BasketFragment : Fragment(), EventListenerss{
         return root
     }
 
+    companion object {
+
+
+        fun newInstance() = BasketFragment()
+
+    }
+
 
     private fun setupAdapter(modelList: ArrayList<MenuModelcatMenu>) {
         rvBasket.visibility = View.VISIBLE
