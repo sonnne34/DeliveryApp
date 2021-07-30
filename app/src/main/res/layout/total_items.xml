@@ -27,7 +27,8 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="5dp"
+        android:layout_marginLeft="5dp"
+        android:layout_marginRight="5dp"
         android:paddingBottom="3dp"
         android:layout_below="@+id/title_total"
         android:background="@drawable/okrugl_bacgr"
@@ -53,6 +54,34 @@
 
         </androidx.recyclerview.widget.RecyclerView>
 
+        <LinearLayout
+            android:id="@+id/layout_delivery"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/total_recyclerView">
+
+        <TextView
+            android:id="@+id/delivery_total"
+            android:layout_width="wrap_content"
+            style="@style/TextBody2"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_marginLeft="10dp"
+            android:text="Доставка:"/>
+
+        <TextView
+            android:id="@+id/delivery_sum_total"
+            android:layout_width="match_parent"
+            style="@style/TextBody2"
+            android:layout_gravity="right"
+            android:gravity="right"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_marginLeft="10dp"
+            android:text="0 руб. " />
+
+        </LinearLayout>
+
         <TextView
             android:id="@+id/sum_person_total"
             style="@style/TextBody2"
@@ -61,7 +90,7 @@
             android:gravity="end"
             android:textStyle="bold"
             android:textSize="15sp"
-            android:layout_below="@+id/total_recyclerView"
+            android:layout_below="@+id/layout_delivery"
             android:hint="Итого:..." />
 
 

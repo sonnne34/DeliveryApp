@@ -60,7 +60,7 @@
                 android:layout_height="wrap_content"
                 android:textColor="@color/qgrayAdditionalFont"
                 android:layout_margin="1dp"
-                android:maxLines="3"
+                android:maxLines="4"
                 android:layout_below="@+id/text_roll"
                 android:text="Описание"/>
 
@@ -72,7 +72,6 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@+id/layout_dish_card"
-            android:weightSum="2"
             android:layout_marginTop="1dp"
             android:layout_marginLeft="5dp"
             android:layout_marginRight="5dp"

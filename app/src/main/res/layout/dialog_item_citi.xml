@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="300dp"
+    android:layout_height="wrap_content"
+    android:layout_centerHorizontal="true"
+    android:layout_centerVertical="true"
+    android:padding="10dp">
+
+    <TextView
+        android:id="@+id/citi_header"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        android:textColor="@color/qgreen"
+        android:layout_centerHorizontal="true"
+        android:gravity="center"
+        android:text="Куда доставлять:"/>
+
+    <RadioGroup
+        android:id="@+id/radio_group_citi"
+        android:layout_below="@+id/citi_header"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:theme="@style/MyCheckBox"
+        android:checkedButton="@id/radio_button_citi"
+        android:orientation="vertical">
+
+        <RadioButton
+            android:id="@+id/radio_button_citi"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Тюмень"/>
+
+        <RadioButton
+            android:id="@+id/radio_button_citi2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="В радиусе 50 км от Тюмени"/>
+
+        <RadioButton
+            android:id="@+id/radio_button_citi3"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Другой прекрасный город"/>
+
+    </RadioGroup>
+
+    <Button
+        android:id="@+id/btn_save_dialog_siti"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:paddingLeft="30dp"
+        android:paddingRight="30dp"
+        android:layout_centerVertical="true"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@+id/radio_group_citi"
+        android:textColor="@color/qgreen"
+        android:background="@drawable/okrugl_light_green"
+        android:textSize="13sp"
+        android:text="Сохранить"/>
+
+</RelativeLayout>

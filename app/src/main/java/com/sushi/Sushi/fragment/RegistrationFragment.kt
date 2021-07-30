@@ -20,7 +20,7 @@ import com.sushi.Sushi.R
 
 class RegistrationFragment : Fragment() {
 
-    lateinit var paymentFragment: PaymentFragment
+    var paymentFragment: PaymentFragment = PaymentFragment()
     lateinit var basketFragment: BasketFragment
     lateinit var btnPay : Button
     lateinit var nameEdit : EditText
@@ -63,7 +63,6 @@ class RegistrationFragment : Fragment() {
         inputPhone = root.findViewById(R.id.input_phone)
         inputStreet = root.findViewById(R.id.input_street)
         inputHome = root.findViewById(R.id.input_home)
-
 
         btnPay = root.findViewById(R.id.btn_payy)
         btnPay.isFocusable = true
@@ -211,11 +210,17 @@ class RegistrationFragment : Fragment() {
             } else {
                 //сохранение данных
                 editeSave()
+
+                val delivery = arguments?.getString("delivery").toString()
+                val args = Bundle()
+                args.putString("delivery", delivery)
+                paymentFragment.arguments = args
+                Log.d("delivery", "delivery = $delivery")
+
                 //переход к сл.фрагменту
                 val manager = (activity as AppCompatActivity).supportFragmentManager
-                paymentFragment = PaymentFragment()
                 manager.beginTransaction()
-                    .replace(R.id.frame_layout, paymentFragment)
+                    .replace(R.id.frame_layout, paymentFragment, args.toString())
                     .addToBackStack(null)
                     .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
                     .commit()

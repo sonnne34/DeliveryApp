@@ -125,7 +125,7 @@ class MenuAdapter: RecyclerView.Adapter<RecyclerView.ViewHolder>() {
                 }
             Log.d("URR", "uri= Прошло 1 ")
 
-            LoadImage().loadImage(menuCategoryModel, imgDish)
+            LoadImage().loadImageDish(menuCategoryModel, imgDish)
 
 //            val storage = FirebaseStorage.getInstance()
 //            Log.d("URR", "uri= Прошло 2 ")

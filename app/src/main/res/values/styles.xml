@@ -63,6 +63,13 @@
         <item name="android:windowExitAnimation">@anim/slide_in_right</item>
     </style>
 
+    \\стиль диалогового окна (акции)
+    <style name="CustomDialogPromo" parent="@android:style/Theme.Dialog">
+        <item name="android:background">@drawable/okrugl_promo</item>
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:windowBackground">@android:color/transparent</item>
+    </style>
+
 
     //стиль мальеньких кнопок
     <style name="ButtonBody">

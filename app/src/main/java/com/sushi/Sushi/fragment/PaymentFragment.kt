@@ -27,7 +27,6 @@ import com.sushi.Sushi.models.MenuModelcatMenu
 import com.sushi.Sushi.singleton.BasketSingleton
 import okhttp3.*
 import java.io.IOException
-import kotlin.collections.ArrayList
 
 class PaymentFragment : Fragment() {
 
@@ -61,6 +60,8 @@ class PaymentFragment : Fragment() {
     private lateinit var layoutPromo: LinearLayout
     private lateinit var editTextPromo: EditText
     private lateinit var btnPromo: Button
+    private lateinit var delivery: TextView
+    private lateinit var layoutDelivery: LinearLayout
 
     private var method = String()
 
@@ -115,6 +116,8 @@ class PaymentFragment : Fragment() {
         layoutPromo.visibility = View.GONE
         editTextPromo = root.findViewById(R.id.edit_promo_payment_total)
         btnPromo = root.findViewById(R.id.btn_promo_payment_total)
+        delivery = root.findViewById(R.id.delivery_sum_total)
+        layoutDelivery = root.findViewById(R.id.layout_delivery)
 
         loadinfoAdapter()
         loadinfoPerson()
@@ -127,7 +130,10 @@ class PaymentFragment : Fragment() {
 
     private fun loadingFireBase() {
 
-        val sumPersonTotal = BasketSingleton.count()
+        val ss = BasketSingleton.count()
+
+        val deliveryS = arguments?.getString("delivery")
+        val sumPersonTotal= ss + deliveryS!!.toInt()
 
         val pref = this.activity?.getPreferences(Context.MODE_PRIVATE)
         val pref1 = this.activity?.getPreferences(Context.MODE_PRIVATE)
@@ -163,6 +169,7 @@ class PaymentFragment : Fragment() {
 
         val cityTwo = "Тюмень"
         val banknotePayment = "Наличными"
+//        send = "$send\nСтоимость доставки по Тюмени: $deliveryS р. \n "
         send = send + "\n" + "Итого: " + sumPersonTotal + " р. \n "
         send = send + "Информация о заказе: \n" + loadname + "\n" + loadphone + "\n"
         send = send + "Адрес доставки: \n" + cityTwo + ", ул. " + street + ", д. " + house + ", кв./оф. " + appart + ", под. " + entrance + ", эт. " + level + "\n";
@@ -185,15 +192,15 @@ class PaymentFragment : Fragment() {
         base += "&tel=" + loadphone; //телефон
         base += "&order=" + order ; //заказ
 
-        Log.d("RRRRTest","Base = " + base);
+        Log.d("RRRRTest", "Base = " + base);
 
-        Log.d("PESTO","PESTO = 1  ");
+        Log.d("PESTO", "PESTO = 1  ");
 
         val client = OkHttpClient()
-        Log.d("PESTO","PESTO = 2  ");
+        Log.d("PESTO", "PESTO = 2  ");
         val url = base
         val request = Request.Builder().url(url).build()
-        Log.d("PESTO","PESTO = 3  ");
+        Log.d("PESTO", "PESTO = 3  ");
         client.newCall(request).enqueue(object : Callback {
             override fun onFailure(call: Call, e: IOException) {
 
@@ -203,11 +210,11 @@ class PaymentFragment : Fragment() {
             @Throws(IOException::class)
             override fun onResponse(call: Call, response: Response) {
                 if (response.isSuccessful) {
-                    Log.d("PESTO","PESTO = 4  ");
+                    Log.d("PESTO", "PESTO = 4  ");
                     val myResponse = response.body()!!.string()
-                    Log.d("PESTO","PESTO = 5  ");
+                    Log.d("PESTO", "PESTO = 5  ");
                     Log.d("Spot", "myResponse = \n $myResponse")
-                    Log.d("PESTO","PESTO = 6  ");
+                    Log.d("PESTO", "PESTO = 6  ");
                 }
             }
         })
@@ -263,11 +270,17 @@ class PaymentFragment : Fragment() {
         }
 
         val ss = BasketSingleton.count()
-        sumTotal.text = "итого: $ss руб.  "
+        val deliveryS = arguments?.getString("delivery")
 
-        Log.d("data", "street= $street")
-
-
+        if (deliveryS == "0"){
+            layoutDelivery.visibility = View.GONE
+            sumTotal.text = "итого: $ss руб.  "
+        } else {
+            layoutDelivery.visibility = View.VISIBLE
+            delivery.text = "$deliveryS руб.  "
+            val sumTotalS = ss + deliveryS!!.toInt()
+            sumTotal.text = "итого: $sumTotalS руб.  "
+        }
     }
 
     private fun loadinfoAdapter() {
@@ -311,7 +324,8 @@ class PaymentFragment : Fragment() {
                         "Картой" //при нажатии на "Картой" значение переменной - "Картой"
                     inputCash.error =
                         null //при нажатии на "Картой" ошибок с обязательным полем чтобы не всплывало
-                    Toast.makeText(context, "У курьера будет с собой терминал", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(context, "У курьера будет с собой терминал", Toast.LENGTH_SHORT)
+                        .show()
                     inputCash.visibility = View.GONE
 //                    btnDoneCard.visibility = View.VISIBLE
 //                    btnDone.visibility = View.GONE
@@ -366,7 +380,8 @@ class PaymentFragment : Fragment() {
 
     private fun openDoneDialog() {
 
-        val quitDialog = AlertDialog.Builder(activity as AppCompatActivity
+        val quitDialog = AlertDialog.Builder(
+            activity as AppCompatActivity
         )
         quitDialog.setTitle("Заказ оправлен!")
         quitDialog.setMessage("В ближайшее время мы свяжемся с Вами для подтверждения заказа =)")

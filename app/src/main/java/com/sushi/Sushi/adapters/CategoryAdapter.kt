@@ -43,25 +43,6 @@ class CategoryAdapter: RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
             categoryText.text = categoryModel.CategoryName
             Log.d("category", "cat= $categoryText")
-
-            //анимация альфа канала (прозрачности от 0 до 1)
-            val animation: Animation = AlphaAnimation(0.7f, 1.0f)
-//длительность анимации 1/10 секунды
-            //длительность анимации 1/10 секунды
-            animation.duration = 700
-//сдвижка начала анимации (с середины)
-            //сдвижка начала анимации (с середины)
-            animation.startOffset = 50
-//режим повтора - сначала или в обратном порядке
-            //режим повтора - сначала или в обратном порядке
-            animation.repeatMode = Animation.REVERSE
-//режим повтора (бесконечно)
-            //режим повтора (бесконечно)
-            animation.repeatCount = Animation.INFINITE
-//накладываем анимацию на TextView
-            //накладываем анимацию на TextView
-            categoryText.startAnimation(animation)
-
         }
     }
 }

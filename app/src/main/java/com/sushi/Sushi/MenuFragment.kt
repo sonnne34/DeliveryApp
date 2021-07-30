@@ -2,15 +2,20 @@ package com.sushi.Sushi
 
 import android.annotation.SuppressLint
 import android.content.Context
+import android.icu.text.Transliterator
 import android.os.Build
 import android.os.Bundle
 import android.os.Parcelable
 import android.util.Log
 import android.view.LayoutInflater
+import android.view.MotionEvent
 import android.view.View
 import android.view.ViewGroup
-import android.widget.*
+import android.widget.Button
+import android.widget.ImageButton
+import android.widget.ProgressBar
 import androidx.annotation.RequiresApi
+import androidx.core.widget.NestedScrollView
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -20,15 +25,18 @@ import com.google.android.gms.maps.model.LatLng
 import com.google.firebase.database.*
 import com.sushi.Sushi.adapters.CategoryAdapter
 import com.sushi.Sushi.adapters.MenuAdapter
+import com.sushi.Sushi.adapters.PromoAdapter
+import com.sushi.Sushi.dialog.CitiDialog
 import com.sushi.Sushi.dialog.OptionsDialog
+import com.sushi.Sushi.dialog.PromoDialog
 import com.sushi.Sushi.listener.EventListenerss
 import com.sushi.Sushi.listener.RecyclerItemClickListenr
-import com.sushi.Sushi.models.*
+import com.sushi.Sushi.models.CatMenuModel
+import com.sushi.Sushi.models.PromoModel
 import com.sushi.Sushi.singleton.BasketSingleton
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
-import kotlin.collections.ArrayList
 
 
 /**
@@ -43,11 +51,15 @@ class MenuFragment : Fragment(), EventListenerss {
     private lateinit var dangerousArea: MutableList<LatLng>
     private lateinit var  mCategoryAdapter: CategoryAdapter
     private lateinit var categoryRecyclerView : RecyclerView
+    private lateinit var  mPromoAdapter: PromoAdapter
+    private lateinit var promoRecyclerView : RecyclerView
     lateinit var  menuRecyclerView  : RecyclerView
     private lateinit var adapter : MenuAdapter
     val menuList : ArrayList<CatMenuModel> = ArrayList()
     val categoryList: ArrayList<CatMenuModel> = ArrayList()
+    val promoList: ArrayList<PromoModel> = ArrayList()
     private lateinit var optionsBtn: ImageButton
+    private lateinit var btnUp: Button
 
     private var mCategoryRef: DatabaseReference? = null
 
@@ -72,6 +84,7 @@ class MenuFragment : Fragment(), EventListenerss {
         progress_bar = root.findViewById(R.id.progress_bar)
         progress_bar_two = root.findViewById(R.id.progress_two)
         optionsBtn = root.findViewById(R.id.btn_options)
+        btnUp = root.findViewById(R.id.btn_up)
 
         addArea()
         BasketSingleton.subscribe(this)
@@ -79,21 +92,40 @@ class MenuFragment : Fragment(), EventListenerss {
         menuRecyclerView = root.findViewById(R.id.recycler_view_menu)
         adapter = MenuAdapter()
         menuRecyclerView.adapter = adapter
-        menuRecyclerView.layoutManager = LinearLayoutManager(root.context, RecyclerView.VERTICAL, false)
+        menuRecyclerView.layoutManager = LinearLayoutManager(
+            root.context,
+            RecyclerView.VERTICAL,
+            false
+        )
         menuRecyclerView.setHasFixedSize(true)
 
         menuRecyclerView.recycledViewPool.setMaxRecycledViews(100, 100)
-        menuRecyclerView.setItemViewCacheSize(150)
+        menuRecyclerView.setItemViewCacheSize(300)
         menuRecyclerView.isDrawingCacheEnabled = true
 
+        promoRecyclerView = root.findViewById(R.id.recyclerview_promo)
+        mPromoAdapter = PromoAdapter()
+        promoRecyclerView.adapter = mPromoAdapter
+        promoRecyclerView.layoutManager = LinearLayoutManager(
+            root.context,
+            RecyclerView.HORIZONTAL,
+            false
+        )
+        promoRecyclerView.setHasFixedSize(true)
 
         categoryRecyclerView = root.findViewById(R.id.recyclerview_category)
         mCategoryAdapter = CategoryAdapter()
         categoryRecyclerView.adapter = mCategoryAdapter
-        categoryRecyclerView.layoutManager = LinearLayoutManager(root.context, RecyclerView.HORIZONTAL, false)
+        categoryRecyclerView.layoutManager = LinearLayoutManager(
+            root.context,
+            RecyclerView.HORIZONTAL,
+            false
+        )
         categoryRecyclerView.setHasFixedSize(true)
 
+        loadPromo()
         loadMenu()
+//        loadCiti(root.context)
 
         CoroutineScope(Dispatchers.IO).launch {
 
@@ -103,6 +135,8 @@ class MenuFragment : Fragment(), EventListenerss {
 //            loadAddress(root.context, online)
         }
 
+//        btnUp()
+        promoClick(root.context, promoModel = PromoModel())
         scrollCat(root.context)
         btnOptions(root.context)
 //        dateTime()
@@ -135,6 +169,33 @@ class MenuFragment : Fragment(), EventListenerss {
         return false
     }
 
+    private fun loadPromo(){
+        val database = FirebaseDatabase.getInstance()
+        val myRef = database.getReference("PictureSale/Items")
+        myRef.addValueEventListener(object : ValueEventListener {
+
+            override fun onDataChange(dataSnapshot: DataSnapshot) {
+
+                for (ds in dataSnapshot.children) {
+
+                    val promoModel = ds.getValue(PromoModel::class.java)!!
+                    promoList.add(promoModel)
+
+
+                    Log.d("promo", "promo = $promoList")
+                    Log.d("promo", "promo ds = $ds")
+                    Log.d("promo", "promo data= ${dataSnapshot.children}")
+
+                }
+                mPromoAdapter.setupPromo(promoList)
+            }
+
+            override fun onCancelled(error: DatabaseError) {
+                // Failed to read value
+                Log.w("dima", "Failed to read value.", error.toException())
+            }
+        })
+    }
 
     private fun loadMenu() {
         Log.d("AA", "value =  прошло 1")
@@ -299,6 +360,23 @@ class MenuFragment : Fragment(), EventListenerss {
                                 adapter.scrollToCategory(fff.CategoryName),
                                 0
                             )
+                    }
+
+                    override fun onItemLongClick(view: View?, position: Int) {
+
+                    }
+                })
+        )
+    }
+
+    private fun promoClick(context: Context, promoModel: PromoModel){
+        promoRecyclerView.addOnItemTouchListener(
+            RecyclerItemClickListenr(context, promoRecyclerView,
+                object : RecyclerItemClickListenr.OnItemClickListener {
+
+                    override fun onItemClick(view: View, position: Int) {
+
+                        PromoDialog.openDialog(context, promoModel, position, promoList)
 
                     }
 
@@ -312,6 +390,24 @@ class MenuFragment : Fragment(), EventListenerss {
     private fun btnOptions(context: Context){
         optionsBtn.setOnClickListener {
             OptionsDialog.openDialog(context)
+        }
+    }
+
+    private fun btnUp(){
+
+        btnUp.setOnClickListener {
+
+            (menuRecyclerView.layoutManager as LinearLayoutManager).scrollToPosition(1)
+
+        }
+    }
+
+    private fun loadCiti(context: Context) {
+        val pref = this.activity?.getPreferences(Context.MODE_PRIVATE)
+        val loadCiti = pref!!.getString("citi", "")
+
+        if(loadCiti.toString().isEmpty()){
+            CitiDialog.openDialog(context)
         }
     }
 }

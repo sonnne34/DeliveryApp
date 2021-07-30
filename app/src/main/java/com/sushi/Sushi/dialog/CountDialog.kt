@@ -49,7 +49,7 @@ class CountDialog {
                 description.text = file.Items?.Description
                 name.text = file.Items?.Name
 
-                LoadImage().loadImage(file, imgDish)
+                LoadImage().loadImageDish(file, imgDish)
 
 //                val storageTwo = FirebaseStorage.getInstance()
 //
@@ -90,7 +90,7 @@ class CountDialog {
                 name.text = menuFile.Items?.Name
                 cost.text = menuFile.Items?.Cost.toString()
 
-                LoadImage().loadImage(menuFile, imgDish)
+                LoadImage().loadImageDish(menuFile, imgDish)
 
 //                val storageTwo = FirebaseStorage.getInstance()
 //                val storageRefTwo = storageTwo.getReferenceFromUrl(menuFile.Items?.Picture!!)

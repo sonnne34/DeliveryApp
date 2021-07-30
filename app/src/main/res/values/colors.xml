@@ -27,6 +27,7 @@
     <color name="qyellow">#b1ad37</color> //жёлтый
     <color name="qohra">#c4832e</color> //охра
     <color name="qlightGreen">#b2d18e</color>  //светло-зелёный
+    <color name="qlightGreenTrans">#90b2d18e</color>  //светло-зелёный
     <color name="qlightGreen2">#c0c478</color>  //светло-зелёный
     <color name="qlightyellow">#f0d698</color>  //
     <color name="qlightGrayBackground">#e5e5e5</color>  //светло-серый фон

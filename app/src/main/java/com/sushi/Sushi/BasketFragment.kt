@@ -28,7 +28,7 @@ class BasketFragment : Fragment(), EventListenerss{
     private lateinit var rvBasket : RecyclerView
     private  var listmodel : ArrayList<MenuModelcatMenu> = ArrayList()
     lateinit var btnRegistr : Button
-    lateinit var registrationFragment: RegistrationFragment
+    var registrationFragment: RegistrationFragment = RegistrationFragment()
     lateinit var menuFragment: MenuFragment
     lateinit var txtHelloBasket : TextView
     lateinit var txtHelloBasket2 : TextView
@@ -37,6 +37,7 @@ class BasketFragment : Fragment(), EventListenerss{
     lateinit var txtHeader : TextView
     lateinit var imgHello: ImageView
     lateinit var clearBasket : TextView
+    private var delivery = String()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -82,16 +83,23 @@ class BasketFragment : Fragment(), EventListenerss{
             btnRegistr.setOnClickListener {
                 val sum = BasketSingleton.count()
                 if (sum < 1000) {
-                    openDialogDelivery(context)
+//                    openDialogDelivery(context)
+                    //передаём стоимость доставки и переходим к регистрационному фрагменту
+                    delivery = "0"
+                    val args = Bundle()
+                    args.putString("delivery", delivery)
+                    registrationFragment.arguments = args
+
+                    goRegistrationFragment(args.toString())
                 }
                 else {
-                val manager = (activity as AppCompatActivity).supportFragmentManager
-                registrationFragment = RegistrationFragment()
-                manager.beginTransaction()
-                    .replace(R.id.frame_layout, registrationFragment)
-                    .addToBackStack(null)
-                    .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
-                    .commit()
+                    //передаём стоимость доставки и переходим к регистрационному фрагменту
+                    delivery = "0"
+                    val args = Bundle()
+                    args.putString("delivery", delivery)
+                    registrationFragment.arguments = args
+
+                    goRegistrationFragment(args.toString())
             }
         }
     }
@@ -145,12 +153,7 @@ class BasketFragment : Fragment(), EventListenerss{
                     BasketSingleton.del()
                     BasketSingleton.notifyTwo()
 
-                    val manager = (activity as AppCompatActivity).supportFragmentManager
-                    menuFragment = MenuFragment()
-                    manager.beginTransaction()
-                        .replace(R.id.frame_layout, menuFragment)
-                        .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
-                        .commit()
+                    goMenuFragment()
                 }
                 clearDialog.setNegativeButton(
                     "Ой, нет!"
@@ -166,20 +169,40 @@ class BasketFragment : Fragment(), EventListenerss{
         deliveryDialog.setPositiveButton(
             "Дополнить заказ"
         ) { _, _ ->
-
-            BasketSingleton.del()
-            BasketSingleton.notifyTwo()
-
-            val manager = (activity as AppCompatActivity).supportFragmentManager
-            menuFragment = MenuFragment()
-            manager.beginTransaction()
-                .replace(R.id.frame_layout, menuFragment)
-                .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
-                .commit()
+            goMenuFragment()
         }
         deliveryDialog.setNegativeButton(
             "Оплатить 250 рублей за доставку"
-        ) { _, _ -> }
+        ) { _, _ ->
+
+            //передаём стоимость доставки и переходим в регистрационный фрагмент
+            delivery = 250.toString()
+            val args = Bundle()
+            args.putString("delivery", delivery)
+            registrationFragment.arguments = args
+
+            Log.d("delivery", "delivery = $delivery")
+
+            goRegistrationFragment(args.toString())
+        }
         deliveryDialog.show()
+    }
+
+    private fun goMenuFragment(){
+        val manager = (activity as AppCompatActivity).supportFragmentManager
+        menuFragment = MenuFragment()
+        manager.beginTransaction()
+            .replace(R.id.frame_layout, menuFragment)
+            .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
+            .commit()
+    }
+
+    private fun goRegistrationFragment(args: String){
+        val manager = (activity as AppCompatActivity).supportFragmentManager
+        manager.beginTransaction()
+            .replace(R.id.frame_layout, registrationFragment, args)
+            .addToBackStack(null)
+            .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
+            .commit()
     }
 }

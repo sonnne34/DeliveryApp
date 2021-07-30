@@ -20,7 +20,10 @@
             android:textColor="@color/qblackFont"
             android:background="@drawable/okrugl_bacgr"
             android:gravity="center"
-            android:layout_margin="10dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginBottom="5dp"
             android:padding="5dp"
             android:paddingLeft="30dp"
             android:paddingStart="30dp"
@@ -42,7 +45,9 @@
         android:layout_height="match_parent"
         android:layout_below="@+id/header_reg"
         android:background="@drawable/okrugl_bacgr"
-        android:layout_margin="10dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginBottom="10dp"
         android:padding="5dp"
         android:orientation="vertical">
 
