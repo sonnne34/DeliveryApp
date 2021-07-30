@@ -25,6 +25,7 @@ class RegistrationFragment : Fragment() {
     lateinit var btnPay : Button
     lateinit var nameEdit : EditText
     lateinit var numberPhone : EditText
+    lateinit var citiesAddress : EditText
     lateinit var streetAddress : EditText
     lateinit var houseAddress : EditText
     lateinit var apartmentAddress : EditText
@@ -33,6 +34,7 @@ class RegistrationFragment : Fragment() {
     lateinit var inputName : TextInputLayout
     lateinit var inputPhone : TextInputLayout
     lateinit var inputStreet : TextInputLayout
+    lateinit var inputCities : TextInputLayout
     lateinit var inputHome : TextInputLayout
     lateinit var entrance : EditText
     lateinit var level : EditText
@@ -51,6 +53,7 @@ class RegistrationFragment : Fragment() {
         val root = inflater.inflate(R.layout.fragment_registration, container, false)
         nameEdit = root.findViewById(R.id.name_person_date)
         numberPhone = root.findViewById(R.id.phone_person_data)
+        citiesAddress = root.findViewById(R.id.cities_address)
         streetAddress = root.findViewById(R.id.street_address)
         houseAddress = root.findViewById(R.id.home_address)
         apartmentAddress = root.findViewById(R.id.apartment_address)
@@ -61,6 +64,7 @@ class RegistrationFragment : Fragment() {
         btnBack = root.findViewById(R.id.btn_reg_back)
         inputName = root.findViewById(R.id.input_name)
         inputPhone = root.findViewById(R.id.input_phone)
+        inputCities = root.findViewById(R.id.input_cities)
         inputStreet = root.findViewById(R.id.input_street)
         inputHome = root.findViewById(R.id.input_home)
 
@@ -72,6 +76,7 @@ class RegistrationFragment : Fragment() {
         btnBack()
         loadName()
         loadNumber()
+        loadCities()
         loadStreet()
         loadHouse()
         loadApartpent()
@@ -99,6 +104,12 @@ class RegistrationFragment : Fragment() {
         val pref = this.activity?.getPreferences(Context.MODE_PRIVATE)
         val loadhouse = pref!!.getString("houseA", "")
         houseAddress.setText(loadhouse)
+    }
+
+    private fun loadCities() {
+        val pref = this.activity?.getPreferences(Context.MODE_PRIVATE)
+        val loadCities = pref!!.getString("citiesA", "")
+        citiesAddress.setText(loadCities)
     }
 
     private fun loadStreet() {
@@ -136,6 +147,7 @@ class RegistrationFragment : Fragment() {
     private fun editeSave() {
        val name = nameEdit.text.toString()
        val number = numberPhone.text.toString()
+       val citiesA = citiesAddress.text.toString()
        val streetA = streetAddress.text.toString()
        val houseA = houseAddress.text.toString()
        val apartmentA = apartmentAddress.text.toString()
@@ -152,11 +164,14 @@ class RegistrationFragment : Fragment() {
         val pref5 = this.activity?.getPreferences(Context.MODE_PRIVATE)
         val pref6 = this.activity?.getPreferences(Context.MODE_PRIVATE)
         val pref7 = this.activity?.getPreferences(Context.MODE_PRIVATE)
+        val pref8 = this.activity?.getPreferences(Context.MODE_PRIVATE)
 
         val savePerson: Editor = pref!!.edit()
         savePerson.putString("name", name).toString()
         val savenumber: Editor = pref1!!.edit()
         savenumber.putString("number", number).toString()
+        val savecities: Editor = pref8!!.edit()
+        savecities.putString("citiesA", citiesA).toString()
         val savestreet: Editor = pref2!!.edit()
         savestreet.putString("streetA", streetA).toString()
         val saveHouse: Editor = pref3!!.edit()
@@ -174,6 +189,7 @@ class RegistrationFragment : Fragment() {
 
         savePerson.apply()
         savenumber.apply()
+        savecities.apply()
         savestreet.apply()
         saveHouse.apply()
         saveApartament.apply()
@@ -186,7 +202,7 @@ class RegistrationFragment : Fragment() {
     private fun btnPay () {
         btnPay.setOnClickListener {
             //уведомление об обязательном заполнении полей
-            if (numberPhone.text.isEmpty() || nameEdit.text.isEmpty() || streetAddress.text.isEmpty() || houseAddress.text.isEmpty()) {
+            if (numberPhone.text.isEmpty() || nameEdit.text.isEmpty() || citiesAddress.text.isEmpty() || streetAddress.text.isEmpty() || houseAddress.text.isEmpty()) {
                 if (numberPhone.text.isEmpty()) {
                     inputPhone.error = "Обязательное поле"
                 } else {
@@ -196,6 +212,11 @@ class RegistrationFragment : Fragment() {
                     inputName.error = "Обязательное поле"
                 } else {
                     inputName.error = null
+                }
+                if (citiesAddress.text.isEmpty()) {
+                    inputCities.error = "Обязательное поле"
+                } else {
+                    inputCities.error = null
                 }
                 if (streetAddress.text.isEmpty()) {
                     inputStreet.error = "Обязательное поле"

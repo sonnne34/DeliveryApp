@@ -38,6 +38,7 @@ class PaymentFragment : Fragment() {
     private lateinit var comitText: TextView
     private lateinit var comitHeader: TextView
     private lateinit var streetText: TextView
+    private lateinit var citiesText: TextView
     private lateinit var houseText: TextView
     private lateinit var apatanmentText: TextView
     private lateinit var entranceText: TextView
@@ -91,6 +92,7 @@ class PaymentFragment : Fragment() {
         numberText = root.findViewById(R.id.phone_order)
         comitText = root.findViewById(R.id.comment_order_text)
         comitHeader = root.findViewById(R.id.comment_order)
+        citiesText = root.findViewById(R.id.cities_total)
         streetText = root.findViewById(R.id.street_total)
         houseText = root.findViewById(R.id.home_total)
         apatanmentText = root.findViewById(R.id.apartment_total)
@@ -131,9 +133,10 @@ class PaymentFragment : Fragment() {
     private fun loadingFireBase() {
 
         val ss = BasketSingleton.count()
+        val sumPersonTotal = BasketSingleton.count()
 
         val deliveryS = arguments?.getString("delivery")
-        val sumPersonTotal= ss + deliveryS!!.toInt()
+//        val sumPersonTotal= ss + deliveryS!!.toInt()
 
         val pref = this.activity?.getPreferences(Context.MODE_PRIVATE)
         val pref1 = this.activity?.getPreferences(Context.MODE_PRIVATE)
@@ -143,11 +146,13 @@ class PaymentFragment : Fragment() {
         val pref5 = this.activity?.getPreferences(Context.MODE_PRIVATE)
         val pref6 = this.activity?.getPreferences(Context.MODE_PRIVATE)
         val pref7 = this.activity?.getPreferences(Context.MODE_PRIVATE)
+        val pref8 = this.activity?.getPreferences(Context.MODE_PRIVATE)
 
 
         val loadname = pref!!.getString("name", "")
         val loadphone = pref1!!.getString("number", "")
         val comint = pref2!!.getString("comite", "")
+        val cities = pref8!!.getString("citiesA", "")
         val street = pref3!!.getString("streetA", "")
         val house = pref4!!.getString("houseA", "")
         val appart = pref5!!.getString("apartmentA", "")
@@ -172,7 +177,7 @@ class PaymentFragment : Fragment() {
 //        send = "$send\nСтоимость доставки по Тюмени: $deliveryS р. \n "
         send = send + "\n" + "Итого: " + sumPersonTotal + " р. \n "
         send = send + "Информация о заказе: \n" + loadname + "\n" + loadphone + "\n"
-        send = send + "Адрес доставки: \n" + cityTwo + ", ул. " + street + ", д. " + house + ", кв./оф. " + appart + ", под. " + entrance + ", эт. " + level + "\n";
+        send = send + "Адрес доставки: \n" + cities + ", ул. " + street + ", д. " + house + ", кв./оф. " + appart + ", под. " + entrance + ", эт. " + level + "\n";
         send = send + "Способы оплаты: \n" + methodPay + "\n" + "Сдача с: \n" + cashback + "\n";
         send = send + "Комментарий к заказу: \n" + comint;
 
@@ -187,7 +192,7 @@ class PaymentFragment : Fragment() {
 
         var  base = "https://us-central1-kalibri-845e2.cloudfunctions.net/addOrder";
         base += "?money=" + sumPersonTotal; //деньги
-        base += "&city=" + cityENG; //город
+        base += "&city=" + cities; //город
         base += "&restaurant=" + restToran; //название ресторана
         base += "&tel=" + loadphone; //телефон
         base += "&order=" + order ; //заказ
@@ -231,6 +236,7 @@ class PaymentFragment : Fragment() {
         val pref5 = this.activity?.getPreferences(Context.MODE_PRIVATE)
         val pref6 = this.activity?.getPreferences(Context.MODE_PRIVATE)
         val pref7 = this.activity?.getPreferences(Context.MODE_PRIVATE)
+        val pref8 = this.activity?.getPreferences(Context.MODE_PRIVATE)
 
         val loadname = pref!!.getString("name", "")
         nameText.setText(loadname)
@@ -245,11 +251,14 @@ class PaymentFragment : Fragment() {
             comitText.visibility = View.GONE
         }
 
+        val cities = pref8!!.getString("citiesA", "")
+        citiesText.text = "Город $cities,"
+
         val street = pref3!!.getString("streetA", "")
         streetText.text = "ул. $street,"
 
         val house = pref4!!.getString("houseA", "")
-        houseText.text = "д. $house,"
+        houseText.text = "д. $house"
 
         val appart = pref5!!.getString("apartmentA", "")
         apatanmentText.text = "кв./оф. $appart,"
@@ -258,29 +267,30 @@ class PaymentFragment : Fragment() {
         }
 
         val level = pref6!!.getString("level", "")
-        levelText.text = "эт. $level"
+        levelText.text = " эт. $level"
         if (level!!.isEmpty()) {
             levelText.visibility = View.GONE
         }
 
         val entrance = pref7!!.getString("entrance", "")
-        entranceText.text = "под. $entrance,"
+        entranceText.text = " под. $entrance,"
         if (entrance!!.isEmpty()) {
             entranceText.visibility = View.GONE
         }
 
         val ss = BasketSingleton.count()
-        val deliveryS = arguments?.getString("delivery")
+//        val deliveryS = arguments?.getString("delivery")
 
-        if (deliveryS == "0"){
-            layoutDelivery.visibility = View.GONE
+//        if (deliveryS == "0"){
+//            layoutDelivery.visibility = View.GONE
+//            sumTotal.text = "итого: $ss руб.  "
+//        } else {
+//            layoutDelivery.visibility = View.VISIBLE
+//            delivery.text = "$deliveryS руб.  "
+//            val sumTotalS = ss + deliveryS!!.toInt()
+//            sumTotal.text = "итого: $sumTotalS руб.  "
             sumTotal.text = "итого: $ss руб.  "
-        } else {
-            layoutDelivery.visibility = View.VISIBLE
-            delivery.text = "$deliveryS руб.  "
-            val sumTotalS = ss + deliveryS!!.toInt()
-            sumTotal.text = "итого: $sumTotalS руб.  "
-        }
+//        }
     }
 
     private fun loadinfoAdapter() {

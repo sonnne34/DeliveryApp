@@ -104,27 +104,22 @@
 
     </LinearLayout>
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:layout_margin="5dp">
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/input_cities"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
 
-        <TextView
+        <EditText
             android:id="@+id/cities_address"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textSize="14sp"
-            android:text="Город: Тюмень" />
+            android:imeOptions="actionNext"
+            android:inputType="textCapSentences"
+            android:maxLines="1"
+            android:hint="Город:" />
 
-        <TextView
-            android:id="@+id/cities_specified_address"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textSize="14sp"
-            android:text="" />
-
-    </LinearLayout>
+        </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/input_street"
