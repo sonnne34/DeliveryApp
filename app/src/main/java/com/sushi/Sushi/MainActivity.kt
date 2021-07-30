@@ -92,10 +92,10 @@ class MainActivity : AppCompatActivity() {
         bottomNavigation.setOnNavigationItemReselectedListener { item ->
             when (item.itemId) {
                 R.id.menu -> {
-                    Toast.makeText(this, "Вы уже в меню", Toast.LENGTH_SHORT).show()
+//                    Toast.makeText(this, "Вы уже в меню", Toast.LENGTH_SHORT).show()
                 }
                 R.id.basket -> {
-                    Toast.makeText(this, "Вы уже в корзине", Toast.LENGTH_SHORT).show()
+//                    Toast.makeText(this, "Вы уже в корзине", Toast.LENGTH_SHORT).show()
                 }
             }
         }
