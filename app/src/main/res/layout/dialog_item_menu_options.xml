@@ -21,7 +21,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="end"
-        android:layout_margin="10dp"
+        android:layout_margin="5dp"
         android:textSize="20sp"
         android:text="@string/name_company"/>
 
@@ -31,7 +31,7 @@
         android:gravity="end"
         android:layout_marginEnd="10dp"
         android:layout_marginRight="10dp"
-        android:layout_marginBottom="10dp"
+        android:layout_marginBottom="5dp"
         android:text="@string/slogan1"/>
 
     <TextView
@@ -41,7 +41,7 @@
         android:layout_marginEnd="10dp"
         android:layout_marginRight="10dp"
         android:layout_marginBottom="5dp"
-        android:text="Условия доставки в г.Тюмень:\n При заказе на сумму\n  от 1000 руб. доставка в черте города - бесплатно.\n В остальных случаях\n стоимость доставки 250 руб."/>
+        android:text="Условия доставки в г.Тюмень:\n Бесплатная доставка при заказе на сумму от 1000 руб.\n При заказе от 2500 рублей осуществим бесплатную доставку в радиусе 50 км. от города Тюмени."/>
 
 
     <TextView

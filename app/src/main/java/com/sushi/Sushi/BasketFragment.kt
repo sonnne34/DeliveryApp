@@ -83,14 +83,16 @@ class BasketFragment : Fragment(), EventListenerss{
             btnRegistr.setOnClickListener {
                 val sum = BasketSingleton.count()
                 if (sum < 1000) {
+                    Toast.makeText(context, "Сумма заказа должна быть не менее 1000 рублей", Toast.LENGTH_LONG)
+                        .show()
 //                    openDialogDelivery(context)
-                    //передаём стоимость доставки и переходим к регистрационному фрагменту
-                    delivery = "0"
-                    val args = Bundle()
-                    args.putString("delivery", delivery)
-                    registrationFragment.arguments = args
-
-                    goRegistrationFragment(args.toString())
+//                    //передаём стоимость доставки и переходим к регистрационному фрагменту
+//                    delivery = "0"
+//                    val args = Bundle()
+//                    args.putString("delivery", delivery)
+//                    registrationFragment.arguments = args
+//
+//                    goRegistrationFragment(args.toString())
                 }
                 else {
                     //передаём стоимость доставки и переходим к регистрационному фрагменту
