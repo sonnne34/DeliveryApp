@@ -158,6 +158,7 @@ class PaymentFragment : Fragment() {
         val appart = pref5!!.getString("apartmentA", "")
         val level = pref6!!.getString("level", "")
         val entrance = pref7!!.getString("entrance", "")
+        val source = "Android"
 
         val list = BasketSingleton.basketItem
         val pay = "Картой"
@@ -181,6 +182,7 @@ class PaymentFragment : Fragment() {
         send = send + "Способы оплаты: \n" + methodPay + "\n" + "Сдача с: \n" + cashback + "\n";
         send = send + "Комментарий к заказу: \n" + comint;
 
+
         Log.d("OOO", "send \n$send")
         val ALLOWED_URI_CHARS = "@#&=*+-_.,:!?()/~'%"
         val order = Uri.encode(send, ALLOWED_URI_CHARS)
@@ -188,24 +190,24 @@ class PaymentFragment : Fragment() {
 
 
         val cityENG = "Tyumen"
-        val restToran = "Avocado"
+        val restToran = "TeaTemple"
 
         var  base = "https://us-central1-kalibri-845e2.cloudfunctions.net/addOrder";
         base += "?money=" + sumPersonTotal; //деньги
-        base += "&city=" + cities; //город
+        base += "&city=" + cityENG; //город
         base += "&restaurant=" + restToran; //название ресторана
         base += "&tel=" + loadphone; //телефон
         base += "&order=" + order ; //заказ
-
+        base += "&source=" + source// Android
         Log.d("RRRRTest", "Base = " + base);
 
-        Log.d("PESTO", "PESTO = 1  ");
+
 
         val client = OkHttpClient()
-        Log.d("PESTO", "PESTO = 2  ");
+
         val url = base
         val request = Request.Builder().url(url).build()
-        Log.d("PESTO", "PESTO = 3  ");
+
         client.newCall(request).enqueue(object : Callback {
             override fun onFailure(call: Call, e: IOException) {
 
@@ -215,11 +217,11 @@ class PaymentFragment : Fragment() {
             @Throws(IOException::class)
             override fun onResponse(call: Call, response: Response) {
                 if (response.isSuccessful) {
-                    Log.d("PESTO", "PESTO = 4  ");
+
                     val myResponse = response.body()!!.string()
-                    Log.d("PESTO", "PESTO = 5  ");
+
                     Log.d("Spot", "myResponse = \n $myResponse")
-                    Log.d("PESTO", "PESTO = 6  ");
+
                 }
             }
         })

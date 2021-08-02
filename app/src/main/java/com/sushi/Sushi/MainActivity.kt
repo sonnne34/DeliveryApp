@@ -101,16 +101,16 @@ class MainActivity : AppCompatActivity() {
 //            }
 //        }
 //
-//        bottomNavigation.setOnNavigationItemReselectedListener { item ->
-//            when (item.itemId) {
-//                R.id.menu -> {
-////                    Toast.makeText(this, "Вы уже в меню", Toast.LENGTH_SHORT).show()
-//                }
-//                R.id.basket -> {
-////                    Toast.makeText(this, "Вы уже в корзине", Toast.LENGTH_SHORT).show()
-//                }
-//            }
-//        }
+        navView.setOnNavigationItemReselectedListener { item ->
+            when (item.itemId) {
+                R.id.menuFragment -> {
+//                    Toast.makeText(this, "Вы уже в меню", Toast.LENGTH_SHORT).show()
+                }
+                R.id.basketFragment -> {
+//                    Toast.makeText(this, "Вы уже в корзине", Toast.LENGTH_SHORT).show()
+                }
+            }
+        }
 
     }
 
