@@ -7,7 +7,12 @@ import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.FragmentTransaction
+import androidx.navigation.findNavController
+import androidx.navigation.ui.AppBarConfiguration
+import androidx.navigation.ui.setupActionBarWithNavController
+import androidx.navigation.ui.setupWithNavController
 import com.google.android.material.bottomnavigation.BottomNavigationView
+import com.sushi.Sushi.databinding.ActivityMainBinding
 import com.sushi.Sushi.fragment.ProfilFragment
 import com.sushi.Sushi.fragment.StatusFragment
 
@@ -16,14 +21,24 @@ class MainActivity : AppCompatActivity() {
 
 
 
-
+    private lateinit var binding: ActivityMainBinding
 
     @SuppressLint("WrongConstant", "MissingPermission")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
 
-        val bottomNavigation: BottomNavigationView = findViewById(R.id.btm_nav)
+
+        binding = ActivityMainBinding.inflate(layoutInflater)
+        setContentView(binding.root)
+
+        val navView: BottomNavigationView = binding.navView
+
+        val navController = findNavController(R.id.frame_layout)
+        // Passing each menu ID as a set of Ids because each
+        // menu should be considered as top level destinations.
+
+
+        navView.setupWithNavController(navController)
 
 //        ActivityCompat.requestPermissions(
 //            this,
@@ -32,70 +47,70 @@ class MainActivity : AppCompatActivity() {
 //        )
 
 
-        supportFragmentManager
-            .beginTransaction()
-            .add(R.id.frame_layout, MenuFragment.newInstance())
-            .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
-            .commit()
-
-
-
-        bottomNavigation.setOnNavigationItemSelectedListener { item ->
-            when (item.itemId) {
-//                R.id.status -> {
-//                    statusFragment = StatusFragment()
-//                    supportFragmentManager
-//                        .beginTransaction()
-//                        .replace(R.id.frame_layout, statusFragment)
-//                        .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
-//                        .commit()
-//                }
-
-                R.id.menu -> {
-
-                    supportFragmentManager
-                        .beginTransaction()
-                        .add(R.id.frame_layout, MenuFragment.newInstance())
-                        .addToBackStack(null)
-                        .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
-                        .commit()
-                    true
-                }
-
-//                R.id.profil -> {
+//        supportFragmentManager
+//            .beginTransaction()
+//            .add(R.id.frame_layout, MenuFragment.newInstance())
+//            .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
+//            .commit()
 //
-//                    profilFragment = ProfilFragment()
+//
+//
+//        bottomNavigation.setOnNavigationItemSelectedListener { item ->
+//            when (item.itemId) {
+////                R.id.status -> {
+////                    statusFragment = StatusFragment()
+////                    supportFragmentManager
+////                        .beginTransaction()
+////                        .replace(R.id.frame_layout, statusFragment)
+////                        .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
+////                        .commit()
+////                }
+//
+//                R.id.menu -> {
+//
 //                    supportFragmentManager
 //                        .beginTransaction()
-//                        .replace(R.id.frame_layout, profilFragment)
+//                        .add(R.id.frame_layout, MenuFragment.newInstance())
+//                        .addToBackStack(null)
 //                        .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
 //                        .commit()
+//                    true
 //                }
-
-
-                R.id.basket -> {
-                    supportFragmentManager
-                        .beginTransaction()
-                        .add(R.id.frame_layout, BasketFragment.newInstance())
-                        .addToBackStack(null)
-                        .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
-                        .commit()
-                    true
-                }
-                else -> false
-            }
-        }
-
-        bottomNavigation.setOnNavigationItemReselectedListener { item ->
-            when (item.itemId) {
-                R.id.menu -> {
-//                    Toast.makeText(this, "Вы уже в меню", Toast.LENGTH_SHORT).show()
-                }
-                R.id.basket -> {
-//                    Toast.makeText(this, "Вы уже в корзине", Toast.LENGTH_SHORT).show()
-                }
-            }
-        }
+//
+////                R.id.profil -> {
+////
+////                    profilFragment = ProfilFragment()
+////                    supportFragmentManager
+////                        .beginTransaction()
+////                        .replace(R.id.frame_layout, profilFragment)
+////                        .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
+////                        .commit()
+////                }
+//
+//
+//                R.id.basket -> {
+//                    supportFragmentManager
+//                        .beginTransaction()
+//                        .add(R.id.frame_layout, BasketFragment.newInstance())
+//                        .addToBackStack(null)
+//                        .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
+//                        .commit()
+//                    true
+//                }
+//                else -> false
+//            }
+//        }
+//
+//        bottomNavigation.setOnNavigationItemReselectedListener { item ->
+//            when (item.itemId) {
+//                R.id.menu -> {
+////                    Toast.makeText(this, "Вы уже в меню", Toast.LENGTH_SHORT).show()
+//                }
+//                R.id.basket -> {
+////                    Toast.makeText(this, "Вы уже в корзине", Toast.LENGTH_SHORT).show()
+//                }
+//            }
+//        }
 
     }
 
