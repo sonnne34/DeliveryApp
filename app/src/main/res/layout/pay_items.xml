@@ -102,7 +102,7 @@
             android:layout_weight="1"
             android:layout_gravity="center_horizontal"
             android:button="@null"
-            android:text="Картой" />
+            android:text="Оплата онлайн на карту" />
 
         <RadioButton
             android:id="@+id/method_cash_payment"
