@@ -11,11 +11,13 @@ import android.view.ViewGroup
 import android.widget.Button
 import android.widget.EditText
 import android.widget.ImageButton
+import android.widget.ListPopupWindow
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentTransaction
 import com.google.android.material.textfield.TextInputLayout
 import com.sushi.Sushi.BasketFragment
+import com.sushi.Sushi.MainActivity
 import com.sushi.Sushi.R
 
 class RegistrationFragment : Fragment() {
@@ -201,6 +203,7 @@ class RegistrationFragment : Fragment() {
 
     private fun btnPay () {
         btnPay.setOnClickListener {
+
             //уведомление об обязательном заполнении полей
             if (numberPhone.text.isEmpty() || nameEdit.text.isEmpty() || citiesAddress.text.isEmpty() || streetAddress.text.isEmpty() || houseAddress.text.isEmpty()) {
                 if (numberPhone.text.isEmpty()) {
@@ -232,16 +235,17 @@ class RegistrationFragment : Fragment() {
                 //сохранение данных
                 editeSave()
 
-                val delivery = arguments?.getString("delivery").toString()
-                val args = Bundle()
-                args.putString("delivery", delivery)
-                paymentFragment.arguments = args
-                Log.d("delivery", "delivery = $delivery")
-
+//                val delivery = arguments?.getString("delivery").toString()
+//                val args = Bundle()
+//                args.putString("delivery", delivery)
+//                paymentFragment.arguments = args
+//                Log.d("delivery", "delivery = $delivery")
+//
                 //переход к сл.фрагменту
                 val manager = (activity as AppCompatActivity).supportFragmentManager
                 manager.beginTransaction()
-                    .replace(R.id.frame_layout, paymentFragment, args.toString())
+//                    .replace(R.id.frame_layout, paymentFragment, args.toString())
+                    .replace(R.id.frame_layout, paymentFragment)
                     .addToBackStack(null)
                     .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
                     .commit()
@@ -251,6 +255,7 @@ class RegistrationFragment : Fragment() {
 
     private fun btnBack() {
         btnBack.setOnClickListener {
+
             basketFragment = BasketFragment()
             val manager = (activity as AppCompatActivity).supportFragmentManager
             manager.beginTransaction()

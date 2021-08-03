@@ -11,7 +11,7 @@
         android:id="@+id/txt_header_basket"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textSize="22dp"
+        android:textSize="20sp"
         android:background="@drawable/okrugl_total"
         android:textColor="@color/colorUltramarine"
         android:gravity="center"
@@ -72,7 +72,6 @@
         android:layout_below="@+id/txt_header_basket"
         android:layout_alignParentBottom="true"
         android:layout_marginBottom="100dp"
-        android:layout_marginTop="5dp"
         android:layout_marginRight="5dp"
         android:layout_marginLeft="5dp"
         android:layout_width="match_parent"
@@ -93,6 +92,7 @@
         android:layout_marginStart="5dp"
         android:layout_marginTop="5dp"
         android:layout_marginEnd="5dp"
+        android:onClick="clearBasket"
         android:text="очистить корзину" />
 
     <LinearLayout
@@ -146,6 +146,7 @@
         android:fontFamily="@font/font"
         android:textStyle="bold"
         android:textSize="12sp"
+        android:onClick="goReg"
         android:text="Заказать" />
 
 </RelativeLayout>

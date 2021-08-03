@@ -1,58 +1,45 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/qlightGrayBackground"
     tools:context=".fragment.RegistrationFragment">
 
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-
-        <LinearLayout
-            android:id="@+id/layout_header_reg"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_centerHorizontal="true"
-            android:background="@drawable/okrugl_bacgr"
-            android:padding="5dp"
-            android:layout_marginTop="10dp"
-            android:layout_marginRight="10dp"
-            android:layout_marginLeft="10dp"
-            android:layout_marginBottom="5dp"
-            android:orientation="horizontal">
-
-            <ImageButton
-                android:id="@+id/btn_reg_back"
-                android:layout_width="21dp"
-                android:layout_height="21dp"
-                android:layout_marginLeft="7dp"
-                android:layout_marginStart="7dp"
-                android:padding="5dp"
-                android:layout_gravity="center_vertical"
-                android:background="@drawable/ic_back" />
-
         <TextView
             android:id="@+id/header_reg"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textSize="17sp"
+            android:layout_centerHorizontal="true"
+            android:textSize="20sp"
             android:textColor="@color/qblackFont"
+            android:background="@drawable/okrugl_bacgr"
             android:gravity="center"
-            android:layout_gravity="center"
+            android:layout_marginTop="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginBottom="5dp"
             android:padding="5dp"
-            android:layout_marginLeft="2dp"
-            android:layout_marginStart="2dp"
+            android:paddingLeft="30dp"
+            android:paddingStart="30dp"
             android:text="Немного данных для заказа:" />
 
-        </LinearLayout>
+    <ImageButton
+        android:id="@+id/btn_reg_back"
+        android:layout_width="21dp"
+        android:layout_height="21dp"
+        android:layout_margin="21dp"
+        android:padding="5dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentLeft="true"
+        android:layout_gravity="center"
+        android:background="@drawable/ic_back" />
 
     <RelativeLayout
         android:id="@+id/layout_reg"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@+id/layout_header_reg"
+        android:layout_below="@+id/header_reg"
         android:background="@drawable/okrugl_bacgr"
         android:layout_marginLeft="10dp"
         android:layout_marginRight="10dp"
@@ -257,11 +244,11 @@
         <Button
             android:id="@+id/btn_payy"
             android:layout_width="200dp"
-            android:layout_below="@+id/comment_person_data"
             android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
             android:layout_centerHorizontal="true"
             android:textSize="12sp"
+            android:layout_marginTop="5dp"
             android:layout_marginBottom="5dp"
             android:background="@drawable/okrugl_button"
             android:fontFamily="@font/font"
@@ -270,5 +257,4 @@
             android:text="Далее" />
 
     </RelativeLayout>
-    </RelativeLayout>
-</ScrollView>
+</RelativeLayout>

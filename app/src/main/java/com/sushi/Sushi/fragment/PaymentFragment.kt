@@ -135,7 +135,7 @@ class PaymentFragment : Fragment() {
         val ss = BasketSingleton.count()
         val sumPersonTotal = BasketSingleton.count()
 
-        val deliveryS = arguments?.getString("delivery")
+//        val deliveryS = arguments?.getString("delivery")
 //        val sumPersonTotal= ss + deliveryS!!.toInt()
 
         val pref = this.activity?.getPreferences(Context.MODE_PRIVATE)

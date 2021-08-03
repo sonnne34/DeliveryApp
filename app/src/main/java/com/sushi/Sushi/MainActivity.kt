@@ -3,10 +3,13 @@ package com.sushi.Sushi
 
 import android.annotation.SuppressLint
 import android.os.Bundle
+import android.view.View
+import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.FragmentTransaction
+import androidx.navigation.NavController
 import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.setupActionBarWithNavController
@@ -15,25 +18,23 @@ import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.sushi.Sushi.databinding.ActivityMainBinding
 import com.sushi.Sushi.fragment.ProfilFragment
 import com.sushi.Sushi.fragment.StatusFragment
+import com.sushi.Sushi.singleton.BasketSingleton
 
 class MainActivity : AppCompatActivity() {
 
-
-
-
     private lateinit var binding: ActivityMainBinding
+    lateinit var navController: NavController
 
     @SuppressLint("WrongConstant", "MissingPermission")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
 
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
         val navView: BottomNavigationView = binding.navView
 
-        val navController = findNavController(R.id.frame_layout)
+        navController = findNavController(R.id.frame_layout)
         // Passing each menu ID as a set of Ids because each
         // menu should be considered as top level destinations.
 
@@ -45,7 +46,6 @@ class MainActivity : AppCompatActivity() {
 //            arrayOf(Manifest.permission.ACCESS_FINE_LOCATION),
 //            123
 //        )
-
 
 //        supportFragmentManager
 //            .beginTransaction()
@@ -134,7 +134,8 @@ class MainActivity : AppCompatActivity() {
             openQuitDialog()
 
         } else {
-            supportFragmentManager.popBackStack()
+//            supportFragmentManager.popBackStack()
+                        navController.popBackStack()
         }
 
     }
@@ -155,5 +156,47 @@ class MainActivity : AppCompatActivity() {
             "Ой, нет!"
         ) { _, _ -> }
         quitDialog.show()
+    }
+
+    fun goReg(view: View) {
+        val sum = BasketSingleton.count()
+        if (sum < 1000) {
+            Toast.makeText(this,
+                "Сумма заказа должна быть не менее 1000 рублей",
+                Toast.LENGTH_LONG
+            )
+                .show()
+        } else {
+            navController.navigate(R.id.registrationFragment)
+        }
+    }
+
+    fun goPay() {
+
+        navController.navigate(R.id.paymentFragment)
+
+    }
+
+    fun clearBasket(view: View) {
+
+        val clearDialog = AlertDialog.Builder(this
+        )
+        clearDialog.setTitle("Аннигилирование")
+        clearDialog.setMessage("Очистить корзину?")
+        clearDialog.setPositiveButton(
+            "Да"
+        ) { _, _ ->
+
+            BasketSingleton.del()
+            BasketSingleton.notifyTwo()
+
+            navController.navigate(R.id.menuFragment)
+//            navController.popBackStack()
+
+        }
+        clearDialog.setNegativeButton(
+            "Ой, нет!"
+        ) { _, _ -> }
+        clearDialog.show()
     }
 }

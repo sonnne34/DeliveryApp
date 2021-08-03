@@ -64,10 +64,10 @@ class BasketFragment : Fragment(), EventListenerss{
         listmodel = BasketSingleton.basketItem
 
         setupAdapter(listmodel)
-        btnReg(root.context)
+//        btnReg(root.context)
         visible()
         updateTEXT()
-        clearBasket(root.context)
+//        clearBasket(root.context)
 
         return root
     }
@@ -86,12 +86,14 @@ class BasketFragment : Fragment(), EventListenerss{
 
     }
 
-    private fun btnReg (context: Context) {
+    fun btnReg (context: Context) {
             btnRegistr.setOnClickListener {
                 val sum = BasketSingleton.count()
                 if (sum < 1000) {
                     Toast.makeText(context, "Сумма заказа должна быть не менее 1000 рублей", Toast.LENGTH_LONG)
                         .show()
+
+
 //                    openDialogDelivery(context)
 //                    //передаём стоимость доставки и переходим к регистрационному фрагменту
 //                    delivery = "0"
@@ -163,6 +165,7 @@ class BasketFragment : Fragment(), EventListenerss{
                     BasketSingleton.notifyTwo()
 
                     goMenuFragment()
+
                 }
                 clearDialog.setNegativeButton(
                     "Ой, нет!"
@@ -198,20 +201,21 @@ class BasketFragment : Fragment(), EventListenerss{
     }
 
     private fun goMenuFragment(){
-        val manager = (activity as AppCompatActivity).supportFragmentManager
-        menuFragment = MenuFragment()
-        manager.beginTransaction()
-            .replace(R.id.frame_layout, menuFragment)
-            .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
-            .commit()
+
+//        val manager = (activity as AppCompatActivity).supportFragmentManager
+//        menuFragment = MenuFragment()
+//        manager.beginTransaction()
+//            .replace(R.id.frame_layout, menuFragment)
+//            .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
+//            .commit()
     }
 
     private fun goRegistrationFragment(args: String){
-        val manager = (activity as AppCompatActivity).supportFragmentManager
-        manager.beginTransaction()
-            .replace(R.id.frame_layout, registrationFragment, args)
-            .addToBackStack(null)
-            .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
-            .commit()
+//        val manager = (activity as AppCompatActivity).supportFragmentManager
+//        manager.beginTransaction()
+//            .replace(R.id.frame_layout, registrationFragment, args)
+//            .addToBackStack(null)
+//            .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
+//            .commit()
     }
 }
