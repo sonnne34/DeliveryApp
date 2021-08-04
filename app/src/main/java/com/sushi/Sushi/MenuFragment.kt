@@ -2,20 +2,18 @@ package com.sushi.Sushi
 
 import android.annotation.SuppressLint
 import android.content.Context
-import android.icu.text.Transliterator
 import android.os.Build
 import android.os.Bundle
+import android.os.Handler
 import android.os.Parcelable
 import android.util.Log
 import android.view.LayoutInflater
-import android.view.MotionEvent
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.ImageButton
 import android.widget.ProgressBar
 import androidx.annotation.RequiresApi
-import androidx.core.widget.NestedScrollView
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -85,6 +83,7 @@ class MenuFragment : Fragment(), EventListenerss {
         progress_bar_two = root.findViewById(R.id.progress_two)
         optionsBtn = root.findViewById(R.id.btn_options)
         btnUp = root.findViewById(R.id.btn_up)
+        btnUp.visibility = View.INVISIBLE
 
         addArea()
         BasketSingleton.subscribe(this)
@@ -123,6 +122,7 @@ class MenuFragment : Fragment(), EventListenerss {
         )
         categoryRecyclerView.setHasFixedSize(true)
 
+        btnUp()
         loadPromo()
         loadMenu()
 //        loadCiti(root.context)
@@ -135,7 +135,6 @@ class MenuFragment : Fragment(), EventListenerss {
 //            loadAddress(root.context, online)
         }
 
-//        btnUp()
         promoClick(root.context, promoModel = PromoModel())
         scrollCat(root.context)
         btnOptions(root.context)
@@ -403,8 +402,29 @@ class MenuFragment : Fragment(), EventListenerss {
 
     private fun btnUp(){
 
-        btnUp.setOnClickListener {
+        menuRecyclerView.addOnScrollListener(object : RecyclerView.OnScrollListener() {
+            override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
+                if (dy > 0) { // scrolling down
+//                    Handler().postDelayed(
+//                        Runnable { btnUp.visibility = View.GONE },
+//                        5000
+//                    ) // delay of 2 seconds before hiding the fab
+                } else if (dy < 0) { // scrolling up
+                    btnUp.visibility = View.VISIBLE
+                }
+            }
 
+            override fun onScrollStateChanged(recyclerView: RecyclerView, newState: Int) {
+                if (newState == RecyclerView.SCROLL_STATE_IDLE) { // No scrolling
+                    Handler().postDelayed(
+                        Runnable { btnUp.visibility = View.GONE },
+                        5000
+                    ) // delay of 5 seconds before hiding the fab
+                }
+            }
+        })
+
+        btnUp.setOnClickListener {
             (menuRecyclerView.layoutManager as LinearLayoutManager).scrollToPosition(1)
 
         }
