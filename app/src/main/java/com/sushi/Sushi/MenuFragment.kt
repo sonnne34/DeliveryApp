@@ -61,13 +61,37 @@ class MenuFragment : Fragment(), EventListenerss {
 
     private var mCategoryRef: DatabaseReference? = null
 
+    override fun onSaveInstanceState(outState: Bundle) {
+        super.onSaveInstanceState(outState)
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         retainInstance = true
         Log.d("MMM", "OnCreate = ")
+        loadMenu()
 
     }
 
+    override fun onPause() {
+        super.onPause()
+
+        Log.d("MMM", " onPause = ")
+    }
+
+    override fun onResume() {
+        super.onResume()
+
+        Log.d("MMM", "  onResume = ")
+    }
+
+
+    override fun onStart() {
+        super.onStart()
+
+
+        Log.d("MMM", "OnStart = ")
+    }
     @RequiresApi(Build.VERSION_CODES.LOLLIPOP)
     @SuppressLint("ResourceType")
     override fun onCreateView(
@@ -124,7 +148,8 @@ class MenuFragment : Fragment(), EventListenerss {
 
         btnUp()
         loadPromo()
-        loadMenu()
+
+
 //        loadCiti(root.context)
 
         CoroutineScope(Dispatchers.IO).launch {
@@ -205,22 +230,22 @@ class MenuFragment : Fragment(), EventListenerss {
     }
 
     private fun loadMenu() {
-        Log.d("AA", "value =  прошло 1")
+
 
         val database = FirebaseDatabase.getInstance()
-        Log.d("AA", "value =  прошло 2")
+
         val myRef = database.getReference("RestaurantsMenu/TeaTemple")
-        Log.d("AA", "value =  прошло 3")
+
         myRef.addValueEventListener(object : ValueEventListener {
 
             override fun onDataChange(dataSnapshot: DataSnapshot) {
-                Log.d("AA", "value =  прошло4 ")
+
 
                 for (ds in dataSnapshot.children) {
-                    Log.d("AA", "value =  прошло 5 " + ds.getValue(CatMenuModel::class.java))
+
                     val value = ds.getValue(CatMenuModel::class.java)!!
 
-                    Log.d("AA", "value = 5" + value.CategoryName)
+                    Log.d("RESS", "value = 5" + value.CategoryName)
 
                     categoryList.add(value)
                     menuList.add(value)
@@ -264,9 +289,7 @@ class MenuFragment : Fragment(), EventListenerss {
     }
 
 
-    override fun onSaveInstanceState(outState: Bundle) {
-        super.onSaveInstanceState(outState)
-    }
+
 //
 //    @RequiresApi(Build.VERSION_CODES.LOLLIPOP)
 //    private fun loadAddress(context: Context, boolean: Boolean) {
