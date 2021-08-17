@@ -1,6 +1,7 @@
 package com.sushi.Sushi.adapters
 
 import android.annotation.SuppressLint
+import android.content.Context
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
@@ -8,6 +9,9 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
+import com.bumptech.glide.load.engine.DiskCacheStrategy
+import com.google.firebase.storage.FirebaseStorage
 import com.sushi.Sushi.R
 import com.sushi.Sushi.dialog.CountDialog
 import com.sushi.Sushi.models.CatMenuModel
@@ -15,11 +19,13 @@ import com.sushi.Sushi.models.MenuModelcatMenu
 import com.sushi.Sushi.service.LoadImage
 import com.sushi.Sushi.singleton.BasketSingleton
 
-class MenuAdapter: RecyclerView.Adapter<RecyclerView.ViewHolder>() {
+class MenuAdapter(context: Context) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
     private var mMenuList: ArrayList<MenuModelcatMenu> = ArrayList()
 
     private val LAYOUT_HEADER = 0
     private val LAYOUT_CHILD = 1
+
+    private val glide = Glide.with(context)
 
     fun setupMenu(menuList: ArrayList<CatMenuModel>) {
         mMenuList.clear()
@@ -100,7 +106,7 @@ class MenuAdapter: RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     }
 
-    class MenuViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+    inner class MenuViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
         private var name: TextView = itemView.findViewById(R.id.text_roll)
         private var discription: TextView = itemView.findViewById(R.id.discription_text)
@@ -125,7 +131,24 @@ class MenuAdapter: RecyclerView.Adapter<RecyclerView.ViewHolder>() {
                 }
             Log.d("URR", "uri= Прошло 1 ")
 
-            LoadImage().loadImageDish(menuCategoryModel, imgDish)
+
+
+            if (menuCategoryModel.Items?.PictureForLoad == null) {
+                val storage = FirebaseStorage.getInstance()
+                val storageRef = storage.getReferenceFromUrl(menuCategoryModel.Items?.Picture!!)
+                storageRef.downloadUrl.addOnSuccessListener { uri ->
+                    menuCategoryModel.Items?.PictureForLoad = uri
+                    val img = glide.load(uri)
+                    img.diskCacheStrategy(DiskCacheStrategy.NONE)
+                    img.into(imgDish)
+                }
+            } else {
+                val img = glide.load(menuCategoryModel.Items?.PictureForLoad)
+                img.diskCacheStrategy(DiskCacheStrategy.NONE)
+                img.into(imgDish)
+            }
+
+
 
 //            val storage = FirebaseStorage.getInstance()
 //            Log.d("URR", "uri= Прошло 2 ")

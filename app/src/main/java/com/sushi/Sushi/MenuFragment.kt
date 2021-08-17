@@ -52,7 +52,7 @@ class MenuFragment : Fragment(), EventListenerss {
     private lateinit var  mPromoAdapter: PromoAdapter
     private lateinit var promoRecyclerView : RecyclerView
     lateinit var  menuRecyclerView  : RecyclerView
-    private lateinit var adapter : MenuAdapter
+
     val menuList : ArrayList<CatMenuModel> = ArrayList()
     val categoryList: ArrayList<CatMenuModel> = ArrayList()
     val promoList: ArrayList<PromoModel> = ArrayList()
@@ -60,6 +60,11 @@ class MenuFragment : Fragment(), EventListenerss {
     private lateinit var btnUp: Button
 
     private var mCategoryRef: DatabaseReference? = null
+
+
+
+    private  var adapter : MenuAdapter? = null
+
 
     override fun onSaveInstanceState(outState: Bundle) {
         super.onSaveInstanceState(outState)
@@ -113,7 +118,11 @@ class MenuFragment : Fragment(), EventListenerss {
         BasketSingleton.subscribe(this)
 
         menuRecyclerView = root.findViewById(R.id.recycler_view_menu)
-        adapter = MenuAdapter()
+
+        if (adapter == null) {
+            adapter = MenuAdapter(inflater.context)
+        }
+
         menuRecyclerView.adapter = adapter
         menuRecyclerView.layoutManager = LinearLayoutManager(
             root.context,
@@ -263,7 +272,7 @@ class MenuFragment : Fragment(), EventListenerss {
 
     private fun updateMenuAdapter(menuList: ArrayList<CatMenuModel>) {
 
-        adapter.setupMenu(menuList)
+        adapter?.setupMenu(menuList)
 
     }
 
@@ -387,7 +396,7 @@ class MenuFragment : Fragment(), EventListenerss {
                         Log.d("fff", "fff= " + fff)
                         (menuRecyclerView.layoutManager as LinearLayoutManager)
                             .scrollToPositionWithOffset(
-                                adapter.scrollToCategory(fff.CategoryName),
+                                adapter!!.scrollToCategory(fff.CategoryName),
                                 0
                             )
                     }
