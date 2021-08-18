@@ -47,9 +47,9 @@ class MenuFragment : Fragment(), EventListenerss {
     private lateinit var btnGetLoc : Button
     lateinit var fusedLocationProviderClient : FusedLocationProviderClient
     private lateinit var dangerousArea: MutableList<LatLng>
-    private lateinit var  mCategoryAdapter: CategoryAdapter
+
     private lateinit var categoryRecyclerView : RecyclerView
-    private lateinit var  mPromoAdapter: PromoAdapter
+
     private lateinit var promoRecyclerView : RecyclerView
     lateinit var  menuRecyclerView  : RecyclerView
 
@@ -63,8 +63,9 @@ class MenuFragment : Fragment(), EventListenerss {
 
 
 
-    private  var adapter : MenuAdapter? = null
-
+    private  var  adapter : MenuAdapter? = null
+    private  var  mPromoAdapter: PromoAdapter? = null
+    private  var  mCategoryAdapter: CategoryAdapter? = null
 
     override fun onSaveInstanceState(outState: Bundle) {
         super.onSaveInstanceState(outState)
@@ -73,8 +74,7 @@ class MenuFragment : Fragment(), EventListenerss {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         retainInstance = true
-        Log.d("MMM", "OnCreate = ")
-        loadMenu()
+
 
     }
 
@@ -136,7 +136,11 @@ class MenuFragment : Fragment(), EventListenerss {
         menuRecyclerView.isDrawingCacheEnabled = true
 
         promoRecyclerView = root.findViewById(R.id.recyclerview_promo)
-        mPromoAdapter = PromoAdapter()
+
+        if (mPromoAdapter == null) {
+            mPromoAdapter = PromoAdapter(inflater.context)
+        }
+
         promoRecyclerView.adapter = mPromoAdapter
         promoRecyclerView.layoutManager = LinearLayoutManager(
             root.context,
@@ -146,7 +150,11 @@ class MenuFragment : Fragment(), EventListenerss {
         promoRecyclerView.setHasFixedSize(true)
 
         categoryRecyclerView = root.findViewById(R.id.recyclerview_category)
-        mCategoryAdapter = CategoryAdapter()
+
+        if (mCategoryAdapter == null) {
+            mCategoryAdapter = CategoryAdapter()
+        }
+
         categoryRecyclerView.adapter = mCategoryAdapter
         categoryRecyclerView.layoutManager = LinearLayoutManager(
             root.context,
@@ -157,7 +165,7 @@ class MenuFragment : Fragment(), EventListenerss {
 
         btnUp()
         loadPromo()
-
+        loadMenu()
 
 //        loadCiti(root.context)
 
@@ -228,7 +236,7 @@ class MenuFragment : Fragment(), EventListenerss {
                     Log.d("promo", "promo data= ${dataSnapshot.children}")
 
                 }
-                mPromoAdapter.setupPromo(promoList)
+                mPromoAdapter?.setupPromo(promoList)
             }
 
             override fun onCancelled(error: DatabaseError) {
@@ -277,7 +285,7 @@ class MenuFragment : Fragment(), EventListenerss {
     }
 
     private fun updateAdapterCategory() {
-        mCategoryAdapter.setupCategory(categoryList)
+        mCategoryAdapter?.setupCategory(categoryList)
 
         progress_bar_two.visibility = View.VISIBLE
         progress_bar_two.visibility = View.INVISIBLE
