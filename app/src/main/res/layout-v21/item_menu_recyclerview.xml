@@ -81,19 +81,50 @@
                     android:layout_weight="1"
                     android:text="215 гр." />
 
-                <TextView
-                    android:id="@+id/txt_roll_price"
+                <RelativeLayout
+                    android:id="@+id/layout_roll_price"
                     android:layout_width="120dp"
                     android:layout_height="wrap_content"
+                    android:layout_marginRight="5dp"
+                    android:layout_marginEnd="5dp"
                     android:layout_gravity="bottom"
-                    android:layout_marginStart="3dp"
-                    android:layout_marginLeft="3dp"
-                    android:background="@drawable/okrugl_button"
+                    android:background="@drawable/okrugl_wt"
                     android:gravity="center"
-                    android:text="100 руб"
-                    android:textColor="@color/qblackFont"
-                    android:layout_weight="1"
-                    android:textSize="15sp" />
+                    android:layout_weight="1">
+
+                <ImageView
+                    android:id="@+id/img_roll_prise"
+                    android:layout_width="45dp"
+                    android:layout_height="20dp"
+                    android:background="@drawable/ic_line"
+                    android:visibility="invisible"/>
+
+                    <TextView
+                        android:id="@+id/txt_roll_price"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:gravity="center"
+                        android:text="100 руб"
+                        android:textColor="@color/qblackFont"
+                        android:textSize="15sp" />
+
+                    <TextView
+                        android:id="@+id/txt_roll_price_new_cost"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:gravity="center"
+                        android:layout_toEndOf="@+id/img_roll_prise"
+                        android:layout_toRightOf="@+id/img_roll_prise"
+                        android:layout_marginLeft="7dp"
+                        android:layout_marginStart="7dp"
+                        android:text="50 руб"
+                        android:textColor="@color/qred"
+                        android:textSize="15sp"
+                        android:visibility="invisible"/>
+
+            </RelativeLayout>
 
             </LinearLayout>
 
