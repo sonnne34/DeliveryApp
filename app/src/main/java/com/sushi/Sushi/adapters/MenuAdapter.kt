@@ -128,8 +128,9 @@ class MenuAdapter(context: Context) : RecyclerView.Adapter<RecyclerView.ViewHold
             newCost.visibility = View.GONE
             imgLine.visibility = View.GONE
 
-            if (newCostt.isNotEmpty()) {
-                newCost.text = "$newCostt р."
+            //здесь костыль: при пустых значаниях приходят странные цифры, но они не больше 10000)
+            if (newCostt.toLong() < 10000) {
+                newCost.text = "${newCostt.toString()} р.".toString()
                 newCost.visibility = View.VISIBLE
                 imgLine.visibility = View.VISIBLE
             }
@@ -152,7 +153,7 @@ class MenuAdapter(context: Context) : RecyclerView.Adapter<RecyclerView.ViewHold
                     menuCategoryModel.Items?.PictureForLoad = uri
                     val img = glide.load(uri)
                     img.diskCacheStrategy(DiskCacheStrategy.NONE)
-                    img.into(imgDish)
+                    img.centerCrop().into(imgDish)
                 }
             } else {
                 val img = glide.load(menuCategoryModel.Items?.PictureForLoad)

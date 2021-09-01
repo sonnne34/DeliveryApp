@@ -4,6 +4,7 @@ import android.app.Dialog
 import android.content.Context
 import android.util.Log
 import android.view.Gravity
+import android.view.View
 import android.view.Window
 import android.widget.Button
 import android.widget.ImageView
@@ -37,124 +38,106 @@ class CountDialog {
             val description = dialog.findViewById(R.id.textViewGoodsDescriptionDialog) as TextView
             val name = dialog.findViewById(R.id.names) as TextView
             val cost = dialog.findViewById(R.id.cost) as TextView
+            val newCost = dialog.findViewById(R.id.txt_roll_price_new_cost) as TextView
+            val imgLine = dialog.findViewById(R.id.img_roll_prise) as ImageView
             val count = dialog.findViewById(R.id.count) as TextView
             val imgDish = dialog.findViewById(R.id.imageViewPictureDishDialog) as ImageView
-
             val file = BasketSingleton.proverkaNaNalichie(fileMenu)
+            val newCostt = menuFile.Items?.NewCost
+            var priceDialog = menuFile.Items?.Cost?.toInt()
+            var priceDialogNewCost = menuFile.Items?.NewCost?.toInt()
+            var simCost: Long = Long.MAX_VALUE
+            var simNewCost: Long = Long.MAX_VALUE
 
-            Log.d("verka", "11111= " + file)
+            description.text = menuFile.Items?.Description
+            name.text = menuFile.Items?.Name
+            cost.text = menuFile.Items?.Cost.toString()
+            newCost.visibility = View.GONE
+            imgLine.visibility = View.GONE
+            LoadImage().loadImageDish(menuFile, imgDish)
 
-            if (file != null){
-
-                description.text = file.Items?.Description
-                name.text = file.Items?.Name
-
-                LoadImage().loadImageDish(file, imgDish)
-
-//                val storageTwo = FirebaseStorage.getInstance()
-//
-//                val storageRefTwo = storageTwo.getReferenceFromUrl(file?.Items?.Picture!!)
-//
-
-
-//                storageRefTwo.downloadUrl.addOnSuccessListener { uri ->
-//                    Picasso.get().load(uri).fit().centerCrop()
-//                        .into(imgDish)
-//                }.addOnFailureListener {
-//                }
-//
-
-
-//                val ONE_MEGABYTE = (2000 * 4000).toLong()
-//                storageRefTwo.getBytes(ONE_MEGABYTE).addOnSuccessListener{
-//                    val bm = BitmapFactory.decodeByteArray(it, 0, it.size)
-//                    val dm = DisplayMetrics()
-//                    imgDish.setImageBitmap(bm)
-//                }
-
-
-                val sim: Long = file.Items?.Cost!!
-                val som: Long = file.Items?.CountDialog!!
-                val zim = sim * som
-
-                cost.text = zim.toString()
-
-                count.text = file.Items?.CountDialog.toString()
-                dialog.show();
-
-                Log.d("verka", "2222222= " + file)
-
-
+            //если новая цена есть (здесь костыль, так как пустое значение приходит не пустым)))
+            if (newCostt?.toDouble()!! < 10000) {
+                //то берем значение из модели
+                newCost.text = "$newCostt р."
+                //и делаем скидку видимой
+                newCost.visibility = View.VISIBLE
+                imgLine.visibility = View.VISIBLE
+                //записываем обе цены для рассчётов
+                simCost = menuFile.Items?.Cost!!.toLong()
+                simNewCost = newCostt.toLong()
             }else{
-                description.text = menuFile.Items?.Description
-                name.text = menuFile.Items?.Name
-                cost.text = menuFile.Items?.Cost.toString()
+                // либо записываем только обычную цену для рассчётов, новая цена = 0
+                    simNewCost = 0
+                    simCost = menuFile.Items?.Cost!!
+                    cost.text = simCost.toString()
+            }
 
-                LoadImage().loadImageDish(menuFile, imgDish)
+            //если блюдо уже есть в корзине то достаём количество и перемножаем
+            if (file != null){
+                val somDialogCost: Long = file.Items?.CountDialog!!
+                val zimSum = simCost * somDialogCost
+                val zimSumNewCost = simNewCost * somDialogCost
+                cost.text = zimSum.toString()
+                newCost.text = zimSumNewCost.toString()
+                count.text = file.Items?.CountDialog.toString()
 
-//                val storageTwo = FirebaseStorage.getInstance()
-//                val storageRefTwo = storageTwo.getReferenceFromUrl(menuFile.Items?.Picture!!)
+                dialog.show()
 
-
-//                storageRefTwo.downloadUrl.addOnSuccessListener { uri ->
-//                    Picasso.get().load(uri).fit().centerCrop()
-//                        .into(imgDish)
-//                }
-
-
-//                val ONE_MEGABYTE = (4000 * 2000).toLong()
-//                storageRefTwo.getBytes(ONE_MEGABYTE).addOnSuccessListener{
-//                    val bm = BitmapFactory.decodeByteArray(it, 0, it.size)
-//                    val dm = DisplayMetrics()
-//                    imgDish.setImageBitmap(bm)
-//                }
-
+             //если блюда в корзине еще нет
+            }else{
                 val one: Long = 1
                 count.text = one.toString()
-                dialog.show();
+                dialog.show()
 
             }
 
+            // Рассчёты
+            //плюс
             val plus = dialog.findViewById(R.id.image_plus) as Button
             plus.setOnClickListener(){
-                var zz = count.text
-                var pz = Integer.valueOf(zz.toString())
-                pz++
-                count.text = pz.toString() // преобразовываем в строку и возвращаем в обьект "count"
+                var zzCount = count.text
+                var pzCount = Integer.valueOf(zzCount.toString())
 
-                var sum = dialog.findViewById(R.id.cost) as TextView
-                var priceDialog = menuFile.Items?.Cost?.toInt()
+                //считаем количество
+                pzCount++
+                count.text = pzCount.toString() // преобразовываем в строку и возвращаем в обьект "count"
 
-                val count44 = count.text
-                val countFF = Integer.valueOf(count44.toString())
-                val sums = (countFF * priceDialog!!)
-                sum.text = sums.toString()
+                //считаем сумму
+                val sums = (pzCount * priceDialog!!)
+                cost.text = sums.toString()
 
+                if (newCostt?.toDouble()!! < 10000) {
+                    val sumsNewCost = (pzCount * priceDialogNewCost!!)
+                    newCost.text = "$sumsNewCost р."
+                }
             }
 
-
+            //минус
             val minus = dialog.findViewById(R.id.image_minus) as Button
             minus.setOnClickListener(){
-                val zz = count.text // получем содержимое обьекта
+                val zzCount = count.text // получем содержимое обьекта
+                var pzCount = Integer.valueOf(zzCount.toString()) // преобразовываем в число
 
-                Log.d("Count", "Minus = $zz")
-                var pz = Integer.valueOf(zz.toString()) // преобразовываем в число
-
-                if (pz >= 1) { //если pz больше или равно 1
-                    pz-- // убавляем 1
+                if (pzCount >= 1) { //если pz больше или равно 1
+                    pzCount-- // убавляем 1
                 } else {
-                    pz = 0 //если pz равно 0 то возвращаем значение 0//
+                    pzCount = 0 //если pz равно 0 то возвращаем значение 0//
                 }
-                count.text = pz.toString() // преобразовываем в строку и возвращаем в обьект "count"
-                var sum = dialog.findViewById(R.id.cost) as TextView
-                var priceDialog = menuFile.Items?.Cost?.toInt()
-                val count44 = count.text
-                val countTwo = Integer.valueOf(count44.toString())
-                var sums = (countTwo * priceDialog!!)
-                sum.text = sums.toString()
+                count.text = pzCount.toString() // преобразовываем в строку и возвращаем в обьект "count"
+
+                val countTwo = Integer.valueOf(pzCount.toString())
+                val sums = (countTwo * priceDialog!!)
+                cost.text = sums.toString()
+
+                if (newCostt?.toDouble()!! < 10000) {
+                    val sumsNewCost = (countTwo * priceDialogNewCost!!)
+                    newCost.text = "$sumsNewCost р."
+                }
 
             }
 
+            //добавить
             val add = dialog.findViewById(R.id.btn_add) as Button
             add.setOnClickListener() {
                 val zz = count.text // получем содержимое обьекта
@@ -178,7 +161,7 @@ class CountDialog {
 
                 dialog.cancel()
 
-
+                //закрыть
             }
             val cancel = dialog.findViewById(R.id.cancel) as Button
             cancel.setOnClickListener() {
@@ -186,4 +169,5 @@ class CountDialog {
             }
         }
     }
+
 }

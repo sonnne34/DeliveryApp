@@ -55,12 +55,12 @@ class PromoAdapter(context: Context) : RecyclerView.Adapter<RecyclerView.ViewHol
                     promoModel.PictureLoad = uri
                     val img = glide.load(uri)
                     img.diskCacheStrategy(DiskCacheStrategy.NONE)
-                    img.fitCenter().into(promoImage)
+                    img.centerCrop().into(promoImage)
                 }
             } else {
                 val img = glide.load(promoModel.PictureLoad)
                 img.diskCacheStrategy(DiskCacheStrategy.NONE)
-                img.fitCenter().into(promoImage)
+                img.centerCrop().into(promoImage)
             }
 
 

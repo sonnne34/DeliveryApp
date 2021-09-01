@@ -51,53 +51,71 @@
 
         <TextView
             android:id="@+id/names"
-            android:layout_marginStart="10dp"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textColor="@color/qblackFont"
-            android:layout_marginEnd="7dp"
-            android:textSize="16sp"
-            android:text="Название Блюда"
-            android:layout_toLeftOf="@+id/layout_dialog_cost"
+            android:layout_height="match_parent"
+            android:layout_alignStart="@+id/layout_dialog_cost"
+            android:layout_alignLeft="@+id/layout_dialog_cost"
             android:layout_alignParentStart="true"
-            android:layout_marginRight="7dp"
+            android:layout_alignParentLeft="true"
+            android:layout_marginStart="10dp"
+            android:layout_marginEnd="150dp"
+            android:layout_marginRight="150dp"
             android:layout_marginLeft="10dp"
-            android:layout_toStartOf="@+id/layout_dialog_cost"
-            android:layout_alignParentLeft="true" />
+            android:textColor="@color/qblackFont"
+            android:textSize="15sp"
+            android:text="Название Блюда"/>
 
-        <LinearLayout
+        <RelativeLayout
             android:id="@+id/layout_dialog_cost"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
             android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:layout_marginStart="5dp"
+            android:layout_marginLeft="5dp"
             android:paddingLeft="10dp"
             android:paddingRight="10dp"
-            android:background="@drawable/okrugl"
-            android:layout_alignParentRight="true">
+            android:background="@drawable/okrugl">
 
         <TextView
             android:id="@+id/cost"
-            android:textSize="16dp"
+            android:textSize="15sp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textColor="@color/qblackFont"
             android:background="@color/qgradient2"
-            android:layout_alignParentRight="true"
-            android:text="100"/>
+            android:text="100" />
 
             <TextView
                 android:id="@+id/cost_r"
-                android:textSize="16dp"
+                android:textSize="15sp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:background="@color/qgradient2"
                 android:textColor="@color/qblackFont"
-                android:layout_alignParentRight="true"
-                android:text=" руб."/>
+                android:layout_toRightOf="@+id/cost"
+                android:text=" р." />
 
-        </LinearLayout>
+            <ImageView
+                android:id="@+id/img_roll_prise"
+                android:layout_width="40dp"
+                android:layout_height="20dp"
+                android:background="@drawable/ic_line" />
 
+            <TextView
+                android:id="@+id/txt_roll_price_new_cost"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_toEndOf="@+id/img_roll_prise"
+                android:layout_toRightOf="@+id/img_roll_prise"
+                android:layout_marginLeft="7dp"
+                android:layout_marginStart="7dp"
+                android:textColor="@color/qred"
+                android:background="@color/qgradient2"
+                android:textSize="15sp"
+                android:text="50 руб"/>
+
+        </RelativeLayout>
 
     </RelativeLayout>
 
