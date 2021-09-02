@@ -59,31 +59,48 @@
                 android:layout_marginTop="2dp"
                 android:textSize="14sp"
                 android:layout_toRightOf="@+id/txt_value_bukva_dish_basket"
-                android:layout_toLeftOf="@+id/txt_prise_dish_basket"
+                android:layout_toLeftOf="@+id/relative_prise"
                 android:layout_marginRight="5dp"
                 android:text="Название блюда"/>
+
+            <RelativeLayout
+                android:id="@+id/relative_prise"
+                android:layout_width="wrap_content"
+                android:layout_height="60dp"
+                android:gravity="center"
+                android:layout_toLeftOf="@+id/btn_del_basket"
+                android:layout_toStartOf="@+id/btn_del_basket">
+
+                <ImageView
+                    android:id="@+id/img_roll_prise_basket"
+                    android:layout_width="40dp"
+                    android:layout_height="20dp"
+                    android:background="@drawable/ic_line" />
 
             <TextView
                 android:id="@+id/txt_prise_dish_basket"
                 android:layout_width="wrap_content"
-                android:layout_height="60dp"
+                android:layout_height="wrap_content"
                 android:gravity="center"
+                android:layout_gravity="center"
                 android:textColor="@color/qblackFont"
-                android:layout_toLeftOf="@+id/txt_prise_dish_basket_r"
                 android:layout_marginTop="2dp"
-                android:text="100"
+                android:text="100 р."
                 android:textSize="14sp" />
 
-            <TextView
-                android:id="@+id/txt_prise_dish_basket_r"
-                android:layout_width="wrap_content"
-                android:layout_height="60dp"
-                android:gravity="center"
-                android:textColor="@color/qblackFont"
-                android:layout_toLeftOf="@+id/btn_del_basket"
-                android:layout_marginTop="2dp"
-                android:text=" р. "
-                android:textSize="16dp" />
+                <TextView
+                    android:id="@+id/txt_new_prise_dish_basket"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:layout_below="@+id/txt_prise_dish_basket"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="2dp"
+                    android:textColor="@color/qred"
+                    android:text="100 р."
+                    android:textSize="14sp" />
+
+            </RelativeLayout>
 
             <Button
                 android:id="@+id/btn_del_basket"

@@ -1,5 +1,6 @@
 package com.sushi.Sushi.adapters
 
+import android.annotation.SuppressLint
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
@@ -53,18 +54,35 @@ class BasketAdapter: RecyclerView.Adapter<RecyclerView.ViewHolder>() {
         private var description : TextView = itemView.findViewById(R.id.txt_description_basket)
         private var imgDish: ImageView = itemView.findViewById(R.id.img_dish_basket)
         private var prise : TextView = itemView.findViewById(R.id.txt_prise_dish_basket)
+        private var priseNewCost : TextView = itemView.findViewById(R.id.txt_new_prise_dish_basket)
         private var valueDish : TextView = itemView.findViewById(R.id.txt_value_dish_basket)
         private var btnPlus : Button = itemView.findViewById(R.id.btn_plus_basket)
         private var btnMin : Button = itemView.findViewById(R.id.btn_minus_basket)
+        private var imgLine : ImageView = itemView.findViewById(R.id.img_roll_prise_basket)
         var btnDel : Button = itemView.findViewById(R.id.btn_del_basket)
-//        private lateinit var circleTransform: CircleTransform
 
 
+        @SuppressLint("SetTextI18n")
         fun bind(menuModel: MenuModelcatMenu){
 
             nameDish.text = "${menuModel.Items?.Name}"
             valueDish.text = "${menuModel.Items?.CountDialog}"
             description.text = "${menuModel.Items?.Description}"
+
+            priseNewCost.visibility = View.GONE
+            imgLine.visibility = View.GONE
+
+            val costNewCostt = menuModel.Items?.NewCost?.toInt()
+
+            Log.d("NewCost", "newC = $costNewCostt")
+
+            //здесь костыль: при пустых значаниях приходят странные цифры, но они не больше 10000)
+            if (costNewCostt?.toLong()!! in 1..9999) {
+                priseNewCost.text = "${costNewCostt.toString()} р.".toString()
+                priseNewCost.visibility = View.VISIBLE
+                imgLine.visibility = View.VISIBLE
+            }
+
 
             Log.d("img", "ooops")
 
@@ -89,7 +107,11 @@ class BasketAdapter: RecyclerView.Adapter<RecyclerView.ViewHolder>() {
             val cost = menuModel.Items?.Cost?.toInt()
             val sum  = cost!! * count!!
 
-            prise.text = sum.toString()
+            val costNewCosttt = menuModel.Items?.NewCost?.toInt()
+            val sumNewCost = costNewCosttt!! * count!!
+
+            prise.text = "$sum р."
+            priseNewCost.text = "$sumNewCost р."
 
             btnMin.setOnClickListener {
                 val textNumber = valueDish.text
@@ -106,7 +128,7 @@ class BasketAdapter: RecyclerView.Adapter<RecyclerView.ViewHolder>() {
                 val txt  = Integer.valueOf(count.toString())
                 val sums = (txt * text)
 
-                prise.text = sums.toString()
+                prise.text = "$sums р."
                 BasketSingleton.notifyTwo()
                 Log.d("img", "ooops")
             }
@@ -123,7 +145,7 @@ class BasketAdapter: RecyclerView.Adapter<RecyclerView.ViewHolder>() {
                 val txt = Integer.valueOf(count.toString())
                 val sums = (txt * text)
 
-                prise.text = sums.toString()
+                prise.text = "$sums р."
 
             }
         }

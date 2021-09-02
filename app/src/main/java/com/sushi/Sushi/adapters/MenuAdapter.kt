@@ -129,7 +129,7 @@ class MenuAdapter(context: Context) : RecyclerView.Adapter<RecyclerView.ViewHold
             imgLine.visibility = View.GONE
 
             //здесь костыль: при пустых значаниях приходят странные цифры, но они не больше 10000)
-            if (newCostt.toLong() < 10000) {
+            if (newCostt.toLong() in 1..9999) {
                 newCost.text = "${newCostt.toString()} р.".toString()
                 newCost.visibility = View.VISIBLE
                 imgLine.visibility = View.VISIBLE

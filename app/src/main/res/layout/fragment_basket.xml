@@ -109,28 +109,24 @@
         android:layout_marginBottom="60dp"
         android:layout_marginTop="5dp"
         android:layout_marginEnd="5dp"
-        android:orientation="horizontal">
+        android:orientation="vertical">
 
         <TextView
-            android:id="@+id/txt_prise_total_basket_it"
+            android:id="@+id/txt_new_prise_total_basket"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="15sp"
-            android:text=" итого: "/>
+            android:layout_gravity="right"
+            android:textColor="@color/colorCoral"
+            android:text="Скидка составила: 100 р."
+            android:textSize="15sp" />
 
         <TextView
             android:id="@+id/txt_prise_total_basket"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="15sp"
-            android:text="100"/>
-
-        <TextView
-            android:id="@+id/txt_prise_total_basket_r"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textSize="15sp"
-            android:text=" руб. "/>
+            android:layout_gravity="right"
+            android:text="Итого: 100 р."
+            android:textSize="15sp" />
 
     </LinearLayout>
 

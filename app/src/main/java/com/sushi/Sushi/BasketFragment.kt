@@ -33,6 +33,7 @@ class BasketFragment : Fragment(), EventListenerss{
     lateinit var txtHelloBasket : TextView
     lateinit var txtHelloBasket2 : TextView
     lateinit var txtPriseTotal : TextView
+    lateinit var txtNewPriseTotal : TextView
     lateinit var layoutPriseTotal : LinearLayout
     lateinit var txtHeader : TextView
     lateinit var imgHello: ImageView
@@ -50,6 +51,7 @@ class BasketFragment : Fragment(), EventListenerss{
         imgHello = root.findViewById(R.id.img_logo_hello_basket)
         clearBasket = root.findViewById(R.id.txt_clear_basket)
         txtPriseTotal = root.findViewById(R.id.txt_prise_total_basket)
+        txtNewPriseTotal = root.findViewById(R.id.txt_new_prise_total_basket)
         layoutPriseTotal = root.findViewById(R.id.layout_prise_total)
         btnRegistr = root.findViewById(R.id.btn_registratoin)
         txtHeader = root.findViewById(R.id.txt_header_basket)
@@ -62,6 +64,8 @@ class BasketFragment : Fragment(), EventListenerss{
         rvBasket.layoutManager = LinearLayoutManager(root.context, RecyclerView.VERTICAL, false)
         rvBasket.setHasFixedSize(true)
         listmodel = BasketSingleton.basketItem
+
+        txtNewPriseTotal.visibility = View.GONE
 
         setupAdapter(listmodel)
 //        btnReg(root.context)
@@ -88,7 +92,15 @@ class BasketFragment : Fragment(), EventListenerss{
 
     fun btnReg (context: Context) {
             btnRegistr.setOnClickListener {
-                val sum = BasketSingleton.count()
+                var sum = Long.MAX_VALUE
+                val costNewCosttt = BasketSingleton.loadCost()
+                //здесь костыль: при пустых значаниях приходят странные цифры, но они не больше 10000)
+                if (costNewCosttt?.toLong()!! in 1..9999) {
+                    sum = BasketSingleton.countNew()
+                } else{
+                    sum = BasketSingleton.count()
+                }
+
                 if (sum < 1000) {
                     Toast.makeText(context, "Сумма заказа должна быть не менее 1000 рублей", Toast.LENGTH_LONG)
                         .show()
@@ -137,9 +149,20 @@ class BasketFragment : Fragment(), EventListenerss{
     }
 
      fun updateTEXT() {
-        val ss = BasketSingleton.count()
 
-        txtPriseTotal.text = ss.toString()
+        val ss = BasketSingleton.count()
+         val costNewCosttt = BasketSingleton.loadCost()
+         //здесь костыль: при пустых значаниях приходят странные цифры, но они не больше 10000)
+         if (costNewCosttt?.toLong()!! in 1..9999) {
+             val ssNewCostTotal = BasketSingleton.countNew()
+             val newCost = ss - ssNewCostTotal
+             txtNewPriseTotal.text = "Скидка составляет: $newCost р."
+             txtNewPriseTotal.visibility = View.VISIBLE
+             txtPriseTotal.text = "Итого: $ssNewCostTotal р."
+         } else{
+             txtPriseTotal.text = "Итого: $ss р."
+         }
+
     }
 
     override fun updateRR() {
@@ -163,7 +186,7 @@ class BasketFragment : Fragment(), EventListenerss{
 
                     BasketSingleton.del()
                     BasketSingleton.notifyTwo()
-
+                    visible()
                     goMenuFragment()
 
                 }

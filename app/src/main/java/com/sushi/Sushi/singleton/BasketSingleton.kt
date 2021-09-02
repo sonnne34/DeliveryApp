@@ -34,6 +34,22 @@ object BasketSingleton {
         return sumItems
     }
 
+    fun countNew(): Long {
+        var sumItems: Long = 0
+        for (i in basketItem) {
+            sumItems += (i.Items?.NewCost!! * i.Items?.CountDialog!!)
+        }
+        return sumItems
+    }
+
+    fun loadCost(): Long{
+        var newCost: Long = 0
+        for (i in BasketSingleton.basketItem) {
+            newCost = i.Items?.NewCost!!
+        }
+        return newCost
+    }
+
     fun proverkaNaNalichie(position: MenuModelcatMenu): MenuModelcatMenu? {
         var nn: MenuModelcatMenu? = null
         for (i in basketItem) {
