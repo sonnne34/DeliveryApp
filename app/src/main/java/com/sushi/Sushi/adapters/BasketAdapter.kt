@@ -99,7 +99,7 @@ class BasketAdapter: RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
             itemView.setOnClickListener {
 
-                CountDialog.openDialog(itemView.context, menuModel)
+                CountDialog.openDialog(itemView.context, menuModel, position)
 
             }
 

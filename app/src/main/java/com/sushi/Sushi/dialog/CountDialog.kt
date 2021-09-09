@@ -17,7 +17,7 @@ import com.sushi.Sushi.singleton.BasketSingleton
 
 class CountDialog {
     companion object {
-        fun openDialog(context: Context, fileMenu: MenuModelcatMenu) {
+        fun openDialog(context: Context, fileMenu: MenuModelcatMenu, position: Int) {
 
 
             var menuFile = fileMenu
@@ -153,7 +153,6 @@ class CountDialog {
                 }
                 else {
                     if (file != null) {
-                        val position: Int = 0
                         BasketSingleton.delPos(position)
                         BasketSingleton.notifyTwo()
                     }

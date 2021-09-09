@@ -183,7 +183,7 @@ class MenuAdapter(context: Context) : RecyclerView.Adapter<RecyclerView.ViewHold
 
 
             itemView.setOnClickListener {
-                CountDialog.openDialog(itemView.context, menuCategoryModel)
+                CountDialog.openDialog(itemView.context, menuCategoryModel, position)
             }
 
             Log.d("Color", "menu = " + menuCategoryModel)

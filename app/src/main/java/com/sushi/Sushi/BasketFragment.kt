@@ -68,10 +68,10 @@ class BasketFragment : Fragment(), EventListenerss{
         txtNewPriseTotal.visibility = View.GONE
 
         setupAdapter(listmodel)
-//        btnReg(root.context)
+        btnReg(root.context)
         visible()
         updateTEXT()
-//        clearBasket(root.context)
+        clearBasket(root.context)
 
         return root
     }
@@ -93,9 +93,9 @@ class BasketFragment : Fragment(), EventListenerss{
     fun btnReg (context: Context) {
             btnRegistr.setOnClickListener {
                 var sum = Long.MAX_VALUE
-                val costNewCosttt = BasketSingleton.loadCost()
+                val costNewCostt = BasketSingleton.loadCost()
                 //здесь костыль: при пустых значаниях приходят странные цифры, но они не больше 10000)
-                if (costNewCosttt?.toLong()!! in 1..9999) {
+                if (costNewCostt?.toLong()!! in 1..9999) {
                     sum = BasketSingleton.countNew()
                 } else{
                     sum = BasketSingleton.count()
@@ -150,18 +150,29 @@ class BasketFragment : Fragment(), EventListenerss{
 
      fun updateTEXT() {
 
-        val ss = BasketSingleton.count()
-         val costNewCosttt = BasketSingleton.loadCost()
-         //здесь костыль: при пустых значаниях приходят странные цифры, но они не больше 10000)
-         if (costNewCosttt?.toLong()!! in 1..9999) {
-             val ssNewCostTotal = BasketSingleton.countNew()
-             val newCost = ss - ssNewCostTotal
-             txtNewPriseTotal.text = "Скидка составляет: $newCost р."
+         //итого по обычной цене
+        val sum1 = BasketSingleton.count()
+         //итого со скидкой
+         val sum2 = BasketSingleton.countNew()
+         //скидка с чека
+         val newCostSum = sum1 - sum2
+         //новая цена
+         val newCost = BasketSingleton.loadCost()
+         //если новая цена есть
+         if(sum1 != sum2){
+             //то показываем размер скидки
+             txtNewPriseTotal.text = "Скидка составляет: $newCostSum р."
+             txtPriseTotal.text = "Итого: $sum2 р."
              txtNewPriseTotal.visibility = View.VISIBLE
-             txtPriseTotal.text = "Итого: $ssNewCostTotal р."
-         } else{
-             txtPriseTotal.text = "Итого: $ss р."
+
+         } else {
+             txtNewPriseTotal.visibility = View.GONE
+             txtPriseTotal.text = "Итого: $sum1 р."
          }
+
+
+
+
 
     }
 
@@ -234,11 +245,11 @@ class BasketFragment : Fragment(), EventListenerss{
     }
 
     private fun goRegistrationFragment(args: String){
-//        val manager = (activity as AppCompatActivity).supportFragmentManager
-//        manager.beginTransaction()
-//            .replace(R.id.frame_layout, registrationFragment, args)
-//            .addToBackStack(null)
-//            .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
-//            .commit()
+        val manager = (activity as AppCompatActivity).supportFragmentManager
+        manager.beginTransaction()
+            .replace(R.id.frame_layout, registrationFragment, args)
+            .addToBackStack(null)
+            .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
+            .commit()
     }
 }

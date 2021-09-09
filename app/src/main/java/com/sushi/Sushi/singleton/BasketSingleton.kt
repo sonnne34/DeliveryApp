@@ -35,11 +35,25 @@ object BasketSingleton {
     }
 
     fun countNew(): Long {
-        var sumItems: Long = 0
-        for (i in basketItem) {
-            sumItems += (i.Items?.NewCost!! * i.Items?.CountDialog!!)
-        }
-        return sumItems
+            var sumsItems: Long = 0
+
+            for (i in basketItem) {
+                var newCost1: Long = 0
+                val newCost = i.Items?.NewCost
+                val cost = i.Items?.Cost
+                val count = i.Items?.CountDialog
+                val sumCost: Long = cost!!.toLong() * count!!.toLong()
+                val sumNewCost: Long = newCost1!!.toLong() * count!!.toLong()
+
+                if(newCost?.toLong()!! in 1..9999){
+                    newCost1 = newCost
+                } else {
+                    newCost1 = cost
+                }
+                sumsItems = sumsItems + (count.toLong() * newCost1)
+            }
+            return sumsItems
+
     }
 
     fun loadCost(): Long{

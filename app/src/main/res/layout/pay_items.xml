@@ -69,6 +69,7 @@
         style="@style/RadioGroup"
         android:layout_width="match_parent"
         android:layout_height="45dp"
+        android:weightSum="2"
         android:layout_marginTop="7dp"
         android:layout_marginRight="7dp"
         android:layout_marginLeft="7dp"

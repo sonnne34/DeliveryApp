@@ -104,15 +104,15 @@
 
             <Button
                 android:id="@+id/btn_del_basket"
-                android:layout_width="21dp"
-                android:layout_height="27dp"
+                android:layout_width="20dp"
+                android:layout_height="26dp"
                 android:layout_marginTop="18dp"
-                android:layout_marginLeft="2dp"
+                android:layout_marginLeft="5dp"
                 android:padding="5dp"
                 android:gravity="center_vertical"
                 android:layout_alignParentRight="true"
                 android:background="@drawable/ic_del"
-                android:layout_marginStart="2dp" />
+                android:layout_marginStart="5dp" />
 
             <Button
                 android:id="@+id/btn_minus_basket"
