@@ -63,6 +63,7 @@ class PaymentFragment : Fragment() {
     private lateinit var btnPromo: Button
     private lateinit var delivery: TextView
     private lateinit var layoutDelivery: LinearLayout
+    private lateinit var discont: TextView
 
     private var method = String()
 
@@ -99,6 +100,7 @@ class PaymentFragment : Fragment() {
         levelText = root.findViewById(R.id.level_total)
         entranceText = root.findViewById(R.id.entrance_total)
         sumTotal = root.findViewById(R.id.sum_person_total)
+        discont = root.findViewById(R.id.txt_new_prise_total_discont)
 
         btnBack = root.findViewById(R.id.btn_pay_back)
         btnDone = root.findViewById(R.id.btn_done)
@@ -291,8 +293,25 @@ class PaymentFragment : Fragment() {
 //            delivery.text = "$deliveryS руб.  "
 //            val sumTotalS = ss + deliveryS!!.toInt()
 //            sumTotal.text = "итого: $sumTotalS руб.  "
-            sumTotal.text = "итого: $ss руб.  "
-//        }
+
+
+        val sum1 = BasketSingleton.count()
+        //итого со скидкой
+        val sum2 = BasketSingleton.countNew()
+        //скидка с чека
+        val newCostSum = sum1 - sum2
+        //новая цена
+        //если новая цена есть
+        if(sum1 != sum2){
+            //то показываем размер скидки
+            discont.text = "Скидка составляет: $newCostSum р."
+            discont.visibility = View.VISIBLE
+            sumTotal.text = "Итого: $sum2 р."
+
+        } else {
+            discont.visibility = View.GONE
+            sumTotal.text = "Итого: $sum1 р."
+        }
     }
 
     private fun loadinfoAdapter() {

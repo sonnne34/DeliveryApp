@@ -86,23 +86,41 @@
 
         </LinearLayout>
 
-        <TextView
-            android:id="@+id/sum_person_total"
-            style="@style/TextBody2"
-            android:textColor="@color/qgrayAdditionalFont"
+        <LinearLayout
+            android:id="@+id/layout_sum_person_total"
             android:layout_width="match_parent"
-            android:gravity="end"
-            android:textStyle="bold"
-            android:textSize="15sp"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
             android:layout_below="@+id/layout_delivery"
-            android:hint="Итого:..." />
+            android:gravity="end">
 
+            <TextView
+                android:id="@+id/txt_new_prise_total_discont"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="right"
+                android:textColor="@color/colorCoral"
+                android:text="Скидка составила: 100 р."
+                android:textSize="15sp" />
+
+            <TextView
+                android:id="@+id/sum_person_total"
+                style="@style/TextBody2"
+                android:textColor="@color/qgrayAdditionalFont"
+                android:layout_width="match_parent"
+                android:gravity="end"
+                android:textStyle="bold"
+                android:textSize="15sp"
+                android:layout_below="@+id/layout_delivery"
+                android:hint="Итого:..." />
+
+        </LinearLayout>
 
         <TextView
             android:id="@+id/person_data_order"
             style="@style/TextHeader2"
             android:textColor="@color/qblackFont"
-            android:layout_below="@+id/sum_person_total"
+            android:layout_below="@+id/layout_sum_person_total"
             android:text="Информация о заказе:" />
 
         <TextView

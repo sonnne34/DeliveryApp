@@ -79,7 +79,7 @@ class CountDialog {
                 val zimSum = simCost * somDialogCost
                 val zimSumNewCost = simNewCost * somDialogCost
                 cost.text = zimSum.toString()
-                newCost.text = zimSumNewCost.toString()
+                newCost.text = zimSumNewCost.toString() + " р."
                 count.text = file.Items?.CountDialog.toString()
 
                 dialog.show()

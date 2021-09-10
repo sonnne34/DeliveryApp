@@ -32,8 +32,7 @@
         android:layout_margin="0dp"
         android:textStyle="normal"
         android:layout_toLeftOf="@+id/cost_total"
-        android:text=" шт.  "
-        />
+        android:text=" шт.  " />
 
     <TextView
         android:id="@+id/cost_total"
@@ -41,7 +40,7 @@
         android:textSize="14sp"
         android:layout_margin="0dp"
         android:layout_toLeftOf="@id/banknote_total"
-        android:text="1"
+        android:text="100"
         />
 
     <TextView
@@ -50,7 +49,38 @@
         android:textSize="14sp"
         android:layout_margin="0dp"
         android:textStyle="normal"
+        android:layout_marginEnd="2dp"
+        android:layout_marginRight="2dp"
+        android:layout_toStartOf="@+id/new_cost_total"
+        android:layout_toLeftOf="@+id/new_cost_total"
+        android:text=" р."/>
+
+    <ImageView
+        android:id="@+id/img_roll_prise_total"
+        android:layout_width="40dp"
+        android:layout_height="20dp"
+        android:layout_marginEnd="2dp"
+        android:layout_marginRight="2dp"
+        android:layout_toStartOf="@+id/new_cost_total"
+        android:layout_toLeftOf="@+id/new_cost_total"
+        android:background="@drawable/ic_line"/>
+
+    <TextView
+        android:id="@+id/new_cost_total"
+        style="@style/TextBody"
+        android:textSize="14sp"
+        android:layout_margin="0dp"
+        android:layout_toLeftOf="@+id/new_cost_r_total"
+        android:layout_toStartOf="@+id/new_cost_r_total"
+        android:text="50"/>
+
+    <TextView
+        android:id="@+id/new_cost_r_total"
+        style="@style/TextBody"
+        android:textSize="14sp"
+        android:layout_margin="0dp"
         android:layout_alignParentRight="true"
-        android:text=" р.  "/>
+        android:layout_alignParentEnd="true"
+        android:text="p."/>
 
 </RelativeLayout>
