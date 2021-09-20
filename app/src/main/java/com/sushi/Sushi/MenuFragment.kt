@@ -22,6 +22,7 @@ import com.google.android.gms.location.LocationServices
 import com.google.android.gms.maps.model.LatLng
 import com.google.firebase.database.*
 import com.sushi.Sushi.adapters.CategoryAdapter
+import com.sushi.Sushi.adapters.DiscountAdapter
 import com.sushi.Sushi.adapters.MenuAdapter
 import com.sushi.Sushi.adapters.PromoAdapter
 import com.sushi.Sushi.dialog.CitiDialog
@@ -30,6 +31,8 @@ import com.sushi.Sushi.dialog.PromoDialog
 import com.sushi.Sushi.listener.EventListenerss
 import com.sushi.Sushi.listener.RecyclerItemClickListenr
 import com.sushi.Sushi.models.CatMenuModel
+import com.sushi.Sushi.models.MenuModel
+import com.sushi.Sushi.models.MenuModelcatMenu
 import com.sushi.Sushi.models.PromoModel
 import com.sushi.Sushi.singleton.BasketSingleton
 import kotlinx.coroutines.CoroutineScope
@@ -47,10 +50,9 @@ class MenuFragment : Fragment(), EventListenerss {
     private lateinit var btnGetLoc : Button
     lateinit var fusedLocationProviderClient : FusedLocationProviderClient
     private lateinit var dangerousArea: MutableList<LatLng>
-
     private lateinit var categoryRecyclerView : RecyclerView
-
     private lateinit var promoRecyclerView : RecyclerView
+    private lateinit var discountRecyclerView : RecyclerView
     lateinit var  menuRecyclerView  : RecyclerView
 
     val menuList : ArrayList<CatMenuModel> = ArrayList()
@@ -65,6 +67,7 @@ class MenuFragment : Fragment(), EventListenerss {
 
     private  var  adapter : MenuAdapter? = null
     private  var  mPromoAdapter: PromoAdapter? = null
+    private  var  mDiscountAdapter: DiscountAdapter? = null
     private  var  mCategoryAdapter: CategoryAdapter? = null
 
     override fun onSaveInstanceState(outState: Bundle) {
@@ -149,6 +152,24 @@ class MenuFragment : Fragment(), EventListenerss {
         )
         promoRecyclerView.setHasFixedSize(true)
 
+        discountRecyclerView = root.findViewById(R.id.recyclerview_discount)
+
+        if (mDiscountAdapter == null) {
+            mDiscountAdapter = DiscountAdapter(inflater.context)
+        }
+
+        discountRecyclerView.adapter = mDiscountAdapter
+        discountRecyclerView.layoutManager = LinearLayoutManager(
+            root.context,
+            RecyclerView.HORIZONTAL,
+            false
+        )
+        discountRecyclerView.setHasFixedSize(true)
+
+        discountRecyclerView.recycledViewPool.setMaxRecycledViews(100, 100)
+        discountRecyclerView.setItemViewCacheSize(300)
+        discountRecyclerView.isDrawingCacheEnabled = true
+
         categoryRecyclerView = root.findViewById(R.id.recyclerview_category)
 
         if (mCategoryAdapter == null) {
@@ -230,11 +251,6 @@ class MenuFragment : Fragment(), EventListenerss {
                     val promoModel = ds.getValue(PromoModel::class.java)!!
                     promoList.add(promoModel)
 
-
-                    Log.d("promo", "promo = $promoList")
-                    Log.d("promo", "promo ds = $ds")
-                    Log.d("promo", "promo data= ${dataSnapshot.children}")
-
                 }
                 mPromoAdapter?.setupPromo(promoList)
             }
@@ -281,7 +297,7 @@ class MenuFragment : Fragment(), EventListenerss {
     private fun updateMenuAdapter(menuList: ArrayList<CatMenuModel>) {
 
         adapter?.setupMenu(menuList)
-
+        mDiscountAdapter?.setupDiscount(menuList)
     }
 
     private fun updateAdapterCategory() {
@@ -289,7 +305,6 @@ class MenuFragment : Fragment(), EventListenerss {
 
         progress_bar_two.visibility = View.VISIBLE
         progress_bar_two.visibility = View.INVISIBLE
-
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {

@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/layout_discont"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content">
+    
+    <RelativeLayout
+        android:layout_width="110dp"
+        android:layout_height="200dp"
+        android:layout_marginTop="2dp"
+        android:layout_marginBottom="2dp"
+        android:layout_marginRight="2dp"
+        android:layout_marginLeft="2dp"
+        android:background="@drawable/okrugl_bacgr">
+
+    <ImageView
+        android:id="@+id/image_dish_discount_menu"
+        android:background="@drawable/logo_tras_mini"
+        android:gravity="center"
+        android:layout_centerHorizontal="true"
+        android:layout_margin="5dp"
+        android:layout_width="100dp"
+        android:layout_height="100dp" />
+
+        <ImageView
+            android:id="@+id/image_discount"
+            android:background="@drawable/ic_discount"
+            android:layout_alignParentRight="true"
+            android:layout_margin="5dp"
+            android:layout_width="50dp"
+            android:layout_height="55dp" />
+
+    <TextView
+        android:id="@+id/name_dish_discount_menu"
+        android:layout_below="@+id/image_dish_discount_menu"
+        android:layout_centerHorizontal="true"
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:textColor="@color/qblackFont"
+        android:gravity="center"
+        android:layout_margin="2dp"
+        android:text="Название"
+        android:textSize="12sp" />
+
+        <RelativeLayout
+            android:id="@+id/layout_roll_price"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:layout_width="100dp"
+            android:layout_height="26dp"
+            android:layout_marginBottom="4dp"
+            android:background="@drawable/okrugl_wt"
+            android:gravity="center">
+
+            <ImageView
+                android:id="@+id/img_line_roll_prise"
+                android:layout_width="35dp"
+                android:layout_height="16dp"
+                android:background="@drawable/ic_line" />
+
+            <TextView
+                android:id="@+id/txt_roll_price"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:text="100 руб"
+                android:textColor="@color/qblackFont"
+                android:textSize="12sp" />
+
+            <TextView
+                android:id="@+id/txt_roll_price_new_cost"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginStart="7dp"
+                android:layout_marginLeft="7dp"
+                android:layout_toEndOf="@+id/img_line_roll_prise"
+                android:layout_toRightOf="@+id/img_line_roll_prise"
+                android:gravity="center"
+                android:text="50 руб"
+                android:textColor="@color/qred"
+                android:textSize="12sp" />
+
+        </RelativeLayout>
+    </RelativeLayout>
+</RelativeLayout>
