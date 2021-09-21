@@ -59,7 +59,7 @@ class BasketFragment : Fragment(), EventListenerss{
 
         BasketSingleton.subscribe(this)
 
-        basketAdapter = BasketAdapter()
+        basketAdapter = BasketAdapter(root.context)
         rvBasket.adapter = basketAdapter
         rvBasket.layoutManager = LinearLayoutManager(root.context, RecyclerView.VERTICAL, false)
         rvBasket.setHasFixedSize(true)

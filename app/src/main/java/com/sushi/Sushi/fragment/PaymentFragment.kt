@@ -87,7 +87,7 @@ class PaymentFragment : Fragment() {
             LinearLayoutManager(root.context, RecyclerView.VERTICAL, false)
         recyclerView.setHasFixedSize(true)
 
-        basketAdapter = BasketAdapter()
+        basketAdapter = BasketAdapter(root.context)
 
         nameText = root.findViewById(R.id.name_pay_item)
         numberText = root.findViewById(R.id.phone_order)

@@ -29,7 +29,7 @@ class PromoDialog {    companion object {
 
         promoList[position]
         val imgPromoDescript = dialog.findViewById(R.id.img_promo_description) as ImageView
-        LoadImage().loadImagePromoDescription(imgPromoDescript, position, promoList)
+        LoadImage().loadImagePromoDescription(context, imgPromoDescript, position, promoList)
 
         val btnClose = dialog.findViewById(R.id.btn_close_dialog_promo) as Button
         btnClose.setOnClickListener {

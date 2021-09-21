@@ -30,48 +30,53 @@ class LoadImage {
             img.diskCacheStrategy(DiskCacheStrategy.NONE)
             img.into(imageDish)
         }
-
-//        val storage = FirebaseStorage.getInstance()
-//        val storageRef = storage.getReferenceFromUrl(menuCategoryModel.Items?.Picture!!)
-//        storageRef.downloadUrl.addOnSuccessListener { uri ->
-
-//            Picasso.get().load(uri).fit().transform(CircleTransform()).noFade().into(imageDish)
-//        }
-
     }
-//        val storage = FirebaseStorage.getInstance()
-//
-//        val storageRef = storage.getReferenceFromUrl(menuCategoryModel.Items?.Picture!!)
-//
-//        val ONE_MEGABYTE = (120 * 120).toLong()
-//        storageRef.getBytes(ONE_MEGABYTE).addOnSuccessListener {
-//            val bm = BitmapFactory.decodeByteArray(it, 0, it.size)
-//            val dm = DisplayMetrics()
-//            imageDish.setImageBitmap(bm)
-////            imageDish.getImageBitmap(bm)
-//        }
-//    }
 
-    fun loadImagePromo(promoModel:PromoModel, imagePromo: ImageView) {
 
-        val storage = FirebaseStorage.getInstance()
-        val storageRef = storage.getReferenceFromUrl(promoModel.Picture!!)
-        storageRef.downloadUrl.addOnSuccessListener { uri ->
+    fun loadImagePromo(context: Context, promoModel:PromoModel, imagePromo: ImageView) {
 
-            Picasso.get().load(uri).fit().centerCrop().noFade().into(imagePromo)
+        val glide = Glide.with(context)
+        if (promoModel.PictureLoad == null) {
+            val storage = FirebaseStorage.getInstance()
+            val storageRef = storage.getReferenceFromUrl(promoModel.Picture!!)
+            storageRef.downloadUrl.addOnSuccessListener { uri ->
+                promoModel.PictureLoad = uri
+                val img = glide.load(uri)
+                img.diskCacheStrategy(DiskCacheStrategy.NONE)
+                img.centerCrop().into(imagePromo)
+            }
+        } else {
+            val img = glide.load(promoModel.PictureLoad)
+            img.diskCacheStrategy(DiskCacheStrategy.NONE)
+            img.centerCrop().into(imagePromo)
         }
     }
 
-    fun loadImagePromoDescription(imagePromoDescription: ImageView, position: Int, promoList: ArrayList<PromoModel>) {
+    fun loadImagePromoDescription(context: Context, imagePromoDescription: ImageView, position: Int, promoList: ArrayList<PromoModel>) {
 
         val promoModel = promoList[position]
+//
+//        val storage = FirebaseStorage.getInstance()
+//        val storageRef = storage.getReferenceFromUrl(promoModel.PictureDescription!!)
+//        storageRef.downloadUrl.addOnSuccessListener { uri ->
+//
+//            Picasso.get().load(uri).fit().centerCrop().into(imagePromoDescription)
+//        }
 
-        val storage = FirebaseStorage.getInstance()
-        val storageRef = storage.getReferenceFromUrl(promoModel.PictureDescription!!)
-        storageRef.downloadUrl.addOnSuccessListener { uri ->
-
-            Picasso.get().load(uri).fit().centerCrop().into(imagePromoDescription)
+        val glide = Glide.with(context)
+        if (promoList == null) {
+            val storage = FirebaseStorage.getInstance()
+            val storageRef = storage.getReferenceFromUrl(promoModel.Picture!!)
+            storageRef.downloadUrl.addOnSuccessListener { uri ->
+                promoModel.PictureLoad = uri
+                val img = glide.load(uri)
+                img.diskCacheStrategy(DiskCacheStrategy.NONE)
+                img.centerCrop().into(imagePromoDescription)
+            }
+        } else {
+            val img = glide.load(promoModel.PictureLoad)
+            img.diskCacheStrategy(DiskCacheStrategy.NONE)
+            img.centerCrop().into(imagePromoDescription)
         }
-
     }
 }

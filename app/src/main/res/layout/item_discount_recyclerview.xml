@@ -43,6 +43,16 @@
         android:text="Название"
         android:textSize="12sp" />
 
+        <TextView
+            android:id="@+id/checkbox_discount"
+            android:layout_centerHorizontal="true"
+            android:gravity="center_horizontal"
+            android:layout_width="98dp"
+            android:layout_height="7dp"
+            android:background="@drawable/okrugl"
+            android:layout_alignParentBottom="true"
+            android:layout_marginBottom="32dp"/>
+
         <RelativeLayout
             android:id="@+id/layout_roll_price"
             android:layout_alignParentBottom="true"

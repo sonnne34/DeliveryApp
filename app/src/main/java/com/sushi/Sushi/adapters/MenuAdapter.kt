@@ -11,9 +11,6 @@ import android.widget.Filterable
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
-import com.bumptech.glide.Glide
-import com.bumptech.glide.load.engine.DiskCacheStrategy
-import com.google.firebase.storage.FirebaseStorage
 import com.sushi.Sushi.R
 import com.sushi.Sushi.dialog.CountDialog
 import com.sushi.Sushi.models.CatMenuModel
@@ -24,13 +21,9 @@ import com.sushi.Sushi.singleton.BasketSingleton
 class MenuAdapter(context: Context) : RecyclerView.Adapter<RecyclerView.ViewHolder>(), Filterable {
     private var mMenuList: ArrayList<MenuModelcatMenu> = ArrayList()
     private var mCatList: ArrayList<CatMenuModel>? = null
-
     private val LAYOUT_HEADER = 0
     private val LAYOUT_CHILD = 1
-
-    private val glide = Glide.with(context)
-
-    private val mContext: Context = context
+    private var mContext = context
 
     fun setupMenu(menuList: ArrayList<CatMenuModel>) {
         mMenuList.clear()
@@ -50,7 +43,6 @@ class MenuAdapter(context: Context) : RecyclerView.Adapter<RecyclerView.ViewHold
                 var menuModel = MenuModelcatMenu()
                 menuModel.Items = i.value
                 mMenuList.add(menuModel)
-
             }
         }
         notifyDataSetChanged()
@@ -65,7 +57,6 @@ class MenuAdapter(context: Context) : RecyclerView.Adapter<RecyclerView.ViewHold
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
-
 
         if (viewType == LAYOUT_HEADER) {
             var layoutInflater = LayoutInflater.from(parent.context)
@@ -95,7 +86,7 @@ class MenuAdapter(context: Context) : RecyclerView.Adapter<RecyclerView.ViewHold
 
         } else {
             if (holder is MenuViewHolder) {
-                holder.bindMenu(menuCategoryModel = mMenuList[position], context = mContext)
+                holder.bindMenu(menuCategoryModel = mMenuList[position], position = position)
             }
         }
     }
@@ -123,7 +114,7 @@ class MenuAdapter(context: Context) : RecyclerView.Adapter<RecyclerView.ViewHold
         private var wt: TextView = itemView.findViewById(R.id.txt_roll_weight)
 
         @SuppressLint("ResourceAsColor", "SetTextI18n")
-        fun bindMenu(menuCategoryModel: MenuModelcatMenu, context: Context) {
+        fun bindMenu(menuCategoryModel: MenuModelcatMenu, position: Int) {
 
             name.text = "${menuCategoryModel.Items?.Name}"
             discription.text = "${menuCategoryModel.Items?.Description}"
@@ -148,7 +139,7 @@ class MenuAdapter(context: Context) : RecyclerView.Adapter<RecyclerView.ViewHold
                 }
             Log.d("URR", "uri= Прошло 1 ")
 
-            LoadImage().loadImageDish(context, menuCategoryModel, imgDish)
+            LoadImage().loadImageDish(mContext, menuCategoryModel, imgDish)
 
             itemView.setOnClickListener {
                 CountDialog.openDialog(itemView.context, menuCategoryModel, position)
@@ -160,7 +151,7 @@ class MenuAdapter(context: Context) : RecyclerView.Adapter<RecyclerView.ViewHold
             Log.d("Color", "Bolean = " + rr)
 
             if (rr == true) {
-                checkBoxItem.setBackgroundResource(R.color.qgreen)
+                checkBoxItem.setBackgroundResource(R.drawable.okrugl)
             } else {
                 checkBoxItem.setBackgroundResource(R.color.transparent)
             }

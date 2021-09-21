@@ -18,7 +18,7 @@ import com.sushi.Sushi.service.LoadImage
 
 class PromoAdapter(context: Context) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
     var mPromoList: ArrayList<PromoModel> = ArrayList()
-    private val glide = Glide.with(context)
+    private val mContext = context
 
     fun setupPromo(promoList: ArrayList<PromoModel>){
         mPromoList.clear()
@@ -48,41 +48,25 @@ class PromoAdapter(context: Context) : RecyclerView.Adapter<RecyclerView.ViewHol
         @SuppressLint("CheckResult")
         fun bind(promoModel: PromoModel){
 
-            if (promoModel.PictureLoad == null) {
-                val storage = FirebaseStorage.getInstance()
-                val storageRef = storage.getReferenceFromUrl(promoModel.Picture!!)
-                storageRef.downloadUrl.addOnSuccessListener { uri ->
-                    promoModel.PictureLoad = uri
-                    val img = glide.load(uri)
-                    img.diskCacheStrategy(DiskCacheStrategy.NONE)
-                    img.centerCrop().into(promoImage)
-                }
-            } else {
-                val img = glide.load(promoModel.PictureLoad)
-                img.diskCacheStrategy(DiskCacheStrategy.NONE)
-                img.centerCrop().into(promoImage)
-            }
+            LoadImage().loadImagePromo(mContext, promoModel, promoImage)
 
-
-//            LoadImage().loadImagePromo(promoModel, promoImage)
-
-            //анимация альфа канала (прозрачности от 0 до 1)
-            val animation: Animation = AlphaAnimation(0.9f, 1.0f)
-//длительность анимации 1/10 секунды
-            //длительность анимации 1/10 секунды
-            animation.duration = 800
-//сдвижка начала анимации (с середины)
-            //сдвижка начала анимации (с середины)
-            animation.startOffset = 50
-//режим повтора - сначала или в обратном порядке
-            //режим повтора - сначала или в обратном порядке
-            animation.repeatMode = Animation.REVERSE
-//режим повтора (бесконечно)
-            //режим повтора (бесконечно)
-            animation.repeatCount = Animation.INFINITE
-//накладываем анимацию на TextView
-            //накладываем анимацию на TextView
-            promoImage.startAnimation(animation)
+//            //анимация альфа канала (прозрачности от 0 до 1)
+//            val animation: Animation = AlphaAnimation(0.9f, 1.0f)
+////длительность анимации 1/10 секунды
+//            //длительность анимации 1/10 секунды
+//            animation.duration = 800
+////сдвижка начала анимации (с середины)
+//            //сдвижка начала анимации (с середины)
+//            animation.startOffset = 50
+////режим повтора - сначала или в обратном порядке
+//            //режим повтора - сначала или в обратном порядке
+//            animation.repeatMode = Animation.REVERSE
+////режим повтора (бесконечно)
+//            //режим повтора (бесконечно)
+//            animation.repeatCount = Animation.INFINITE
+////накладываем анимацию на TextView
+//            //накладываем анимацию на TextView
+//            promoImage.startAnimation(animation)
 
         }
     }

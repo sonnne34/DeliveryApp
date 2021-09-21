@@ -1,6 +1,7 @@
 package com.sushi.Sushi.adapters
 
 import android.annotation.SuppressLint
+import android.content.Context
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
@@ -16,12 +17,14 @@ import com.sushi.Sushi.R
 import com.sushi.Sushi.dialog.CountDialog
 import com.sushi.Sushi.models.MenuModelcatMenu
 import com.sushi.Sushi.service.CircleTransform
+import com.sushi.Sushi.service.LoadImage
 //import com.sushi.Sushi.service.CircleTransform
 import com.sushi.Sushi.singleton.BasketSingleton
 
 
-class BasketAdapter: RecyclerView.Adapter<RecyclerView.ViewHolder>() {
+class BasketAdapter(context: Context) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
      var mBasketList: ArrayList<MenuModelcatMenu> = ArrayList()
+     private var mContext = context
 
     fun setupBasket(basketList: ArrayList<MenuModelcatMenu>){
         mBasketList.clear()
@@ -42,7 +45,7 @@ class BasketAdapter: RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
         if(holder is BasketViewHoldel ){
-            holder.bind(menuModel = mBasketList[position], position = position)
+            holder.bind(menuModel = mBasketList[position], position = position, context = mContext)
             btnDel(holder, position)
 
         }
@@ -63,11 +66,13 @@ class BasketAdapter: RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
 
         @SuppressLint("SetTextI18n")
-        fun bind(menuModel: MenuModelcatMenu, position: Int){
+        fun bind(menuModel: MenuModelcatMenu, position: Int, context: Context){
 
             nameDish.text = "${menuModel.Items?.Name}"
             valueDish.text = "${menuModel.Items?.CountDialog}"
             description.text = "${menuModel.Items?.Description}"
+
+            LoadImage().loadImageDish(context, menuModel, imgDish)
 
             priseNewCost.visibility = View.GONE
             imgLine.visibility = View.GONE
@@ -81,20 +86,7 @@ class BasketAdapter: RecyclerView.Adapter<RecyclerView.ViewHolder>() {
                 priseNewCost.text = "${costNewCostt.toString()} р.".toString()
                 priseNewCost.visibility = View.VISIBLE
                 imgLine.visibility = View.VISIBLE
-            }
 
-
-            Log.d("img", "ooops")
-
-            Log.d("log", "storage" + menuModel.Items?.Picture)
-
-            val storageTwo = FirebaseStorage.getInstance()
-
-            val storageRefTwo = storageTwo.getReferenceFromUrl(menuModel.Items?.Picture!!)
-
-            storageRefTwo.downloadUrl.addOnSuccessListener { uri ->
-                Picasso.get().load(uri).transform(CircleTransform())
-                    .into(imgDish)
             }
 
             itemView.setOnClickListener {
@@ -153,7 +145,7 @@ class BasketAdapter: RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     private fun btnDel(holder: RecyclerView.ViewHolder, position: Int){
         if(holder is BasketViewHoldel ){
-            holder.bind(menuModel = mBasketList[position], position = position)
+            holder.bind(menuModel = mBasketList[position], position = position, context = mContext)
             holder.btnDel.setOnClickListener {
 
                 val delPosDialog = AlertDialog.Builder(holder.itemView.context

@@ -1,6 +1,7 @@
 package com.sushi.Sushi.adapters
 
 import android.content.Context
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -17,11 +18,11 @@ import com.sushi.Sushi.dialog.CountDialog
 import com.sushi.Sushi.models.CatMenuModel
 import com.sushi.Sushi.models.MenuModelcatMenu
 import com.sushi.Sushi.service.LoadImage
+import com.sushi.Sushi.singleton.BasketSingleton
 
 class DiscountAdapter(context: Context): RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     var mDiscountList: ArrayList<MenuModelcatMenu> = ArrayList()
-    private val glide = Glide.with(context)
     private val mContext = context
 
     fun setupDiscount(discountList: ArrayList<CatMenuModel>) {
@@ -62,6 +63,7 @@ class DiscountAdapter(context: Context): RecyclerView.Adapter<RecyclerView.ViewH
         var cost: TextView = itemView.findViewById(R.id.txt_roll_price)
         var newCost: TextView = itemView.findViewById(R.id.txt_roll_price_new_cost)
         var layout: RelativeLayout = itemView.findViewById(R.id.layout_discont)
+        private var checkBoxItem: TextView = itemView.findViewById(R.id.checkbox_discount)
 
         fun bind(discountList: MenuModelcatMenu, position: Int){
 
@@ -70,8 +72,16 @@ class DiscountAdapter(context: Context): RecyclerView.Adapter<RecyclerView.ViewH
             nameDish.text = "${discountList.Items?.Name}"
             cost.text = "${discountList.Items?.Cost}" + " р."
             newCost.text = "${discountList.Items?.NewCost}" + " р."
-
             LoadImage().loadImageDish(mContext, discountList, image)
+
+            var rr = BasketSingleton.checkingThelist(discountList)
+            Log.d("Color", "Bolean = " + rr)
+
+            if (rr == true) {
+                checkBoxItem.setBackgroundResource(R.drawable.okrugl)
+            } else {
+                checkBoxItem.setBackgroundResource(R.color.transparent)
+            }
 
             if (newCostT == 9223372036854775807) {
                 layout.visibility = View.GONE
