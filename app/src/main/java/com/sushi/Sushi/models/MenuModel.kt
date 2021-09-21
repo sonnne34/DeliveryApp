@@ -2,9 +2,9 @@ package com.sushi.Sushi.models
 
 import android.net.Uri
 
-class MenuModel (var Cost: Long, var NewCost: Long, var Description: String?, var Name: String?, var Picture: String?, var CountDialog: Long, var PictureLoad: String?, var PictureForLoad: Uri?, var Wt: Long, var Delivery: Long) {
+class MenuModel (var Cost: Long, var NewCost: Long, var Description: String?, var Name: String?, var NameENG: String?, var Picture: String?, var CountDialog: Long, var PictureLoad: String?, var PictureForLoad: Uri?, var Wt: Long, var Delivery: Long) {
 
-    constructor(): this(Cost = Long.MAX_VALUE, NewCost = Long.MAX_VALUE, Description = String(), Name = String(),Picture = String(),CountDialog = Long.MAX_VALUE, PictureLoad = String() , PictureForLoad = null, Wt = Long.MAX_VALUE, Delivery = Long.MAX_VALUE)
+    constructor(): this(Cost = Long.MAX_VALUE, NewCost = Long.MAX_VALUE, Description = String(), Name = String(), NameENG = String(), Picture = String(),CountDialog = Long.MAX_VALUE, PictureLoad = String() , PictureForLoad = null, Wt = Long.MAX_VALUE, Delivery = Long.MAX_VALUE)
 
 //    override val entries: Set<Map.Entry<String, MenuModel>>
 //        get() = TODO(reason = "Not yet implemented")

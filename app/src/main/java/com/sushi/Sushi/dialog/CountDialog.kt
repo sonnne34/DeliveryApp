@@ -54,7 +54,7 @@ class CountDialog {
             cost.text = menuFile.Items?.Cost.toString()
             newCost.visibility = View.GONE
             imgLine.visibility = View.GONE
-            LoadImage().loadImageDish(menuFile, imgDish)
+            LoadImage().loadImageDish(context, menuFile, imgDish)
 
             //если новая цена есть (здесь костыль, так как пустое значение приходит не пустым)))
             if (newCostt?.toDouble()!! < 10000) {

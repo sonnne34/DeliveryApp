@@ -6,6 +6,8 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Filter
+import android.widget.Filterable
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
@@ -19,16 +21,23 @@ import com.sushi.Sushi.models.MenuModelcatMenu
 import com.sushi.Sushi.service.LoadImage
 import com.sushi.Sushi.singleton.BasketSingleton
 
-class MenuAdapter(context: Context) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
+class MenuAdapter(context: Context) : RecyclerView.Adapter<RecyclerView.ViewHolder>(), Filterable {
     private var mMenuList: ArrayList<MenuModelcatMenu> = ArrayList()
+    private var mCatList: ArrayList<CatMenuModel>? = null
 
     private val LAYOUT_HEADER = 0
     private val LAYOUT_CHILD = 1
 
     private val glide = Glide.with(context)
 
+    private val mContext: Context = context
+
     fun setupMenu(menuList: ArrayList<CatMenuModel>) {
         mMenuList.clear()
+
+        if (mCatList == null) {
+            mCatList = menuList
+        }
 
         for (categoryModel in menuList) {
             Log.d("UUU", "UUUCat = " + categoryModel.CategoryName)
@@ -38,10 +47,6 @@ class MenuAdapter(context: Context) : RecyclerView.Adapter<RecyclerView.ViewHold
             mMenuList.add(headerModel)
 
             for (i in categoryModel.Items) {
-//
-//                Log.d("UUU", "UUUmenu = " + i.value.Name)
-//                Log.d("UUU", "UUUmenu = " + i.value.Cost)
-//                Log.d("UUU", "UUUmenu = " + i.value.Description)
                 var menuModel = MenuModelcatMenu()
                 menuModel.Items = i.value
                 mMenuList.add(menuModel)
@@ -90,7 +95,7 @@ class MenuAdapter(context: Context) : RecyclerView.Adapter<RecyclerView.ViewHold
 
         } else {
             if (holder is MenuViewHolder) {
-                holder.bindMenu(menuCategoryModel = mMenuList[position])
+                holder.bindMenu(menuCategoryModel = mMenuList[position], context = mContext)
             }
         }
     }
@@ -118,13 +123,12 @@ class MenuAdapter(context: Context) : RecyclerView.Adapter<RecyclerView.ViewHold
         private var wt: TextView = itemView.findViewById(R.id.txt_roll_weight)
 
         @SuppressLint("ResourceAsColor", "SetTextI18n")
-        fun bindMenu(menuCategoryModel: MenuModelcatMenu) {
+        fun bindMenu(menuCategoryModel: MenuModelcatMenu, context: Context) {
 
             name.text = "${menuCategoryModel.Items?.Name}"
             discription.text = "${menuCategoryModel.Items?.Description}"
             cost.text = "${menuCategoryModel.Items?.Cost}" + " р."
             val newCostt = "${menuCategoryModel.Items?.NewCost}"
-            Log.d("NEWCOST", "new = $newCostt")
             newCost.visibility = View.GONE
             imgLine.visibility = View.GONE
 
@@ -144,43 +148,7 @@ class MenuAdapter(context: Context) : RecyclerView.Adapter<RecyclerView.ViewHold
                 }
             Log.d("URR", "uri= Прошло 1 ")
 
-
-
-            if (menuCategoryModel.Items?.PictureForLoad == null) {
-                val storage = FirebaseStorage.getInstance()
-                val storageRef = storage.getReferenceFromUrl(menuCategoryModel.Items?.Picture!!)
-                storageRef.downloadUrl.addOnSuccessListener { uri ->
-                    menuCategoryModel.Items?.PictureForLoad = uri
-                    val img = glide.load(uri)
-                    img.diskCacheStrategy(DiskCacheStrategy.NONE)
-                    img.centerCrop().into(imgDish)
-                }
-            } else {
-                val img = glide.load(menuCategoryModel.Items?.PictureForLoad)
-                img.diskCacheStrategy(DiskCacheStrategy.NONE)
-                img.into(imgDish)
-            }
-
-
-
-//            val storage = FirebaseStorage.getInstance()
-//            Log.d("URR", "uri= Прошло 2 ")
-//            val storageRef = storage.getReferenceFromUrl(menuCategoryModel.Items?.Picture!!)
-//            Log.d("URR", "uri= Прошло 3")
-//            storageRef.downloadUrl.addOnSuccessListener { uri ->
-//                Log.d("URR", "uri= Прошло 4 ")
-//                Log.d("URR", "uri= $uri")
-////                    Picasso.get().load(uri).fit().centerCrop().noFade().into(imgDish)
-//                }
-
-//            val ONE_MEGABYTE = (2000 * 2000).toLong()
-//            storageRef.getBytes(ONE_MEGABYTE).addOnSuccessListener{
-//                val bm = BitmapFactory.decodeByteArray(it, 0, it.size)
-//                val dm = DisplayMetrics()
-//                imgDish.setImageBitmap(bm)
-//
-//            }
-
+            LoadImage().loadImageDish(context, menuCategoryModel, imgDish)
 
             itemView.setOnClickListener {
                 CountDialog.openDialog(itemView.context, menuCategoryModel, position)
@@ -210,5 +178,41 @@ class MenuAdapter(context: Context) : RecyclerView.Adapter<RecyclerView.ViewHold
             }
         }
         return position
+    }
+
+    override fun getFilter(): Filter {
+        return object : Filter() {
+            override fun performFiltering(constraint: CharSequence?): FilterResults {
+                val charSearch = constraint.toString()
+
+                val filterResults = FilterResults()
+                if (charSearch.isNotEmpty()) {
+                    val filter: ArrayList<CatMenuModel> = ArrayList()
+
+                    for(categoryModel in mCatList!!) {
+                        val filterCategory = CatMenuModel(categoryModel.CategoryName)
+
+                        for (item in categoryModel.Items) {
+                            if (item.value.Name?.contains(charSearch, true) == true
+                            ) {
+                                filterCategory.Items[item.key] = item.value
+                            }
+                        }
+                        if (filterCategory.Items.isNotEmpty())
+                            filter.add(filterCategory)
+                    }
+                    filterResults.values =  filter
+                } else {
+                    filterResults.values =  mCatList
+                }
+                return filterResults
+            }
+
+            @Suppress("UNCHECKED_CAST")
+            override fun publishResults(constraint: CharSequence?, results: FilterResults?) {
+                setupMenu(results?.values as ArrayList<CatMenuModel>)
+            }
+
+        }
     }
 }

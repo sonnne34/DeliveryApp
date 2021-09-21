@@ -59,8 +59,8 @@
 
     \\подстиль диалогового окна (опции)
     <style name="CustomDialogAnimationOptions">
-        <item name="android:windowEnterAnimation">@anim/slide_out_left</item>
-        <item name="android:windowExitAnimation">@anim/slide_in_right</item>
+        <item name="android:windowEnterAnimation">@anim/slide_in_right</item>
+        <item name="android:windowExitAnimation">@anim/slide_out_left</item>
     </style>
 
     \\стиль диалогового окна (акции)
@@ -145,6 +145,11 @@
     <style name="MyCheckBox" parent="Theme.AppCompat.Light">
         <item name="colorControlNormal">@color/qlightyellow</item>
         <item name="colorControlActivated">@color/colorgreentrans</item>
+    </style>
+
+    <style name="SearchSt">
+    <item name="android:textColorPrimary">@color/qyellow</item>
+    <item name="android:textColorSecondary">@color/qyellow</item>
     </style>
 
 </resources>

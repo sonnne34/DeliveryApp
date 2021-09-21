@@ -49,6 +49,15 @@
             android:layout_marginStart="10dp"
             android:background="@drawable/ic_locat"/>
 
+        <ImageButton
+            android:id="@+id/btn_options"
+            android:layout_width="27dp"
+            android:layout_height="27dp"
+            android:layout_centerVertical="true"
+            android:layout_alignParentStart="true"
+            android:layout_marginStart="10dp"
+            android:background="@drawable/ic_info"/>
+
         <TextView
             android:id="@+id/txt_header_basket"
             android:layout_width="wrap_content"
@@ -74,16 +83,18 @@
             android:layout_below="@+id/txt_header_basket"
             android:text="С чем пить чай? С удовольствием!"/>
 
-        <ImageButton
-            android:id="@+id/btn_options"
-            android:layout_width="30dp"
-            android:layout_height="30dp"
+        <androidx.appcompat.widget.SearchView
+            android:id="@+id/btn_search"
+            android:layout_width="wrap_content"
+            android:layout_height="47dp"
             android:layout_centerVertical="true"
             android:layout_alignParentEnd="true"
-            android:layout_alignParentRight="true"
-            android:layout_marginRight="12dp"
-            android:layout_marginEnd="12dp"
-            android:background="@drawable/ic_menu_eyllow_"/>
+            android:layout_marginStart="40dp"
+            android:layout_marginEnd="5dp"
+            android:background="@drawable/okrugl_bacgr"
+            app:closeIcon="@drawable/ic_close_custom"
+            app:searchIcon="@drawable/ic_search"
+            style="@style/SearchSt" />
 
     </RelativeLayout>
 

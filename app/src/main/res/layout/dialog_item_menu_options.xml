@@ -4,23 +4,23 @@
     android:layout_width="250dp"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:layout_gravity="end">
+    android:layout_gravity="start">
 
     <ImageView
         android:id="@+id/image_dish_menu"
         android:background="@drawable/logo_tras_mini"
         android:gravity="center"
-        android:layout_gravity="end"
+        android:layout_gravity="start"
         android:layout_marginTop="15sp"
-        android:layout_marginRight="10dp"
-        android:layout_marginEnd="15dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginStart="15dp"
         android:layout_width="80dp"
         android:layout_height="80dp" />
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:gravity="end"
+        android:layout_gravity="start"
         android:layout_margin="5dp"
         android:textSize="20sp"
         android:text="@string/name_company"/>
@@ -28,18 +28,18 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:gravity="end"
-        android:layout_marginEnd="10dp"
-        android:layout_marginRight="10dp"
+        android:layout_gravity="start"
+        android:layout_marginLeft="10dp"
+        android:layout_marginStart="10dp"
         android:layout_marginBottom="5dp"
         android:text="@string/slogan1"/>
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:gravity="end"
-        android:layout_marginEnd="10dp"
-        android:layout_marginRight="10dp"
+        android:layout_gravity="start"
+        android:layout_marginLeft="10dp"
+        android:layout_marginStart="10dp"
         android:layout_marginBottom="5dp"
         android:text="Условия доставки в г.Тюмень:\n Бесплатная доставка при заказе на сумму от 1000 руб.\n При заказе от 2500 рублей осуществим бесплатную доставку в радиусе 50 км. от города Тюмени."/>
 
@@ -47,27 +47,27 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:gravity="end"
-        android:layout_marginEnd="10dp"
-        android:layout_marginRight="10dp"
+        android:layout_gravity="start"
+        android:layout_marginLeft="10dp"
+        android:layout_marginStart="10dp"
         android:layout_marginBottom="10dp"
         android:text="Условия доставки по РФ:\n Отправляем компанией СДЭК, стоимость доставки уточняется после оформления заказа.\n Оплата при получении." />
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:gravity="end"
-        android:layout_marginEnd="10dp"
-        android:layout_marginRight="10dp"
+        android:layout_gravity="start"
+        android:layout_marginLeft="10dp"
+        android:layout_marginStart="10dp"
         android:layout_marginBottom="10dp"
         android:text="Наши контакты:" />
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:gravity="end"
-        android:layout_marginEnd="10dp"
-        android:layout_marginRight="10dp"
+        android:layout_gravity="start"
+        android:layout_marginLeft="10dp"
+        android:layout_marginStart="10dp"
         android:layout_marginBottom="5dp"
         android:textIsSelectable="true"
         android:text="@string/tel" />
@@ -75,9 +75,9 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:gravity="end"
-        android:layout_marginEnd="10dp"
-        android:layout_marginRight="10dp"
+        android:layout_gravity="start"
+        android:layout_marginLeft="10dp"
+        android:layout_marginStart="10dp"
         android:layout_marginBottom="10dp"
         android:textIsSelectable="true"
         android:text="@string/email"/>
@@ -86,11 +86,11 @@
         android:id="@+id/btn_close_dialog_options"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="end"
+        android:layout_gravity="start"
         android:paddingLeft="30dp"
         android:paddingRight="30dp"
-        android:layout_marginEnd="10dp"
-        android:layout_marginRight="10dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginStart="10dp"
         android:layout_marginBottom="10dp"
         android:textColor="@color/qgreen"
         android:background="@drawable/okrugl_light_green"

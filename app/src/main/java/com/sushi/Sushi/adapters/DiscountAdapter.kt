@@ -16,11 +16,13 @@ import com.sushi.Sushi.R
 import com.sushi.Sushi.dialog.CountDialog
 import com.sushi.Sushi.models.CatMenuModel
 import com.sushi.Sushi.models.MenuModelcatMenu
+import com.sushi.Sushi.service.LoadImage
 
 class DiscountAdapter(context: Context): RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     var mDiscountList: ArrayList<MenuModelcatMenu> = ArrayList()
     private val glide = Glide.with(context)
+    private val mContext = context
 
     fun setupDiscount(discountList: ArrayList<CatMenuModel>) {
         mDiscountList.clear()
@@ -69,20 +71,7 @@ class DiscountAdapter(context: Context): RecyclerView.Adapter<RecyclerView.ViewH
             cost.text = "${discountList.Items?.Cost}" + " р."
             newCost.text = "${discountList.Items?.NewCost}" + " р."
 
-            if (discountList.Items?.PictureForLoad == null) {
-                val storage = FirebaseStorage.getInstance()
-                val storageRef = storage.getReferenceFromUrl(discountList.Items?.Picture!!)
-                storageRef.downloadUrl.addOnSuccessListener { uri ->
-                    discountList.Items?.PictureForLoad = uri
-                    val img = glide.load(uri)
-                    img.diskCacheStrategy(DiskCacheStrategy.NONE)
-                    img.centerCrop().into(image)
-                }
-            } else {
-                val img = glide.load(discountList.Items?.PictureForLoad)
-                img.diskCacheStrategy(DiskCacheStrategy.NONE)
-                img.into(image)
-            }
+            LoadImage().loadImageDish(mContext, discountList, image)
 
             if (newCostT == 9223372036854775807) {
                 layout.visibility = View.GONE

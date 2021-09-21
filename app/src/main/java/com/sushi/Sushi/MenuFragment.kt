@@ -12,14 +12,17 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.ImageButton
+import android.widget.LinearLayout
 import android.widget.ProgressBar
 import androidx.annotation.RequiresApi
+import androidx.appcompat.widget.SearchView
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.gms.location.FusedLocationProviderClient
 import com.google.android.gms.location.LocationServices
 import com.google.android.gms.maps.model.LatLng
+import com.google.android.material.appbar.AppBarLayout
 import com.google.firebase.database.*
 import com.sushi.Sushi.adapters.CategoryAdapter
 import com.sushi.Sushi.adapters.DiscountAdapter
@@ -54,6 +57,7 @@ class MenuFragment : Fragment(), EventListenerss {
     private lateinit var promoRecyclerView : RecyclerView
     private lateinit var discountRecyclerView : RecyclerView
     lateinit var  menuRecyclerView  : RecyclerView
+    lateinit var appBar: AppBarLayout
 
     val menuList : ArrayList<CatMenuModel> = ArrayList()
     val categoryList: ArrayList<CatMenuModel> = ArrayList()
@@ -63,7 +67,7 @@ class MenuFragment : Fragment(), EventListenerss {
 
     private var mCategoryRef: DatabaseReference? = null
 
-
+    private lateinit var searchView: SearchView
 
     private  var  adapter : MenuAdapter? = null
     private  var  mPromoAdapter: PromoAdapter? = null
@@ -116,6 +120,8 @@ class MenuFragment : Fragment(), EventListenerss {
         optionsBtn = root.findViewById(R.id.btn_options)
         btnUp = root.findViewById(R.id.btn_up)
         btnUp.visibility = View.INVISIBLE
+        searchView = root.findViewById(R.id.btn_search)
+        appBar = root.findViewById(R.id.app_bar)
 
         addArea()
         BasketSingleton.subscribe(this)
@@ -183,6 +189,25 @@ class MenuFragment : Fragment(), EventListenerss {
             false
         )
         categoryRecyclerView.setHasFixedSize(true)
+
+
+        //возвращение результата, когда вы вводите полный поисковый запрос и нажимаете кнопку поиска на клавиатуре:
+        searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
+            override fun onQueryTextSubmit(query: String?): Boolean {
+                //прролистываем appBar (промо и акционные товары):
+                appBar.setExpanded(false)
+                return false
+            }
+
+            //фильтрация значений списка, как только вы начинаете вводить символы в окне поиска:
+            override fun onQueryTextChange(newText: String?): Boolean {
+                adapter?.filter?.filter(newText)
+                //пролистываем appBar (промо и акционные товары):
+                appBar.setExpanded(false)
+                return false
+            }
+
+        })
 
         btnUp()
         loadPromo()
@@ -481,7 +506,6 @@ class MenuFragment : Fragment(), EventListenerss {
 
         btnUp.setOnClickListener {
             (menuRecyclerView.layoutManager as LinearLayoutManager).scrollToPosition(1)
-
         }
     }
 

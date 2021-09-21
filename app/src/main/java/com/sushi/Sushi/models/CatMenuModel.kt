@@ -7,6 +7,7 @@ class CatMenuModel(var CategoryName : String) {
 
     var isHeader = false
 //    var CategoryName: String? = null
-    var Items: Map<String, MenuModel> = HashMap()
+    var Items: HashMap<String, MenuModel> = HashMap()
+
 
 }

@@ -15,7 +15,7 @@ class OptionsDialog {
             val dialog = Dialog(context, R.style.CustomDialogOptions)
             dialog.requestWindowFeature(Window.FEATURE_NO_TITLE)
             dialog.setContentView(R.layout.dialog_item_menu_options)
-            dialog.window?.setGravity(Gravity.END)
+            dialog.window?.setGravity(Gravity.START)
             dialog.window?.setLayout(
                 ListPopupWindow.WRAP_CONTENT,
                 ListPopupWindow.MATCH_PARENT

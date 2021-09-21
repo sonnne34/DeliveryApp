@@ -42,7 +42,7 @@ class BasketAdapter: RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
         if(holder is BasketViewHoldel ){
-            holder.bind(menuModel = mBasketList[position])
+            holder.bind(menuModel = mBasketList[position], position = position)
             btnDel(holder, position)
 
         }
@@ -63,7 +63,7 @@ class BasketAdapter: RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
 
         @SuppressLint("SetTextI18n")
-        fun bind(menuModel: MenuModelcatMenu){
+        fun bind(menuModel: MenuModelcatMenu, position: Int){
 
             nameDish.text = "${menuModel.Items?.Name}"
             valueDish.text = "${menuModel.Items?.CountDialog}"
@@ -153,7 +153,7 @@ class BasketAdapter: RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     private fun btnDel(holder: RecyclerView.ViewHolder, position: Int){
         if(holder is BasketViewHoldel ){
-            holder.bind(menuModel = mBasketList[position])
+            holder.bind(menuModel = mBasketList[position], position = position)
             holder.btnDel.setOnClickListener {
 
                 val delPosDialog = AlertDialog.Builder(holder.itemView.context
