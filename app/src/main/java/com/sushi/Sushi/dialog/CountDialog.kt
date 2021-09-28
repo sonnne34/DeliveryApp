@@ -157,17 +157,15 @@ class CountDialog {
                 } else {
 //                    то если позиция есть в корзине то удаляем эту позицию
                     if (file != null) {
-                        BasketSingleton.delPos(position)
-                        Log.d("DELPOS", "pos= $position")
-
-//                        BasketSingleton.notifyTwo()
+//                        BasketSingleton.delPos(position)
+                        BasketSingleton.delPosBasket(file)
+                        BasketSingleton.notifyTwo()
                         //если позиции не существует то закрываем диалог без изменений
                     }
-                    Log.d("DELPOS", "posnot= $position")
                 }
                 dialog.cancel()
-                //закрыть
             }
+            //закрыть
             val cancel = dialog.findViewById(R.id.cancel) as Button
             cancel.setOnClickListener() {
                 dialog.cancel()
