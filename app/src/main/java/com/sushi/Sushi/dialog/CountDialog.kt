@@ -11,6 +11,7 @@ import android.widget.ImageView
 import android.widget.ListPopupWindow
 import android.widget.TextView
 import com.sushi.Sushi.R
+import com.sushi.Sushi.adapters.MenuAdapter
 import com.sushi.Sushi.models.MenuModelcatMenu
 import com.sushi.Sushi.service.LoadImage
 import com.sushi.Sushi.singleton.BasketSingleton
@@ -146,20 +147,25 @@ class CountDialog {
                 var pz = Integer.valueOf(zz.toString()) // преобразовываем в число
 
                 menuFile.Items?.CountDialog = pz.toLong()
+
+                //если количество не равно 0 то добавляем в корзину
                 if (pz != 0) {
                     BasketSingleton.addBasket(menuFile)
                     BasketSingleton.showBasket()
                     BasketSingleton.notifyTwo()
-                }
-                else {
+                    //если количество равно 0 то
+                } else {
+//                    то если позиция есть в корзине то удаляем эту позицию
                     if (file != null) {
                         BasketSingleton.delPos(position)
-                        BasketSingleton.notifyTwo()
+                        Log.d("DELPOS", "pos= $position")
+
+//                        BasketSingleton.notifyTwo()
+                        //если позиции не существует то закрываем диалог без изменений
                     }
+                    Log.d("DELPOS", "posnot= $position")
                 }
-
                 dialog.cancel()
-
                 //закрыть
             }
             val cancel = dialog.findViewById(R.id.cancel) as Button

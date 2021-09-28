@@ -143,7 +143,7 @@ class BasketAdapter(context: Context) : RecyclerView.Adapter<RecyclerView.ViewHo
         }
     }
 
-    private fun btnDel(holder: RecyclerView.ViewHolder, position: Int){
+    fun btnDel(holder: RecyclerView.ViewHolder, position: Int){
         if(holder is BasketViewHoldel ){
             holder.bind(menuModel = mBasketList[position], position = position, context = mContext)
             holder.btnDel.setOnClickListener {

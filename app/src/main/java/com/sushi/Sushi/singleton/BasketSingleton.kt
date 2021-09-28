@@ -80,7 +80,6 @@ object BasketSingleton {
 
     fun delPos(position: Int) {
             basketItem.removeAt(position)
-
     }
 
     fun checkingThelist(gg: MenuModelcatMenu): Boolean {

@@ -86,7 +86,7 @@ class MenuAdapter(context: Context) : RecyclerView.Adapter<RecyclerView.ViewHold
 
         } else {
             if (holder is MenuViewHolder) {
-                holder.bindMenu(menuCategoryModel = mMenuList[position], position = position)
+                holder.bindMenu(menuCategoryModel = mMenuList[position], position = position, context = mContext)
             }
         }
     }
@@ -114,7 +114,7 @@ class MenuAdapter(context: Context) : RecyclerView.Adapter<RecyclerView.ViewHold
         private var wt: TextView = itemView.findViewById(R.id.txt_roll_weight)
 
         @SuppressLint("ResourceAsColor", "SetTextI18n")
-        fun bindMenu(menuCategoryModel: MenuModelcatMenu, position: Int) {
+        fun bindMenu(menuCategoryModel: MenuModelcatMenu, position: Int, context: Context) {
 
             name.text = "${menuCategoryModel.Items?.Name}"
             discription.text = "${menuCategoryModel.Items?.Description}"
@@ -142,7 +142,7 @@ class MenuAdapter(context: Context) : RecyclerView.Adapter<RecyclerView.ViewHold
             LoadImage().loadImageDish(mContext, menuCategoryModel, imgDish)
 
             itemView.setOnClickListener {
-                CountDialog.openDialog(itemView.context, menuCategoryModel, position)
+                CountDialog.openDialog(context, menuCategoryModel, position)
             }
 
             Log.d("Color", "menu = " + menuCategoryModel)
@@ -203,7 +203,6 @@ class MenuAdapter(context: Context) : RecyclerView.Adapter<RecyclerView.ViewHold
             override fun publishResults(constraint: CharSequence?, results: FilterResults?) {
                 setupMenu(results?.values as ArrayList<CatMenuModel>)
             }
-
         }
     }
 }
