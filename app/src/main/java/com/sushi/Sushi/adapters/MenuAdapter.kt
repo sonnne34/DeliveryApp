@@ -6,10 +6,12 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.ViewGroup.LayoutParams.WRAP_CONTENT
 import android.widget.Filter
 import android.widget.Filterable
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.cardview.widget.CardView
 import androidx.recyclerview.widget.RecyclerView
 import com.sushi.Sushi.R
 import com.sushi.Sushi.dialog.CountDialog
@@ -112,6 +114,7 @@ class MenuAdapter(context: Context) : RecyclerView.Adapter<RecyclerView.ViewHold
         private var checkBoxItem: TextView = itemView.findViewById(R.id.checkBoxItem)
         private var imgDish: ImageView = itemView.findViewById(R.id.image_dish_menu)
         private var wt: TextView = itemView.findViewById(R.id.txt_roll_weight)
+        private var layout: CardView = itemView.findViewById(R.id.card_view)
 
         @SuppressLint("ResourceAsColor", "SetTextI18n")
         fun bindMenu(menuCategoryModel: MenuModelcatMenu, position: Int, context: Context) {
@@ -140,6 +143,15 @@ class MenuAdapter(context: Context) : RecyclerView.Adapter<RecyclerView.ViewHold
             Log.d("URR", "uri= Прошло 1 ")
 
             LoadImage().loadImageDish(mContext, menuCategoryModel, imgDish)
+
+            val stop = menuCategoryModel.Items?.Stop
+                if(stop?.toInt() == 0){
+                    layout.visibility = View.GONE
+                    layout.layoutParams = RecyclerView.LayoutParams(0, 0)
+                } else {
+                    layout.visibility = View.VISIBLE
+                    layout.layoutParams = RecyclerView.LayoutParams(WRAP_CONTENT, WRAP_CONTENT)
+                }
 
             itemView.setOnClickListener {
                 CountDialog.openDialog(context, menuCategoryModel, position)

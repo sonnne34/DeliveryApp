@@ -3,7 +3,10 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Alexander/GitHub/Git Nastya/Sushi/app/src/main/res/layout-v21/item_menu_recyclerview.xml" value="0.10643115942028986" />
         <entry key="..\:/Alexander/GitHub/Git Nastya/Sushi/app/src/main/res/layout/dialog_item_menu.xml" value="0.11277173913043478" />
+        <entry key="..\:/Alexander/GitHub/Git Nastya/Sushi/app/src/main/res/layout/item_discount_recyclerview.xml" value="0.10643115942028986" />
+        <entry key="..\:/Alexander/GitHub/Git Nastya/Sushi/app/src/main/res/layout/item_menu_recyclerview.xml" value="0.21" />
       </map>
     </option>
   </component>

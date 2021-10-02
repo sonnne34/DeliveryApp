@@ -107,8 +107,7 @@
                     android:id="@+id/img_roll_prise"
                     android:layout_width="45dp"
                     android:layout_height="20dp"
-                    android:background="@drawable/ic_line"
-                    android:visibility="invisible"/>
+                    android:background="@drawable/ic_line" />
 
             <TextView
                 android:id="@+id/txt_roll_price"
@@ -125,15 +124,14 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
-                    android:gravity="center"
+                    android:layout_marginStart="7dp"
+                    android:layout_marginLeft="7dp"
                     android:layout_toEndOf="@+id/img_roll_prise"
                     android:layout_toRightOf="@+id/img_roll_prise"
-                    android:layout_marginLeft="7dp"
-                    android:layout_marginStart="7dp"
+                    android:gravity="center"
                     android:text="50 руб"
                     android:textColor="@color/qred"
-                    android:textSize="15sp"
-                    android:visibility="invisible"/>
+                    android:textSize="15sp" />
 
             </RelativeLayout>
 

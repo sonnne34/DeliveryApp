@@ -83,6 +83,7 @@ class DiscountAdapter(context: Context): RecyclerView.Adapter<RecyclerView.ViewH
                 checkBoxItem.setBackgroundResource(R.color.transparent)
             }
 
+            //если новая цена пуста или равна 0 то скрывать элемент
             if (newCostT == 9223372036854775807 || newCostT?.toInt() == 0) {
                 layout.visibility = View.GONE
                 layout.layoutParams = RecyclerView.LayoutParams(0, 0)
