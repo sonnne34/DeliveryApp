@@ -64,7 +64,7 @@ dependencies {
 
     
     implementation 'com.google.firebase:firebase-database:19.5.0'
-    implementation 'com.google.firebase:firebase-storage:19.2.0'
+    implementation 'com.google.firebase:firebase-storage:20.0.0'
     implementation 'com.google.firebase:firebase-auth:19.4.0'
     implementation 'com.android.support:recyclerview-v7:29.0.3'
 

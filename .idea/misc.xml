@@ -3,10 +3,39 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Alexander/GitHub/Git Nastya/Sushi/app/src/main/res/drawable-xhdpi/okrugl_description.xml" value="0.19537037037037036" />
+        <entry key="..\:/Alexander/GitHub/Git Nastya/Sushi/app/src/main/res/drawable-xhdpi/okrugl_dialog_options.xml" value="0.19537037037037036" />
+        <entry key="..\:/Alexander/GitHub/Git Nastya/Sushi/app/src/main/res/drawable-xhdpi/okrugl_gradient.xml" value="0.19537037037037036" />
+        <entry key="..\:/Alexander/GitHub/Git Nastya/Sushi/app/src/main/res/drawable-xhdpi/okrugl_promo.xml" value="0.19537037037037036" />
+        <entry key="..\:/Alexander/GitHub/Git Nastya/Sushi/app/src/main/res/drawable/okrugl.xml" value="0.19537037037037036" />
+        <entry key="..\:/Alexander/GitHub/Git Nastya/Sushi/app/src/main/res/drawable/okrugl_bacgr.xml" value="0.19537037037037036" />
+        <entry key="..\:/Alexander/GitHub/Git Nastya/Sushi/app/src/main/res/drawable/okrugl_button.xml" value="0.2125" />
+        <entry key="..\:/Alexander/GitHub/Git Nastya/Sushi/app/src/main/res/drawable/okrugl_dialog.xml" value="0.19537037037037036" />
+        <entry key="..\:/Alexander/GitHub/Git Nastya/Sushi/app/src/main/res/drawable/okrugl_light_green.xml" value="0.19537037037037036" />
+        <entry key="..\:/Alexander/GitHub/Git Nastya/Sushi/app/src/main/res/drawable/okrugl_total.xml" value="0.19537037037037036" />
+        <entry key="..\:/Alexander/GitHub/Git Nastya/Sushi/app/src/main/res/drawable/okrugl_wt.xml" value="0.19537037037037036" />
+        <entry key="..\:/Alexander/GitHub/Git Nastya/Sushi/app/src/main/res/drawable/radio_button_normal.xml" value="0.19537037037037036" />
+        <entry key="..\:/Alexander/GitHub/Git Nastya/Sushi/app/src/main/res/drawable/radio_button_pressed.xml" value="0.19537037037037036" />
+        <entry key="..\:/Alexander/GitHub/Git Nastya/Sushi/app/src/main/res/drawable/radio_group.xml" value="0.19537037037037036" />
+        <entry key="..\:/Alexander/GitHub/Git Nastya/Sushi/app/src/main/res/drawable/radiobutton_selector.xml" value="0.19537037037037036" />
         <entry key="..\:/Alexander/GitHub/Git Nastya/Sushi/app/src/main/res/layout-v21/item_menu_recyclerview.xml" value="0.10643115942028986" />
+        <entry key="..\:/Alexander/GitHub/Git Nastya/Sushi/app/src/main/res/layout/activity_main.xml" value="0.1" />
+        <entry key="..\:/Alexander/GitHub/Git Nastya/Sushi/app/src/main/res/layout/category_recyclerview_items.xml" value="0.1" />
+        <entry key="..\:/Alexander/GitHub/Git Nastya/Sushi/app/src/main/res/layout/dialog_item_card.xml" value="0.19635416666666666" />
+        <entry key="..\:/Alexander/GitHub/Git Nastya/Sushi/app/src/main/res/layout/dialog_item_citi.xml" value="0.22" />
         <entry key="..\:/Alexander/GitHub/Git Nastya/Sushi/app/src/main/res/layout/dialog_item_menu.xml" value="0.11277173913043478" />
+        <entry key="..\:/Alexander/GitHub/Git Nastya/Sushi/app/src/main/res/layout/dialog_item_menu_options.xml" value="0.19635416666666666" />
+        <entry key="..\:/Alexander/GitHub/Git Nastya/Sushi/app/src/main/res/layout/dialog_item_promo_description.xml" value="0.19635416666666666" />
+        <entry key="..\:/Alexander/GitHub/Git Nastya/Sushi/app/src/main/res/layout/fragment_authorization.xml" value="0.19635416666666666" />
+        <entry key="..\:/Alexander/GitHub/Git Nastya/Sushi/app/src/main/res/layout/fragment_menu.xml" value="0.1" />
+        <entry key="..\:/Alexander/GitHub/Git Nastya/Sushi/app/src/main/res/layout/fragment_payment.xml" value="0.1" />
+        <entry key="..\:/Alexander/GitHub/Git Nastya/Sushi/app/src/main/res/layout/fragment_registration.xml" value="0.40185185185185185" />
         <entry key="..\:/Alexander/GitHub/Git Nastya/Sushi/app/src/main/res/layout/item_discount_recyclerview.xml" value="0.10643115942028986" />
         <entry key="..\:/Alexander/GitHub/Git Nastya/Sushi/app/src/main/res/layout/item_menu_recyclerview.xml" value="0.21" />
+        <entry key="..\:/Alexander/GitHub/Git Nastya/Sushi/app/src/main/res/layout/item_total_recyclerview.xml" value="0.13043478260869565" />
+        <entry key="..\:/Alexander/GitHub/Git Nastya/Sushi/app/src/main/res/layout/pay_items.xml" value="0.18" />
+        <entry key="..\:/Alexander/GitHub/Git Nastya/Sushi/app/src/main/res/layout/total_items.xml" value="0.25" />
+        <entry key="..\:/Alexander/GitHub/Git Nastya/Sushi/app/src/main/res/menu/bottom_nav.xml" value="0.19333333333333333" />
       </map>
     </option>
   </component>

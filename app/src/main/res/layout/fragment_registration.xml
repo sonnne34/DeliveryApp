@@ -72,7 +72,6 @@
             android:layout_margin="5dp"
             android:inputType="textCapSentences"
             android:maxLines="1"
-
             android:imeOptions="actionDone"
             android:hint="Имя" />
     </com.google.android.material.textfield.TextInputLayout>
